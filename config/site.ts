@@ -1,0 +1,43 @@
+export const siteConfig = {
+  name: 'Technify Solutions - Complete ICT & Technology Solutions Provider',
+  description: 'Technify Solutions offers comprehensive ICT services including IT infrastructure, electronic security systems, gate automation, fire safety, and AV systems. Your one-stop solution provider from edge to cloud for datacenters, warehouses, commercial infrastructure, and industries.',
+  url: 'https://www.technify.com',
+  ogImage: '/images/og-default.jpg',
+  keywords: [
+    'ICT solutions',
+    'IT infrastructure',
+    'electronic security systems',
+    'gate automation',
+    'detection systems',
+    'fire safety systems',
+    'public address systems',
+    'AV systems',
+    'datacenter solutions',
+    'warehouse technology',
+    'commercial infrastructure',
+    'hospitality technology',
+    'active IT solutions',
+    'passive IT solutions',
+    'technology driven solutions',
+    'edge to cloud solutions',
+    'comprehensive ICT services',
+    'solution architect',
+    'technology provider',
+    'information communication technology'
+  ],
+  author: 'Technify Team',
+  twitterHandle: '@technify',
+  companyName: 'Technify Solutions',
+  companyAddress: '123 Business Street, Tech City, TC 12345',
+  companyEmail: 'info@technify.com',
+  companyPhone: '+1 (555) 123-4567',
+  companyIndustry: 'Information Communication Technology (ICT)',
+  companyFoundedYear: 2020,
+  companySize: '50-100 employees',
+  companySocialLinks: {
+    twitter: 'https://twitter.com/technify',
+    linkedin: 'https://linkedin.com/company/technify',
+    github: 'https://github.com/technify',
+    facebook: 'https://facebook.com/technify'
+  }
+};
