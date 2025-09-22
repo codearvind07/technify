@@ -49,10 +49,10 @@ export function TestimonialsSection() {
   };
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden bg-white">
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/3 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/3 w-64 h-64 bg-orange-500/5 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" ref={ref}>
@@ -63,9 +63,9 @@ export function TestimonialsSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="gradient-text">Customer Experiences</span>
+            <span className="bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent">Customer Experiences</span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Hear what our users love about our product
           </p>
         </motion.div>
@@ -81,14 +81,14 @@ export function TestimonialsSection() {
               key={index}
               variants={itemVariants}
               whileHover={{ y: -5, scale: 1.02 }}
-              className="glass-card p-8 group hover:bg-white/10 transition-all duration-300 relative overflow-hidden"
+              className="bg-white p-8 group border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden"
             >
               <div className="absolute top-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
-                <Quote className="w-16 h-16 text-cyan-400" />
+                <Quote className="w-16 h-16 text-blue-500" />
               </div>
               
               <div className="flex items-center mb-6">
-                <div className="w-16 h-16 rounded-full overflow-hidden mr-4 ring-2 ring-cyan-400/30 group-hover:ring-cyan-400/60 transition-all duration-300">
+                <div className="w-16 h-16 rounded-full overflow-hidden mr-4 ring-2 ring-blue-500/30 group-hover:ring-blue-500/60 transition-all duration-300">
                   <Image
                     src={testimonial.avatar}
                     alt={testimonial.name}
@@ -98,10 +98,10 @@ export function TestimonialsSection() {
                   />
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors duration-300">
+                  <h4 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
                     {testimonial.name}
                   </h4>
-                  <p className="text-gray-400 text-sm">{testimonial.role}</p>
+                  <p className="text-gray-600 text-sm">{testimonial.role}</p>
                   <div className="flex items-center mt-1">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star key={i} className="w-4 h-4 text-yellow-500 fill-current" />
@@ -110,12 +110,12 @@ export function TestimonialsSection() {
                 </div>
               </div>
               
-              <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300 relative z-10">
+              <p className="text-gray-700 leading-relaxed group-hover:text-gray-900 transition-colors duration-300 relative z-10">
                 "{testimonial.content}"
               </p>
 
               <div className="mt-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                <div className="w-full h-1 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
+                <div className="w-full h-1 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
               </div>
             </motion.div>
           ))}

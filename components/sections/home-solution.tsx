@@ -11,7 +11,14 @@ import ict from "../../assets/ict.png";
 // Animation variants
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { 
+      duration: 0.8,
+      ease: "easeInOut"
+    } 
+  }
 };
 
 const staggerContainer: Variants = {
@@ -19,46 +26,21 @@ const staggerContainer: Variants = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1
+      staggerChildren: 0.2
     }
   }
 };
 
-const staggerItem: Variants = {
-  hidden: { opacity: 0, y: 15 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-};
-
-// Icon animation variants
-const iconVariants: Variants = {
-  initial: { scale: 1, rotate: 0 },
-  hover: { 
-    scale: 1.3, 
-    rotate: 360,
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
     transition: { 
-      duration: 1.2,
-      ease: "circOut"
+      duration: 0.7,
+      ease: "easeInOut"
     } 
-  },
-  tap: { 
-    scale: 0.95, 
-    rotate: -10,
-    transition: { 
-      duration: 0.2,
-      ease: "backIn"
-    } 
-  }
-};
-
-// Continuous subtle animation for icons
-const floatingAnimation: Variants = {
-  animate: {
-    y: [-2, 2, -2],
-    transition: {
-      duration: 3,
-      repeat: Infinity,
-      repeatType: "reverse"
-    }
   }
 };
 
@@ -86,7 +68,8 @@ export default function HomeSolutions() {
       ],
       image: auto,
       link: "/solutions/automation",
-      color: "green"
+      color: "blue",
+      icon: "🤖"
     },
     {
       title: "ELV SOLUTIONS",
@@ -110,7 +93,8 @@ export default function HomeSolutions() {
       ],
       image: elv,
       link: "/solutions/elv",
-      color: "pink"
+      color: "orange",
+      icon: "🔌"
     },
     {
       title: "ICT SOLUTIONS",
@@ -134,267 +118,198 @@ export default function HomeSolutions() {
       ],
       image: ict,
       link: "/solutions/ict",
-      color: "teal"
+      color: "blue",
+      icon: "🌐"
     },
   ];
 
   return (
-    <section className="relative w-full py-20 md:py-28 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div className="w-full h-full" style={{
-          backgroundImage: `radial-gradient(circle at 15% 50%, hsl(210 10% 20%) 1px, transparent 1px),
-                            radial-gradient(circle at 85% 30%, hsl(210 10% 15%) 1px, transparent 1px)`,
-          backgroundSize: '40px 40px'
-        }}></div>
+    <section className="relative w-full py-24 md:py-32 bg-gradient-to-br from-[#0D1117] via-[#161B2A] to-[#1D2336] text-white overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#1F6FEB]/10 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#fb8500]/10 rounded-full blur-3xl animate-pulse-slower"></div>
+        
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div className="w-full h-full" style={{
+            backgroundImage: `linear-gradient(to right, #fb8500 1px, transparent 1px),
+                              linear-gradient(to bottom, #1F6FEB 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }}></div>
+        </div>
+        
+        {/* Floating elements */}
+        <motion.div 
+          className="absolute top-1/4 left-1/4 w-12 h-12 rounded-lg bg-[#1F6FEB]/10 backdrop-blur-sm border border-[#1F6FEB]/20"
+          animate={{
+            y: [0, -20, 0],
+            rotate: [0, 5, 0],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: [0.42, 0, 0.58, 1]
+          }}
+        />
+        <motion.div 
+          className="absolute top-1/3 right-1/3 w-8 h-8 rounded-full bg-[#fb8500]/10 backdrop-blur-sm border border-[#fb8500]/20"
+          animate={{
+            y: [0, 15, 0],
+            rotate: [0, -5, 0],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: [0.42, 0, 0.58, 1],
+            delay: 1
+          }}
+        />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         {/* Decorative corner accents */}
-        <div className="absolute top-0 left-0 w-20 h-20 border-t border-l border-white/10"></div>
-        <div className="absolute top-0 right-0 w-20 h-20 border-t border-r border-white/10"></div>
-        <div className="absolute bottom-0 left-0 w-20 h-20 border-b border-l border-white/10"></div>
-        <div className="absolute bottom-0 right-0 w-20 h-20 border-b border-r border-white/10"></div>
+        <div className="absolute top-6 left-6 w-16 h-16 border-t-2 border-l-2 border-[#1F6FEB]/30"></div>
+        <div className="absolute top-6 right-6 w-16 h-16 border-t-2 border-r-2 border-[#fb8500]/30"></div>
+        <div className="absolute bottom-6 left-6 w-16 h-16 border-b-2 border-l-2 border-[#1F6FEB]/30"></div>
+        <div className="absolute bottom-6 right-6 w-16 h-16 border-b-2 border-r-2 border-[#fb8500]/30"></div>
         
         {/* Professional header */}
         <motion.div
           variants={fadeIn}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
-          className="text-center mb-20"
+          viewport={{ once: true, margin: "-50px" }}
+          className="text-center mb-20 relative"
         >
-          <div className="inline-flex items-center gap-3 bg-slate-800/80 backdrop-blur-md border border-blue-500/40 rounded-full px-6 py-3 mb-8 shadow-lg">
-            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 animate-pulse"></div>
-            <div className="w-2 h-2 rounded-full bg-[#1F6FEB]"></div>
-            <span className="text-[#C9D1D9]/70 text-sm font-medium tracking-wider uppercase">Our Solutions</span>
-          </div>
+          <motion.div 
+            className="inline-flex items-center gap-2 bg-[#232946]/80 backdrop-blur-md border border-[#1F6FEB]/30 rounded-full px-5 py-2.5 mb-8 shadow-lg hover:shadow-xl transition-shadow"
+            whileHover={{ y: -2 }}
+          >
+            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-[#1F6FEB] to-[#fb8500] animate-pulse"></div>
+            <span className="text-[#fb8500] text-sm font-medium tracking-wider uppercase">Our Solutions</span>
+          </motion.div>
           
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            <span className="block text-white mb-3 bg-gradient-to-r from-blue-100 to-purple-100 bg-clip-text text-transparent">Comprehensive Technology</span>
-            <span className="block text-white bg-gradient-to-r from-cyan-100 to-blue-100 bg-clip-text text-transparent">
-              Solutions Portfolio
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight">
+            <span className="block text-white mb-3">Comprehensive Technology</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#1F6FEB] to-[#fb8500]">
+              Solutions Portfolios
             </span>
           </h2>
           
-          <p className="text-xl md:text-2xl text-slate-300/90 max-w-3xl mx-auto font-light leading-relaxed tracking-wide">
+          <p className="text-xl md:text-2xl text-[#e2e8f0] max-w-3xl mx-auto font-light leading-relaxed">
             End-to-end solutions designed for modern enterprises and smart environments with cutting-edge technology integration.
           </p>
         </motion.div>
 
-        {/* Three-column feature layout with enhanced visual balance */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-24 items-start">
-          {/* Left column with zigzag pattern for first solution */}
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
+        {/* Solution Cards */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24"
+        >
+          {solutions.map((solution, index) => (
             <motion.div
-              variants={staggerItem}
-              whileHover={{ y: -5 }}
-              className="group"
+              key={index}
+              variants={cardVariants}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              className="group relative flex flex-col h-full rounded-2xl overflow-hidden shadow-2xl border border-[#1F6FEB]/20 bg-[#232946]/90 backdrop-blur-sm transition-all duration-500"
             >
-              <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-white/20 bg-slate-800/60 backdrop-blur-xl shadow-xl transition-all duration-500 group-hover:bg-slate-700/80 group-hover:shadow-blue-500/20">
-                <motion.div 
-                  className="mb-4 p-4 rounded-lg group-hover:opacity-80 transition-opacity"
-                  whileHover="hover"
-                  whileTap="tap"
-                  initial="initial"
-                  variants={iconVariants}
-                >
-                  <motion.div
-                    variants={floatingAnimation}
-                    animate="animate"
-                  >
-                    <div className="relative w-32 h-32 rounded-lg overflow-hidden">
-                      <Image 
-                        src={solutions[0].image} 
-                        alt={solutions[0].title} 
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  </motion.div>
-                </motion.div>
-                <h3 className="text-xl font-semibold text-white group-hover:text-blue-200 transition-all duration-300 mb-2">
-                  {solutions[0].title}
-                </h3>
-                <p className="text-slate-300/90 text-sm mb-4">
-                  {solutions[0].subtitle}
-                </p>
-                <p className="text-slate-300/80 text-base leading-relaxed">
-                  {solutions[0].description}
-                </p>
-                <Link 
-                  href={solutions[0].link}
-                  className="mt-6 inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium px-6 py-2 rounded-lg transition-all duration-300 hover:from-blue-500 hover:to-purple-500"
-                >
-                  Learn More
-                </Link>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Center column with central image */}
-          <motion.div
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="flex flex-col items-center justify-center"
-          >
-            <div className="relative mb-8 transform hover:scale-105 transition-transform duration-300">
-              <div className="relative w-96 h-96 rounded-3xl overflow-hidden border border-white/30 shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-purple-900/30 to-slate-900/40 backdrop-blur-2xl"></div>
-                <Image
-                  src={solutions[1].image}
-                  alt={solutions[1].title}
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0D1117] opacity-90 group-hover:opacity-80 transition-opacity duration-500 z-10"></div>
+              
+              {/* Image */}
+              <div className="relative h-48 overflow-hidden">
+                <Image 
+                  src={solution.image} 
+                  alt={solution.title} 
                   fill
-                  className="object-cover relative z-10 hover:brightness-110 transition-all duration-500"
-                  priority
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-blue-900/30 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0D1117] to-transparent opacity-70"></div>
+                
+                {/* Icon badge */}
+                <div className="absolute top-4 right-4 w-12 h-12 rounded-lg bg-[#232946]/80 backdrop-blur-sm border border-[#1F6FEB]/30 flex items-center justify-center text-2xl">
+                  {solution.icon}
+                </div>
               </div>
-            </div>
-            
-            {/* Center solution */}
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="group mb-6 w-full"
-            >
-              <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-white/20 bg-slate-800/60 backdrop-blur-xl shadow-xl transition-all duration-500 group-hover:bg-slate-700/80 group-hover:shadow-blue-500/20">
-                <motion.div 
-                  className="mb-4 p-3 rounded-lg group-hover:opacity-80 transition-opacity"
-                  whileHover="hover"
-                  whileTap="tap"
-                  initial="initial"
-                  variants={iconVariants}
-                >
-                  <motion.div
-                    variants={floatingAnimation}
-                    animate="animate"
-                  >
-                    <div className="relative w-28 h-28 rounded-lg overflow-hidden">
-                      <Image 
-                        src={solutions[1].image} 
-                        alt={solutions[1].title} 
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  </motion.div>
-                </motion.div>
-                <h3 className="text-xl font-semibold text-white group-hover:text-blue-200 transition-all duration-300 mb-2">
-                  {solutions[1].title}
+              
+              {/* Content */}
+              <div className="relative z-20 flex flex-col flex-grow p-6">
+                <h3 className="text-xl font-bold text-white mb-2 transition-colors duration-300 group-hover:text-[#fb8500]">
+                  {solution.title}
                 </h3>
-                <p className="text-slate-300/90 text-sm mb-4">
-                  {solutions[1].subtitle}
+                <p className="text-[#fb8500] text-lg font-semibold mb-4 transition-colors duration-300 group-hover:text-[#1F6FEB]">
+                  {solution.subtitle}
                 </p>
-                <p className="text-slate-300/80 text-base leading-relaxed">
-                  {solutions[1].description}
+                <p className="text-[#cbd5e1] mb-6 leading-relaxed flex-grow">
+                  {solution.description}
                 </p>
+                
+                {/* Features list */}
+                <div className="mb-6">
+                  <h4 className="text-white text-sm font-semibold mb-2 uppercase tracking-wider">Key Features</h4>
+                  <div className="grid grid-cols-2 gap-2">
+                    {solution.features.slice(0, 4).map((feature, idx) => (
+                      <div key={idx} className="flex items-center">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#fb8500] mr-2"></div>
+                        <span className="text-xs text-[#cbd5e1]">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
                 <Link 
-                  href={solutions[1].link}
-                  className="mt-6 inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium px-6 py-2 rounded-lg transition-all duration-300 hover:from-blue-500 hover:to-purple-500"
+                  href={solution.link}
+                  className="inline-flex items-center justify-center bg-gradient-to-r from-[#1F6FEB] to-[#fb8500] text-white font-semibold px-5 py-3 rounded-lg transition-all duration-300 hover:from-[#fb8500] hover:to-[#1F6FEB] shadow-md hover:shadow-lg transform hover:-translate-y-1 mt-auto"
                 >
-                  Learn More
+                  <span>Learn More</span>
+                  <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
                 </Link>
               </div>
             </motion.div>
-            
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-blue-600 via-blue-700 to-purple-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 relative overflow-hidden group"
-            >
-              <span className="relative z-10">View All Solutions</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-            </motion.button>
-          </motion.div>
+          ))}
+        </motion.div>
 
-          {/* Right column */}
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
-            <motion.div
-              variants={staggerItem}
-              whileHover={{ y: -5 }}
-              className="group"
-            >
-              <div className="flex flex-col items-center text-center p-8 rounded-2xl border border-white/20 bg-slate-800/60 backdrop-blur-xl shadow-xl transition-all duration-500 group-hover:bg-slate-700/80 group-hover:shadow-blue-500/20">
-                <motion.div 
-                  className="mb-4 p-4 rounded-lg group-hover:opacity-80 transition-opacity"
-                  whileHover="hover"
-                  whileTap="tap"
-                  initial="initial"
-                  variants={iconVariants}
-                >
-                  <motion.div
-                    variants={floatingAnimation}
-                    animate="animate"
-                  >
-                    <div className="relative w-32 h-32 rounded-lg overflow-hidden">
-                      <Image 
-                        src={solutions[2].image} 
-                        alt={solutions[2].title} 
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  </motion.div>
-                </motion.div>
-                <h3 className="text-xl font-semibold text-white group-hover:text-blue-200 transition-all duration-300 mb-2">
-                  {solutions[2].title}
-                </h3>
-                <p className="text-slate-300/90 text-sm mb-4">
-                  {solutions[2].subtitle}
-                </p>
-                <p className="text-slate-300/80 text-base leading-relaxed">
-                  {solutions[2].description}
-                </p>
-                <Link 
-                  href={solutions[2].link}
-                  className="mt-6 inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium px-6 py-2 rounded-lg transition-all duration-300 hover:from-blue-500 hover:to-purple-500"
-                >
-                  Learn More
-                </Link>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-
-        {/* Simplified content section */}
+        {/* Additional content section */}
         <motion.div
           variants={fadeIn}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
-          className="text-center max-w-4xl mx-auto"
+          viewport={{ once: true, margin: "-50px" }}
+          className="text-center max-w-4xl mx-auto relative"
         >
-          <h3 className="text-3xl md:text-4xl font-bold text-white mb-7 bg-gradient-to-r from-blue-100 to-purple-100 bg-clip-text text-transparent">
+          <div className="absolute -left-20 top-10 w-40 h-40 bg-[#1F6FEB]/10 rounded-full blur-3xl -z-10"></div>
+          <div className="absolute -right-20 bottom-10 w-40 h-40 bg-[#fb8500]/10 rounded-full blur-3xl -z-10"></div>
+          
+          <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Integrated Technology Solutions
           </h3>
-          <p className="text-lg md:text-xl text-slate-300/95 mb-10 leading-relaxed tracking-wide">
+          <p className="text-lg md:text-xl text-[#cbd5e1] mb-10 leading-relaxed">
             Our comprehensive approach combines innovative technology with industry expertise to deliver solutions that enhance security, efficiency, and user experience across all your infrastructure needs.
           </p>
           
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="flex flex-wrap justify-center gap-4">
             {[
-              "System Integration",
-              "24/7 Support",
-              "Scalable Design",
-              "Security First"
+              { text: "System Integration", icon: "🔄" },
+              { text: "24/7 Support", icon: "🛡️" },
+              { text: "Scalable Design", icon: "📈" },
+              { text: "Security First", icon: "🔒" },
+              { text: "Future Proof", icon: "🚀" }
             ].map((item, idx) => (
-              <div key={idx} className="px-6 py-3 bg-slate-800/70 backdrop-blur-md border border-white/20 rounded-full text-slate-300/90 text-base font-medium shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                {item}
-              </div>
+              <motion.div 
+                key={idx}
+                className="flex items-center gap-2 px-5 py-2.5 bg-[#232946]/80 backdrop-blur-sm border border-[#1F6FEB]/30 rounded-full text-white text-base font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:border-[#fb8500]/30 hover:bg-[#232946]"
+                whileHover={{ y: -3, scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span>{item.icon}</span>
+                <span>{item.text}</span>
+              </motion.div>
             ))}
           </div>
         </motion.div>

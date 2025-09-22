@@ -64,7 +64,7 @@ const features = [
 
 export function AutomationFeatures() {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <motion.h2
@@ -82,7 +82,7 @@ export function AutomationFeatures() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="mt-4 text-xl text-gray-500 max-w-2xl mx-auto"
+            className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto"
           >
             Our automation solutions offer a comprehensive range of features to transform your business operations.
           </motion.p>
@@ -96,9 +96,9 @@ export function AutomationFeatures() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow"
+              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
             >
-              <div className="flex items-center justify-center h-12 w-12 rounded-md bg-cyan-500 text-white">
+              <div className="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-blue-500 to-orange-500 text-white">
                 {feature.icon}
               </div>
               <h3 className="mt-6 text-xl font-bold text-gray-900">{feature.title}</h3>

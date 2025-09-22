@@ -57,13 +57,10 @@ export function CallToActionSection() {
   };
 
   return (
-    <section ref={ref} className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background matching HomeSolutions */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0d1b2a] via-[#1b263b] to-[#0f172a]" />
-      
-      {/* Background lighting matching HomeSolutions */}
-      <div className="absolute top-10 left-10 w-80 h-80 bg-[#1F6FEB]/20 rounded-full blur-[120px] opacity-40 animate-pulse -z-10" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#FFB300]/20 rounded-full blur-[130px] opacity-30 animate-pulse -z-10" />
+    <section ref={ref} className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white">
+      {/* Background elements */}
+      <div className="absolute top-10 left-10 w-80 h-80 bg-blue-500/20 rounded-full blur-[120px] opacity-40 animate-pulse -z-10" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-orange-500/20 rounded-full blur-[130px] opacity-30 animate-pulse -z-10" />
       
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Main CTA Container */}
@@ -71,14 +68,14 @@ export function CallToActionSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 0.8 }}
-          className="bg-white/10 backdrop-blur-md rounded-3xl p-12 border border-white/20 shadow-2xl"
+          className="bg-white rounded-3xl p-12 border border-gray-200 shadow-xl"
         >
           <div className="text-center mb-12">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
             >
               Ready to Transform Your Business?
             </motion.h2>
@@ -86,7 +83,7 @@ export function CallToActionSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-xl text-gray-300 max-w-3xl mx-auto mb-8"
+              className="text-xl text-gray-600 max-w-3xl mx-auto mb-8"
             >
               Let's discuss how our technology solutions can drive your business forward. 
               Get a free consultation and discover the possibilities.
@@ -103,7 +100,7 @@ export function CallToActionSection() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-[#1F6FEB] to-[#FFB300] text-white font-semibold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 text-lg"
+                  className="bg-gradient-to-r from-blue-500 to-orange-500 text-white font-semibold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 text-lg"
                 >
                   Get Free Consultation
                   <ArrowRight className="w-5 h-5" />
@@ -114,7 +111,7 @@ export function CallToActionSection() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="border-2 border-[#1F6FEB] text-[#1F6FEB] font-semibold px-8 py-4 rounded-lg hover:bg-[#1F6FEB]/10 transition-all duration-300 flex items-center justify-center gap-2 text-lg"
+                  className="border-2 border-blue-500 text-blue-600 font-semibold px-8 py-4 rounded-lg hover:bg-blue-500/10 transition-all duration-300 flex items-center justify-center gap-2 text-lg"
                 >
                   Learn More About Us
                 </motion.button>
@@ -133,24 +130,24 @@ export function CallToActionSection() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="bg-white/10 backdrop-blur-sm p-6 rounded-xl text-center group hover:bg-white/20 transition-all duration-300 border border-white/20"
+                className="bg-white p-6 rounded-xl text-center group hover:bg-blue-500/5 transition-all duration-300 border border-gray-200"
               >
                 <div className="flex justify-center mb-4">
-                  <div className="p-3 rounded-full bg-gradient-to-r from-[#1F6FEB]/20 to-[#FFB300]/20 group-hover:from-[#1F6FEB]/30 group-hover:to-[#FFB300]/30 transition-all duration-300">
+                  <div className="p-3 rounded-full bg-gradient-to-r from-blue-500/20 to-orange-500/20 group-hover:from-blue-500/30 group-hover:to-orange-500/30 transition-all duration-300">
                     {method.icon}
                   </div>
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   {method.title}
                 </h3>
-                <p className="text-gray-300 mb-4">
+                <p className="text-gray-600 mb-4">
                   {method.description}
                 </p>
                 <Link href={method.href}>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="text-[#1F6FEB] font-medium hover:text-[#1F6FEB]/80 transition-colors duration-200"
+                    className="text-blue-600 font-medium hover:text-blue-700 transition-colors duration-200"
                   >
                     {method.action}
                   </motion.button>
@@ -166,13 +163,13 @@ export function CallToActionSection() {
             transition={{ duration: 0.6, delay: 0.8 }}
             className="mt-12 text-center"
           >
-            <p className="text-gray-400 mb-4">Trusted by industry leaders</p>
+            <p className="text-gray-500 mb-4">Trusted by industry leaders</p>
             <div className="flex justify-center items-center gap-8 opacity-60">
-              <span className="text-sm font-medium text-gray-300">500+ Projects</span>
-              <span className="text-sm font-medium text-gray-300">•</span>
-              <span className="text-sm font-medium text-gray-300">15+ Years</span>
-              <span className="text-sm font-medium text-gray-300">•</span>
-              <span className="text-sm font-medium text-gray-300">99% Success Rate</span>
+              <span className="text-sm font-medium text-gray-600">500+ Projects</span>
+              <span className="text-sm font-medium text-gray-600">•</span>
+              <span className="text-sm font-medium text-gray-600">15+ Years</span>
+              <span className="text-sm font-medium text-gray-600">•</span>
+              <span className="text-sm font-medium text-gray-600">99% Success Rate</span>
             </div>
           </motion.div>
         </motion.div>

@@ -7,7 +7,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative overflow-hidden min-h-screen flex items-center justify-center bg-[#0D1117]"
+      className="relative overflow-hidden min-h-screen flex items-center justify-center bg-[#0D1117] pt-32" // pt-32 ensures space for header
       aria-label="Technify Solutions Hero Section"
     >
       {/* Enhanced background lighting effects */}
@@ -19,12 +19,10 @@ export function HeroSection() {
         <div className="h-full w-full bg-[linear-gradient(to_bottom,rgba(31,111,235,0.1)_1px,transparent_1px)] bg-[length:100%_40px]" />
       </div>
 
-      {/* Magic Slider - Full screen */}
-      <div className="absolute inset-0 z-10">
+      {/* Magic Slider - moved down after header */}
+      <div className="w-full h-full absolute inset-0 pt-32">
         <MagicSlider />
       </div>
-
-      
     </section>
   );
 }

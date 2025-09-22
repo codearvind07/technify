@@ -1,7 +1,5 @@
 import { Metadata } from 'next';
-import { ICTHero } from './ict-hero';
 import { SEO } from '@/components/seo/seo';
-
 
 export const metadata: Metadata = {
   title: 'ICT Solutions | Technify Solutions - Information Communication Technology',
@@ -17,9 +15,19 @@ export default function ICTSolutionsPage() {
         path="/solutions/ict"
         image="/images/og-ict-solutions.jpg"
       />
-      <div className="min-h-screen">
-        <ICTHero />
-       
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center p-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">ICT Solutions</h1>
+          <p className="text-xl text-gray-600 mb-8">
+            For detailed information about our ICT solutions, please visit our main solutions page.
+          </p>
+          <a 
+            href="/solutions" 
+            className="inline-block bg-gradient-to-r from-blue-600 to-orange-500 text-white px-6 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-orange-600 transition-all"
+          >
+            View All Solutions
+          </a>
+        </div>
       </div>
     </>
   );

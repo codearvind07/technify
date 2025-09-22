@@ -162,15 +162,17 @@ const MagicSlider: React.FC = () => {
                     : 'opacity-0 z-0 translate-x-full'
               }`}
             >
-              <div className="relative w-full h-full">
-                <Image
-                  src={slide.image}
-                  alt={slide.alt || `Slide ${idx + 1}`}
-                  fill
-                  className="object-cover"
-                  priority={idx === 0}
-                  sizes="100vw"
-                />
+              <div className="relative w-full h-full flex items-center justify-center">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={slide.image}
+                    alt={slide.alt || `Slide ${idx + 1}`}
+                    fill
+                    className="object-cover"
+                    priority={idx === 0}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                  />
+                </div>
                 {/* Overlay for better text readability */}
                 <div className="absolute inset-0 bg-gradient-to-r from-[#0D1117]/40 via-transparent to-[#0D1117]/40"></div>
               </div>
