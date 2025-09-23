@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 
 // Import images
-import designInnovation from "../../assets/slide1.jpg";
+import designInnovation from "../../assets/slider1.jpg";
 import supportMaintenance from "../../assets/slide2.jpg";
 import implementation from "../../assets/slide3.jpg";
 import securityCompliance from "../../assets/automation.jpg";

@@ -82,8 +82,8 @@ export function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full font-sans">
-      {/* Top info bar with enhanced animation */}
+    <header className="fixed top-0 left-0 right-0 z-50 w-full font-sans bg-white" style={{ willChange: 'transform' }}>
+      {/* Top info bar with enhanced animation and mobile optimization */}
       <motion.div 
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -93,7 +93,7 @@ export function Header() {
           damping: 15,
           delay: 0.1 
         }}
-        className="bg-gradient-to-r from-[#0D1A3A] to-[#1a2f6d] text-white text-sm py-2 px-4 flex justify-between items-center relative overflow-hidden"
+        className="bg-gradient-to-r from-[#0D1A3A] to-[#1a2f6d] text-white text-xs sm:text-sm py-2 px-4 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0 relative overflow-hidden"
       >
         {/* Animated background element */}
         <div className="absolute inset-0 opacity-10">
@@ -168,7 +168,7 @@ export function Header() {
               href="#"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#FFB300] hover:text-white bg-[#ffffff08] rounded-full p-2 w-8 h-8 flex items-center justify-center"
+              className="text-[#FFB300] hover:text-white bg-[#ffffff08] rounded-full p-2 w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center transition-colors duration-200"
               whileHover={{ 
                 scale: 1.2,
                 rotate: 360,
@@ -180,7 +180,9 @@ export function Header() {
                 stiffness: 400,
                 rotate: { duration: 0.5 }
               }}
+              aria-label={`Follow us on ${['Facebook', 'Twitter', 'LinkedIn', 'Pinterest', 'Google+'][index]}`}
             >
+              <span className="sr-only">{['Facebook', 'Twitter', 'LinkedIn', 'Pinterest', 'Google+'][index]}</span>
               <FontAwesomeIcon icon={icon} className="text-[#FFB300] text-sm" />
             </motion.a>
           ))}
@@ -201,18 +203,18 @@ export function Header() {
           scrolled ? "py-2 shadow-2xl border-b border-[#e5e7eb]" : "py-4"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between w-full">
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400 }}
-            className="flex items-center"
+            className="flex items-center flex-shrink-0"
             whileTap={{ scale: 0.95 }}
           >
             <motion.img
               src={logo.src}
-              alt="Logo"
-              className="h-12 w-auto cursor-pointer"
+              alt="Technify Logo"
+              className="h-10 sm:h-12 w-auto cursor-pointer"
               animate={{
                 y: [0, -5, 0],
               }}
@@ -225,8 +227,8 @@ export function Header() {
             />
           </motion.div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8 text-[#222] font-medium">
+          {/* Desktop Navigation with responsive improvements */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-[#222] font-medium text-sm lg:text-base" style={{ willChange: 'transform' }}>
             {NAV_ITEMS.map((item, index) =>
               item.subItems ? (
                 <div
@@ -242,6 +244,7 @@ export function Header() {
                     whileTap={{ scale: 0.95 }}
                   >
                     <motion.span
+                      className="whitespace-nowrap"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 * index }}
@@ -309,48 +312,59 @@ export function Header() {
             )}
           </nav>
 
-          {/* Mobile menu button */}
+          {/* Mobile menu button with enhanced touch target */}
           <motion.button 
-            className="md:hidden flex flex-col w-6 h-5 justify-between items-center"
+            className="md:hidden flex flex-col w-10 h-10 justify-center items-center rounded-full hover:bg-gray-100 transition-colors duration-200"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            whileTap={{ scale: 0.9 }}
-            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.05 }}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMenuOpen}
           >
+            <span className="sr-only">{isMenuOpen ? "Close menu" : "Open menu"}</span>
             <motion.span 
-              className="w-full h-0.5 bg-[#0D1A3A] rounded"
+              className="w-6 h-0.5 bg-[#0D1A3A] rounded-full transition-colors duration-200"
               animate={{ 
                 rotate: isMenuOpen ? 45 : 0, 
-                y: isMenuOpen ? 8 : 0 
+                y: isMenuOpen ? 2 : 0 
               }}
-              transition={{ type: "spring", stiffness: 300 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             />
             <motion.span 
-              className="w-full h-0.5 bg-[#0D1A3A] rounded"
-              animate={{ opacity: isMenuOpen ? 0 : 1 }}
+              className="w-6 h-0.5 bg-[#0D1A3A] rounded-full absolute transition-all duration-200"
+              animate={{ 
+                opacity: isMenuOpen ? 0 : 1,
+                width: isMenuOpen ? 0 : 24
+              }}
               transition={{ duration: 0.2 }}
             />
             <motion.span 
-              className="w-full h-0.5 bg-[#0D1A3A] rounded"
+              className="w-6 h-0.5 bg-[#0D1A3A] rounded-full transition-colors duration-200"
               animate={{ 
                 rotate: isMenuOpen ? -45 : 0, 
-                y: isMenuOpen ? -8 : 0 
+                y: isMenuOpen ? -2 : 0 
               }}
-              transition={{ type: "spring", stiffness: 300 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             />
           </motion.button>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile menu with enhanced animation and accessibility */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div 
-              className="md:hidden bg-white border-t border-gray-200"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
+              className="md:hidden bg-white border-t border-gray-200 shadow-lg"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation menu"
             >
-              <div className="px-4 py-3 flex flex-col gap-3">
+              <div className="px-4 py-6 flex flex-col gap-2 max-h-[80vh] overflow-y-auto">
+                {/* Backdrop for better separation */}
+                <div className="absolute inset-0 bg-black/5 backdrop-blur-sm -z-10"></div>
                 {NAV_ITEMS.map((item, index) => (
                   <motion.div
                     key={item.label}
@@ -359,48 +373,54 @@ export function Header() {
                     transition={{ delay: index * 0.1 }}
                   >
                     {item.subItems ? (
-                      <div>
-                        <button 
-                          className="flex items-center justify-between w-full py-2 font-medium"
-                          onClick={() => setSolutionsOpen(!solutionsOpen)}
-                        >
-                          <span>{item.label}</span>
-                          <motion.span
-                            animate={{ rotate: solutionsOpen ? 180 : 0 }}
-                            transition={{ type: "spring", stiffness: 300 }}
-                          >
-                            &#9662;
-                          </motion.span>
-                        </button>
-                        <AnimatePresence>
-                          {solutionsOpen && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="pl-4"
-                            >
-                              {item.subItems.map((sub) => (
-                                <a
-                                  key={sub.label}
-                                  href={sub.href}
-                                  className="block py-2 text-gray-600"
-                                >
-                                  {sub.label}
-                                </a>
-                              ))}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    ) : (
-                      <a
-                        href={item.href}
-                        className={`block py-2 font-medium ${item.cta ? "text-[#FFB300]" : ""}`}
+                    <div className="border-b border-gray-100 last:border-b-0">
+                      <button 
+                        className="flex items-center justify-between w-full py-4 px-2 text-left font-medium text-gray-800 hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                        onClick={() => setSolutionsOpen(!solutionsOpen)}
+                        aria-expanded={solutionsOpen}
+                        aria-haspopup="true"
                       >
-                        {item.label}
-                      </a>
-                    )}
+                        <span className="text-base">{item.label}</span>
+                        <motion.span
+                          className="text-gray-500"
+                          animate={{ rotate: solutionsOpen ? 180 : 0 }}
+                          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        >
+                          &#9662;
+                        </motion.span>
+                      </button>
+                      <AnimatePresence>
+                        {solutionsOpen && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.2, ease: "easeOut" }}
+                            className="pl-6 pr-2 pt-1 pb-2 space-y-1 bg-gray-50 rounded-lg mb-2"
+                          >
+                            {item.subItems.map((sub) => (
+                              <a
+                                key={sub.label}
+                                href={sub.href}
+                                className="block py-3 px-3 text-sm text-gray-700 hover:bg-white hover:text-[#FFB300] rounded-md transition-colors duration-200"
+                                onClick={() => setIsMenuOpen(false)}
+                              >
+                                {sub.label}
+                              </a>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ) : (
+                    <a
+                      href={item.href}
+                      className={`block py-4 px-2 rounded-lg text-base font-medium transition-colors duration-200 ${item.cta ? "text-[#FFB300] hover:bg-orange-50" : "text-gray-800 hover:bg-gray-50"}`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.label}
+                    </a>
+                  )}
                   </motion.div>
                 ))}
               </div>

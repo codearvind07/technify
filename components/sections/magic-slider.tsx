@@ -2,20 +2,41 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import { StaticImageData } from 'next/image';
-import slider1 from '../../assets/slide1.jpg';
+import slider1 from '../../assets/slider1.jpg';
 import slider2 from '../../assets/slide2.jpg';
 import slider3 from '../../assets/slide3.jpg';
+import { cn } from '@/lib/utils';
 
 interface Slide {
   id: number;
   image: string | StaticImageData;
   alt?: string;
+  title: string;
+  description: string;
 }
 
 const slides: Slide[] = [
-  { id: 1, image: slider1, alt: 'Technology Solution 1' },
-  { id: 2, image: slider2, alt: 'Technology Solution 2' },
-  { id: 3, image: slider3, alt: 'Technology Solution 3' },
+  { 
+    id: 1, 
+    image: slider1, 
+    alt: 'Technology Solution 1',
+    title: 'Innovative Technology Solutions',
+    description: 'Technify delivers cutting-edge technology solutions tailored to your business needs. Our expert team ensures seamless integration and optimal performance.'
+  },
+  { 
+    id: 2, 
+    image: slider2, 
+    alt: 'Technology Solution 2',
+    title: 'Digital Transformation Services',
+    description: 'Transform your business with our comprehensive digital solutions. From cloud migration to automation, we help you stay ahead in the digital era.'
+  },
+  { 
+    id: 3, 
+    image: slider3, 
+    alt: 'Technology Solution 3',
+    title: 'Enterprise IT Consulting',
+    description: 'Our strategic IT consulting services help enterprises optimize their technology infrastructure for maximum efficiency and growth.'
+  },
 ];
 
 const SLIDE_DURATION = 3;
@@ -26,14 +47,22 @@ const MagicSlider: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [direction, setDirection] = useState(0); // -1 for prev, 1 for next
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
 
   const goToSlide = useCallback((index: number) => {
+    if (isTransitioning) return;
+    
+    setIsTransitioning(true);
     setDirection(index > currentSlide ? 1 : -1);
     setCurrentSlide((index + slides.length) % slides.length);
     setProgress(0);
-  }, [currentSlide]);
+    
+    // Reset transitioning state after animation completes
+    setTimeout(() => setIsTransitioning(false), 700);
+  }, [currentSlide, isTransitioning]);
 
   const goToNextSlide = useCallback(() => {
     setDirection(1);
@@ -60,7 +89,7 @@ const MagicSlider: React.FC = () => {
         return newProgress;
       });
     }, 100);
-  }, [goToNextSlide]);
+  }, [goToNextSlide, SLIDE_DURATION]);
 
   // Pause slider on hover
   const handleMouseEnter = () => {
@@ -71,12 +100,40 @@ const MagicSlider: React.FC = () => {
     setIsPlaying(true);
   };
 
+  // Handle keyboard navigation
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      goToPreviousSlide();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      goToNextSlide();
+    } else if (e.key === ' ') {
+      e.preventDefault();
+      setIsPlaying(prev => !prev);
+    }
+  }, [goToPreviousSlide, goToNextSlide]);
+
+  useEffect(() => {
+    const sliderElement = sliderRef.current;
+    if (sliderElement) {
+      sliderElement.addEventListener('keydown', handleKeyDown);
+      sliderElement.setAttribute('tabIndex', '0');
+      sliderElement.setAttribute('role', 'region');
+      sliderElement.setAttribute('aria-label', 'Image slider');
+      
+      return () => {
+        sliderElement.removeEventListener('keydown', handleKeyDown);
+      };
+    }
+  }, [handleKeyDown]);
+
   useEffect(() => {
     if (isPlaying) startTimer();
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [isPlaying, currentSlide, startTimer]);
+  }, [isPlaying, currentSlide, startTimer, SLIDE_DURATION]);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.touches[0].clientX);
@@ -110,6 +167,17 @@ const MagicSlider: React.FC = () => {
     return () => clearTimeout(timer);
   }, [currentSlide]);
 
+  // Auto-focus the slider when it mounts for keyboard navigation
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (sliderRef.current) {
+        sliderRef.current.focus({ preventScroll: true });
+      }
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: React.KeyboardEvent | KeyboardEvent) => {
@@ -129,14 +197,49 @@ const MagicSlider: React.FC = () => {
   }, [goToNextSlide, goToPreviousSlide]);
 
   return (
-    <div className="w-full h-screen relative overflow-hidden"
-         onMouseEnter={handleMouseEnter}
-         onMouseLeave={handleMouseLeave}
-         tabIndex={0}
-         role="region"
-         aria-label="Image slider">
+    <div 
+      ref={sliderRef}
+      className="w-full h-screen relative overflow-hidden bg-background transition-all duration-1000"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <style jsx>{`
+        @keyframes fade-in-up {
+          0% {
+            opacity: 0;
+            transform: translateY(15px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-5px); }
+          100% { transform: translateY(0px); }
+        }
+        .animate-fade-in-up {
+          animation: fade-in-up 0.4s ease-out forwards;
+        }
+        .animate-float {
+          animation: float 4s ease-in-out infinite;
+        }
+        .delay-100 {
+          animation-delay: 0.05s;
+        }
+        .delay-150 {
+          animation-delay: 0.1s;
+        }
+        .delay-200 {
+          animation-delay: 0.15s;
+        }
+        .delay-300 {
+          animation-delay: 0.25s;
+        }
+      `}</style>
       <section
-        className="relative w-full h-full"
+        className="relative w-full h-full transition-all duration-500"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -146,81 +249,158 @@ const MagicSlider: React.FC = () => {
           {slides.map((slide, idx) => (
             <div
               key={slide.id}
-              className={`absolute inset-0 transition-all duration-700 ease-in-out transform ${
+              className={`absolute inset-0 transition-all duration-700 ease-in-out transform-gpu group/slide ${
                 idx === currentSlide 
-                  ? 'opacity-100 z-10 translate-x-0' 
+                  ? 'opacity-100 z-10 translate-x-0 scale-100' 
                   : direction === 1 && idx < currentSlide 
-                    ? 'opacity-0 z-0 -translate-x-full' 
+                    ? 'opacity-0 z-0 -translate-x-full scale-95' 
                     : direction === -1 && idx > currentSlide 
-                    ? 'opacity-0 z-0 translate-x-full'
+                    ? 'opacity-0 z-0 translate-x-full scale-95'
                     : direction === 1 && idx > currentSlide
-                    ? 'opacity-0 z-0 translate-x-full'
+                    ? 'opacity-0 z-0 translate-x-full scale-95'
                     : direction === -1 && idx < currentSlide
-                    ? 'opacity-0 z-0 -translate-x-full'
+                    ? 'opacity-0 z-0 -translate-x-full scale-95'
                     : idx < currentSlide 
-                    ? 'opacity-0 z-0 -translate-x-full' 
-                    : 'opacity-0 z-0 translate-x-full'
+                    ? 'opacity-0 z-0 -translate-x-full scale-95' 
+                    : 'opacity-0 z-0 translate-x-full scale-95'
               }`}
             >
-              <div className="relative w-full h-full flex items-center justify-center">
+              <div className="relative w-full h-full flex">
+                {/* Image */}
                 <div className="relative w-full h-full">
                   <Image
                     src={slide.image}
                     alt={slide.alt || `Slide ${idx + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-all duration-700 ease-in-out hover:scale-105"
                     priority={idx === 0}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                    quality={90}
                   />
                 </div>
-                {/* Overlay for better text readability */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0D1117]/40 via-transparent to-[#0D1117]/40"></div>
+                
+                {/* Content overlay on the right side - compact and modern with icons */}
+                <div className="absolute right-0 top-0 h-full w-full md:w-2/5 flex items-center justify-end z-10 p-4 md:p-12">
+                  <div className="max-w-md bg-card/85 backdrop-blur-2xl rounded-xl p-5 md:p-6 shadow-xl border border-border/40 m-4 transform transition-all duration-500 ease-out hover:scale-[1.01] translate-x-4 opacity-0 group-[:not(.opacity-0)]/slide:translate-x-0 group-[:not(.opacity-0)]/slide:opacity-100 animate-float">
+                    <div className="mb-3 animate-fade-in-up delay-100">
+                      <span className="inline-flex items-center px-2.5 py-0.5 text-xs font-semibold text-primary bg-primary/10 rounded-full group-hover/slide:animate-pulse">
+                        <svg className="w-3 h-3 mr-1 transition-transform duration-300 group-hover/slide:rotate-360" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        TECHNIFY
+                      </span>
+                    </div>
+                    <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3 leading-tight animate-fade-in-up delay-150">{slide.title}</h2>
+                    <p className={`text-sm md:text-base mb-5 leading-relaxed animate-fade-in-up delay-200 ${slide.id === 2 || slide.id === 3 ? 'text-foreground' : 'text-muted-foreground'}`}>{slide.description}</p>
+                    <div className="flex space-x-3 animate-fade-in-up delay-300">
+                      <button className="inline-flex items-center bg-gradient-to-r from-primary to-secondary text-primary-foreground px-4 py-2 rounded-lg font-medium text-sm hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 group/button">
+                        <svg className="w-4 h-4 mr-1 transition-transform duration-500 group-hover/button:rotate-360" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                        Learn More
+                      </button>
+                      <button className="inline-flex items-center border border-primary text-primary px-4 py-2 rounded-lg font-medium text-sm hover:bg-primary/10 transition-all duration-300 group/button">
+                        <svg className="w-4 h-4 mr-1 transition-transform duration-500 group-hover/button:rotate-360" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        Contact
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Navigation Arrows */}
+        {/* Navigation Arrows with Enhanced Glassmorphism Effect */}
         <button
           onClick={goToPreviousSlide}
-          className="absolute left-4 sm:left-6 top-1/2 z-40 -translate-y-1/2 group p-2 sm:p-3 rounded-full bg-[#0D1117]/40 hover:bg-[#0D1117]/60 transition-all backdrop-blur-sm border border-[#C9D1D9]/30 shadow-lg hover:scale-110 active:scale-95 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-[#C9D1D9]/50"
+          disabled={isTransitioning}
+          className={cn(
+            "absolute left-4 sm:left-6 top-1/2 z-40 -translate-y-1/2 group p-3 sm:p-4 rounded-full \
+            backdrop-blur-2xl border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 \
+            transform-gpu hover:scale-110 active:scale-95",
+            "bg-card/80 border-border/30 hover:bg-card/90 shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 \
+            data-[disabled=true]:opacity-50 data-[disabled=true]:cursor-not-allowed"
+          )}
           aria-label="Previous slide"
+          data-disabled={isTransitioning}
         >
-          <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#C9D1D9] transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          <svg 
+            className="w-5 h-5 sm:w-6 sm:h-6 text-primary transition-transform duration-500 group-hover:rotate-360 group-hover:-translate-x-1"
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24" 
+            strokeWidth={2.5}
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              d="M15 19l-7-7 7-7" 
+            />
           </svg>
         </button>
 
         <button
           onClick={goToNextSlide}
-          className="absolute right-4 sm:right-6 top-1/2 z-40 -translate-y-1/2 group p-2 sm:p-3 rounded-full bg-[#0D1117]/40 hover:bg-[#0D1117]/60 transition-all backdrop-blur-sm border border-[#C9D1D9]/30 shadow-lg hover:scale-110 active:scale-95 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-[#C9D1D9]/50"
+          disabled={isTransitioning}
+          className={cn(
+            "absolute right-4 sm:right-6 top-1/2 z-40 -translate-y-1/2 group p-3 sm:p-4 rounded-full \
+            backdrop-blur-2xl border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 \
+            transform-gpu hover:scale-110 active:scale-95",
+            "bg-card/80 border-border/30 hover:bg-card/90 shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 \
+            data-[disabled=true]:opacity-50 data-[disabled=true]:cursor-not-allowed"
+          )}
           aria-label="Next slide"
+          data-disabled={isTransitioning}
         >
-          <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#C9D1D9] transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          <svg 
+            className="w-5 h-5 sm:w-6 sm:h-6 text-primary transition-transform duration-500 group-hover:rotate-360 group-hover:translate-x-1"
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24" 
+            strokeWidth={2.5}
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              d="M9 5l7 7-7 7" 
+            />
           </svg>
         </button>
         
       
 
-        {/* Dots (visible on mobile and tablets) - kept at bottom center */}
-        <div className="absolute bottom-8 left-1/2 z-50 flex -translate-x-1/2 gap-3 lg:hidden">
+        {/* Dot Indicators with Enhanced Glassmorphism Effect */}
+        <div className="absolute bottom-8 left-1/2 z-50 flex -translate-x-1/2 gap-4 lg:hidden">
           {slides.map((_, idx) => (
             <button
               key={idx}
               onClick={() => goToSlide(idx)}
-              className={`transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#C9D1D9]/50 ${
-                idx === currentSlide
-                  ? 'w-10 h-3 bg-gradient-to-r from-[#1F6FEB] to-[#FFB300] shadow-lg shadow-[#1F6FEB]/50 rounded-full'
-                  : 'w-3 h-3 bg-[#C9D1D9]/40 hover:bg-[#C9D1D9]/80 hover:scale-125 rounded-full'
-              }`}
+              disabled={isTransitioning}
+              className={cn(
+                "relative p-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 \
+                transform-gpu hover:scale-110 active:scale-95",
+                "data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50",
+                idx === currentSlide 
+                  ? "bg-card/80 border border-border/30 backdrop-blur-2xl shadow-xl shadow-primary/30" 
+                  : "bg-card/50 border border-border/50 backdrop-blur-lg hover:bg-card/70 shadow-lg"
+              )}
               aria-label={`Go to slide ${idx + 1}`}
+              data-disabled={isTransitioning}
             >
+              <span 
+                className={cn(
+                  "block w-3 h-3 rounded-full transition-all duration-300 group-hover:animate-pulse",
+                  idx === currentSlide ? "bg-primary scale-125" : "bg-muted"
+                )}
+              />
               {idx === currentSlide && (
                 <div
-                  className="h-full bg-gradient-to-r from-[#C9D1D9]/40 to-[#C9D1D9]/20 rounded-full transition-all duration-100"
-                  style={{ width: `${progress}%` }}
-                ></div>
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/40 to-secondary/40"
+                  style={{ width: `${progress}%`, left: 0 }}
+                />
               )}
             </button>
           ))}
