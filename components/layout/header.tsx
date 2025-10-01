@@ -1,4 +1,6 @@
 "use client";
+
+import Image from "next/image";
 import logo from "../../assets/Technify-logo.png";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
@@ -211,19 +213,13 @@ export function Header() {
             className="flex items-center flex-shrink-0"
             whileTap={{ scale: 0.95 }}
           >
-            <motion.img
-              src={logo.src}
+            <Image
+              src={logo}
               alt="Technify Logo"
+              width={150}
+              height={50}
+              priority
               className="h-10 sm:h-12 w-auto cursor-pointer"
-              animate={{
-                y: [0, -5, 0],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "easeInOut"
-              }}
             />
           </motion.div>
 

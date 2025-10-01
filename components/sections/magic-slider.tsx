@@ -279,9 +279,9 @@ const MagicSlider: React.FC = () => {
                   />
                 </div>
                 
-                {/* Content overlay on the right side - compact and modern with icons */}
-                <div className="absolute right-0 top-0 h-full w-full md:w-2/5 flex items-center justify-end z-10 p-4 md:p-12">
-                  <div className="max-w-md bg-card/85 backdrop-blur-2xl rounded-xl p-5 md:p-6 shadow-xl border border-border/40 m-4 transform transition-all duration-500 ease-out hover:scale-[1.01] translate-x-4 opacity-0 group-[:not(.opacity-0)]/slide:translate-x-0 group-[:not(.opacity-0)]/slide:opacity-100 animate-float">
+                {/* Content overlay - adjusted for mobile */}
+                <div className="absolute inset-0 md:right-0 md:top-0 md:h-full md:w-full md:w-2/5 flex items-end md:items-center justify-center md:justify-end z-10 p-4 md:p-12">
+                  <div className="max-w-md bg-card/85 backdrop-blur-2xl rounded-xl p-4 md:p-6 shadow-xl border border-border/40 mb-16 md:mb-0 md:m-4 transform transition-all duration-500 ease-out hover:scale-[1.01] translate-y-4 md:translate-x-4 opacity-0 group-[:not(.opacity-0)]/slide:translate-y-0 md:group-[:not(.opacity-0)]/slide:translate-x-0 group-[:not(.opacity-0)]/slide:opacity-100 animate-float">
                     <div className="mb-3 animate-fade-in-up delay-100">
                       <span className="inline-flex items-center px-2.5 py-0.5 text-xs font-semibold text-primary bg-primary/10 rounded-full group-hover/slide:animate-pulse">
                         <svg className="w-3 h-3 mr-1 transition-transform duration-300 group-hover/slide:rotate-360" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -290,20 +290,20 @@ const MagicSlider: React.FC = () => {
                         TECHNIFY
                       </span>
                     </div>
-                    <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3 leading-tight animate-fade-in-up delay-150">{slide.title}</h2>
-                    <p className={`text-sm md:text-base mb-5 leading-relaxed animate-fade-in-up delay-200 ${slide.id === 2 || slide.id === 3 ? 'text-foreground' : 'text-muted-foreground'}`}>{slide.description}</p>
-                    <div className="flex space-x-3 animate-fade-in-up delay-300">
-                      <button className="inline-flex items-center bg-gradient-to-r from-primary to-secondary text-primary-foreground px-4 py-2 rounded-lg font-medium text-sm hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 group/button">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground mb-3 leading-tight animate-fade-in-up delay-150">{slide.title}</h2>
+                    <p className={`text-xs sm:text-sm md:text-base mb-5 leading-relaxed animate-fade-in-up delay-200 ${slide.id === 2 || slide.id === 3 ? 'text-foreground' : 'text-muted-foreground'}`}>{slide.description}</p>
+                    <div className="flex flex-col sm:flex-row sm:space-x-3 space-y-3 sm:space-y-0 animate-fade-in-up delay-300">
+                      <button className="inline-flex items-center bg-gradient-to-r from-primary to-secondary text-primary-foreground px-4 py-2 rounded-lg font-medium text-sm hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 group/button w-full sm:w-auto justify-center">
                         <svg className="w-4 h-4 mr-1 transition-transform duration-500 group-hover/button:rotate-360" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
                         Learn More
                       </button>
-                      <button className="inline-flex items-center border border-primary text-primary px-4 py-2 rounded-lg font-medium text-sm hover:bg-primary/10 transition-all duration-300 group/button">
+                      <button className="inline-flex items-center border border-primary text-primary px-4 py-2 rounded-lg font-medium text-sm hover:bg-primary/10 transition-all duration-300 group/button w-full sm:w-auto justify-center">
                         <svg className="w-4 h-4 mr-1 transition-transform duration-500 group-hover/button:rotate-360" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
-                        Contact
+                        Contact Us
                       </button>
                     </div>
                   </div>
@@ -313,98 +313,50 @@ const MagicSlider: React.FC = () => {
           ))}
         </div>
 
-        {/* Navigation Arrows with Enhanced Glassmorphism Effect */}
+        {/* Progress bar at the bottom */}
+        <div className="absolute bottom-0 left-0 w-full h-1 bg-background/20 z-50">
+          <div 
+            className="h-full bg-primary transition-all duration-100 ease-linear"
+            style={{ width: `${progress}%` }}
+          ></div>
+        </div>
+
+        {/* Navigation Arrows - now visible on mobile */}
         <button
           onClick={goToPreviousSlide}
-          disabled={isTransitioning}
-          className={cn(
-            "absolute left-4 sm:left-6 top-1/2 z-40 -translate-y-1/2 group p-3 sm:p-4 rounded-full \
-            backdrop-blur-2xl border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 \
-            transform-gpu hover:scale-110 active:scale-95",
-            "bg-card/80 border-border/30 hover:bg-card/90 shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 \
-            data-[disabled=true]:opacity-50 data-[disabled=true]:cursor-not-allowed"
-          )}
+          className="absolute left-4 top-1/2 z-40 -translate-y-1/2 group p-2 rounded-full bg-background/30 backdrop-blur-md hover:bg-background/50 transition-all duration-300 shadow-lg"
           aria-label="Previous slide"
-          data-disabled={isTransitioning}
         >
-          <svg 
-            className="w-5 h-5 sm:w-6 sm:h-6 text-primary transition-transform duration-500 group-hover:rotate-360 group-hover:-translate-x-1"
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24" 
-            strokeWidth={2.5}
-          >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              d="M15 19l-7-7 7-7" 
-            />
+          <svg className="w-5 h-5 md:w-6 md:h-6 text-foreground transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
 
         <button
           onClick={goToNextSlide}
-          disabled={isTransitioning}
-          className={cn(
-            "absolute right-4 sm:right-6 top-1/2 z-40 -translate-y-1/2 group p-3 sm:p-4 rounded-full \
-            backdrop-blur-2xl border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 \
-            transform-gpu hover:scale-110 active:scale-95",
-            "bg-card/80 border-border/30 hover:bg-card/90 shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 \
-            data-[disabled=true]:opacity-50 data-[disabled=true]:cursor-not-allowed"
-          )}
+          className="absolute right-4 top-1/2 z-40 -translate-y-1/2 group p-2 rounded-full bg-background/30 backdrop-blur-md hover:bg-background/50 transition-all duration-300 shadow-lg"
           aria-label="Next slide"
-          data-disabled={isTransitioning}
         >
-          <svg 
-            className="w-5 h-5 sm:w-6 sm:h-6 text-primary transition-transform duration-500 group-hover:rotate-360 group-hover:translate-x-1"
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24" 
-            strokeWidth={2.5}
-          >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              d="M9 5l7 7-7 7" 
-            />
+          <svg className="w-5 h-5 md:w-6 md:h-6 text-foreground transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
-        
-      
 
-        {/* Dot Indicators with Enhanced Glassmorphism Effect */}
-        <div className="absolute bottom-8 left-1/2 z-50 flex -translate-x-1/2 gap-4 lg:hidden">
+        {/* Slide indicators - hidden on mobile as per user preference */}
+        <div className="absolute bottom-6 left-1/2 z-50 flex -translate-x-1/2 gap-2 md:gap-2">
           {slides.map((_, idx) => (
             <button
               key={idx}
               onClick={() => goToSlide(idx)}
-              disabled={isTransitioning}
-              className={cn(
-                "relative p-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 \
-                transform-gpu hover:scale-110 active:scale-95",
-                "data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50",
-                idx === currentSlide 
-                  ? "bg-card/80 border border-border/30 backdrop-blur-2xl shadow-xl shadow-primary/30" 
-                  : "bg-card/50 border border-border/50 backdrop-blur-lg hover:bg-card/70 shadow-lg"
-              )}
+              className={`rounded-full transition-all duration-300 ${
+                idx === currentSlide
+                  ? 'w-6 h-1.5 md:w-8 md:h-2 bg-primary shadow-lg'
+                  : 'w-1.5 h-1.5 md:w-2 md:h-2 bg-primary/40 hover:bg-primary/80'
+              }`}
               aria-label={`Go to slide ${idx + 1}`}
-              data-disabled={isTransitioning}
-            >
-              <span 
-                className={cn(
-                  "block w-3 h-3 rounded-full transition-all duration-300 group-hover:animate-pulse",
-                  idx === currentSlide ? "bg-primary scale-125" : "bg-muted"
-                )}
-              />
-              {idx === currentSlide && (
-                <div
-                  className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/40 to-secondary/40"
-                  style={{ width: `${progress}%`, left: 0 }}
-                />
-              )}
-            </button>
+            />
           ))}
-        </div>          
+        </div>
       </section>
     </div>
   );

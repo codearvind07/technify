@@ -137,7 +137,7 @@ export default function HomeSolutions() {
                               linear-gradient(to bottom, #1F6FEB 1px, transparent 1px)`,
             backgroundSize: '40px 40px'
           }}></div>
-        </div>
+       z </div>
         
         {/* Floating elements */}
         <motion.div 
