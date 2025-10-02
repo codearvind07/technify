@@ -163,6 +163,7 @@ export default function SolutionsPage() {
               baseScale={0.85}
               rotationAmount={1}
               blurAmount={0.5}
+              useWindowScroll={true} // Explicitly set to use window scroll
             >
               {solutions.map((solution, index) => (
                 <ScrollStackItem key={index}>

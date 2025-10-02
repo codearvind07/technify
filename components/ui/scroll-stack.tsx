@@ -28,7 +28,7 @@ const ScrollStack = ({
   scaleDuration = 0.5,
   rotationAmount = 0,
   blurAmount = 0,
-  useWindowScroll = false,
+  useWindowScroll = true, // Changed default to true to use window scroll
   onStackComplete
 }: {
   children: React.ReactNode;
@@ -210,28 +210,37 @@ const ScrollStack = ({
 
   const setupLenis = useCallback(() => {
     if (useWindowScroll) {
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
-        touchMultiplier: 2,
-        infinite: false,
-        wheelMultiplier: 1,
-        lerp: 0.1,
-        syncTouch: true,
-        syncTouchLerp: 0.075
-      });
+      // Only initialize Lenis if it's not already initialized
+      if (typeof window !== 'undefined' && !window.lenisInstance) {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+          touchMultiplier: 2,
+          infinite: false,
+          wheelMultiplier: 1,
+          lerp: 0.1,
+          syncTouch: true,
+          syncTouchLerp: 0.075
+        });
 
-      lenis.on('scroll', handleScroll);
+        lenis.on('scroll', handleScroll);
 
-      const raf = (time: number) => {
-        lenis.raf(time);
+        const raf = (time: number) => {
+          lenis.raf(time);
+          animationFrameRef.current = requestAnimationFrame(raf);
+        };
         animationFrameRef.current = requestAnimationFrame(raf);
-      };
-      animationFrameRef.current = requestAnimationFrame(raf);
 
-      lenisRef.current = lenis;
-      return lenis;
+        lenisRef.current = lenis;
+        // Store lenis instance on window to prevent multiple instances
+        (window as any).lenisInstance = lenis;
+        return lenis;
+      } else if (typeof window !== 'undefined' && window.lenisInstance) {
+        // Use existing lenis instance
+        window.lenisInstance.on('scroll', handleScroll);
+        return window.lenisInstance;
+      }
     } else {
       const scroller = scrollerRef.current;
       if (!scroller) return;
@@ -290,21 +299,39 @@ const ScrollStack = ({
       card.style.webkitPerspective = '1000px';
     });
 
-    setupLenis();
+    // Only setup Lenis if we're not using window scroll or if it's not already setup
+    let lenisInstance;
+    if (useWindowScroll) {
+      if (typeof window !== 'undefined' && !window.lenisInstance) {
+        lenisInstance = setupLenis();
+      }
+    } else {
+      lenisInstance = setupLenis();
+    }
 
     updateCardTransforms();
+
+    // Add window scroll listener as fallback
+    if (useWindowScroll) {
+      window.addEventListener('scroll', handleScroll);
+    }
 
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
-      if (lenisRef.current) {
+      if (lenisRef.current && lenisRef.current !== (window as any).lenisInstance) {
         lenisRef.current.destroy();
       }
       stackCompletedRef.current = false;
       cardsRef.current = [];
       transformsCache.clear();
       isUpdatingRef.current = false;
+      
+      // Remove window scroll listener
+      if (useWindowScroll) {
+        window.removeEventListener('scroll', handleScroll);
+      }
     };
   }, [
     itemDistance,
@@ -319,7 +346,8 @@ const ScrollStack = ({
     useWindowScroll,
     onStackComplete,
     setupLenis,
-    updateCardTransforms
+    updateCardTransforms,
+    handleScroll
   ]);
 
   // Container styles based on scroll mode
@@ -343,7 +371,7 @@ const ScrollStack = ({
 
   return (
     <div className={containerClassName} ref={scrollerRef} style={containerStyles}>
-      <div className="scroll-stack-inner pt-[20vh] px-20 pb-[50rem] min-h-screen">
+      <div className="scroll-stack-inner pt-[10vh] px-4 sm:px-8 md:px-12 lg:px-20 pb-[5vh] min-h-screen">
         {children}
         {/* Spacer so the last pin can release cleanly */}
         <div className="scroll-stack-end w-full h-px" />

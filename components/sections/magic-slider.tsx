@@ -199,7 +199,7 @@ const MagicSlider: React.FC = () => {
   return (
     <div 
       ref={sliderRef}
-      className="w-full h-screen relative overflow-hidden bg-background transition-all duration-1000"
+      className="w-full h-full relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-orange-50 transition-all duration-1000"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -279,28 +279,28 @@ const MagicSlider: React.FC = () => {
                   />
                 </div>
                 
-                {/* Content overlay - adjusted for mobile */}
-                <div className="absolute inset-0 md:right-0 md:top-0 md:h-full md:w-full md:w-2/5 flex items-end md:items-center justify-center md:justify-end z-10 p-4 md:p-12">
-                  <div className="max-w-md bg-card/85 backdrop-blur-2xl rounded-xl p-4 md:p-6 shadow-xl border border-border/40 mb-16 md:mb-0 md:m-4 transform transition-all duration-500 ease-out hover:scale-[1.01] translate-y-4 md:translate-x-4 opacity-0 group-[:not(.opacity-0)]/slide:translate-y-0 md:group-[:not(.opacity-0)]/slide:translate-x-0 group-[:not(.opacity-0)]/slide:opacity-100 animate-float">
-                    <div className="mb-3 animate-fade-in-up delay-100">
-                      <span className="inline-flex items-center px-2.5 py-0.5 text-xs font-semibold text-primary bg-primary/10 rounded-full group-hover/slide:animate-pulse">
-                        <svg className="w-3 h-3 mr-1 transition-transform duration-300 group-hover/slide:rotate-360" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                {/* Content overlay - optimized for mobile */}
+                <div className="absolute inset-0 md:right-0 md:top-0 md:h-full md:w-2/5 flex items-end md:items-center justify-center md:justify-end z-10 p-3 sm:p-4 md:p-12">
+                  <div className="max-w-md bg-card/85 backdrop-blur-2xl rounded-xl p-3 sm:p-4 md:p-6 shadow-xl border border-border/40 mb-12 sm:mb-16 md:mb-0 md:m-4 transform transition-all duration-500 ease-out hover:scale-[1.01] translate-y-4 md:translate-x-4 opacity-0 group-[:not(.opacity-0)]/slide:translate-y-0 md:group-[:not(.opacity-0)]/slide:translate-x-0 group-[:not(.opacity-0)]/slide:opacity-100 animate-float w-[90%] sm:w-[85%] md:w-full">
+                    <div className="mb-2 sm:mb-3 animate-fade-in-up delay-100">
+                      <span className="inline-flex items-center px-2 py-1 text-[10px] sm:text-xs font-semibold text-primary bg-primary/10 rounded-full group-hover/slide:animate-pulse">
+                        <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-1 transition-transform duration-300 group-hover/slide:rotate-360" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
                         TECHNIFY
                       </span>
                     </div>
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground mb-3 leading-tight animate-fade-in-up delay-150">{slide.title}</h2>
-                    <p className={`text-xs sm:text-sm md:text-base mb-5 leading-relaxed animate-fade-in-up delay-200 ${slide.id === 2 || slide.id === 3 ? 'text-foreground' : 'text-muted-foreground'}`}>{slide.description}</p>
-                    <div className="flex flex-col sm:flex-row sm:space-x-3 space-y-3 sm:space-y-0 animate-fade-in-up delay-300">
-                      <button className="inline-flex items-center bg-gradient-to-r from-primary to-secondary text-primary-foreground px-4 py-2 rounded-lg font-medium text-sm hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 group/button w-full sm:w-auto justify-center">
-                        <svg className="w-4 h-4 mr-1 transition-transform duration-500 group-hover/button:rotate-360" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <h2 className="text-base sm:text-lg md:text-2xl font-bold text-foreground mb-2 sm:mb-3 leading-tight animate-fade-in-up delay-150">{slide.title}</h2>
+                    <p className={`text-[10px] xs:text-xs sm:text-sm md:text-base mb-3 sm:mb-5 leading-relaxed animate-fade-in-up delay-200 ${slide.id === 2 || slide.id === 3 ? 'text-foreground' : 'text-muted-foreground'}`}>{slide.description}</p>
+                    <div className="flex flex-col xs:flex-row xs:space-x-2 sm:space-x-3 space-y-2 xs:space-y-0 animate-fade-in-up delay-300">
+                      <button className="inline-flex items-center bg-gradient-to-r from-primary to-secondary text-primary-foreground px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg font-medium text-xs sm:text-sm hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 group/button w-full xs:w-auto justify-center">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1 transition-transform duration-500 group-hover/button:rotate-360" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
                         Learn More
                       </button>
-                      <button className="inline-flex items-center border border-primary text-primary px-4 py-2 rounded-lg font-medium text-sm hover:bg-primary/10 transition-all duration-300 group/button w-full sm:w-auto justify-center">
-                        <svg className="w-4 h-4 mr-1 transition-transform duration-500 group-hover/button:rotate-360" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <button className="inline-flex items-center border border-primary text-primary px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg font-medium text-xs sm:text-sm hover:bg-primary/10 transition-all duration-300 group/button w-full xs:w-auto justify-center">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1 transition-transform duration-500 group-hover/button:rotate-360" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
                         Contact Us
@@ -321,37 +321,37 @@ const MagicSlider: React.FC = () => {
           ></div>
         </div>
 
-        {/* Navigation Arrows - now visible on mobile */}
+        {/* Navigation Arrows - optimized for mobile */}
         <button
           onClick={goToPreviousSlide}
-          className="absolute left-4 top-1/2 z-40 -translate-y-1/2 group p-2 rounded-full bg-background/30 backdrop-blur-md hover:bg-background/50 transition-all duration-300 shadow-lg"
+          className="absolute left-2 sm:left-4 top-1/2 z-40 -translate-y-1/2 group p-1.5 sm:p-2 rounded-full bg-background/30 backdrop-blur-md hover:bg-background/50 transition-all duration-300 shadow-lg"
           aria-label="Previous slide"
         >
-          <svg className="w-5 h-5 md:w-6 md:h-6 text-foreground transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-foreground transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
 
         <button
           onClick={goToNextSlide}
-          className="absolute right-4 top-1/2 z-40 -translate-y-1/2 group p-2 rounded-full bg-background/30 backdrop-blur-md hover:bg-background/50 transition-all duration-300 shadow-lg"
+          className="absolute right-2 sm:right-4 top-1/2 z-40 -translate-y-1/2 group p-1.5 sm:p-2 rounded-full bg-background/30 backdrop-blur-md hover:bg-background/50 transition-all duration-300 shadow-lg"
           aria-label="Next slide"
         >
-          <svg className="w-5 h-5 md:w-6 md:h-6 text-foreground transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-foreground transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
 
         {/* Slide indicators - hidden on mobile as per user preference */}
-        <div className="absolute bottom-6 left-1/2 z-50 flex -translate-x-1/2 gap-2 md:gap-2">
+        <div className="absolute bottom-4 sm:bottom-6 left-1/2 z-50 flex -translate-x-1/2 gap-1.5 sm:gap-2">
           {slides.map((_, idx) => (
             <button
               key={idx}
               onClick={() => goToSlide(idx)}
               className={`rounded-full transition-all duration-300 ${
                 idx === currentSlide
-                  ? 'w-6 h-1.5 md:w-8 md:h-2 bg-primary shadow-lg'
-                  : 'w-1.5 h-1.5 md:w-2 md:h-2 bg-primary/40 hover:bg-primary/80'
+                  ? 'w-4 h-1 sm:w-6 sm:h-1.5 md:w-8 md:h-2 bg-primary shadow-lg'
+                  : 'w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-2 md:h-2 bg-primary/40 hover:bg-primary/80'
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />

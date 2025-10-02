@@ -39,10 +39,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} bg-background text-foreground antialiased`}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no" />
+      </head>
+      <body className={`${inter.className} bg-background text-foreground antialiased overflow-x-hidden`}>
         <SEO />
         <Header />
-        <main>{children}</main>
+        <main className="w-full overflow-x-hidden">{children}</main>
         <Footer />
       </body>
     </html>

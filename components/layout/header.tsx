@@ -43,7 +43,8 @@ const NAV_ITEMS: NavItem[] = [
 
 export function Header() {
   const pathname = usePathname();
-  const [solutionsOpen, setSolutionsOpen] = useState(false);
+  const [desktopSolutionsOpen, setDesktopSolutionsOpen] = useState(false);
+  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -59,15 +60,16 @@ export function Header() {
 
   // Reset dropdown when route changes
   useEffect(() => {
-    setSolutionsOpen(false);
+    setDesktopSolutionsOpen(false);
+    setMobileSolutionsOpen(false);
     setIsMenuOpen(false);
   }, [pathname]);
 
-  // Close dropdown when clicking outside
+  // Close dropdown when clicking outside (desktop only)
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setSolutionsOpen(false);
+        setDesktopSolutionsOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -76,11 +78,21 @@ export function Header() {
 
   const handleMouseEnter = () => {
     if (leaveTimerRef.current) clearTimeout(leaveTimerRef.current);
-    setSolutionsOpen(true);
+    setDesktopSolutionsOpen(true);
   };
 
   const handleMouseLeave = () => {
-    leaveTimerRef.current = setTimeout(() => setSolutionsOpen(false), 300);
+    leaveTimerRef.current = setTimeout(() => setDesktopSolutionsOpen(false), 300);
+  };
+
+  const toggleMobileSolutions = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setMobileSolutionsOpen(!mobileSolutionsOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMenuOpen(false);
+    setMobileSolutionsOpen(false);
   };
 
   return (
@@ -95,7 +107,7 @@ export function Header() {
           damping: 15,
           delay: 0.1 
         }}
-        className="bg-gradient-to-r from-[#0D1A3A] to-[#1a2f6d] text-white text-xs sm:text-sm py-2 px-4 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0 relative overflow-hidden"
+        className="bg-gradient-to-r from-[#0D1A3A] to-[#1a2f6d] text-white text-[10px] xs:text-xs sm:text-sm py-2 px-4 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0 relative overflow-hidden"
       >
         {/* Animated background element */}
         <div className="absolute inset-0 opacity-10">
@@ -113,7 +125,7 @@ export function Header() {
           />
         </div>
         
-        <div className="flex items-center gap-6 font-semibold text-[#FFB300] z-10">
+        <div className="flex items-center gap-4 xs:gap-6 font-semibold text-[#FFB300] z-10">
           <motion.span
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400 }}
@@ -133,7 +145,7 @@ export function Header() {
             >
               📞
             </motion.span>
-            <a href="tel:9999769378" className="hover:underline">
+            <a href="tel:9999769378" className="hover:underline text-[10px] xs:text-xs sm:text-sm">
               +91 9999769378
             </a>
           </motion.span>
@@ -157,20 +169,20 @@ export function Header() {
             >
               ✉️
             </motion.span>
-            <a href="mailto:info@technify.com" className="hover:underline">
+            <a href="mailto:info@technify.com" className="hover:underline text-[10px] xs:text-xs sm:text-sm">
               info@technify.com
             </a>
           </motion.span>
         </div>
         
-        <div className="flex items-center gap-4 z-10">
+        <div className="flex items-center gap-2 xs:gap-3 z-10">
           {[faFacebookF, faTwitter, faLinkedinIn, faPinterestP, faGooglePlusG].map((icon, index) => (
             <motion.a
               key={index}
               href="#"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#FFB300] hover:text-white bg-[#ffffff08] rounded-full p-2 w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center transition-colors duration-200"
+              className="text-[#FFB300] hover:text-white bg-[#ffffff08] rounded-full p-1.5 xs:p-2 w-6 h-6 xs:w-8 xs:h-8 sm:w-9 sm:h-9 flex items-center justify-center transition-colors duration-200"
               whileHover={{ 
                 scale: 1.2,
                 rotate: 360,
@@ -185,7 +197,7 @@ export function Header() {
               aria-label={`Follow us on ${['Facebook', 'Twitter', 'LinkedIn', 'Pinterest', 'Google+'][index]}`}
             >
               <span className="sr-only">{['Facebook', 'Twitter', 'LinkedIn', 'Pinterest', 'Google+'][index]}</span>
-              <FontAwesomeIcon icon={icon} className="text-[#FFB300] text-sm" />
+              <FontAwesomeIcon icon={icon} className="text-[#FFB300] text-[10px] xs:text-xs sm:text-sm" />
             </motion.a>
           ))}
         </div>
@@ -202,7 +214,7 @@ export function Header() {
           delay: 0.3 
         }}
         className={`bg-white w-full transition-all duration-500 ${
-          scrolled ? "py-2 shadow-2xl border-b border-[#e5e7eb]" : "py-4"
+          scrolled ? "py-2 shadow-2xl border-b border-[#e5e7eb]" : "py-3 sm:py-4"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between w-full">
@@ -216,15 +228,15 @@ export function Header() {
             <Image
               src={logo}
               alt="Technify Logo"
-              width={150}
-              height={50}
+              width={120}
+              height={40}
               priority
-              className="h-10 sm:h-12 w-auto cursor-pointer"
+              className="h-8 sm:h-10 md:h-12 w-auto cursor-pointer"
             />
           </motion.div>
 
           {/* Desktop Navigation with responsive improvements */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-[#222] font-medium text-sm lg:text-base" style={{ willChange: 'transform' }}>
+          <nav className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8 text-[#222] font-medium text-xs sm:text-sm lg:text-base" style={{ willChange: 'transform' }}>
             {NAV_ITEMS.map((item, index) =>
               item.subItems ? (
                 <div
@@ -248,26 +260,26 @@ export function Header() {
                       {item.label}
                     </motion.span>
                     <motion.span
-                      animate={{ rotate: solutionsOpen ? 180 : 0 }}
+                      animate={{ rotate: desktopSolutionsOpen ? 180 : 0 }}
                       transition={{ duration: 0.2 }}
                     >
                       &#9662;
                     </motion.span>
                   </motion.button>
                   <AnimatePresence>
-                    {solutionsOpen && (
+                    {desktopSolutionsOpen && (
                       <motion.div
                         initial={{ opacity: 0, y: -10, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -10, scale: 0.9 }}
                         transition={{ duration: 0.2, ease: "easeOut" }}
-                        className="absolute left-0 mt-3 bg-white shadow-xl rounded-lg z-40 min-w-[200px] overflow-hidden border border-gray-100"
+                        className="absolute left-0 mt-3 bg-white shadow-xl rounded-lg z-40 min-w-[180px] sm:min-w-[200px] overflow-hidden border border-gray-100"
                       >
                         {item.subItems.map((sub, subIndex) => (
                           <motion.a
                             key={sub.label}
                             href={sub.href}
-                            className="block px-4 py-3 hover:bg-[#FFB300]/10 hover:text-[#FFB300] transition-colors border-b border-gray-100 last:border-b-0"
+                            className="block px-4 py-3 hover:bg-[#FFB300]/10 hover:text-[#FFB300] transition-colors border-b border-gray-100 last:border-b-0 text-xs sm:text-sm"
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: subIndex * 0.1 }}
@@ -287,7 +299,7 @@ export function Header() {
                 <motion.a
                   key={item.label}
                   href={item.href}
-                  className={`hover:text-[#FFB300] relative group transition-colors duration-300 ${item.cta ? "bg-[#FFB300] text-white px-4 py-2 rounded-full hover:bg-[#e5a000]" : ""}`}
+                  className={`hover:text-[#FFB300] relative group transition-colors duration-300 ${item.cta ? "bg-[#FFB300] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:bg-[#e5a000] text-xs sm:text-sm" : ""}`}
                   whileHover={{ scale: item.cta ? 1.05 : 1 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: 20 }}
@@ -299,7 +311,7 @@ export function Header() {
                   </motion.span>
                   {!item.cta && (
                     <motion.span 
-                      className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#FFB300] transition-all duration-300 group-hover:w-full"
+                      className="absolute left-0 bottom-0 w-0 h-[1.5px] sm:h-[2px] bg-[#FFB300] transition-all duration-300 group-hover:w-full"
                       whileHover={{ width: "100%" }}
                     />
                   )}
@@ -310,7 +322,7 @@ export function Header() {
 
           {/* Mobile menu button with enhanced touch target */}
           <motion.button 
-            className="md:hidden flex flex-col w-10 h-10 justify-center items-center rounded-full hover:bg-gray-100 transition-colors duration-200"
+            className="md:hidden flex flex-col w-8 h-8 sm:w-10 sm:h-10 justify-center items-center rounded-full hover:bg-gray-100 transition-colors duration-200"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             whileTap={{ scale: 0.95 }}
             whileHover={{ scale: 1.05 }}
@@ -319,7 +331,7 @@ export function Header() {
           >
             <span className="sr-only">{isMenuOpen ? "Close menu" : "Open menu"}</span>
             <motion.span 
-              className="w-6 h-0.5 bg-[#0D1A3A] rounded-full transition-colors duration-200"
+              className="w-5 h-0.5 bg-[#0D1A3A] rounded-full transition-colors duration-200"
               animate={{ 
                 rotate: isMenuOpen ? 45 : 0, 
                 y: isMenuOpen ? 2 : 0 
@@ -327,15 +339,15 @@ export function Header() {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             />
             <motion.span 
-              className="w-6 h-0.5 bg-[#0D1A3A] rounded-full absolute transition-all duration-200"
+              className="w-5 h-0.5 bg-[#0D1A3A] rounded-full absolute transition-all duration-200"
               animate={{ 
                 opacity: isMenuOpen ? 0 : 1,
-                width: isMenuOpen ? 0 : 24
+                width: isMenuOpen ? 0 : 20
               }}
               transition={{ duration: 0.2 }}
             />
             <motion.span 
-              className="w-6 h-0.5 bg-[#0D1A3A] rounded-full transition-colors duration-200"
+              className="w-5 h-0.5 bg-[#0D1A3A] rounded-full transition-colors duration-200"
               animate={{ 
                 rotate: isMenuOpen ? -45 : 0, 
                 y: isMenuOpen ? -2 : 0 
@@ -358,7 +370,7 @@ export function Header() {
               aria-modal="true"
               aria-label="Mobile navigation menu"
             >
-              <div className="px-4 py-6 flex flex-col gap-2 max-h-[80vh] overflow-y-auto">
+              <div className="px-4 py-5 flex flex-col gap-1 max-h-[70vh] overflow-y-auto">
                 {/* Backdrop for better separation */}
                 <div className="absolute inset-0 bg-black/5 backdrop-blur-sm -z-10"></div>
                 {NAV_ITEMS.map((item, index) => (
@@ -371,35 +383,35 @@ export function Header() {
                     {item.subItems ? (
                     <div className="border-b border-gray-100 last:border-b-0">
                       <button 
-                        className="flex items-center justify-between w-full py-4 px-2 text-left font-medium text-gray-800 hover:bg-gray-50 rounded-lg transition-colors duration-200"
-                        onClick={() => setSolutionsOpen(!solutionsOpen)}
-                        aria-expanded={solutionsOpen}
+                        className="flex items-center justify-between w-full py-3 px-2 text-left font-medium text-gray-800 hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                        onClick={toggleMobileSolutions}
+                        aria-expanded={mobileSolutionsOpen}
                         aria-haspopup="true"
                       >
-                        <span className="text-base">{item.label}</span>
+                        <span className="text-sm">{item.label}</span>
                         <motion.span
                           className="text-gray-500"
-                          animate={{ rotate: solutionsOpen ? 180 : 0 }}
+                          animate={{ rotate: mobileSolutionsOpen ? 180 : 0 }}
                           transition={{ type: "spring", stiffness: 300, damping: 20 }}
                         >
                           &#9662;
                         </motion.span>
                       </button>
                       <AnimatePresence>
-                        {solutionsOpen && (
+                        {mobileSolutionsOpen && (
                           <motion.div
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: "auto" }}
                             exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.2, ease: "easeOut" }}
-                            className="pl-6 pr-2 pt-1 pb-2 space-y-1 bg-gray-50 rounded-lg mb-2"
+                            transition={{ duration: 0.3, ease: "easeOut" }}
+                            className="pl-5 pr-2 pt-1 pb-2 space-y-1 bg-gray-50 rounded-lg mb-2"
                           >
                             {item.subItems.map((sub) => (
                               <a
                                 key={sub.label}
                                 href={sub.href}
-                                className="block py-3 px-3 text-sm text-gray-700 hover:bg-white hover:text-[#FFB300] rounded-md transition-colors duration-200"
-                                onClick={() => setIsMenuOpen(false)}
+                                className="block py-2.5 px-3 text-xs text-gray-700 hover:bg-white hover:text-[#FFB300] rounded-md transition-colors duration-200"
+                                onClick={closeMobileMenu}
                               >
                                 {sub.label}
                               </a>
@@ -411,8 +423,8 @@ export function Header() {
                   ) : (
                     <a
                       href={item.href}
-                      className={`block py-4 px-2 rounded-lg text-base font-medium transition-colors duration-200 ${item.cta ? "text-[#FFB300] hover:bg-orange-50" : "text-gray-800 hover:bg-gray-50"}`}
-                      onClick={() => setIsMenuOpen(false)}
+                      className={`block py-3 px-2 rounded-lg text-sm font-medium transition-colors duration-200 ${item.cta ? "text-[#FFB300] hover:bg-orange-50" : "text-gray-800 hover:bg-gray-50"}`}
+                      onClick={closeMobileMenu}
                     >
                       {item.label}
                     </a>

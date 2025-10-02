@@ -55,7 +55,7 @@ export default function EasyVigilPage() {
       <div className="absolute top-1/2 left-1/4 w-48 h-48 bg-[#1F6FEB]/10 rounded-full blur-3xl opacity-30 animate-pulse -z-10" />
 
       {/* Navigation */}
-      <nav className="fixed w-full bg-gradient-to-r from-slate-900/90 to-slate-800/90 backdrop-blur-md py-4 px-8 z-50 flex justify-between items-center border-b border-gray-800">
+      <nav className="fixed w-full bg-gradient-to-r from-slate-900/90 to-slate-800/90 backdrop-blur-md py-4 px-4 sm:px-8 z-50 flex justify-between items-center border-b border-gray-800">
         <div className="flex items-center">
           <span className="text-xl font-bold bg-gradient-to-r from-[#1F6FEB] via-[#1F6FEB] to-[#FFB300] bg-clip-text text-transparent">
             EasyVigil
@@ -292,7 +292,7 @@ export default function EasyVigilPage() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={containerVariants}
-              className="overflow-x-auto"
+  className="md:overflow-x-visible overflow-x-auto w-full"
             >
               <table className="w-full border-separate border-spacing-4">
                 <thead>

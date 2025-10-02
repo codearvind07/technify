@@ -7,17 +7,31 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative overflow-hidden min-h-screen flex items-center justify-center bg-[#0D1117] pt-32" // pt-32 ensures space for header
+      className="relative overflow-hidden min-h-screen flex items-center justify-center bg-background" // Removed pt-32 to eliminate whitespace
       aria-label="Technify Solutions Hero Section"
     >
       {/* Enhanced background lighting effects */}
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-[#1F6FEB]/20 rounded-full blur-[160px] opacity-10 animate-pulse -z-10" />
-      <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-[#FFB300]/20 rounded-full blur-[180px] opacity-10 animate-pulse -z-10" />
+      <div className="absolute top-0 left-0 w-[min(600px,100vw)] h-[600px] bg-[#1F6FEB]/20 rounded-full blur-[160px] opacity-10 animate-pulse -z-10" />
+      <div className="absolute bottom-0 right-0 w-[min(700px,100vw)] h-[700px] bg-[#FFB300]/20 rounded-full blur-[180px] opacity-10 animate-pulse -z-10" />
       
       {/* Subtle scanline overlay */}
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-[0.06]">
         <div className="h-full w-full bg-[linear-gradient(to_bottom,rgba(31,111,235,0.1)_1px,transparent_1px)] bg-[length:100%_40px]" />
       </div>
+      
+      {/* Mobile responsive adjustments */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .absolute.top-0.left-0 {
+            width: min(400px, 100vw);
+            height: 400px;
+          }
+          .absolute.bottom-0.right-0 {
+            width: min(500px, 100vw);
+            height: 500px;
+          }
+        }
+      `}</style>
 
       {/* Magic Slider - moved down after header */}
       <div className="w-full h-full absolute inset-0 pt-32">

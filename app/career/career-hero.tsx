@@ -147,8 +147,8 @@ export default function CareerHero() {
       </section>
 
       {/* Floating elements for visual interest */}
-      <div className="fixed top-1/4 left-5 w-4 h-4 bg-[#ffa726] rounded-full opacity-50 animate-bounce"></div>
-      <div className="fixed bottom-1/3 right-8 w-6 h-6 bg-[#ff9800] rounded-full opacity-30 animate-pulse"></div>
+      <div className="fixed top-1/4 left-5 w-4 h-4 bg-[#ffa726] rounded-full opacity-50 animate-bounce hidden md:block"></div>
+      <div className="fixed bottom-1/3 right-8 w-6 h-6 bg-[#ff9800] rounded-full opacity-30 animate-pulse hidden md:block"></div>
     </div>
   );
 }
