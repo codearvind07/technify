@@ -39,7 +39,7 @@ const slides: Slide[] = [
   },
 ];
 
-const SLIDE_DURATION = 3;
+const SLIDE_DURATION = 5;
 
 const MagicSlider: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -61,7 +61,7 @@ const MagicSlider: React.FC = () => {
     setProgress(0);
     
     // Reset transitioning state after animation completes
-    setTimeout(() => setIsTransitioning(false), 700);
+    setTimeout(() => setIsTransitioning(false), 1000);
   }, [currentSlide, isTransitioning]);
 
   const goToNextSlide = useCallback(() => {
@@ -80,7 +80,7 @@ const MagicSlider: React.FC = () => {
 
     intervalRef.current = setInterval(() => {
       setProgress((prev) => {
-        const increment = 100 / (SLIDE_DURATION * 10);
+        const increment = 100 / (SLIDE_DURATION * 20);
         const newProgress = prev + increment;
         if (newProgress >= 100) {
           goToNextSlide();
@@ -88,7 +88,7 @@ const MagicSlider: React.FC = () => {
         }
         return newProgress;
       });
-    }, 100);
+    }, 50);
   }, [goToNextSlide, SLIDE_DURATION]);
 
   // Pause slider on hover
@@ -143,7 +143,7 @@ const MagicSlider: React.FC = () => {
   const handleTouchMove = (e: React.TouchEvent) => {
     if (touchStart === null) return;
     const diff = touchStart - e.touches[0].clientX;
-    if (Math.abs(diff) > 50) {
+    if (Math.abs(diff) > 30) { // Reduced threshold for more responsive touch
       if (diff > 0) {
         goToNextSlide();
       } else {
@@ -163,7 +163,7 @@ const MagicSlider: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setDirection(0);
-    }, 700); // Match transition duration
+    }, 1000); // Match transition duration
     return () => clearTimeout(timer);
   }, [currentSlide]);
 
@@ -222,9 +222,6 @@ const MagicSlider: React.FC = () => {
         .animate-fade-in-up {
           animation: fade-in-up 0.4s ease-out forwards;
         }
-        .animate-float {
-          animation: float 4s ease-in-out infinite;
-        }
         .delay-100 {
           animation-delay: 0.05s;
         }
@@ -239,7 +236,7 @@ const MagicSlider: React.FC = () => {
         }
       `}</style>
       <section
-        className="relative w-full h-full transition-all duration-500"
+        className="relative w-full h-full transition-all duration-1000"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -249,7 +246,7 @@ const MagicSlider: React.FC = () => {
           {slides.map((slide, idx) => (
             <div
               key={slide.id}
-              className={`absolute inset-0 transition-all duration-700 ease-in-out transform-gpu group/slide ${
+              className={`absolute inset-0 transition-all duration-1000 ease-in-out transform-gpu group/slide ${
                 idx === currentSlide 
                   ? 'opacity-100 z-10 translate-x-0 scale-100' 
                   : direction === 1 && idx < currentSlide 
@@ -264,6 +261,10 @@ const MagicSlider: React.FC = () => {
                     ? 'opacity-0 z-0 -translate-x-full scale-95' 
                     : 'opacity-0 z-0 translate-x-full scale-95'
               }`}
+              style={{
+                transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                transitionDuration: '1000ms'
+              }}
             >
               <div className="relative w-full h-full flex">
                 {/* Image */}
@@ -272,7 +273,7 @@ const MagicSlider: React.FC = () => {
                     src={slide.image}
                     alt={slide.alt || `Slide ${idx + 1}`}
                     fill
-                    className="object-cover transition-all duration-700 ease-in-out hover:scale-105"
+                    className="object-cover transition-all duration-1000 ease-in-out hover:scale-105"
                     priority={idx === 0}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
                     quality={90}
@@ -281,26 +282,26 @@ const MagicSlider: React.FC = () => {
                 
                 {/* Content overlay - optimized for mobile */}
                 <div className="absolute inset-0 md:right-0 md:top-0 md:h-full md:w-2/5 flex items-end md:items-center justify-center md:justify-end z-10 p-3 sm:p-4 md:p-12">
-                  <div className="max-w-md bg-card/85 backdrop-blur-2xl rounded-xl p-3 sm:p-4 md:p-6 shadow-xl border border-border/40 mb-12 sm:mb-16 md:mb-0 md:m-4 transform transition-all duration-500 ease-out hover:scale-[1.01] translate-y-4 md:translate-x-4 opacity-0 group-[:not(.opacity-0)]/slide:translate-y-0 md:group-[:not(.opacity-0)]/slide:translate-x-0 group-[:not(.opacity-0)]/slide:opacity-100 animate-float w-[90%] sm:w-[85%] md:w-full">
-                    <div className="mb-2 sm:mb-3 animate-fade-in-up delay-100">
-                      <span className="inline-flex items-center px-2 py-1 text-[10px] sm:text-xs font-semibold text-primary bg-primary/10 rounded-full group-hover/slide:animate-pulse">
-                        <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-1 transition-transform duration-300 group-hover/slide:rotate-360" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <div className="max-w-md bg-card/85 backdrop-blur-2xl rounded-xl p-3 sm:p-4 md:p-6 shadow-xl border border-border/40 mb-12 sm:mb-16 md:mb-0 md:m-4 transform transition-all duration-500 ease-out hover:scale-[1.01] w-[90%] sm:w-[85%] md:w-full">
+                    <div className="mb-2 sm:mb-3">
+                      <span className="inline-flex items-center px-2 py-1 text-[10px] sm:text-xs font-semibold text-white bg-primary/10 rounded-full">
+                        <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
                         TECHNIFY
                       </span>
                     </div>
-                    <h2 className="text-base sm:text-lg md:text-2xl font-bold text-foreground mb-2 sm:mb-3 leading-tight animate-fade-in-up delay-150">{slide.title}</h2>
-                    <p className={`text-[10px] xs:text-xs sm:text-sm md:text-base mb-3 sm:mb-5 leading-relaxed animate-fade-in-up delay-200 ${slide.id === 2 || slide.id === 3 ? 'text-foreground' : 'text-muted-foreground'}`}>{slide.description}</p>
-                    <div className="flex flex-col xs:flex-row xs:space-x-2 sm:space-x-3 space-y-2 xs:space-y-0 animate-fade-in-up delay-300">
-                      <button className="inline-flex items-center bg-gradient-to-r from-primary to-secondary text-primary-foreground px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg font-medium text-xs sm:text-sm hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 group/button w-full xs:w-auto justify-center">
-                        <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1 transition-transform duration-500 group-hover/button:rotate-360" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <h2 className="text-base sm:text-lg md:text-2xl font-bold text-white mb-2 sm:mb-3 leading-tight">{slide.title}</h2>
+                    <p className={`text-[10px] xs:text-xs sm:text-sm md:text-base mb-3 sm:mb-5 leading-relaxed text-white/90`}>{slide.description}</p>
+                    <div className="flex flex-col xs:flex-row xs:space-x-2 sm:space-x-3 space-y-2 xs:space-y-0">
+                      <button className="inline-flex items-center bg-gradient-to-r from-primary to-secondary text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg font-medium text-xs sm:text-sm hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 w-full xs:w-auto justify-center">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
                         Learn More
                       </button>
-                      <button className="inline-flex items-center border border-primary text-primary px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg font-medium text-xs sm:text-sm hover:bg-primary/10 transition-all duration-300 group/button w-full xs:w-auto justify-center">
-                        <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1 transition-transform duration-500 group-hover/button:rotate-360" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <button className="inline-flex items-center border border-white text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg font-medium text-xs sm:text-sm hover:bg-white/10 transition-all duration-300 w-full xs:w-auto justify-center">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
                         Contact Us
@@ -316,7 +317,7 @@ const MagicSlider: React.FC = () => {
         {/* Progress bar at the bottom */}
         <div className="absolute bottom-0 left-0 w-full h-1 bg-background/20 z-50">
           <div 
-            className="h-full bg-primary transition-all duration-100 ease-linear"
+            className="h-full bg-primary transition-all duration-1000 ease-out"
             style={{ width: `${progress}%` }}
           ></div>
         </div>
