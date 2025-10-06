@@ -86,7 +86,7 @@ const FeatureCard: React.FC<{ feature: Feature; className?: string; iconSize?: n
       </motion.div>
       <SplitText
         text={feature.label}
-        className="text-sm sm:text-base md:text-lg font-semibold text-gray-800 group-hover:text-orange-500 transition-colors duration-300"
+        className="body-base font-semibold text-gray-800 group-hover:text-orange-500 transition-colors duration-300"
         delay={0.1}
         duration={0.5}
         ease="power3.out"
@@ -122,16 +122,16 @@ export function HomeFeatureGridSection() {
         <motion.header variants={fadeIn} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/15 to-orange-500/15 backdrop-blur-md border border-blue-500/30 rounded-full px-4 sm:px-6 py-1.5 sm:py-2 mb-4 sm:mb-6 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-orange-500 animate-pulse" />
-            <span className="text-gray-700 text-xs sm:text-sm font-medium uppercase tracking-wider">
+            <span className="caption font-medium uppercase tracking-wider">
               <SplitText text="Our Solutions" splitType="words" />
             </span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 text-gray-800 leading-tight">
+          <h2 className="heading-2 mb-3 sm:mb-4 text-gray-800 leading-tight">
             Comprehensive Technology Infrastructure Services
           </h2>
           <SplitText
             text="End-to-end solutions for enterprises and smart environments with cutting-edge technology integration."
-            className="text-sm sm:text-base md:text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed"
+            className="body-large text-gray-600 max-w-3xl mx-auto font-light leading-relaxed"
             splitType="words"
           />
         </motion.header>
@@ -161,7 +161,7 @@ export function HomeFeatureGridSection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="mt-4 sm:mt-6 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold px-4 py-2 sm:px-6 sm:py-3 rounded-lg shadow-md hover:shadow-xl transition text-sm sm:text-base"
+              className="mt-4 sm:mt-6 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold px-4 py-2 sm:px-6 sm:py-3 rounded-lg shadow-md hover:shadow-xl transition body-base"
             >
               View All Solutions
             </motion.button>
@@ -177,17 +177,17 @@ export function HomeFeatureGridSection() {
 
         {/* Closing Statement */}
         <motion.footer variants={fadeIn} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center max-w-4xl mx-auto">
-          <SplitText text="Integrated Technology Solutions" className="text-xl sm:text-2xl md:text-4xl font-bold text-gray-800 mb-4 sm:mb-6" splitType="words" />
+          <SplitText text="Integrated Technology Solutions" className="heading-3 text-gray-800 mb-4 sm:mb-6" splitType="words" />
           <SplitText
             text="We blend innovation with expertise to deliver solutions that enhance security, efficiency, and user experience across your infrastructure."
-            className="text-sm sm:text-base md:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed"
+            className="body-base text-gray-600 mb-6 sm:mb-8 leading-relaxed"
             splitType="words"
           />
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
             {["System Integration", "24/7 Support", "Scalable Design", "Security First"].map((item, i) => (
               <div
                 key={i}
-                className="px-3 py-1.5 sm:px-5 sm:py-2 bg-gradient-to-r from-blue-500/15 to-orange-500/15 rounded-full text-gray-800 text-xs sm:text-sm md:text-base font-medium shadow-sm hover:shadow-md transition"
+                className="px-3 py-1.5 sm:px-5 sm:py-2 bg-gradient-to-r from-blue-500/15 to-orange-500/15 rounded-full text-gray-800 body-small font-medium shadow-sm hover:shadow-md transition"
               >
                 <SplitText text={item} splitType="words" />
               </div>

@@ -84,12 +84,17 @@ const config: Config = {
         'pulse-slow': {
           '0%, 100%': { opacity: '0.1' },
           '50%': { opacity: '0.15' },
+        },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+          '50%': { transform: 'translateY(-20px) rotate(180deg)' },
         }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'pulse-slow': 'pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'pulse-slow': 'pulse-slow 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'float': 'float 6s ease-in-out infinite',
       },
       boxShadow: {
         glass:
@@ -97,6 +102,13 @@ const config: Config = {
         innerSoft: 'inset 0 1px 0 rgba(255, 255, 255, 0.1)',
         softerGlass:
           '0 6px 20px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+      },
+      transitionDuration: {
+        '400': '400ms',
+        '600': '600ms',
+      },
+      transitionTimingFunction: {
+        'smooth': 'cubic-bezier(0.42, 0, 0.58, 1)',
       },
     },
   },

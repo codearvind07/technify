@@ -7,7 +7,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative overflow-hidden min-h-screen flex items-center justify-center bg-background" // Removed pt-32 to eliminate whitespace
+      className="relative overflow-hidden min-h-screen flex items-center justify-center bg-background"
       aria-label="Technify Solutions Hero Section"
     >
       {/* Enhanced background lighting effects */}

@@ -16,7 +16,7 @@ export default function ProductsPage() {
         path="/products"
         image="/images/og-products.jpg"
       />
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-white">
         <ProductsHero />
       </div>
     </>

@@ -118,7 +118,7 @@ export function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="text-gray-600 mb-8 leading-relaxed max-w-sm"
+              className="text-gray-600 mb-8 leading-relaxed max-w-sm body-base"
             >
               Transform your business with our cutting-edge platform designed to streamline operations and drive growth.
             </motion.p>
@@ -131,12 +131,12 @@ export function Footer() {
               viewport={{ once: true }}
               className="mb-8"
             >
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Contact Us</h3>
+              <h3 className="heading-5 text-gray-900 mb-4">Contact Us</h3>
               <div className="space-y-3">
                 {contactInfo.map((item, index) => (
                   <div key={index} className="flex items-start">
                     <span className="text-blue-600 mt-1 mr-3">{item.icon}</span>
-                    <span className="text-gray-600 text-sm">{item.text}</span>
+                    <span className="text-gray-600 body-small">{item.text}</span>
                   </div>
                 ))}
               </div>
@@ -176,14 +176,14 @@ export function Footer() {
                 transition={{ duration: 0.6, delay: sectionIndex * 0.1 }}
                 viewport={{ once: true }}
               >
-                <h3 className="text-gray-900 font-semibold mb-4 bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent">{section.title}</h3>
+                <h3 className="heading-6 text-gray-900 mb-4 bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent">{section.title}</h3>
                 <ul className="space-y-3">
                   {section.links.map((link, linkIndex) => (
                     <li key={linkIndex}>
                       <motion.a
                         href={link.href}
                         whileHover={{ x: 5 }}
-                        className="text-gray-600 hover:text-blue-600 transition-all duration-300"
+                        className="text-gray-600 hover:text-blue-600 transition-all duration-300 body-small"
                       >
                         {link.text}
                       </motion.a>
@@ -203,11 +203,11 @@ export function Footer() {
           viewport={{ once: true }}
           className="mt-12 pt-8 border-t border-gray-200 flex flex-col md:flex-row items-center justify-between"
         >
-          <p className="text-gray-600 text-sm mb-4 md:mb-0">
+          <p className="text-gray-600 body-small mb-4 md:mb-0">
             © {new Date().getFullYear()} Technify. All rights reserved.
           </p>
 
-          <div className="flex items-center space-x-8 text-sm">
+          <div className="flex items-center space-x-8 body-small">
             <motion.a href="#" whileHover={{ color: '#3b82f6' }} className="text-gray-600 hover:text-blue-600 transition-colors duration-300">
               Privacy Policy
             </motion.a>

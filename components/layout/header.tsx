@@ -107,7 +107,7 @@ export function Header() {
           damping: 15,
           delay: 0.1 
         }}
-        className="bg-gradient-to-r from-[#0D1A3A] to-[#1a2f6d] text-white text-[10px] xs:text-xs sm:text-sm py-2 px-4 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0 relative overflow-hidden"
+        className="bg-gradient-to-r from-[#0D1A3A] to-[#1a2f6d] text-white caption py-2 px-4 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0 relative overflow-hidden"
       >
         {/* Animated background element */}
         <div className="absolute inset-0 opacity-10">
@@ -145,7 +145,7 @@ export function Header() {
             >
               📞
             </motion.span>
-            <a href="tel:9999769378" className="hover:underline text-[10px] xs:text-xs sm:text-sm">
+            <a href="tel:9999769378" className="hover:underline caption">
               +91 9999769378
             </a>
           </motion.span>
@@ -169,7 +169,7 @@ export function Header() {
             >
               ✉️
             </motion.span>
-            <a href="mailto:info@technify.com" className="hover:underline text-[10px] xs:text-xs sm:text-sm">
+            <a href="mailto:info@technify.com" className="hover:underline caption">
               info@technify.com
             </a>
           </motion.span>
@@ -197,7 +197,7 @@ export function Header() {
               aria-label={`Follow us on ${['Facebook', 'Twitter', 'LinkedIn', 'Pinterest', 'Google+'][index]}`}
             >
               <span className="sr-only">{['Facebook', 'Twitter', 'LinkedIn', 'Pinterest', 'Google+'][index]}</span>
-              <FontAwesomeIcon icon={icon} className="text-[#FFB300] text-[10px] xs:text-xs sm:text-sm" />
+              <FontAwesomeIcon icon={icon} className="text-[#FFB300] caption" />
             </motion.a>
           ))}
         </div>
@@ -236,7 +236,7 @@ export function Header() {
           </motion.div>
 
           {/* Desktop Navigation with responsive improvements */}
-          <nav className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8 text-[#222] font-medium text-xs sm:text-sm lg:text-base" style={{ willChange: 'transform' }}>
+          <nav className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8 text-[#222] font-medium body-small lg:body-base" style={{ willChange: 'transform' }}>
             {NAV_ITEMS.map((item, index) =>
               item.subItems ? (
                 <div
@@ -279,7 +279,7 @@ export function Header() {
                           <motion.a
                             key={sub.label}
                             href={sub.href}
-                            className="block px-4 py-3 hover:bg-[#FFB300]/10 hover:text-[#FFB300] transition-colors border-b border-gray-100 last:border-b-0 text-xs sm:text-sm"
+                            className="block px-4 py-3 hover:bg-[#FFB300]/10 hover:text-[#FFB300] transition-colors border-b border-gray-100 last:border-b-0 body-small"
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: subIndex * 0.1 }}
@@ -299,7 +299,7 @@ export function Header() {
                 <motion.a
                   key={item.label}
                   href={item.href}
-                  className={`hover:text-[#FFB300] relative group transition-colors duration-300 ${item.cta ? "bg-[#FFB300] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:bg-[#e5a000] text-xs sm:text-sm" : ""}`}
+                  className={`hover:text-[#FFB300] relative group transition-colors duration-300 ${item.cta ? "bg-[#FFB300] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:bg-[#e5a000] body-small" : ""}`}
                   whileHover={{ scale: item.cta ? 1.05 : 1 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: 20 }}
@@ -383,12 +383,12 @@ export function Header() {
                     {item.subItems ? (
                     <div className="border-b border-gray-100 last:border-b-0">
                       <button 
-                        className="flex items-center justify-between w-full py-3 px-2 text-left font-medium text-gray-800 hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                        className="flex items-center justify-between w-full py-3 px-2 text-left font-medium text-gray-800 hover:bg-gray-50 rounded-lg transition-colors duration-200 body-base"
                         onClick={toggleMobileSolutions}
                         aria-expanded={mobileSolutionsOpen}
                         aria-haspopup="true"
                       >
-                        <span className="text-sm">{item.label}</span>
+                        <span className="body-small">{item.label}</span>
                         <motion.span
                           className="text-gray-500"
                           animate={{ rotate: mobileSolutionsOpen ? 180 : 0 }}
@@ -410,7 +410,7 @@ export function Header() {
                               <a
                                 key={sub.label}
                                 href={sub.href}
-                                className="block py-2.5 px-3 text-xs text-gray-700 hover:bg-white hover:text-[#FFB300] rounded-md transition-colors duration-200"
+                                className="block py-2.5 px-3 text-xs text-gray-700 hover:bg-white hover:text-[#FFB300] rounded-md transition-colors duration-200 body-small"
                                 onClick={closeMobileMenu}
                               >
                                 {sub.label}
@@ -423,7 +423,7 @@ export function Header() {
                   ) : (
                     <a
                       href={item.href}
-                      className={`block py-3 px-2 rounded-lg text-sm font-medium transition-colors duration-200 ${item.cta ? "text-[#FFB300] hover:bg-orange-50" : "text-gray-800 hover:bg-gray-50"}`}
+                      className={`block py-3 px-2 rounded-lg body-small font-medium transition-colors duration-200 ${item.cta ? "text-[#FFB300] hover:bg-orange-50" : "text-gray-800 hover:bg-gray-50"}`}
                       onClick={closeMobileMenu}
                     >
                       {item.label}

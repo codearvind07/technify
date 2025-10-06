@@ -347,12 +347,12 @@ export default function HomeServices() {
                 repeat: Infinity 
               }}
             />
-            <span className="text-gray-600 text-sm font-medium tracking-wider uppercase">Our Services</span>
+            <span className="caption font-medium tracking-wider uppercase">Our Services</span>
           </motion.div>
           
           <motion.h2 
             variants={textReveal}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+            className="heading-1 mb-6 leading-tight"
           >
             <span className="block text-gray-900 mb-3">
               <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-orange-500 bg-clip-text text-transparent">
@@ -366,7 +366,7 @@ export default function HomeServices() {
           
           <motion.p 
             variants={textReveal}
-            className="text-xl md:text-2xl text-gray-600/90 max-w-3xl mx-auto font-light leading-relaxed tracking-wide"
+            className="body-large text-gray-600/90 max-w-3xl mx-auto font-light leading-relaxed tracking-wide"
           >
             End-to-end services designed for modern enterprises with cutting-edge technology integration.
           </motion.p>
@@ -403,7 +403,7 @@ export default function HomeServices() {
                       className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-white/40 to-transparent"></div>
-                    <div className="absolute top-3 right-3 bg-white/90 backdrop-blur rounded-full px-2 py-1 text-xs font-medium text-gray-700 shadow-sm">
+                    <div className="absolute top-3 right-3 bg-white/90 backdrop-blur rounded-full px-2 py-1 caption font-medium text-gray-700 shadow-sm">
                       {index + 1}/{services.length}
                     </div>
                   </div>
@@ -429,10 +429,10 @@ export default function HomeServices() {
                   
                   {/* Content */}
                   <div className="mt-2 flex-grow flex flex-col">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 text-center group-hover:text-blue-600 transition-colors duration-300">
+                    <h3 className="heading-5 text-gray-900 mb-3 text-center group-hover:text-blue-600 transition-colors duration-300">
                       {service.title}
                     </h3>
-                    <p className="text-gray-600/80 text-sm leading-relaxed text-center mb-5 flex-grow">
+                    <p className="body-small text-gray-600/80 leading-relaxed text-center mb-5 flex-grow">
                       {service.description}
                     </p>
                     
@@ -441,7 +441,7 @@ export default function HomeServices() {
                       {service.features.map((feature, idx) => (
                         <motion.div 
                           key={idx} 
-                          className="flex items-center gap-2 text-sm text-gray-600/90"
+                          className="flex items-center gap-2 caption text-gray-600/90"
                           whileHover={{ x: 5 }}
                           initial={{ opacity: 0, x: -10 }}
                           whileInView={{ opacity: 1, x: 0 }}
@@ -459,7 +459,7 @@ export default function HomeServices() {
                     {/* Learn more button */}
                     <motion.button
                       whileHover={{ x: 5 }}
-                      className="mt-auto flex items-center justify-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300 pt-2"
+                      className="mt-auto flex items-center justify-center gap-1 caption font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300 pt-2"
                     >
                       <span>Learn more</span>
                       <ChevronRight className="w-4 h-4" />
@@ -483,7 +483,7 @@ export default function HomeServices() {
           <div className="text-center mb-16">
             <motion.h3 
               variants={textReveal}
-              className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+              className="heading-2 text-gray-900 mb-4"
             >
               <span className="bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent">
                 Why Choose Technify
@@ -495,7 +495,7 @@ export default function HomeServices() {
             ></motion.div>
             <motion.p 
               variants={textReveal}
-              className="text-lg text-gray-600/90 max-w-2xl mx-auto"
+              className="body-base text-gray-600/90 max-w-2xl mx-auto"
             >
               We deliver exceptional value through our proven approach and commitment to excellence
             </motion.p>
@@ -538,15 +538,15 @@ export default function HomeServices() {
                       </motion.div>
                     </motion.div>
                     
-                    <h4 className="text-lg font-bold text-gray-900 mb-3 text-center group-hover:text-blue-600 transition-colors duration-300">
+                    <h4 className="heading-6 text-gray-900 mb-3 text-center group-hover:text-blue-600 transition-colors duration-300">
                       {item.title}
                     </h4>
-                    <p className="text-gray-600/80 text-sm leading-relaxed text-center mb-4">
+                    <p className="body-small text-gray-600/80 leading-relaxed text-center mb-4">
                       {item.description}
                     </p>
                     
                     <div className="text-center">
-                      <span className="inline-block text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
+                      <span className="inline-block caption font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
                         {item.stats}
                       </span>
                     </div>

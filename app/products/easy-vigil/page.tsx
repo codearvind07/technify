@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import Link from "next/link";
+import Image from "next/image";
 import { 
   Camera, 
   Shield, 
@@ -11,9 +11,19 @@ import {
   Palette,
   Users,
   Download,
-  FileText
+  FileText,
+  Monitor,
+  Cpu,
+  Wifi,
+  Cloud,
+  CheckCircle,
+  ArrowRight,
+  Play
 } from "lucide-react";
 import { SEO } from '@/components/seo/seo';
+import heroImage from '@/assets/CommandControl.jpg';
+import analyticsImage from '@/assets/BuildingManagementSystem.jpg';
+import platformImage from '@/assets/EnergyManagement.jpg';
 
 export default function EasyVigilPage() {
   const containerVariants: Variants = {
@@ -21,7 +31,7 @@ export default function EasyVigilPage() {
     visible: {
       opacity: 1,
       transition: { 
-        staggerChildren: 0.15, 
+        staggerChildren: 0.1, 
         delayChildren: 0.2,
         ease: "easeOut"
       },
@@ -29,16 +39,108 @@ export default function EasyVigilPage() {
   };
 
   const itemVariants: Variants = {
-    hidden: { y: 30, opacity: 0 },
+    hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: { 
-        duration: 0.6, 
+        duration: 0.5, 
         ease: "easeOut" 
       },
     },
   };
+
+  const fadeInUp: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
+  const staggerChildren: Variants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.15,
+        delayChildren: 0.1
+      } 
+    }
+  };
+
+  const featureCards = [
+    {
+      icon: <Shield className="w-6 h-6 text-blue-600" />,
+      title: "Unified Control Center",
+      description: "Streamline complex operations by better coordinating your systems, teams and devices, even across distributed facilities."
+    },
+    {
+      icon: <Eye className="w-6 h-6 text-blue-600" />,
+      title: "Intuitive Interface",
+      description: "Access critical information quickly with an intuitive user interface and incident workflows based on standard operating procedures."
+    },
+    {
+      icon: <Monitor className="w-6 h-6 text-blue-600" />,
+      title: "Real-time Monitoring",
+      description: "Monitor your entire infrastructure in real-time with comprehensive dashboards and alerts."
+    },
+    {
+      icon: <Cpu className="w-6 h-6 text-blue-600" />,
+      title: "AI-Powered Analytics",
+      description: "Leverage artificial intelligence to predict and prevent issues before they impact operations."
+    }
+  ];
+
+  const analyticsFeatures = [
+    { icon: <Lock className="h-5 w-5 text-blue-600" />, title: "Intrusion Detection", description: "Automatically detect unauthorized access to restricted areas" },
+    { icon: <Camera className="h-5 w-5 text-blue-600" />, title: "Camera Tampering", description: "Immediately detect when cameras are obstructed or tampered with" },
+    { icon: <Eye className="h-5 w-5 text-blue-600" />, title: "Object Detection", description: "Identify and classify objects, people, and vehicles in real-time" },
+    { icon: <Palette className="h-5 w-5 text-blue-600" />, title: "Color Search", description: "Quickly search for objects based on color characteristics" },
+    { icon: <Search className="h-5 w-5 text-blue-600" />, title: "Combination Search", description: "Advanced search combining multiple attributes and criteria" },
+    { icon: <Users className="h-5 w-5 text-blue-600" />, title: "False Person Detection", description: "Distinguish between real people and representations" }
+  ];
+
+  const expertiseAreas = [
+    { 
+      category: "Building Automation & Control", 
+      items: ["Flexive comfort", "The PA, CCTV & Marine Control", "Mission critical systems"],
+      icon: <Cpu className="w-5 h-5" />
+    },
+    { 
+      category: "Easy Management", 
+      items: ["Customized reporting", "Automation", "Automated Demand Response"],
+      icon: <Cloud className="w-5 h-5" />
+    },
+    { 
+      category: "System Integration", 
+      items: ["Multi-vendor/legacy support", "Web-based IoT solutions", "Wireless & Open Protocols"],
+      icon: <Wifi className="w-5 h-5" />
+    },
+    { 
+      category: "Support Services", 
+      items: ["24/7 Monitoring & Response", "Alarm Management", "Prevention Maintenance"],
+      icon: <Shield className="w-5 h-5" />
+    },
+    { 
+      category: "Energy & Systems Analytic", 
+      items: ["Risk Detection & Diagnosis", "Operating dashboards & reporting", "Predictive Maintenance"],
+      icon: <Monitor className="w-5 h-5" />
+    }
+  ];
+
+  const partners = [
+    { name: "Honeywell", description: "Fire Alarm & CCTV Systems" },
+    { name: "IDIS", description: "Professional CCTV Solutions" },
+    { name: "Edwards by UTC", description: "Fire Alarm Systems" },
+    { name: "Timewatch", description: "Access Control & Gate Automation" },
+    { name: "OptiExacta", description: "Facial Recognition Solutions" },
+    { name: "I2V", description: "Advanced VMS & Analytics Solutions" }
+  ];
+
+  const stats = [
+    { number: "99.9%", label: "System Uptime" },
+    { number: "24/7", label: "Monitoring" },
+    { number: "50+", label: "Integrations" },
+    { number: "1000+", label: "Active Deployments" }
+  ];
 
   return (
     <>
@@ -48,458 +150,403 @@ export default function EasyVigilPage() {
         path="/products/easy-vigil"
         image="/images/og-easyvigil.jpg"
       />
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100 overflow-hidden">
-      {/* Enhanced Background Effects */}
-      <div className="absolute top-10 left-10 w-80 h-80 bg-[#1F6FEB]/10 rounded-full blur-3xl opacity-50 animate-pulse -z-10" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#FFB300]/10 rounded-full blur-3xl opacity-40 animate-pulse -z-10" />
-      <div className="absolute top-1/2 left-1/4 w-48 h-48 bg-[#1F6FEB]/10 rounded-full blur-3xl opacity-30 animate-pulse -z-10" />
-
-      {/* Navigation */}
-      <nav className="fixed w-full bg-gradient-to-r from-slate-900/90 to-slate-800/90 backdrop-blur-md py-4 px-4 sm:px-8 z-50 flex justify-between items-center border-b border-gray-800">
-        <div className="flex items-center">
-          <span className="text-xl font-bold bg-gradient-to-r from-[#1F6FEB] via-[#1F6FEB] to-[#FFB300] bg-clip-text text-transparent">
-            EasyVigil
-          </span>
-        </div>
-        <div className="hidden md:flex space-x-8">
-          <a href="#features" className="hover:text-cyan-400 transition-colors">Features</a>
-          <a href="#expertise" className="hover:text-cyan-400 transition-colors">Expertise</a>
-          <a href="#platform" className="hover:text-cyan-400 transition-colors">Platform</a>
-          <a href="#analytics" className="hover:text-cyan-400 transition-colors">Analytics</a>
-        </div>
-        <button className="bg-gradient-to-r from-[#1F6FEB] to-[#FFB300] text-white px-6 py-2 rounded-lg font-medium hover:shadow-lg transition-all">
-          Contact Us
-        </button>
-      </nav>
-
-      <main className="relative pt-24 pb-20 px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <section className="min-h-screen flex items-center justify-center pt-20 pb-10 px-4">
-          <div className="max-w-6xl mx-auto text-center">
-            <motion.h1 
-              initial="hidden"
-              animate="visible"
-              variants={itemVariants}
-              className="text-5xl md:text-6xl font-extrabold mb-6"
-            >
-              <span className="bg-gradient-to-r from-[#1F6FEB] via-[#1F6FEB] to-[#FFB300] bg-clip-text text-transparent">
-                Easy Vigil
-              </span>{" "}
-              Unified Platform
-            </motion.h1>
-            
-            <motion.div 
-              initial="hidden"
-              animate="visible"
-              variants={containerVariants}
-              className="flex flex-wrap justify-center gap-4 mb-8"
-            >
-              <span className="px-4 py-2 bg-[#1F6FEB]/30 rounded-full text-[#1F6FEB]">Connect</span>
-              <span className="px-4 py-2 bg-[#1F6FEB]/30 rounded-full text-[#1F6FEB]">Detect</span>
-              <span className="px-4 py-2 bg-[#FFB300]/30 rounded-full text-[#FFB300]">Diagnose</span>
-              <span className="px-4 py-2 bg-[#1F6FEB]/30 rounded-full text-[#1F6FEB]">Improve</span>
-            </motion.div>
-            
-            <motion.p 
-              initial="hidden"
-              animate="visible"
-              variants={itemVariants}
-              className="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto"
-            >
-              Mitigate risk, maintain continuity, and improve efficiency with our AI-powered video analytics platform.
-            </motion.p>
-            
-            <motion.div 
-              initial="hidden"
-              animate="visible"
-              variants={itemVariants}
-              className="flex flex-col sm:flex-row justify-center gap-4"
-            >
-              <button className="bg-gradient-to-r from-[#1F6FEB] to-[#FFB300] text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all">
-                Get Started
-              </button>
-              <button className="bg-transparent border border-[#1F6FEB] text-[#1F6FEB] px-8 py-4 rounded-xl font-semibold hover:bg-[#1F6FEB]/30 transition-all">
-                View Demo
-              </button>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Features Section */}
-        <section id="features" className="py-20 px-4">
-          <div className="max-w-6xl mx-auto">
-            <motion.h2 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={itemVariants}
-              className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
-            >
-              Command Better Business Outcomes
-            </motion.h2>
-            
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-              className="grid grid-cols-1 md:grid-cols-2 gap-12"
-            >
-              <motion.div 
-                variants={itemVariants}
-                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl p-8 hover:transform hover:-translate-y-2 transition-all duration-300"
-              >
-                <div className="w-full h-64 bg-gradient-to-br from-[#1F6FEB]/20 to-[#FFB300]/20 rounded-xl mb-6 flex items-center justify-center">
-                  <Shield className="w-24 h-24 text-[#1F6FEB]" />
-                </div>
-                <h3 className="text-2xl font-semibold mb-4">Unified Control Center</h3>
-                <p className="text-gray-300">
-                  Streamline complex operations by better coordinating your systems, teams and devices, even across distributed facilities.
-                </p>
-              </motion.div>
-              
-              <motion.div 
-                variants={itemVariants}
-                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl p-8 hover:transform hover:-translate-y-2 transition-all duration-300"
-              >
-                <div className="w-full h-64 bg-gradient-to-br from-[#FFB300]/20 to-[#1F6FEB]/20 rounded-xl mb-6 flex items-center justify-center">
-                  <Eye className="w-24 h-24 text-[#FFB300]" />
-                </div>
-                <h3 className="text-2xl font-semibold mb-4">Intuitive Interface</h3>
-                <p className="text-gray-300">
-                  Access critical information quickly with an intuitive user interface and incident workflows based on standard operating procedures.
-                </p>
-              </motion.div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Video Analytics Section */}
-        <section id="analytics" className="py-20 px-4 bg-gradient-to-r from-slate-900/50 to-slate-800/50">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-              className="text-center mb-16"
-            >
-              <motion.h2 
-                variants={itemVariants}
-                className="text-4xl font-bold mb-6 bg-gradient-to-r from-[#1F6FEB] via-[#1F6FEB] to-[#FFB300] bg-clip-text text-transparent"
-              >
-                Video Analytics Software Platform
-              </motion.h2>
-              <motion.p 
-                variants={itemVariants}
-                className="text-xl text-gray-300 max-w-3xl mx-auto"
-              >
-                AI-powered video analytics for enhanced security and operational efficiency
-              </motion.p>
-            </motion.div>
-            
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              <motion.div 
-                variants={itemVariants}
-                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 text-center hover:transform hover:-translate-y-2 transition-all duration-300"
-              >
-                <div className="w-16 h-16 bg-[#1F6FEB]/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Lock className="h-8 w-8 text-[#1F6FEB]" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Intrusion Detection</h3>
-                <p className="text-gray-300">Automatically detect unauthorized access to restricted areas</p>
-              </motion.div>
-              
-              <motion.div 
-                variants={itemVariants}
-                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 text-center hover:transform hover:-translate-y-2 transition-all duration-300"
-              >
-                <div className="w-16 h-16 bg-[#1F6FEB]/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Camera className="h-8 w-8 text-[#1F6FEB]" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Camera Tampering</h3>
-                <p className="text-gray-300">Immediately detect when cameras are obstructed or tampered with</p>
-              </motion.div>
-              
-              <motion.div 
-                variants={itemVariants}
-                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 text-center hover:transform hover:-translate-y-2 transition-all duration-300"
-              >
-                <div className="w-16 h-16 bg-[#FFB300]/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Eye className="h-8 w-8 text-[#FFB300]" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Object Detection</h3>
-                <p className="text-gray-300">Identify and classify objects, people, and vehicles in real-time</p>
-              </motion.div>
-              
-              <motion.div 
-                variants={itemVariants}
-                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 text-center hover:transform hover:-translate-y-2 transition-all duration-300"
-              >
-                <div className="w-16 h-16 bg-[#1F6FEB]/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Palette className="h-8 w-8 text-[#1F6FEB]" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Color Search</h3>
-                <p className="text-gray-300">Quickly search for objects based on color characteristics</p>
-              </motion.div>
-              
-              <motion.div 
-                variants={itemVariants}
-                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 text-center hover:transform hover:-translate-y-2 transition-all duration-300"
-              >
-                <div className="w-16 h-16 bg-[#1F6FEB]/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Search className="h-8 w-8 text-[#1F6FEB]" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Combination Search</h3>
-                <p className="text-gray-300">Advanced search combining multiple attributes and criteria</p>
-              </motion.div>
-              
-              <motion.div 
-                variants={itemVariants}
-                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 text-center hover:transform hover:-translate-y-2 transition-all duration-300"
-              >
-                <div className="w-16 h-16 bg-[#FFB300]/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-8 w-8 text-[#FFB300]" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">False Person Detection</h3>
-                <p className="text-gray-300">Distinguish between real people and representations</p>
-              </motion.div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Expertise Section */}
-        <section id="expertise" className="py-20 px-4">
-          <div className="max-w-6xl mx-auto">
-            <motion.h2 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={itemVariants}
-              className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
-            >
-              Areas of Expertise
-            </motion.h2>
-            
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-  className="md:overflow-x-visible overflow-x-auto w-full"
-            >
-              <table className="w-full border-separate border-spacing-4">
-                <thead>
-                  <tr className="text-left">
-                    <th className="text-[#1F6FEB] text-lg p-4">Building Automation & Control</th>
-                    <th className="text-[#1F6FEB] text-lg p-4">Easy Management</th>
-                    <th className="text-[#FFB300] text-lg p-4">System Integration</th>
-                    <th className="text-[#1F6FEB] text-lg p-4">Support Services</th>
-                    <th className="text-[#1F6FEB] text-lg p-4">Energy & Systems Analytic</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <motion.tr 
+      
+      <div className="min-h-screen bg-white text-gray-800">
+        <main>
+          {/* Hero Section */}
+          <section className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-white">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <motion.div 
+                  initial="hidden"
+                  animate="visible"
+                  variants={containerVariants}
+                >
+                  <motion.div 
                     variants={itemVariants}
-                    className="hover:bg-cyan-900/10 transition-all duration-300 hover:scale-105"
+                    className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-6"
                   >
-                    <td className="p-4">Flexive comfort</td>
-                    <td className="p-4">Customized reporting</td>
-                    <td className="p-4">Multi-vendor/legacy support</td>
-                    <td className="p-4">24/7 Monitoring & Response</td>
-                    <td className="p-4">Risk Detection & Diagnosis</td>
-                  </motion.tr>
-                  <motion.tr 
+                    <span className="w-2 h-2 bg-blue-600 rounded-full mr-2"></span>
+                    AI-Powered Security Platform
+                  </motion.div>
+                  
+                  <motion.h1 
                     variants={itemVariants}
-                    className="hover:bg-cyan-900/10 transition-all duration-300 hover:scale-105"
+                    className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900"
                   >
-                    <td className="p-4">The PA, CCTV & Marine Control</td>
-                    <td className="p-4">Automation</td>
-                    <td className="p-4">Web-based IoT solutions</td>
-                    <td className="p-4">Alarm Management</td>
-                    <td className="p-4">Operating dashboards & reporting</td>
-                  </motion.tr>
-                  <motion.tr 
+                    Intelligent Video{" "}
+                    <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                      Analytics
+                    </span>{" "}
+                    Platform
+                  </motion.h1>
+                  
+                  <motion.p 
                     variants={itemVariants}
-                    className="hover:bg-cyan-900/10 transition-all duration-300 hover:scale-105"
+                    className="text-xl text-gray-600 mb-8 max-w-2xl leading-relaxed"
                   >
-                    <td className="p-4">Mission critical systems</td>
-                    <td className="p-4">Automated Demand Response</td>
-                    <td className="p-4">Wireless & Open Protocols</td>
-                    <td className="p-4">Prevention Maintenance</td>
-                    <td className="p-4">Predictive Maintenance</td>
-                  </motion.tr>
-                </tbody>
-              </table>
-            </motion.div>
-          </div>
-        </section>
+                    Transform your security infrastructure with AI-powered video analytics. 
+                    Detect threats in real-time, automate monitoring, and enhance operational efficiency.
+                  </motion.p>
+                  
+                  <motion.div 
+                    variants={itemVariants}
+                    className="flex flex-col sm:flex-row gap-4"
+                  >
+                    <button className="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center">
+                      Start Free Trial
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </button>
+                    <button className="bg-white text-gray-700 border border-gray-300 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all shadow-md flex items-center justify-center">
+                      <Play className="mr-2 h-5 w-5" />
+                      Watch Demo
+                    </button>
+                  </motion.div>
 
-        {/* Platform Section */}
-        <section id="platform" className="py-20 px-4 bg-gradient-to-r from-slate-900/50 to-slate-800/50">
-          <div className="max-w-6xl mx-auto">
-            <motion.h2 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={itemVariants}
-              className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
-            >
-              EasyVigil Unified Platform
-            </motion.h2>
-            
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-              className="grid grid-cols-1 md:grid-cols-2 gap-12"
-            >
-              <motion.div 
-                variants={itemVariants}
-                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 flex flex-col"
-              >
-                <h3 className="text-2xl font-semibold mb-6">Platform Overview</h3>
-                <p className="text-gray-300 mb-6 flex-grow">
-                  EasyVigil is an open system that supports a full range of industry standard open protocols and web services interfaces. It links to a suite of applications for diverse interfaces designed to facilitate enterprise operations from virtually anywhere.
-                </p>
-                <div className="flex gap-4">
-                  <button className="bg-gradient-to-r from-[#1F6FEB] to-[#FFB300] text-white px-6 py-3 rounded-lg font-semibold hover:shadow-xl transition-all flex items-center">
-                    <Download className="h-5 w-5 mr-2" />
-                    Download Brochure
-                  </button>
-                  <button className="bg-transparent border border-[#1F6FEB] text-[#1F6FEB] px-6 py-3 rounded-lg font-semibold hover:bg-[#1F6FEB]/30 transition-all flex items-center">
-                    <FileText className="h-5 w-5 mr-2" />
-                    View PDF
-                  </button>
-                </div>
-              </motion.div>
-              
-              <motion.div 
-                variants={itemVariants}
-                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 flex flex-col"
-              >
-                <h3 className="text-2xl font-semibold mb-6">Video Analytics Platform</h3>
-                <p className="text-gray-300 mb-6 flex-grow">
-                  Our AI-powered video analytics platform provides advanced capabilities for intrusion detection, camera tampering detection, object recognition, and much more. Enhance your security and operational efficiency with our cutting-edge technology.
-                </p>
-                <div className="flex gap-4">
-                  <button className="bg-gradient-to-r from-[#FFB300] to-[#1F6FEB] text-white px-6 py-3 rounded-lg font-semibold hover:shadow-xl transition-all flex items-center">
-                    <Download className="h-5 w-5 mr-2" />
-                    Download Analytics PDF
-                  </button>
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Technology Partners Section */}
-        <section className="py-20 px-4">
-          <div className="max-w-6xl mx-auto">
-            <motion.h2 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={itemVariants}
-              className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
-            >
-              Our Technology Partners
-            </motion.h2>
-            
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-              className="space-y-12"
-            >
-              {/* VMS & Analytics */}
-              <motion.div variants={itemVariants} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl p-8">
-                <h3 className="text-2xl font-bold text-slate-100 mb-6 flex items-center gap-3">
-                  <div className="w-8 h-8 bg-[#1F6FEB]/20 rounded-lg flex items-center justify-center">
-                    <Eye className="w-5 h-5 text-[#1F6FEB]" />
+                  {/* Stats */}
+                  <motion.div 
+                    variants={itemVariants}
+                    className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12"
+                  >
+                    {stats.map((stat, index) => (
+                      <div key={index} className="text-center">
+                        <div className="text-2xl font-bold text-gray-900">{stat.number}</div>
+                        <div className="text-sm text-gray-600">{stat.label}</div>
+                      </div>
+                    ))}
+                  </motion.div>
+                </motion.div>
+                
+                <motion.div 
+                  initial="hidden"
+                  animate="visible"
+                  variants={fadeInUp}
+                  className="relative"
+                >
+                  <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
+                    <Image 
+                      src={heroImage} 
+                      alt="EasyVigil Platform Dashboard" 
+                      className="w-full h-auto object-cover"
+                      priority
+                    />
                   </div>
-                  VMS & Analytics
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-gradient-to-br from-[#1F6FEB]/10 to-[#FFB300]/10 rounded-xl p-6 border border-[#1F6FEB]/20 hover:transform hover:-translate-y-1 transition-all duration-300">
-                    <h4 className="font-semibold text-slate-100 mb-2">I2V</h4>
-                    <p className="text-sm text-gray-300">Advanced VMS & Analytics Solutions</p>
-                  </div>
-                  <div className="bg-gradient-to-br from-[#1F6FEB]/10 to-[#FFB300]/10 rounded-xl p-6 border border-[#1F6FEB]/20 hover:transform hover:-translate-y-1 transition-all duration-300">
-                    <h4 className="font-semibold text-slate-100 mb-2">Videonetics</h4>
-                    <p className="text-sm text-gray-300">Intelligent VMS & Video Analytics</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Security & Surveillance */}
-              <motion.div variants={itemVariants} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl p-8">
-                <h3 className="text-2xl font-bold text-slate-100 mb-6 flex items-center gap-3">
-                  <div className="w-8 h-8 bg-[#1F6FEB]/20 rounded-lg flex items-center justify-center">
-                    <Shield className="w-5 h-5 text-[#1F6FEB]" />
-                  </div>
-                  Security & Surveillance
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <div className="bg-gradient-to-br from-[#1F6FEB]/10 to-[#FFB300]/10 rounded-xl p-6 border border-[#1F6FEB]/20 hover:transform hover:-translate-y-1 transition-all duration-300">
-                    <h4 className="font-semibold text-slate-100 mb-2">Honeywell</h4>
-                    <p className="text-sm text-gray-300">Fire Alarm & CCTV Systems</p>
-                  </div>
-                  <div className="bg-gradient-to-br from-[#1F6FEB]/10 to-[#FFB300]/10 rounded-xl p-6 border border-[#1F6FEB]/20 hover:transform hover:-translate-y-1 transition-all duration-300">
-                    <h4 className="font-semibold text-slate-100 mb-2">IDIS</h4>
-                    <p className="text-sm text-gray-300">Professional CCTV Solutions</p>
-                  </div>
-                  <div className="bg-gradient-to-br from-[#1F6FEB]/10 to-[#FFB300]/10 rounded-xl p-6 border border-[#1F6FEB]/20 hover:transform hover:-translate-y-1 transition-all duration-300">
-                    <h4 className="font-semibold text-slate-100 mb-2">Edwards by UTC</h4>
-                    <p className="text-sm text-gray-300">Fire Alarm Systems</p>
-                  </div>
-                  <div className="bg-gradient-to-br from-[#1F6FEB]/10 to-[#FFB300]/10 rounded-xl p-6 border border-[#1F6FEB]/20 hover:transform hover:-translate-y-1 transition-all duration-300">
-                    <h4 className="font-semibold text-slate-100 mb-2">Timewatch</h4>
-                    <p className="text-sm text-gray-300">Access Control & Gate Automation</p>
-                  </div>
-                  <div className="bg-gradient-to-br from-[#1F6FEB]/10 to-[#FFB300]/10 rounded-xl p-6 border border-[#1F6FEB]/20 hover:transform hover:-translate-y-1 transition-all duration-300">
-                    <h4 className="font-semibold text-slate-100 mb-2">OptiExacta</h4>
-                    <p className="text-sm text-gray-300">Facial Recognition Solutions</p>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Footer */}
-        <footer className="bg-gradient-to-r from-slate-900/90 to-slate-800/90 py-12 px-4 border-t border-gray-800">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="mb-6 md:mb-0">
-                <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  EasyVigil
-                </span>
-                <p className="text-gray-400 mt-2">Connect • Detect • Diagnose • Improve</p>
-              </div>
-              
-              <div className="flex space-x-6">
-                <a href="#" className="text-gray-400 hover:text-[#1F6FEB] transition-colors">Privacy Policy</a>
-                <a href="#" className="text-gray-400 hover:text-[#1F6FEB] transition-colors">Terms of Service</a>
-                <a href="#" className="text-gray-400 hover:text-[#1F6FEB] transition-colors">Contact</a>
+                </motion.div>
               </div>
             </div>
-            
-            <div className="text-center text-gray-500 text-sm mt-8">
-              &copy; 2023 EasyVigil. All rights reserved.
+          </section>
+
+          {/* Features Section */}
+          <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+            <div className="max-w-7xl mx-auto">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="text-center mb-16"
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                  Enterprise-Grade Security Features
+                </h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  Comprehensive security solutions designed for modern enterprises with distributed infrastructure.
+                </p>
+              </motion.div>
+              
+              <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerChildren}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+              >
+                {featureCards.map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:border-blue-200"
+                  >
+                    <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-lg font-semibold mb-3 text-gray-900">{feature.title}</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
             </div>
-          </div>
-        </footer>
-      </main>
-    </div>
+          </section>
+
+          {/* Video Analytics Section */}
+          <section id="analytics" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInUp}
+                >
+                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+                    <Image 
+                      src={analyticsImage} 
+                      alt="Video Analytics Dashboard" 
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+                </motion.div>
+                
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={containerVariants}
+                >
+                  <motion.h2 
+                    variants={itemVariants}
+                    className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
+                  >
+                    Advanced AI Video Analytics
+                  </motion.h2>
+                  
+                  <motion.p 
+                    variants={itemVariants}
+                    className="text-lg text-gray-600 mb-8 leading-relaxed"
+                  >
+                    Leverage cutting-edge artificial intelligence to automatically detect, classify, 
+                    and respond to security events in real-time across your entire surveillance network.
+                  </motion.p>
+                  
+                  <motion.div 
+                    variants={staggerChildren}
+                    className="grid grid-cols-1 gap-4"
+                  >
+                    {analyticsFeatures.map((feature, index) => (
+                      <motion.div 
+                        key={index}
+                        variants={fadeInUp}
+                        className="flex items-center gap-4 p-4 rounded-lg bg-white border border-gray-200"
+                      >
+                        <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
+                          {feature.icon}
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900">{feature.title}</h3>
+                          <p className="text-sm text-gray-600">{feature.description}</p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+
+          {/* Platform Section */}
+          <section id="platform" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+            <div className="max-w-7xl mx-auto">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="text-center mb-16"
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                  Unified Security Platform
+                </h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  An open, extensible platform that integrates with your existing infrastructure and scales with your business.
+                </p>
+              </motion.div>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInUp}
+                >
+                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+                    <Image 
+                      src={platformImage} 
+                      alt="Platform Interface" 
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+                </motion.div>
+                
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={containerVariants}
+                  className="space-y-6"
+                >
+                  <motion.div 
+                    variants={itemVariants}
+                    className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm"
+                  >
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Platform Capabilities</h3>
+                    <p className="text-gray-600 mb-6">
+                      EasyVigil supports industry-standard protocols and web services interfaces, 
+                      linking to a suite of applications designed for enterprise operations from anywhere.
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                      <button className="bg-blue-600 text-white px-5 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center">
+                        <Download className="h-4 w-4 mr-2" />
+                        Download Brochure
+                      </button>
+                      <button className="bg-white border border-gray-300 text-gray-700 px-5 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors flex items-center">
+                        <FileText className="h-4 w-4 mr-2" />
+                        Technical Specs
+                      </button>
+                    </div>
+                  </motion.div>
+                  
+                  <motion.div 
+                    variants={itemVariants}
+                    className="bg-blue-50 rounded-xl p-6 border border-blue-200"
+                  >
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Key Benefits</h3>
+                    <div className="space-y-3">
+                      {[
+                        "Reduced false alarms by 90%",
+                        "24/7 automated monitoring",
+                        "Seamless third-party integrations",
+                        "Scalable from single site to enterprise"
+                      ].map((benefit, index) => (
+                        <div key={index} className="flex items-center">
+                          <CheckCircle className="h-5 w-5 text-blue-600 mr-3" />
+                          <span className="text-gray-700">{benefit}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+
+          {/* Expertise Section */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+            <div className="max-w-7xl mx-auto">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="text-center mb-16"
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                  Comprehensive Expertise
+                </h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  End-to-end solutions across security, automation, and system integration domains.
+                </p>
+              </motion.div>
+              
+              <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerChildren}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                {expertiseAreas.map((area, index) => (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-all"
+                  >
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-4 text-blue-600">
+                      {area.icon}
+                    </div>
+                    <h3 className="text-lg font-semibold mb-4 text-gray-900">{area.category}</h3>
+                    <ul className="space-y-2">
+                      {area.items.map((item, itemIndex) => (
+                        <li key={itemIndex} className="flex items-center text-sm text-gray-600">
+                          <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3 flex-shrink-0"></div>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Technology Partners Section */}
+          <section id="partners" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+            <div className="max-w-7xl mx-auto">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="text-center mb-16"
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                  Technology Partners
+                </h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  Integrated with industry-leading technology providers for comprehensive solutions.
+                </p>
+              </motion.div>
+              
+              <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerChildren}
+                className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6"
+              >
+                {partners.map((partner, index) => (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm text-center hover:shadow-md transition-all"
+                  >
+                    <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <Shield className="w-6 h-6 text-gray-600" />
+                    </div>
+                    <h3 className="font-semibold text-gray-900 text-sm mb-1">{partner.name}</h3>
+                    <p className="text-xs text-gray-500">{partner.description}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+
+          {/* CTA Section */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-blue-800">
+            <div className="max-w-5xl mx-auto">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="text-center text-white"
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Enhance Your Security?</h2>
+                <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
+                  Join enterprise organizations using EasyVigil to transform their security operations with AI-powered analytics.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <button className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all shadow-lg">
+                    Schedule Demo
+                  </button>
+                  <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all">
+                    Contact Sales
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+        </main>
+      </div>
     </>
   );
 }

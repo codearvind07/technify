@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { StaticImageData } from 'next/image';
 // @ts-ignore
 import { siteConfig } from '@/config/site';
 
@@ -6,14 +7,14 @@ interface SEOProps {
   title?: string;
   description?: string;
   path?: string;
-  image?: string;
+  image?: string | StaticImageData;
   children?: React.ReactNode;
 }
 
 export function SEO({ title, description, path, image, children }: SEOProps) {
   const seoTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.name;
   const seoDescription = description || siteConfig.description;
-  const seoImage = image || `${siteConfig.url}/images/og-default.jpg`;
+  const seoImage = image ? (typeof image === 'string' ? image : image.src) : `${siteConfig.url}/images/og-default.jpg`;
   const seoUrl = path ? `${siteConfig.url}${path}` : siteConfig.url;
 
   const metadata: Metadata = {
