@@ -53,7 +53,7 @@ export function Header() {
 
   // Scroll effect for header shrinking
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -82,7 +82,7 @@ export function Header() {
   };
 
   const handleMouseLeave = () => {
-    leaveTimerRef.current = setTimeout(() => setDesktopSolutionsOpen(false), 300);
+    leaveTimerRef.current = setTimeout(() => setDesktopSolutionsOpen(false), 150);
   };
 
   const toggleMobileSolutions = (e: React.MouseEvent) => {
@@ -209,18 +209,18 @@ export function Header() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ 
           type: "spring", 
-          stiffness: 80, 
+          stiffness: 120, 
           damping: 15,
-          delay: 0.3 
+          delay: 0.1 
         }}
-        className={`bg-white w-full transition-all duration-500 ${
-          scrolled ? "py-2 shadow-2xl border-b border-[#e5e7eb]" : "py-3 sm:py-4"
+        className={`bg-white w-full transition-all duration-300 ${
+          scrolled ? "py-1 shadow-xl border-b border-[#e5e7eb]" : "py-2 sm:py-3"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between w-full">
           {/* Logo */}
           <motion.div
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.08 }}
             transition={{ type: "spring", stiffness: 400 }}
             className="flex items-center flex-shrink-0"
             whileTap={{ scale: 0.95 }}
@@ -228,15 +228,15 @@ export function Header() {
             <Image
               src={logo}
               alt="Technify Logo"
-              width={120}
-              height={40}
+              width={130}
+              height={45}
               priority
-              className="h-8 sm:h-10 md:h-12 w-auto cursor-pointer"
+              className="h-9 sm:h-11 md:h-14 w-auto cursor-pointer"
             />
           </motion.div>
 
           {/* Desktop Navigation with responsive improvements */}
-          <nav className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8 text-[#222] font-medium body-small lg:body-base" style={{ willChange: 'transform' }}>
+          <nav className="hidden md:flex items-center gap-3 lg:gap-5 xl:gap-7 text-[#222] font-bold body-small lg:body-base" style={{ willChange: 'transform' }}>
             {NAV_ITEMS.map((item, index) =>
               item.subItems ? (
                 <div
@@ -247,7 +247,7 @@ export function Header() {
                   ref={dropdownRef}
                 >
                   <motion.button 
-                    className="hover:text-[#FFB300] flex items-center gap-1 transition-colors duration-300"
+                    className="hover:text-[#1F6FEB] flex items-center gap-1 transition-colors duration-200"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -255,13 +255,13 @@ export function Header() {
                       className="whitespace-nowrap"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 * index }}
+                      transition={{ delay: 0.05 * index }}
                     >
                       {item.label}
                     </motion.span>
                     <motion.span
                       animate={{ rotate: desktopSolutionsOpen ? 180 : 0 }}
-                      transition={{ duration: 0.2 }}
+                      transition={{ duration: 0.15 }}
                     >
                       &#9662;
                     </motion.span>
@@ -272,20 +272,20 @@ export function Header() {
                         initial={{ opacity: 0, y: -10, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -10, scale: 0.9 }}
-                        transition={{ duration: 0.2, ease: "easeOut" }}
-                        className="absolute left-0 mt-3 bg-white shadow-xl rounded-lg z-40 min-w-[180px] sm:min-w-[200px] overflow-hidden border border-gray-100"
+                        transition={{ duration: 0.15, ease: "easeOut" }}
+                        className="absolute left-0 mt-2 bg-white shadow-xl rounded-lg z-40 min-w-[160px] sm:min-w-[180px] overflow-hidden border border-gray-100"
                       >
                         {item.subItems.map((sub, subIndex) => (
                           <motion.a
                             key={sub.label}
                             href={sub.href}
-                            className="block px-4 py-3 hover:bg-[#FFB300]/10 hover:text-[#FFB300] transition-colors border-b border-gray-100 last:border-b-0 body-small"
+                            className="block px-4 py-2.5 hover:bg-[#1F6FEB]/10 hover:text-[#1F6FEB] transition-colors border-b border-gray-100 last:border-b-0 body-small font-medium"
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: subIndex * 0.1 }}
+                            transition={{ delay: subIndex * 0.05 }}
                             whileHover={{ 
                               x: 5,
-                              backgroundColor: "rgba(255, 179, 0, 0.1)"
+                              backgroundColor: "rgba(31, 111, 235, 0.1)"
                             }}
                           >
                             {sub.label}
@@ -299,19 +299,19 @@ export function Header() {
                 <motion.a
                   key={item.label}
                   href={item.href}
-                  className={`hover:text-[#FFB300] relative group transition-colors duration-300 ${item.cta ? "bg-[#FFB300] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:bg-[#e5a000] body-small" : ""}`}
+                  className={`hover:text-[#1F6FEB] relative group transition-colors duration-200 ${item.cta ? "bg-gradient-to-r from-[#1F6FEB] to-[#FFB300] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:from-[#1a5fd4] hover:to-[#e5a000] body-small font-bold" : "font-bold"}`}
                   whileHover={{ scale: item.cta ? 1.05 : 1 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * index }}
+                  transition={{ delay: 0.05 * index }}
                 >
                   <motion.span>
                     {item.label}
                   </motion.span>
                   {!item.cta && (
                     <motion.span 
-                      className="absolute left-0 bottom-0 w-0 h-[1.5px] sm:h-[2px] bg-[#FFB300] transition-all duration-300 group-hover:w-full"
+                      className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#1F6FEB] transition-all duration-200 group-hover:w-full"
                       whileHover={{ width: "100%" }}
                     />
                   )}

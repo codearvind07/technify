@@ -46,7 +46,7 @@ void main() {
 }
 `;
 
-export default function Iridescence({ color = [1, 1, 1], speed = 1.0, amplitude = 0.1, mouseReact = true, ...rest }: {
+export default function Iridescence({ color = [0.8, 0.8, 0.8], speed = 0.5, amplitude = 0.05, mouseReact = false, ...rest }: {
   color?: [number, number, number];
   speed?: number;
   amplitude?: number;
@@ -61,7 +61,7 @@ export default function Iridescence({ color = [1, 1, 1], speed = 1.0, amplitude 
     const ctn = ctnDom.current;
     const renderer = new Renderer();
     const gl = renderer.gl;
-    gl.clearColor(1, 1, 1, 1);
+    gl.clearColor(1, 1, 1, 0.8); // Reduced opacity
 
     let program: Program;
     let animateId: number;
@@ -86,13 +86,13 @@ export default function Iridescence({ color = [1, 1, 1], speed = 1.0, amplitude 
       fragment: fragmentShader,
       uniforms: {
         uTime: { value: 0 },
-        uColor: { value: new Color(...color) },
+        uColor: { value: new Color(...color) }, // More subtle color
         uResolution: {
           value: new Color(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height)
         },
         uMouse: { value: new Float32Array([mousePos.current.x, mousePos.current.y]) },
-        uAmplitude: { value: amplitude },
-        uSpeed: { value: speed }
+        uAmplitude: { value: amplitude }, // Reduced amplitude
+        uSpeed: { value: speed } // Slower speed
       }
     });
 
@@ -130,5 +130,5 @@ export default function Iridescence({ color = [1, 1, 1], speed = 1.0, amplitude 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [color, speed, amplitude, mouseReact]);
 
-  return <div ref={ctnDom} className="w-full h-full" {...rest} />;
+  return <div ref={ctnDom} className="w-full h-full opacity-30" {...rest} />; // Added opacity class
 }

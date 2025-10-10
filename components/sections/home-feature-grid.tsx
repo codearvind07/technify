@@ -70,23 +70,23 @@ const FeatureCard: React.FC<{ feature: Feature; className?: string; iconSize?: n
 }) => (
   <motion.div
     variants={itemVariants}
-    whileHover={{ y: -8, boxShadow: "0 10px 32px rgba(255,179,0,0.25)" }}
+    whileHover={{ y: -8, boxShadow: "0 10px 32px rgba(0,0,0,0.1)" }}
     className={`group ${className}`}
   >
-    <div className="flex flex-col items-center text-center p-4 sm:p-5 md:p-6 rounded-2xl border border-gray-200 bg-white/80 backdrop-blur-xl shadow-lg transition-all duration-500 group-hover:bg-white group-hover:border-orange-300/60">
+    <div className="flex flex-col items-center text-center p-4 sm:p-5 md:p-6 rounded-2xl border border-gray-200 bg-gray-50/80 backdrop-blur-xl shadow-md transition-all duration-500 group-hover:bg-white group-hover:border-orange-300/40">
       <motion.div
-        className="mb-3 sm:mb-4 p-2 sm:p-3 rounded-xl bg-gradient-to-br from-blue-50 to-orange-50"
+        className="mb-3 sm:mb-4 p-2 sm:p-3 rounded-xl bg-gradient-to-br from-gray-100 to-gray-50"
         whileHover="hover"
         initial="initial"
         variants={iconVariants}
       >
         <motion.div variants={floating} animate="animate">
-          <Image src={feature.icon} alt={feature.label} width={iconSize} height={iconSize} className="drop-shadow-md" />
+          <Image src={feature.icon} alt={feature.label} width={iconSize} height={iconSize} className="drop-shadow-sm" />
         </motion.div>
       </motion.div>
       <SplitText
         text={feature.label}
-        className="body-base font-semibold text-gray-800 group-hover:text-orange-500 transition-colors duration-300"
+        className="body-base font-semibold text-gray-700 group-hover:text-orange-600 transition-colors duration-300"
         delay={0.1}
         duration={0.5}
         ease="power3.out"
@@ -101,17 +101,17 @@ const FeatureCard: React.FC<{ feature: Feature; className?: string; iconSize?: n
 /* ---------- Main Section ---------- */
 export function HomeFeatureGridSection() {
   return (
-    <section className="relative w-full py-12 sm:py-16 md:py-24 mt-0 pt-0 bg-gradient-to-br from-blue-50 via-white to-orange-50">
+    <section className="relative w-full py-12 sm:py-16 md:py-24 mt-0 pt-0 bg-gray-50/40">
       {/* Iridescent & Background Effects */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Iridescence color={[1, 1, 1]} mouseReact={false} amplitude={0.1} speed={1.0} />
       </div>
-      <div className="absolute inset-0 opacity-[0.04] z-0">
+      <div className="absolute inset-0 opacity-[0.01] z-0">
         <div
           className="w-full h-full"
           style={{
-            backgroundImage: `radial-gradient(circle at 15% 50%, hsl(210 20% 85%) 1px, transparent 1px),
-                              radial-gradient(circle at 85% 30%, hsl(30 20% 80%) 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(circle at 15% 50%, hsl(210 20% 92%) 1px, transparent 1px),
+                              radial-gradient(circle at 85% 30%, hsl(30 20% 88%) 1px, transparent 1px)`,
             backgroundSize: "50px 50px",
           }}
         />
@@ -120,9 +120,9 @@ export function HomeFeatureGridSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.header variants={fadeIn} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/15 to-orange-500/15 backdrop-blur-md border border-blue-500/30 rounded-full px-4 sm:px-6 py-1.5 sm:py-2 mb-4 sm:mb-6 shadow-sm">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-orange-500/10 backdrop-blur-sm border border-blue-500/20 rounded-full px-4 sm:px-6 py-1.5 sm:py-2 mb-4 sm:mb-6 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-orange-500 animate-pulse" />
-            <span className="caption font-medium uppercase tracking-wider">
+            <span className="caption font-medium uppercase tracking-wider text-gray-700">
               <SplitText text="Our Solutions" splitType="words" />
             </span>
           </div>
@@ -152,16 +152,16 @@ export function HomeFeatureGridSection() {
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
             >
-              <div className="relative w-32 h-32 sm:w-44 sm:h-44 md:w-64 md:h-64 rounded-2xl sm:rounded-3xl overflow-hidden border border-blue-200 shadow-2xl mx-auto">
+              <div className="relative w-32 h-32 sm:w-44 sm:h-44 md:w-64 md:h-64 rounded-2xl sm:rounded-3xl overflow-hidden border border-gray-200 shadow-xl mx-auto">
                 <Image src={bag} alt="Technology solutions" fill className="object-cover" priority sizes="(max-width: 768px) 176px, 256px" />
-                <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 via-transparent to-transparent" />
               </div>
             </motion.div>
             <FeatureCard feature={centerFeature} iconSize={40} />
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="mt-4 sm:mt-6 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold px-4 py-2 sm:px-6 sm:py-3 rounded-lg shadow-md hover:shadow-xl transition body-base"
+              className="mt-4 sm:mt-6 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold px-4 py-2 sm:px-6 sm:py-3 rounded-lg shadow-md hover:shadow-lg transition body-base"
             >
               View All Solutions
             </motion.button>
@@ -187,7 +187,7 @@ export function HomeFeatureGridSection() {
             {["System Integration", "24/7 Support", "Scalable Design", "Security First"].map((item, i) => (
               <div
                 key={i}
-                className="px-3 py-1.5 sm:px-5 sm:py-2 bg-gradient-to-r from-blue-500/15 to-orange-500/15 rounded-full text-gray-800 body-small font-medium shadow-sm hover:shadow-md transition"
+                className="px-3 py-1.5 sm:px-5 sm:py-2 bg-gradient-to-r from-blue-500/10 to-orange-500/10 rounded-full text-gray-700 body-small font-medium shadow-sm hover:shadow-md transition border border-gray-200/50"
               >
                 <SplitText text={item} splitType="words" />
               </div>

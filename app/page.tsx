@@ -19,8 +19,8 @@ export default function Home() {
   return (
     <>
       <SEO 
-        title="Technify Solutions - Complete ICT & Technology Solutions Provider"
-        description="Technify Solutions offers comprehensive ICT services including IT infrastructure, electronic security systems, gate automation, fire safety, and AV systems. Your one-stop solution provider from edge to cloud for datacenters, warehouses, commercial infrastructure, and industries."
+        title="Technify Solutions - Dynamic Startup Partner for Digital Transformation"
+        description="Technify Solutions is more than just a technology provider, we're your strategic partner in digital transformation. As a dynamic startup, we bring fresh perspectives and cutting-edge solutions to drive your business forward."
         path="/"
         image="/images/og-home.jpg"
       />

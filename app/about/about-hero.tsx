@@ -14,66 +14,66 @@ const InnovationImage = "https://images.unsplash.com/photo-1551434678-e076c223a6
 
 const strengths = [
   {
-    title: "CHECKOUTS DOCTOR'S",
-    description: "Touchy used its identity to harness in most the unique needs and capabilities of each customer. Our team of experts volunteered to share our expertise with all our public knowledge, by delivering excellent experience with everyday creative and modernness.",
-    icon: "🔄",
+    title: "LIGHTNING-FAST DELIVERY",
+    description: "We move at startup speed to deliver solutions that keep you ahead of the competition. Our agile approach means faster deployment and quicker results.",
+    icon: "⚡",
     image: OnlineCollaborationImage
   },
   {
-    title: "TECHNICAL REPUTER",
-    description: "When highly technical investment firms, Touchy's commitment to focus technology was already one person. We only opted for the community, also healthcare, working group, conducted training with the global brand and physical technologies.",
-    icon: "💻",
+    title: "CUTTING-EDGE INNOVATION",
+    description: "As a tech startup, we're always at the forefront of emerging technologies. We bring tomorrow's solutions to your business today.",
+    icon: "🚀",
     image: InnovationImage
   },
   {
-    title: "RELIABLE SERVICES",
-    description: "Beyond the retail design and implementation, Touchy provides ongoing support to other local businesses across the central world. Our communications system includes digital platforms, mobile phones, electronic devices, digital applications, and mobile smartphones.",
-    icon: "🛡️",
+    title: "AGILE SOLUTIONS",
+    description: "Our startup mentality means we adapt quickly to your needs. We pivot fast to ensure you get exactly what your business requires.",
+    icon: "🔄",
     image: GlobalNetworkImage
   },
   {
-    title: "PUBLIC COLLETTERCENTRALIZATION",
-    description: "Our company for employees of non-executive non-territory business, Touchy, uses a trusted loyalty company, which has been supported by industry-related organizations. The company has grown up on the next scale for year.",
-    icon: "🌐",
+    title: "STARTUP-POWERED EXPERTISE",
+    description: "We combine the agility of a startup with enterprise-level expertise. The result is innovative solutions without the corporate overhead.",
+    icon: "💡",
     image: OnlineCollaborationImage
   },
   {
-    title: "SECURITY AND COMMUNICATION",
-    description: "The use of keypoint-cleanwork events and employee numbers requirements following customers implementing them will continue to address the problem for delivery and timely pay-forward and maintenance. We are proud of these.",
-    icon: "🔒",
+    title: "FUTURE-FOCUSED APPROACH",
+    description: "We don't just solve today's problems - we anticipate tomorrow's challenges. Our startup vision keeps you prepared for what's next.",
+    icon: "🔮",
     image: InnovationImage
   }
 ];
 
 const values = [
   {
-    title: "Relationships",
-    description: "Virtual ownership and ensure accountability to all our clients.",
-    icon: "🤝",
+    title: "Speed",
+    description: "We move fast to keep you ahead of the competition.",
+    icon: "⚡",
     color: "from-blue-500 to-cyan-500"
   },
   {
-    title: "Integrity",
-    description: "Our foundation is built on unwavering honesty and ethical principles.",
-    icon: "⚖️",
+    title: "Innovation",
+    description: "We're always exploring the next big thing in tech.",
+    icon: "🚀",
     color: "from-green-500 to-emerald-500"
   },
   {
-    title: "Concerns",
-    description: "We approach every interaction with respect, preference, and humility.",
-    icon: "💭",
+    title: "Agility",
+    description: "We adapt quickly to your changing needs.",
+    icon: "🔄",
     color: "from-purple-500 to-pink-500"
   },
   {
-    title: "Adaptability",
-    description: "We initially embrace change and innovation to meet evolving expectations.",
-    icon: "🔄",
+    title: "Simplicity",
+    description: "We make complex technology simple to use.",
+    icon: "🎯",
     color: "from-orange-500 to-red-500"
   },
   {
-    title: "Excellence",
-    description: "We constantly strive for the highest standards and practicality.",
-    icon: "⭐",
+    title: "Impact",
+    description: "We focus on solutions that drive real results.",
+    icon: "💥",
     color: "from-yellow-500 to-amber-500"
   }
 ];
@@ -277,10 +277,10 @@ export default function AboutHero() {
                 variants={itemVariants}
                 className="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto mb-12 font-light leading-relaxed"
               >
-                A premier technology-driven solution provider delivering comprehensive services across 
-                <span className="font-semibold text-blue-600"> global digital transformation</span>, 
-                <span className="font-semibold text-purple-600"> enterprise systems</span>, and 
-                <span className="font-semibold text-cyan-600"> innovative technology solutions</span>.
+                A high-speed tech startup revolutionizing ICT with 
+                <span className="font-bold text-blue-600"> lightning-fast solutions</span>, 
+                <span className="font-bold text-purple-600"> cutting-edge innovation</span>, and 
+                <span className="font-bold text-cyan-600"> agile delivery</span>.
               </motion.p>
 
               {/* Animated Stats */}
@@ -346,18 +346,22 @@ export default function AboutHero() {
                 
                 <div className="space-y-6">
                   <p className="text-slate-600 leading-relaxed text-lg">
-                    <span className="font-semibold text-slate-900">Technify Solution Controller</span> is a technology-driven solution offering company involved in information communication & technology across Globe & Television, Electronic Society systems, Globe Automation, Electronics Systems, BFS Services, and Air Systems as core business domains.
+                    <span className="font-bold text-slate-900">Technify Solutions</span> is more than just a technology provider, we're your strategic partner in digital transformation. As a dynamic startup, we bring fresh perspectives and cutting-edge solutions to drive your business forward.
                   </p>
                   
                   <p className="text-slate-600 leading-relaxed text-lg">
-                    In our dedicated network, we enhance Customer Experience by providing comprehensive solutions and related services to customers across various verticals including Electronics, warehouses, Commercial infrastructure, industries, hospitality and many more.
+                    Our agile team delivers end-to-end services across IT infrastructure, cybersecurity, automation systems, and cloud technologies. We understand that every business is unique, which is why we tailor our solutions to meet your specific challenges and objectives.
+                  </p>
+                  
+                  <p className="text-slate-600 leading-relaxed text-lg">
+                    From emerging startups to growing enterprises, organizations trust Technify Solutions to architect resilient technology ecosystems that scale with their ambitions. Our commitment to innovation and customer success drives extraordinary results.
                   </p>
                   
                   <motion.blockquote 
                     whileHover={{ scale: 1.02 }}
                     className="border-l-4 border-blue-600 pl-6 italic text-slate-900 bg-blue-50/50 p-6 rounded-2xl"
                   >
-                    "Technify is our joint venture company. We pride ourselves on being your comprehensive solution provider that you can always rely on."
+                    "We don't just implement technology—we craft digital experiences that transform businesses and empower teams to achieve extraordinary results."
                   </motion.blockquote>
                 </div>
               </motion.div>

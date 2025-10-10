@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import { StaticImageData } from 'next/image';
-import slider1 from '../../assets/slider1.jpg';
+import slider1 from '../../assets/slider1.png';
 import slider2 from '../../assets/slide2.jpg';
 import slider3 from '../../assets/slide3.jpg';
 import { cn } from '@/lib/utils';
@@ -20,22 +20,22 @@ const slides: Slide[] = [
     id: 1, 
     image: slider1, 
     alt: 'Technology Solution 1',
-    title: 'Innovative Technology Solutions',
-    description: 'Technify delivers cutting-edge technology solutions tailored to your business needs. Our expert team ensures seamless integration and optimal performance.'
+    title: 'Empowering Innovation Through Technology',
+    description: 'Technify Solutions is more than just a technology provider, we\'re your strategic partner in digital transformation. As a dynamic startup, we bring fresh perspectives and cutting-edge solutions to drive your business forward.'
   },
   { 
     id: 2, 
     image: slider2, 
     alt: 'Technology Solution 2',
-    title: 'Digital Transformation Services',
-    description: 'Transform your business with our comprehensive digital solutions. From cloud migration to automation, we help you stay ahead in the digital era.'
+    title: 'Startup-Powered Technology Services',
+    description: 'Our agile team delivers end-to-end services across IT infrastructure, cybersecurity, automation systems, and cloud technologies. We understand that every business is unique, which is why we tailor our solutions to meet your specific challenges and objectives.'
   },
   { 
     id: 3, 
     image: slider3, 
     alt: 'Technology Solution 3',
-    title: 'Enterprise IT Consulting',
-    description: 'Our strategic IT consulting services help enterprises optimize their technology infrastructure for maximum efficiency and growth.'
+    title: 'Trusted by Visionary Organizations',
+    description: 'From emerging startups to growing enterprises, organizations trust Technify Solutions to architect resilient technology ecosystems that scale with their ambitions. Our commitment to innovation and customer success drives extraordinary results.'
   },
 ];
 

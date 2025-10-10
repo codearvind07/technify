@@ -8,23 +8,7 @@
   box-sizing: border-box;
 }
 
-/* Prevent double scrollbars */
-html, body {
-  overflow-x: hidden;
-}
 
-@media (max-width: 768px) {
-  html, body {
-    width: 100%;
-    overflow-x: hidden;
-  }
-}
-
-@media (min-width: 768px) {
-  html, body {
-    overflow-x: hidden;
-  }
-}
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -109,6 +93,7 @@ html, body {
   @media (max-width: 768px) {
     body {
       overflow-x: hidden;
+      overflow-y: auto;
     }
   }
   
@@ -118,6 +103,7 @@ html, body {
     background: hsl(var(--background));
     position: relative;
     overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-y: auto; /* Enable vertical scroll */
     font-family: var(--font-primary);
     font-weight: 400;
     line-height: 1.6;
@@ -533,7 +519,7 @@ html, body {
   background: linear-gradient(90deg, hsl(216 100% 45%), hsl(30 100% 50%), hsl(216 100% 45%));
   transform-origin: 0%;
   z-index: 1000;
-  max-width: 100vw;
+  max-width: 100%;
 }
 
 .dark .scroll-indicator {
@@ -550,7 +536,35 @@ html, body {
   }
 }
 
-/* Prevent double scrollbars on all elements */
+/* Custom scrollbar styling - only show when needed */
+/*
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+/* Firefox scrollbar */
+/*
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary) / 0.3) transparent;
+}
+*/
+
+/* Completely hide scrollbars */
 *::-webkit-scrollbar {
   display: none;
 }
@@ -558,4 +572,28 @@ html, body {
 * {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Hide scrollbar for elements that might cause double scrollbars */
+[data-radix-scroll-area-viewport]::-webkit-scrollbar {
+  display: none;
+}
+
+[data-radix-scroll-area-viewport] {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Ensure proper scroll behavior with Lenis */
+html,
+body {
+  overflow-x: hidden;
+  scroll-behavior: auto !important; /* Let Lenis handle smooth scrolling */
+}
+
+/* Prevent double scrollbars on scrollable containers */
+.overflow-y-auto::-webkit-scrollbar,
+.overflow-y-scroll::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
 }

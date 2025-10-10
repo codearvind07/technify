@@ -117,16 +117,19 @@ export default function HomeAbout() {
               <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600 text-2xl md:text-3xl">
                 Technify Solutions
               </span>{" "}
-              is more than just a technology provider, we're your strategic partner in digital transformation. With over a decade of experience, we specialize in designing and implementing comprehensive technology solutions that drive business growth and operational excellence.
+              is a young and ambitious startup driven by innovation and passion for technology. We're not just building digital solutions , we're shaping the future of how businesses grow and connect in the digital world.
             </motion.p>
             <motion.p className="text-gray-600 text-base md:text-lg leading-relaxed mb-6">
-              Our team of certified experts delivers end-to-end services across IT infrastructure, cybersecurity, automation systems, and cloud technologies. We understand that every business is unique, which is why we tailor our solutions to meet your specific challenges and objectives.
+              As a new-age tech company, we specialize in creating smart, scalable, and customized solutions across IT infrastructure, cybersecurity, automation, and cloud technologies. Our agile and creative team loves turning complex ideas into simple, impactful digital experiences.
             </motion.p>
             <motion.p className="text-gray-600 text-base md:text-lg leading-relaxed mb-6">
-              From Fortune 500 corporations to emerging startups, organizations trust Technify Solutions to architect resilient technology ecosystems that scale with their ambitions. Our commitment to innovation, quality, and customer success has positioned us as a leader in the technology solutions industry.
+              We understand that every business is unique, so we work closely with our clients to design technology strategies that truly fit their goals and vision.
+            </motion.p>
+            <motion.p className="text-gray-600 text-base md:text-lg leading-relaxed mb-6">
+              Whether you're a growing startup or an established business ready to innovate, Technify Solutions is your trusted partner for building modern, future-ready technology ecosystems.
             </motion.p>
             <motion.p className="text-gray-600 text-base md:text-lg leading-relaxed italic border-l-4 border-orange-500 pl-6 py-2 bg-orange-50/50 rounded-r-lg">
-              "We don't just implement technology—we craft digital experiences that transform businesses and empower teams to achieve extraordinary results."
+              "We don't just deliver technology — we craft digital experiences that help businesses evolve, adapt, and thrive in a connected world."
             </motion.p>
           </motion.div>
 

@@ -3,16 +3,16 @@ import AboutHero from '@/app/about/about-hero';
 import { SEO } from '@/components/seo/seo';
 
 export const metadata: Metadata = {
-  title: 'About Technify Solutions - ICT Technology Leader',
-  description: 'Learn about Technify Solutions, a technology-driven ICT company offering comprehensive solutions including IT infrastructure, security systems, automation, and more.',
+  title: 'About Technify Solutions - Dynamic Startup Partner for Digital Transformation',
+  description: 'Learn about Technify Solutions, a dynamic startup delivering cutting-edge technology solutions as your strategic partner in digital transformation.',
 };
 
 export default function AboutPage() {
   return (
     <>
       <SEO 
-        title="About Technify Solutions - Technology-Driven ICT Company"
-        description="Learn about Technify Solutions, a leading ICT company providing comprehensive technology solutions including IT infrastructure, electronic security systems, gate automation, fire safety, and AV systems for datacenters, warehouses, and commercial infrastructure."
+        title="About Technify Solutions - Dynamic Startup Technology Partner"
+        description="Discover how Technify Solutions, a fast-moving startup, is revolutionizing the technology industry with fresh perspectives, cutting-edge solutions, and strategic partnership approach to digital transformation."
         path="/about"
         image="/images/og-about.jpg"
       />

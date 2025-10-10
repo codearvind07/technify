@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import { Header } from '@/components/layout/header'; 
 import { Footer } from '../components/layout/footer';
 import { SEO } from '@/components/seo/seo';
+import { ScrollProgress } from '@/components/ui/scroll-progress';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -38,17 +39,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <meta name="format-detection" content="telephone=no" />
       </head>
-      <body className={`${inter.className} bg-background text-foreground antialiased overflow-x-hidden`}>
+      <body className={`${inter.className} bg-background text-foreground antialiased`}>
         <SEO />
+        <ScrollProgress />
         <Header />
-        <main className="w-full overflow-x-hidden">{children}</main>
+        <main className="w-full">{children}</main>
         <Footer />
       </body>
     </html>
   );
-}
+}  

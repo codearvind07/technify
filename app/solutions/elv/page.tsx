@@ -5,7 +5,7 @@ import img2 from "../../../assets/BuildingManagementSystem.jpg"
 import img3 from "../../../assets/HomeAutomation.jpg"
 import img4 from "../../../assets/LightingControlSystem.jpg"
 import img5 from "../../../assets/victor.jpg"
-import img6 from "../../../assets/slider1.jpg"
+import img6 from "../../../assets/slider1.png"
 import img7 from "../../../assets/slide2.jpg"
 import Image from 'next/image';
 
