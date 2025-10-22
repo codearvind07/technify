@@ -281,31 +281,45 @@ const MagicSlider: React.FC = () => {
                 </div>
                 
                 {/* Content overlay - optimized for mobile */}
-                <div className="absolute inset-0 md:right-0 md:top-0 md:h-full md:w-2/5 flex items-end md:items-center justify-center md:justify-end z-10 p-3 sm:p-4 md:p-12">
-                  <div className="max-w-md bg-card/85 backdrop-blur-2xl rounded-xl p-3 sm:p-4 md:p-6 shadow-xl border border-border/40 mb-12 sm:mb-16 md:mb-0 md:m-4 transform transition-all duration-500 ease-out hover:scale-[1.01] w-[90%] sm:w-[85%] md:w-full">
-                    <div className="mb-2 sm:mb-3">
-                      <span className="inline-flex items-center px-2 py-1 text-[10px] sm:text-xs font-semibold text-white bg-primary/10 rounded-full">
-                        <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                        TECHNIFY
-                      </span>
-                    </div>
-                    <h2 className="text-base sm:text-lg md:text-2xl font-bold text-white mb-2 sm:mb-3 leading-tight">{slide.title}</h2>
-                    <p className={`text-[10px] xs:text-xs sm:text-sm md:text-base mb-3 sm:mb-5 leading-relaxed text-white/90`}>{slide.description}</p>
-                    <div className="flex flex-col xs:flex-row xs:space-x-2 sm:space-x-3 space-y-2 xs:space-y-0">
-                      <button className="inline-flex items-center bg-gradient-to-r from-primary to-secondary text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg font-medium text-xs sm:text-sm hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 w-full xs:w-auto justify-center">
-                        <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                        Learn More
-                      </button>
-                      <button className="inline-flex items-center border border-white text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg font-medium text-xs sm:text-sm hover:bg-white/10 transition-all duration-300 w-full xs:w-auto justify-center">
-                        <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                        </svg>
-                        Contact Us
-                      </button>
+                <div className="absolute inset-0 flex items-end justify-center md:justify-end z-10 p-3 sm:p-4 md:p-12 md:pr-16">
+                  <div className="max-w-md bg-gradient-to-br from-white/95 via-white/90 to-white/85 backdrop-blur-2xl rounded-3xl p-5 sm:p-6 md:p-8 shadow-2xl border border-gray-200/50 transform transition-all duration-700 ease-out hover:scale-[1.03] hover:bg-gradient-to-br hover:from-white hover:via-white/95 hover:to-white/90 hover:shadow-3xl hover:border-gray-300/60 w-[90%] sm:w-[85%] md:w-full relative overflow-hidden group">
+                    {/* Animated glassmorphism overlays */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-white/8 to-transparent rounded-3xl opacity-60 group-hover:opacity-80 transition-opacity duration-700"></div>
+                    <div className="absolute inset-0 bg-gradient-to-tl from-transparent via-white/5 to-white/15 rounded-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-700"></div>
+                    
+                    {/* Animated highlight lines */}
+                    <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="absolute bottom-0 right-0 w-full h-px bg-gradient-to-l from-transparent via-white/20 to-transparent opacity-50 group-hover:opacity-80 transition-opacity duration-500"></div>
+                    
+                    {/* Floating particles effect */}
+                    <div className="absolute top-4 right-4 w-2 h-2 bg-white/30 rounded-full animate-pulse opacity-60"></div>
+                    <div className="absolute bottom-6 left-6 w-1.5 h-1.5 bg-white/20 rounded-full animate-pulse opacity-40" style={{animationDelay: '1s'}}></div>
+                    <div className="absolute top-1/2 right-8 w-1 h-1 bg-white/25 rounded-full animate-pulse opacity-50" style={{animationDelay: '2s'}}></div>
+                    
+                    <div className="relative z-10">
+                      <div className="mb-4 sm:mb-5">
+                        <span className="inline-flex items-center px-4 py-2 text-[10px] sm:text-xs font-bold text-black bg-gradient-to-r from-primary/20 via-primary/15 to-secondary/20 backdrop-blur-md rounded-full border border-gray-200/50 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:from-primary/30 hover:to-secondary/30 group/badge">
+                          <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 mr-2 drop-shadow-sm group-hover/badge:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                          </svg>
+                          <span className="tracking-wider">TECHNIFY</span>
+                        </span>
+                      </div>
+                      <h2 className="text-lg sm:text-xl md:text-3xl font-bold text-black mb-4 sm:mb-5 leading-tight drop-shadow-lg hover:text-gray-800 transition-colors duration-500">{slide.title}</h2>
+                      <p className={`text-[11px] xs:text-xs sm:text-sm md:text-base leading-relaxed text-gray-700 drop-shadow-sm hover:text-gray-800 transition-colors duration-500 mb-4 sm:mb-5`}>{slide.description}</p>
+                      
+                      {/* Contact Us Button */}
+                      <div className="flex justify-start">
+                        <a 
+                          href="/contact" 
+                          className="inline-flex items-center bg-gradient-to-r from-primary to-secondary text-white px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl font-semibold text-xs sm:text-sm hover:from-primary/90 hover:to-secondary/90 transition-all duration-500 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 hover:scale-105 group/button"
+                        >
+                          <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2 group-hover/button:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                          </svg>
+                          Contact Us
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
