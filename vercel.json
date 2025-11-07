@@ -8,11 +8,5 @@
         "includeFiles": ["next.config.js"]
       }
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/"
-    }
   ]
 }
