@@ -105,7 +105,7 @@ export function ProcessSection() {
       description: "Our time-tested approach has delivered exceptional results for hundreds of clients across diverse industries.",
       icon: Award,
       color: "from-blue-400 to-orange-400",
-      image: "https://images.unsplash.com/photo-1552664196-f6b40617a25d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+      image: "https://images.unsplash.com/photo-1754039984995-a91721ce1870?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1261"
     },
     {
       title: "Continuous Innovation",

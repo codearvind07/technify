@@ -3,7 +3,31 @@
 import { motion, Variants } from "framer-motion";
 import { Monitor, Server, Shield, Wifi } from "lucide-react";
 import Image from "next/image";
+import { StaticImageData } from "next/image";
 import { useState } from "react";
+
+// Import local icons
+import SamsungIcon from "../../assets/icon/Samsung.png";
+import Panasonic from "../../assets/icon/Panasonic.png"
+import Timewatch from "../../assets/icon/Timewatch.png"
+import XtremeMediaIcon from "../../assets/icon/xtreme media.png";
+import MytenIcon from "../../assets/icon/Mytenlogo.jpeg";
+import HPEIcon from "../../assets/icon/HPE.png";
+import DellIcon from "../../assets/icon/Dell.png";
+import SpectraIcon from "../../assets/icon/Spectra.png";
+import EasyVigilIcon from "../../assets/icon/EasyVigil.jpg";
+import I2VIcon from "../../assets/icon/I2V.png";
+import VideoneticsIcon from "../../assets/icon/Videonetics.png";
+import HoneywellIcon from "../../assets/icon/Honeywell.png";
+import IDISIcon from "../../assets/icon/IDIS.png";
+import EdwardsIcon from "../../assets/icon/Edwards by UTC.jpg";
+import Fortinet from "../../assets/icon/Fortinet.png";
+import OptiExactaIcon from "../../assets/icon/OptiExacta.png";
+import HeinrichIcon from "../../assets/icon/Heinrich.png";
+import LegrandIcon from "../../assets/icon/legrand.png";
+import WatchdogIcon from "../../assets/icon/watchdog.png";
+// Fortinet SVG import commented out due to processing issues
+// import FortinetIcon from "../../assets/icon/Fortinet.svg";
 
 // Animation variants
 const fadeIn: Variants = {
@@ -60,7 +84,7 @@ const floatingAnimation: Variants = {
 };
 
 // Partner logo component with fallback
-function PartnerLogo({ name, logo }: { name: string; logo: string }) {
+function PartnerLogo({ name, logo }: { name: string; logo: string | StaticImageData }) {
   const [imageError, setImageError] = useState(false);
 
   if (imageError) {
@@ -92,17 +116,17 @@ export function TechnologyPartnersSection() {
       partners: [
         { 
           name: 'Samsung', 
-          logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Samsung_Logo.svg/2560px-Samsung_Logo.svg.png',
+          logo: SamsungIcon,
           description: 'Leading display technology provider' 
         },
         { 
           name: 'Panasonic', 
-          logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Panasonic_logo_%28Blue%29.svg/2560px-Panasonic_logo_%28Blue%29.svg.png',
+          logo: Panasonic,
           description: 'Professional display solutions' 
         },
         { 
           name: 'Xtreme Media', 
-          logo: 'https://www.xtrememediainc.com/wp-content/uploads/2021/09/Xtreme-Media-Logo-White.png',
+          logo: XtremeMediaIcon,
           description: 'Flight Information Display Software, Active LED Displays' 
         }
       ]
@@ -113,18 +137,23 @@ export function TechnologyPartnersSection() {
       icon: <Server className="w-6 h-6" />,
       partners: [
         { 
+          name: 'Myten', 
+          logo: MytenIcon,
+          description: 'Edge Computing & Storage Solutions' 
+        },
+        { 
           name: 'HPE', 
-          logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Hewlett_Packard_Enterprise_logo.svg/2560px-Hewlett_Packard_Enterprise_logo.svg.png',
+          logo: HPEIcon,
           description: 'Enterprise servers and storage solutions' 
         },
         { 
           name: 'Dell', 
-          logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Dell_logo.png/1200px-Dell_logo.png',
+          logo: DellIcon,
           description: 'Data center infrastructure and storage' 
         },
         { 
           name: 'Spectra', 
-          logo: 'https://www.spectralogic.com/wp-content/uploads/2021/03/Spectra-Logic-Logo-White.png',
+          logo: SpectraIcon,
           description: 'Specialized storage solutions' 
         }
       ]
@@ -134,14 +163,19 @@ export function TechnologyPartnersSection() {
       title: 'VMS & Analytics',
       icon: <Shield className="w-6 h-6" />,
       partners: [
+        {
+          name: 'EasyVigil',
+          logo: EasyVigilIcon,
+          description: 'Video Management Systems'
+        },
         { 
           name: 'I2V', 
-          logo: 'https://i2v.com/wp-content/uploads/2021/03/i2v-logo-white.png',
+          logo: I2VIcon,
           description: 'Video Management Systems' 
         },
         { 
           name: 'Videonetics', 
-          logo: 'https://videonetics.com/wp-content/uploads/2021/09/Videonetics-Logo-White.png',
+          logo: VideoneticsIcon,
           description: 'Advanced video analytics' 
         }
       ]
@@ -153,27 +187,27 @@ export function TechnologyPartnersSection() {
       partners: [
         { 
           name: 'Honeywell', 
-          logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Honeywell-Logo.svg/2560px-Honeywell-Logo.svg.png',
+          logo: HoneywellIcon,
           description: 'Fire Alarm & CCTV Systems' 
         },
         { 
           name: 'IDIS', 
-          logo: 'https://www.idisglobal.com/wp-content/uploads/2021/03/IDIS-Global-Logo-White.png',
+          logo: IDISIcon,
           description: 'Closed Circuit Television solutions' 
         },
         { 
           name: 'Edwards by UTC', 
-          logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/UTC_Fire_%26_Security_logo.svg/2560px-UTC_Fire_%26_Security_logo.svg.png',
+          logo: EdwardsIcon,
           description: 'Fire Alarm Systems' 
         },
         { 
           name: 'Timewatch', 
-          logo: 'https://www.timewatchglobal.com/wp-content/uploads/2021/03/Timewatch-Logo-White.png',
+          logo: Timewatch,
           description: 'Access Control & Gate Automation' 
         },
         { 
           name: 'OptiExacta', 
-          logo: 'https://www.optiexacta.com/wp-content/uploads/2021/03/OptiExacta-Logo-White.png',
+          logo: OptiExactaIcon,
           description: 'Facial Recognition Solutions' 
         }
       ]
@@ -185,7 +219,7 @@ export function TechnologyPartnersSection() {
       partners: [
         { 
           name: 'Heinrich', 
-          logo: 'https://www.heinrich.com/wp-content/uploads/2021/03/Heinrich-Logo-White.png',
+          logo: HeinrichIcon,
           description: 'Professional PA & AV Systems' 
         }
       ]
@@ -197,7 +231,7 @@ export function TechnologyPartnersSection() {
       partners: [
         { 
           name: 'Legrand', 
-          logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Legrand_logo.svg/2560px-Legrand_logo.svg.png',
+          logo: LegrandIcon,
           description: 'Passive Networking Infrastructure' 
         },
         { 
@@ -207,12 +241,12 @@ export function TechnologyPartnersSection() {
         },
         { 
           name: 'Watchdog', 
-          logo: 'https://www.watchdogglobal.com/wp-content/uploads/2021/03/Watchdog-Logo-White.png',
+          logo: WatchdogIcon,
           description: 'Network Monitoring Solutions' 
         },
         { 
           name: 'Fortinet', 
-          logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Fortinet_logo.svg/2560px-Fortinet_logo.svg.png',
+          logo: Fortinet,
           description: 'Network Security Firewalls' 
         }
       ]
