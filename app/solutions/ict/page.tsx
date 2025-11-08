@@ -6,8 +6,38 @@ import networkInfrastructure from '../../../assets/BuildingManagementSystem.jpg'
 import dataStorage from '../../../assets/EnergyManagement.jpg';
 import ictHero from '../../../assets/ict.png';
 import trackingImage from '../../../assets/anunay-rai-6zXiSHgQDcM-unsplash.jpg';
+import { useState } from 'react';
 
 export default function ICTSolutionsPage() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const faqs = [
+    {
+      question: "What is included in your ICT solutions?",
+      answer: "Our comprehensive ICT solutions include network infrastructure, data storage systems, asset tracking, communication technology, cybersecurity services, cloud solutions, and managed IT services. We provide end-to-end technology solutions tailored to your business needs."
+    },
+    {
+      question: "How do you ensure network security in your ICT solutions?",
+      answer: "We implement multi-layered security approaches including firewalls, intrusion detection systems, encryption protocols, access controls, and regular security audits. Our solutions comply with industry standards and best practices to protect your data and infrastructure."
+    },
+    {
+      question: "What kind of support do you provide after implementation?",
+      answer: "We offer 24/7 monitoring, proactive maintenance, system updates, technical support, and regular performance optimization. Our dedicated support team ensures your ICT infrastructure operates at peak performance with minimal downtime."
+    },
+    {
+      question: "Can you integrate your solutions with our existing systems?",
+      answer: "Yes, our solutions are designed for seamless integration with existing infrastructure. We conduct thorough assessments to ensure compatibility and provide migration strategies that minimize disruption to your operations while maximizing the benefits of new technology."
+    },
+    {
+      question: "What is the typical implementation timeline for ICT projects?",
+      answer: "Implementation timelines vary based on project scope and complexity. Small network upgrades can be completed in 2-3 weeks, while comprehensive ICT infrastructure projects typically take 2-4 months. We provide detailed project timelines during the consultation phase."
+    }
+  ];
+
   return (
     <>
       <SEO 
@@ -294,6 +324,42 @@ export default function ICTSolutionsPage() {
             <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 transform hover:scale-105 transition duration-300">
               <div className="text-3xl font-bold text-green-600 mb-2">PB+</div>
               <div className="text-gray-600">Data Storage Capacity</div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl mb-16">
+          <div className="max-w-4xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Find answers to common questions about our ICT solutions
+              </p>
+            </div>
+            
+            <div className="space-y-4">
+              {faqs.map((faq, index) => (
+                <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-md">
+                  <button 
+                    className="flex justify-between items-center w-full p-6 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-xl"
+                    onClick={() => toggleFAQ(index)}
+                  >
+                    <h3 className="text-lg font-semibold text-gray-900">{faq.question}</h3>
+                    <svg 
+                      className={`w-5 h-5 text-blue-600 transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`} 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+                  <div className={`px-6 pb-6 text-gray-600 ${openIndex === index ? 'block' : 'hidden'}`}>
+                    <p>{faq.answer}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>

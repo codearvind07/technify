@@ -107,25 +107,9 @@ export function Header() {
           damping: 15,
           delay: 0.1 
         }}
-        className="bg-gradient-to-r from-[#0D1A3A] to-[#1a2f6d] text-white caption py-2 px-4 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0 relative overflow-hidden"
+        className="bg-gray-900 text-white caption py-2 px-4 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0 relative"
       >
-        {/* Animated background element */}
-        <div className="absolute inset-0 opacity-10">
-          <motion.div 
-            className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNGRkIzMDAiIHN0cm9rZS13aWR0aD0iMSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMjgiLz48L2c+PC9zdmc+')]"
-            animate={{
-              backgroundPosition: ["0px 0px", "60px 60px"],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              repeatType: "loop",
-              ease: "linear"
-            }}
-          />
-        </div>
-        
-        <div className="flex items-center gap-4 xs:gap-6 font-semibold text-[#FFB300] z-10">
+        <div className="flex items-center gap-4 xs:gap-6 font-medium text-gray-300 z-10">
           <motion.span
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400 }}

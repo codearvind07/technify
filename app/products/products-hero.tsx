@@ -4,6 +4,7 @@ import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { Download } from "lucide-react";
 
 // Import images
 import EasyVigilImage from "../../assets/beanbag-person.png";
@@ -23,7 +24,8 @@ const products = [
     ],
     image: EasyVigilImage,
     color: "from-blue-500 to-orange-500",
-    link: "/products/easy-vigil"
+    link: "/products/easy-vigil",
+    brochure: "/pdf/Easy Vigil.pdf"
   },
   {
     id: 2,
@@ -37,7 +39,8 @@ const products = [
     ],
     image: BerhardImage,
     color: "from-blue-500 to-orange-500",
-    link: "/products/berhard"
+    link: "/products/berhard",
+    brochure: "/pdf/berhard.pdf"
   },
   {
     id: 3,
@@ -51,7 +54,8 @@ const products = [
     ],
     image: MytenImage,
     color: "from-blue-500 to-orange-500",
-    link: "/products/myten"
+    link: "/products/myten",
+    brochure: "/pdf/Myten.pdf"
   }
 ];
 
@@ -211,15 +215,28 @@ export default function ProductsHero() {
                         ))}
                       </ul>
                       
-                      <Link
-                        href={product.link}
-                        className="w-full bg-gradient-to-r from-blue-600 to-orange-500 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2"
-                      >
-                        Read More
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                      </Link>
+                      <div className="flex flex-col gap-3">
+                        <Link
+                          href={product.link}
+                          className="w-full bg-gradient-to-r from-blue-600 to-orange-500 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2"
+                        >
+                          Read More
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          </svg>
+                        </Link>
+                        
+                        {product.brochure && (
+                          <a
+                            href={product.brochure}
+                            download={`${product.name.replace(/\s+/g, '-')}-brochure.pdf`}
+                            className="w-full bg-white border border-gray-300 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
+                          >
+                            <Download className="w-4 h-4" />
+                            Download Brochure
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </motion.div>
                 ))}

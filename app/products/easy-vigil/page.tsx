@@ -166,8 +166,7 @@ export default function EasyVigilPage() {
                     variants={itemVariants}
                     className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-6"
                   >
-                    <span className="w-2 h-2 bg-blue-600 rounded-full mr-2"></span>
-                    AI-Powered Security Platform
+                    
                   </motion.div>
                   
                   <motion.h1 
@@ -193,14 +192,21 @@ export default function EasyVigilPage() {
                     variants={itemVariants}
                     className="flex flex-col sm:flex-row gap-4"
                   >
-                    <button className="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center">
-                      Start Free Trial
+                    <a 
+                      href="/contact" 
+                      className="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center"
+                    >
+                      Request Demo
                       <ArrowRight className="ml-2 h-5 w-5" />
-                    </button>
-                    <button className="bg-white text-gray-700 border border-gray-300 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all shadow-md flex items-center justify-center">
+                    </a>
+                    <a 
+                      href="/pdf/Easy Vigil.pdf" 
+                      download
+                      className="bg-white text-gray-700 border border-gray-300 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all shadow-md flex items-center justify-center"
+                    >
                       <Play className="mr-2 h-5 w-5" />
-                      Watch Demo
-                    </button>
+                      View Brochure
+                    </a>
                   </motion.div>
 
                   {/* Stats */}
@@ -394,14 +400,21 @@ export default function EasyVigilPage() {
                       linking to a suite of applications designed for enterprise operations from anywhere.
                     </p>
                     <div className="flex flex-wrap gap-3">
-                      <button className="bg-blue-600 text-white px-5 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center">
+                      <a 
+                        href="/pdf/Easy Vigil.pdf" 
+                        download
+                        className="bg-blue-600 text-white px-5 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center"
+                      >
                         <Download className="h-4 w-4 mr-2" />
                         Download Brochure
-                      </button>
-                      <button className="bg-white border border-gray-300 text-gray-700 px-5 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors flex items-center">
+                      </a>
+                      <a 
+                        href="/contact" 
+                        className="bg-white border border-gray-300 text-gray-700 px-5 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors flex items-center"
+                      >
                         <FileText className="h-4 w-4 mr-2" />
-                        Technical Specs
-                      </button>
+                        Request Demo
+                      </a>
                     </div>
                   </motion.div>
                   
@@ -535,12 +548,19 @@ export default function EasyVigilPage() {
                   Join enterprise organizations using EasyVigil to transform their security operations with AI-powered analytics.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all shadow-lg">
-                    Schedule Demo
-                  </button>
-                  <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all">
-                    Contact Sales
-                  </button>
+                  <a 
+                    href="/pdf/Easy Vigil.pdf" 
+                    download
+                    className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all shadow-lg"
+                  >
+                    Download Brochure
+                  </a>
+                  <a 
+                    href="/contact" 
+                    className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all"
+                  >
+                    Request Demo
+                  </a>
                 </div>
               </motion.div>
             </div>

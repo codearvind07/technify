@@ -284,12 +284,12 @@ export default function MytenPage() {
                 >
                   <motion.div 
                     variants={itemVariants}
-                    className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-6 border border-blue-200/50"
+                    className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-6 border border-blue-200/50 mt-4"
                   >
                     <motion.span 
                       animate={{ scale: [1, 1.2, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
-                      className="w-2 h-2 bg-blue-600 rounded-full mr-2"
+                      className="w-2 h-2 bg-blue-600 rounded-full mr-4"
                     />
                     Advanced Storage & Display Solutions
                   </motion.div>
@@ -338,22 +338,21 @@ export default function MytenPage() {
                     variants={itemVariants}
                     className="flex flex-col sm:flex-row gap-4 justify-center"
                   >
-                    <motion.button 
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                    <a 
+                      href="/contact" 
                       className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all shadow-lg flex items-center justify-center"
                     >
                       Request Demo
                       <ArrowRight className="ml-2 h-5 w-5" />
-                    </motion.button>
-                    <motion.button 
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                    </a>
+                    <a 
+                      href="/pdf/Myten.pdf" 
+                      download
                       className="bg-white text-gray-700 border border-gray-300 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all shadow-md flex items-center justify-center hover:border-blue-300"
                     >
                       <Play className="mr-2 h-5 w-5" />
-                      View Presentation
-                    </motion.button>
+                      View Brochure
+                    </a>
                   </motion.div>
                 </motion.div>
               </div>
@@ -728,26 +727,21 @@ export default function MytenPage() {
                   variants={staggerChildren}
                   className="flex flex-col sm:flex-row gap-4 justify-center mt-12"
                 >
-                  <motion.button 
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <a 
+                    href="/pdf/Myten.pdf" 
+                    download
                     className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all shadow-lg flex items-center justify-center"
                   >
                     <Download className="h-5 w-5 mr-2" />
-                    Get Technical Specs
-                  </motion.button>
+                    Download Brochure
+                  </a>
                   
-                  <Link href="/contact">
-                    <motion.div
-                      variants={itemVariants}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all flex items-center justify-center"
-                    >
-                      Contact Sales
-                    </motion.div>
-                  </Link>
+                  <a 
+                    href="/contact" 
+                    className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all flex items-center justify-center"
+                  >
+                    Request Demo
+                  </a>
                 </motion.div>
               </motion.div>
             </div>

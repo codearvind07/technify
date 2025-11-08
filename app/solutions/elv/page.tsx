@@ -1,4 +1,5 @@
-import { Metadata } from 'next';
+'use client';
+
 import { SEO } from '@/components/seo/seo';
 import img1 from "../../../assets/LightingControlSystem.jpg"
 import img2 from "../../../assets/BuildingManagementSystem.jpg"
@@ -8,13 +9,38 @@ import img5 from "../../../assets/victor.jpg"
 import img6 from "../../../assets/slider1.png"
 import img7 from "../../../assets/slide2.jpg"
 import Image from 'next/image';
-
-export const metadata: Metadata = {
-  title: 'ELV Solutions | Technify Solutions - Extra Low Voltage Systems',
-  description: 'Comprehensive ELV solutions including security systems, CCTV, access control, fire safety, public address, and communication systems for commercial and industrial applications.',
-};
+import { useState } from 'react';
 
 export default function ELVSolutionsPage() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const faqs = [
+    {
+      question: "What is an ELV system?",
+      answer: "Extra Low Voltage (ELV) systems operate at voltages typically below 50V AC or 120V DC. These systems include security, communication, and control technologies that are safer and more efficient for modern buildings."
+    },
+    {
+      question: "How do ELV systems improve building security?",
+      answer: "Our ELV security solutions include integrated CCTV, access control, intrusion detection, and fire alarm systems that work together to provide comprehensive protection. These systems offer real-time monitoring, instant alerts, and remote access capabilities."
+    },
+    {
+      question: "What maintenance is required for ELV systems?",
+      answer: "We recommend quarterly inspections for critical systems and annual comprehensive maintenance. Our systems are designed for reliability with remote monitoring capabilities that can predict and prevent issues before they occur."
+    },
+    {
+      question: "Can ELV systems be integrated with existing infrastructure?",
+      answer: "Yes, our ELV solutions are designed for seamless integration with existing building management systems. We provide retrofit solutions that enhance your current infrastructure without requiring complete replacement."
+    },
+    {
+      question: "What is the typical implementation timeline?",
+      answer: "Implementation varies based on project scope. Small installations can be completed in 2-4 weeks, while large commercial projects typically take 2-6 months. We provide detailed project timelines during the consultation phase."
+    }
+  ];
+
   return (
     <>
       <SEO 
@@ -393,6 +419,42 @@ export default function ELVSolutionsPage() {
                   <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Energy Efficiency</span>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl mb-16">
+          <div className="max-w-4xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Find answers to common questions about our ELV solutions
+              </p>
+            </div>
+            
+            <div className="space-y-4">
+              {faqs.map((faq, index) => (
+                <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-md">
+                  <button 
+                    className="flex justify-between items-center w-full p-6 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-xl"
+                    onClick={() => toggleFAQ(index)}
+                  >
+                    <h3 className="text-lg font-semibold text-gray-900">{faq.question}</h3>
+                    <svg 
+                      className={`w-5 h-5 text-blue-600 transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`} 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+                  <div className={`px-6 pb-6 text-gray-600 ${openIndex === index ? 'block' : 'hidden'}`}>
+                    <p>{faq.answer}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>

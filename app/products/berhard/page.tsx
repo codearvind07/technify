@@ -120,8 +120,8 @@ export default function BerhardPage() {
                     variants={itemVariants}
                     className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-6"
                   >
-                    <span className="w-2 h-2 bg-blue-600 rounded-full mr-2"></span>
-                    Industrial Control Solution
+                    
+
                   </motion.div>
                   
                   <motion.h1 
@@ -145,14 +145,21 @@ export default function BerhardPage() {
                     variants={itemVariants}
                     className="flex flex-col sm:flex-row gap-4"
                   >
-                    <button className="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center">
+                    <a 
+                      href="/contact" 
+                      className="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center"
+                    >
                       Request Demo
                       <ArrowRight className="ml-2 h-5 w-5" />
-                    </button>
-                    <button className="bg-white text-gray-700 border border-gray-300 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all shadow-md flex items-center justify-center">
+                    </a>
+                    <a 
+                      href="/pdf/berhard.pdf" 
+                      download
+                      className="bg-white text-gray-700 border border-gray-300 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all shadow-md flex items-center justify-center"
+                    >
                       <Play className="mr-2 h-5 w-5" />
                       View Brochure
-                    </button>
+                    </a>
                   </motion.div>
                 </motion.div>
                 
@@ -397,13 +404,20 @@ export default function BerhardPage() {
                   Experience the durability and performance of our industrial-grade control solution.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all shadow-lg flex items-center">
+                  <a 
+                    href="/pdf/berhard.pdf" 
+                    download
+                    className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all shadow-lg flex items-center"
+                  >
                     <Download className="h-5 w-5 mr-2" />
                     Download Brochure
-                  </button>
-                  <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all">
-                    Contact Sales
-                  </button>
+                  </a>
+                  <a 
+                    href="/contact" 
+                    className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all"
+                  >
+                    Request Demo
+                  </a>
                 </div>
               </motion.div>
             </div>

@@ -1,15 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Twitter, Linkedin, Github, Mail, Phone, MapPin } from 'lucide-react';
+import { Twitter, Linkedin, Mail, Phone, MapPin, Facebook, Instagram, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from "../../assets/Technify-logo.png";
 
 export function Footer() {
   const footerSections = [
-    { 
-      title: 'Product', 
+    {
+      title: 'Products',
       links: [
         { text: 'Easy Vigil', href: '/products/easy-vigil' },
         { text: 'Berhard', href: '/products/berhard' },
@@ -17,229 +17,192 @@ export function Footer() {
         { text: 'ELV Solutions', href: '/solutions/elv' },
         { text: 'ICT Solutions', href: '/solutions/ict' },
         { text: 'Automation Solutions', href: '/solutions/automation' }
-      ] 
+      ],
     },
-    { 
-      title: 'Company', 
+    {
+      title: 'Company',
       links: [
-        { text: 'About', href: '/about' },
-        { text: 'Careers', href: '/career' },
-        { text: 'Services', href: '/services' },
+        { text: 'About Us', href: '/about' },
         { text: 'Leadership', href: '/about/leadership' },
+        { text: 'Careers', href: '/career' },
         { text: 'Press', href: '/press' },
-        { text: 'Partners', href: '/partners' }
-      ] 
+        { text: 'Partners', href: '/partners' },
+      ],
     },
-    { 
-      title: 'Support', 
+    {
+      title: 'Support',
       links: [
         { text: 'Help Center', href: '/support/help' },
         { text: 'Documentation', href: '/support/docs' },
         { text: 'Status', href: '/status' },
         { text: 'Contact', href: '/contact' },
-        { text: 'Support Portal', href: '/support/portal' },
-        { text: 'FAQs', href: '/support/faqs' }
-      ] 
+        { text: 'FAQs', href: '/support/faqs' },
+      ],
     },
   ];
 
-  const socialLinks = [
-    { icon: <Twitter className="w-5 h-5" />, href: '#', label: 'Twitter' },
-    { icon: <Linkedin className="w-5 h-5" />, href: '#', label: 'LinkedIn' },
-    { icon: <Github className="w-5 h-5" />, href: '#', label: 'GitHub' },
-    { icon: <Mail className="w-5 h-5" />, href: '#', label: 'Email' },
+  const contactInfo = [
+    { icon: <MapPin className="w-4 h-4" />, text: '5, Gautam Nagar, New Delhi 110049' },
+    { icon: <Phone className="w-4 h-4" />, text: '+91 9999769378' },
+    { icon: <Mail className="w-4 h-4" />, text: 'info@technify.co.in' },
   ];
 
-  const contactInfo = [
-    { icon: <MapPin className="w-5 h-5" />, text: '5,Gautam Nagar New Delhi 110049' },
-    { icon: <Phone className="w-5 h-5" />, text: '+91 9999769378' },
-    { icon: <Mail className="w-5 h-5" />, text: 'info@technify.co.in' },
+  const socialLinks = [
+    { icon: <Facebook size={18} />, href: '#', label: 'Facebook' },
+    { icon: <Instagram size={18} />, href: '#', label: 'Instagram' },
+    { icon: <Linkedin size={18} />, href: '#', label: 'LinkedIn' },
+    { icon: <Twitter size={18} />, href: '#', label: 'Twitter' },
   ];
 
   return (
-    <footer className="relative py-16 border-t border-gray-200 bg-gradient-to-br from-[#f7fafc] via-[#e3e8ee] to-[#f7fafc]">
-      {/* HomeFeatureGridSection-like animated background */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#e3e8ee]/90 via-[#f7fafc]/90 to-[#f7fafc]/90"></div>
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage: `
-                radial-gradient(circle at 15% 50%, #ff784922 1px, transparent 1px),
-                radial-gradient(circle at 85% 30%, #3b82f622 1px, transparent 1px)
-              `,
-              backgroundSize: '44px 44px'
-            }}
-          ></div>
-        </div>
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-[#ff7849]/10 blur-3xl"
-          animate={{ x: [0, 60, 0], y: [0, -60, 0] }}
-          transition={{ duration: 18, repeat: Infinity, repeatType: "reverse" }}
-        />
-        <motion.div
-          className="absolute bottom-1/3 right-1/4 w-56 h-56 rounded-full bg-[#3b82f6]/10 blur-3xl"
-          animate={{ x: [0, -60, 0], y: [0, 60, 0] }}
-          transition={{ duration: 15, repeat: Infinity, repeatType: "reverse" }}
-        />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <footer className="relative bg-white border-t border-gray-100">
+      {/* Main Footer Content */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Brand Section */}
-          <div className="lg:col-span-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="flex items-center mb-8"
-            >
-              <Link href="/" className="flex items-center" aria-label="Home">
-                {/* Logo container with significantly increased size */}
-                <span className="relative flex items-center justify-center h-40 w-40 rounded-full bg-white/5 p-3 ring-2 ring-blue-500/50">
-                  <Image
-                    src={logo}
-                    alt="Technify logo"
-                    width={170}
-                    height={170}
-                    priority
-                    className="object-contain"
-                  />
-                  {/* Enhanced glow behind logo */}
-                  <span className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-blue-500/30 to-orange-500/30 blur-xl" />
-                </span>
-              </Link>
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="lg:col-span-4"
+          >
+            <Link href="/" className="inline-block mb-6">
+              <Image 
+                src={logo} 
+                alt="Technify logo" 
+                width={160} 
+                height={48} 
+                className="object-contain"
+              />
+            </Link>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="text-gray-600 mb-8 leading-relaxed max-w-sm body-base"
-            >
-              Transform your business with our cutting-edge platform designed to streamline operations and drive growth.
-            </motion.p>
+            <p className="text-gray-600 mb-8 leading-relaxed max-w-md">
+              Empowering businesses with smart, automated, and connected solutions to shape the future of technology.
+            </p>
 
             {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="mb-8"
-            >
-              <h3 className="heading-5 text-gray-900 mb-4">Contact Us</h3>
-              <div className="space-y-3">
-                {contactInfo.map((item, index) => (
-                  <div key={index} className="flex items-start">
-                    <span className="text-blue-600 mt-1 mr-3">{item.icon}</span>
-                    <span className="text-gray-600 body-small">{item.text}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+            <div className="space-y-3 mb-8">
+              {contactInfo.map((item, idx) => (
+                <motion.div 
+                  key={idx}
+                  whileHover={{ x: 4 }}
+                  className="flex items-start gap-3 text-gray-600 group"
+                >
+                  <span className="text-orange-500 mt-0.5 group-hover:scale-110 transition-transform">
+                    {item.icon}
+                  </span>
+                  <span className="text-sm">{item.text}</span>
+                </motion.div>
+              ))}
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="flex space-x-4"
-            >
-              {socialLinks.map((social, index) => (
+            {/* Social Links */}
+            <div className="flex gap-3">
+              {socialLinks.map((social, i) => (
                 <motion.a
-                  key={index}
+                  key={i}
                   href={social.href}
                   aria-label={social.label}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="p-3 bg-gradient-to-r from-blue-500 to-orange-500 text-white rounded-lg group shadow-md hover:shadow-lg transition-all duration-300"
+                  className="p-3 bg-gray-50 hover:bg-orange-50 border border-gray-200 rounded-lg text-gray-600 hover:text-orange-600 transition-all duration-300"
                 >
-                  <div className="text-white group-hover:text-white transition-colors duration-300">
-                    {social.icon}
-                  </div>
+                  {social.icon}
                 </motion.a>
               ))}
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
 
           {/* Links Sections */}
           <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-            {footerSections.map((section, sectionIndex) => (
+            {footerSections.map((section, idx) => (
               <motion.div
-                key={sectionIndex}
+                key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: sectionIndex * 0.1 }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
                 viewport={{ once: true }}
               >
-                <h3 className="heading-6 text-gray-900 mb-4 bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent">{section.title}</h3>
+                <h3 className="font-semibold text-gray-900 mb-6 text-lg">
+                  {section.title}
+                </h3>
                 <ul className="space-y-3">
-                  {section.links.map((link, linkIndex) => (
-                    <li key={linkIndex}>
-                      <motion.a
-                        href={link.href}
-                        whileHover={{ x: 5 }}
-                        className="text-gray-600 hover:text-blue-600 transition-all duration-300 body-small"
+                  {section.links.map((link, j) => (
+                    <motion.li 
+                      key={j} 
+                      whileHover={{ x: 4 }}
+                    >
+                      <Link 
+                        href={link.href} 
+                        className="flex items-center gap-2 text-gray-600 hover:text-orange-600 transition-all group text-sm"
                       >
+                        <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                         {link.text}
-                      </motion.a>
-                    </li>
+                      </Link>
+                    </motion.li>
                   ))}
                 </ul>
               </motion.div>
             ))}
           </div>
         </div>
+      </div>
 
-        {/* Bottom Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-12 pt-8 border-t border-gray-200 flex flex-col md:flex-row items-center justify-between"
-        >
-          <p className="text-gray-600 body-small mb-4 md:mb-0">
-            © {new Date().getFullYear()} Technify. All rights reserved.
-          </p>
-
-          <div className="flex items-center space-x-8 body-small">
-            <motion.a href="#" whileHover={{ color: '#3b82f6' }} className="text-gray-600 hover:text-blue-600 transition-colors duration-300">
-              Privacy Policy
-            </motion.a>
-            <motion.a href="#" whileHover={{ color: '#3b82f6' }} className="text-gray-600 hover:text-blue-600 transition-colors duration-300">
-              Terms of Service
-            </motion.a>
-            <motion.a href="#" whileHover={{ color: '#3b82f6' }} className="text-gray-600 hover:text-blue-600 transition-colors duration-300">
-              Cookies
-            </motion.a>
-          </div>
-        </motion.div>
-
-        {/* Powered by D'miraki */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          viewport={{ once: true }}
-          className="mt-8 pt-4 border-t border-gray-200 text-center"
-        >
-          <p className="text-gray-600 body-small">
-            Powered by <motion.a 
-              href="https://dmiraki.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              whileHover={{ color: '#3b82f6' }} 
-              className="text-blue-600 hover:text-blue-800 transition-colors duration-300 font-medium"
+      {/* Bottom Bar */}
+      <div className="border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            {/* Copyright */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-gray-500 text-sm"
             >
-              D'miraki
-            </motion.a>
-          </p>
-        </motion.div>
+              © {new Date().getFullYear()} Technify. All rights reserved.
+            </motion.p>
+
+            {/* Legal Links */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="flex gap-6 text-sm"
+            >
+              <Link href="#" className="text-gray-500 hover:text-gray-700 transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="#" className="text-gray-500 hover:text-gray-700 transition-colors">
+                Terms of Service
+              </Link>
+              <Link href="#" className="text-gray-500 hover:text-gray-700 transition-colors">
+                Cookies
+              </Link>
+            </motion.div>
+
+            {/* Powered by */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="text-gray-400 text-sm"
+            >
+              Powered by{' '}
+              <Link
+                href="https://dmiraki.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-orange-600 hover:text-orange-700 font-medium transition-colors"
+              >
+                D'miraki
+              </Link>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </footer>
   );

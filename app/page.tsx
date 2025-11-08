@@ -14,6 +14,7 @@ import { CallToActionSection } from '@/components/sections/cta-section';
 import { TechnologyPartnersSection } from '@/components/sections/technology-partners';
 import { ProcessSection } from '@/components/sections/process';
 import { SEO } from '@/components/seo/seo';
+import { NewsletterSection } from '@/components/sections/newsletter';
 
 export default function Home() {
   return (
@@ -36,6 +37,7 @@ export default function Home() {
         <TestimonialsSection />
         <TechnologyPartnersSection />
         {/* <CallToActionSection /> */}
+        <NewsletterSection />
       </main>
     </>
   );

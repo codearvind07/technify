@@ -1,6 +1,5 @@
-"use client";
+'use client';
 
-import { Metadata } from 'next';
 import ScrollStack, { ScrollStackItem } from '@/components/ui/scroll-stack';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,6 +8,7 @@ import auto from '../../assets/automation.jpg';
 import elv from '../../assets/elv.png';
 import ict from '../../assets/ict.png';
 import { SEO } from '@/components/seo/seo';
+import { useState } from 'react';
 
 
 
@@ -34,6 +34,35 @@ const staggerItem = {
 };
 
 export default function SolutionsPage() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const faqs = [
+    {
+      question: "What are the main differences between Automation, ELV, and ICT solutions?",
+      answer: "Automation solutions focus on intelligent control systems for buildings and industrial processes. ELV (Extra Low Voltage) solutions encompass security, communication, and safety systems operating at low voltages. ICT (Information & Communication Technology) solutions provide the infrastructure for data, networking, and communication systems."
+    },
+    {
+      question: "How do I determine which solution is right for my business?",
+      answer: "Our experts conduct a comprehensive assessment of your facility, operations, and goals to recommend the most suitable solutions. We consider factors like building size, operational requirements, budget, and future scalability to create a customized solution plan."
+    },
+    {
+      question: "What is the typical implementation timeline?",
+      answer: "Implementation timelines vary based on project scope and complexity. Small installations can be completed in 2-4 weeks, while large commercial projects typically take 2-6 months. We provide detailed project timelines during the consultation phase."
+    },
+    {
+      question: "Do you provide ongoing support and maintenance?",
+      answer: "Yes, we offer comprehensive support packages including 24/7 monitoring, preventive maintenance, system updates, and technical support. Our team ensures your systems operate at peak performance throughout their lifecycle."
+    },
+    {
+      question: "Can existing infrastructure be upgraded to your solutions?",
+      answer: "Absolutely. We specialize in retrofitting existing buildings and infrastructure with our modern solutions. Our systems are designed to integrate with existing infrastructure, minimizing disruption while maximizing efficiency improvements."
+    }
+  ];
+
   const solutions = [
     {
       title: "AUTOMATION SOLUTIONS",
@@ -208,6 +237,42 @@ export default function SolutionsPage() {
                 </ScrollStackItem>
               ))}
             </ScrollStack>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16 bg-gradient-to-br from-gray-50 to-gray-100">
+          <div className="max-w-4xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Find answers to common questions about our solutions
+              </p>
+            </div>
+            
+            <div className="space-y-4">
+              {faqs.map((faq, index) => (
+                <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-md">
+                  <button 
+                    className="flex justify-between items-center w-full p-6 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-xl"
+                    onClick={() => toggleFAQ(index)}
+                  >
+                    <h3 className="text-lg font-semibold text-gray-900">{faq.question}</h3>
+                    <svg 
+                      className={`w-5 h-5 text-blue-600 transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`} 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+                  <div className={`px-6 pb-6 text-gray-600 ${openIndex === index ? 'block' : 'hidden'}`}>
+                    <p>{faq.answer}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 

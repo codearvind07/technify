@@ -5,6 +5,8 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '../components/layout/footer';
 import { SEO } from '@/components/seo/seo';
 import { ScrollProgress } from '@/components/ui/scroll-progress';
+import { MessageCircle } from 'lucide-react';
+import Link from 'next/link';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -50,7 +52,18 @@ export default function RootLayout({
         <Header />
         <main className="w-full">{children}</main>
         <Footer />
+        
+        {/* WhatsApp Chat Button */}
+        <Link 
+          href="https://wa.me/9999769378" 
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-6 left-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"
+          aria-label="Chat with us on WhatsApp"
+        >
+          <MessageCircle className="w-6 h-6" />
+        </Link>
       </body>
     </html>
   );
-}  
+}
