@@ -8,7 +8,7 @@ import { Footer } from '@/components/layout/footer';
 import HomeAbout from '@/components/sections/homeabout';
 import HomeSolutions from '@/components/sections/home-solution';
 import HomeServices from '@/components/sections/home-services';
-import { StatsSection } from '@/components/sections/stats';
+
 import { TestimonialsSection } from '@/components/sections/testimonials-home';
 import { CallToActionSection } from '@/components/sections/cta-section';
 import { TechnologyPartnersSection } from '@/components/sections/technology-partners';
@@ -30,7 +30,7 @@ export default function Home() {
         <HeroSection />
         <HomeFeatureGridSection />
         <HomeAbout />
-        <StatsSection />
+       
         <HomeSolutions />
         <HomeServices />
         <ProcessSection />
