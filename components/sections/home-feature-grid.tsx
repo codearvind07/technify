@@ -1,6 +1,7 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
 import React from "react";
 import { motion, Variants } from "framer-motion";
 import SplitText from "../ui/split-text";
@@ -158,13 +159,14 @@ export function HomeFeatureGridSection() {
               </div>
             </motion.div>
             <FeatureCard feature={centerFeature} iconSize={40} />
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="mt-4 sm:mt-6 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold px-4 py-2 sm:px-6 sm:py-3 rounded-lg shadow-md hover:shadow-lg transition body-base"
-            >
-              View All Solutions
-            </motion.button>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="mt-4 sm:mt-6">
+              <Link 
+                href="/products" 
+                className="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold px-4 py-2 sm:px-6 sm:py-3 rounded-lg shadow-md hover:shadow-lg transition body-base cursor-pointer text-center block"
+              >
+                View All Solutions
+              </Link>
+            </motion.div>
           </motion.div>
 
           {/* Right */}
