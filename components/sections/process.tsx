@@ -111,7 +111,7 @@ export function ProcessSection() {
         "Our time-tested approach has delivered exceptional results for hundreds of clients.",
       icon: Award,
       image:
-        "https://images.unsplash.com/photo-1754039984995-a91721ce1870?auto=format&fit=crop&w=1261&q=80"
+        "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1470&q=80"
     },
     {
       title: "Continuous Innovation",
@@ -125,25 +125,12 @@ export function ProcessSection() {
 
   const fadeIn: Variants = {
     hidden: { opacity: 0, y: 20 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 }
-    }
+    show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
   };
 
-  const iconVariants: Variants = {
-    initial: { scale: 1, rotate: 0 },
-    hover: {
-      scale: 1.2,
-      rotate: 360,
-      transition: { duration: 0.8, ease: "easeInOut" }
-    }
-  };
-
-  const floatingAnimation: Variants = {
+  const floatSmall: Variants = {
     animate: {
-      y: [-5, 5, -5],
+      y: [-4, 4, -4],
       transition: { duration: 4, repeat: Infinity, repeatType: "reverse" }
     }
   };
@@ -151,143 +138,157 @@ export function ProcessSection() {
   return (
     <section
       ref={ref}
-      className="relative w-full py-20 md:py-28 overflow-hidden bg-gradient-to-br from-[#f7fafc] via-[#e3e8ee] to-[#f7fafc]"
+      className="relative w-full py-20 md:py-28 overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative">
 
-        {/* Header */}
+        {/* ✅ HEADER */}
         <motion.div
           variants={fadeIn}
           initial="hidden"
           whileInView="show"
           className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
-            <span className="bg-gradient-to-r from-[#ff7849] to-[#3b82f6] bg-clip-text text-transparent">
+          <div className="inline-block bg-white px-6 py-3 rounded-full shadow-sm border mb-5">
+            <span className="text-sm font-medium text-gray-700 tracking-wide">
+              Our Process
+            </span>
+          </div>
+
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-5 leading-snug">
+            <span className="bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent">
               The Technify Transformation Story
             </span>
           </h2>
 
-          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Discover how we turn challenges into opportunities through innovation.
           </p>
         </motion.div>
 
-        {/* Timeline (Top Circles Navigation) */}
+        {/* ✅ TIMELINE NAVIGATION */}
         <div className="flex justify-center mb-16">
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
             {storySteps.map((step, index) => (
               <React.Fragment key={step.id}>
                 <div className="flex flex-col items-center">
                   <motion.div
-                    className={`w-12 h-12 rounded-full flex items-center justify-center cursor-pointer ${
-                      activeStep === index
-                        ? "bg-gradient-to-r from-[#ff7849] to-[#3b82f6] shadow-lg"
-                        : "bg-white border border-gray-300"
-                    }`}
-                    whileHover={{ scale: 1.2 }}
+                    whileHover={{ scale: 1.15 }}
                     onClick={() => setActiveStep(index)}
+                    className={`w-12 h-12 rounded-full flex items-center justify-center cursor-pointer transition-all
+                      ${
+                        activeStep === index
+                          ? "bg-blue-600 shadow-lg text-white"
+                          : "bg-white border border-gray-300 text-gray-700"
+                      }
+                    `}
                   >
                     {activeStep === index ? (
-                      <Play className="w-5 h-5 text-white" />
+                      <Play className="w-5 h-5" />
                     ) : (
-                      <span className="font-bold text-gray-700">{step.id}</span>
+                      <span className="font-bold">{step.id}</span>
                     )}
                   </motion.div>
 
-                  <h4
-                    className={`mt-3 text-sm font-semibold ${
-                      activeStep === index ? "text-gray-900" : "text-gray-400"
-                    }`}
+                  <span
+                    className={`mt-3 text-sm font-semibold transition-colors
+                      ${
+                        activeStep === index ? "text-gray-900" : "text-gray-400"
+                      }
+                    `}
                   >
                     {step.title}
-                  </h4>
+                  </span>
                 </div>
 
                 {index < storySteps.length - 1 && (
-                  <div className="mx-2 h-1 w-12 bg-gray-200" />
+                  <div className="w-12 h-1 bg-gray-200" />
                 )}
               </React.Fragment>
             ))}
           </div>
         </div>
 
-        {/* ✅ Active Step Content */}
+        {/* ✅ MAIN STEP CONTENT */}
         <motion.div
           key={activeStep}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white/90 backdrop-blur-xl rounded-3xl border p-10 shadow-xl mb-20"
+          className="bg-white rounded-3xl border shadow-xl p-10 mb-20"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            {/* LEFT CONTENT */}
             <div>
               <div className="flex items-center gap-4 mb-6">
                 <motion.div
-                  className="w-16 h-16 rounded-2xl bg-gradient-to-r from-[#ff7849] to-[#3b82f6] flex items-center justify-center"
-                  variants={iconVariants}
-                  initial="initial"
-                  whileHover="hover"
+                  className="w-16 h-16 rounded-2xl bg-white shadow-[0_4px_16px_rgba(0,0,0,0.06)] border border-gray-100 flex items-center justify-center"
+                  variants={floatSmall}
+                  animate="animate"
                 >
-                  <motion.div variants={floatingAnimation} animate="animate">
-                    {React.createElement(storySteps[activeStep].icon, {
-                      className: "w-8 h-8 text-white"
-                    })}
-                  </motion.div>
+                  {React.createElement(storySteps[activeStep].icon, {
+                    className: "w-8 h-8 text-blue-600"
+                  })}
                 </motion.div>
 
                 <div>
-                  <span className="text-[#ff7849] font-medium">
+                  <span className="font-semibold text-blue-600">
                     {storySteps[activeStep].title}
                   </span>
-                  <h3 className="text-3xl font-bold">
+
+                  <h3 className="text-3xl font-bold text-gray-900">
                     {storySteps[activeStep].subtitle}
                   </h3>
                 </div>
               </div>
 
-              <p className="text-lg text-gray-600 mb-4">
+              <p className="text-lg text-gray-600 mb-3">
                 {storySteps[activeStep].description}
               </p>
 
-              <p className="text-gray-500 mb-6">{storySteps[activeStep].content}</p>
+              <p className="text-gray-500 mb-6">
+                {storySteps[activeStep].content}
+              </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {storySteps[activeStep].benefits.map((benefit, idx) => (
-                  <div key={idx} className="flex items-center gap-3">
-                    <CheckCircle className="text-[#ff7849] w-5 h-5" />
-                    <span>{benefit}</span>
+                  <div key={idx} className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-blue-600" />
+                    <span className="text-gray-700">{benefit}</span>
                   </div>
                 ))}
               </div>
             </div>
 
+            {/* RIGHT IMAGE */}
             <div className="relative">
               <div className="h-80 rounded-2xl overflow-hidden border shadow-lg">
                 <Image
                   src={storySteps[activeStep].image}
                   fill
-                  className="object-cover"
                   alt=""
+                  className="object-cover"
                 />
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* ✅ Story Elements (Bottom Section) */}
+        {/* ✅ STORY ELEMENTS GRID */}
         <motion.div
           variants={fadeIn}
           initial="hidden"
           whileInView="show"
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-10"
         >
           {storyElements.map((element, idx) => {
             const Icon = element.icon;
+
             return (
               <motion.div
-                whileHover={{ y: -10 }}
+                whileHover={{ y: -8 }}
                 key={idx}
-                className="p-8 bg-white/70 rounded-3xl border shadow-lg"
+                className="p-8 bg-white rounded-3xl border shadow-lg transition-all"
               >
                 <div className="relative h-40 rounded-xl overflow-hidden mb-6 border">
                   <Image
@@ -298,18 +299,14 @@ export function ProcessSection() {
                   />
                 </div>
 
-                <motion.div
-                  className="w-16 h-16 rounded-2xl bg-gradient-to-r from-[#ff7849] to-[#3b82f6] flex items-center justify-center mb-6"
-                  variants={iconVariants}
-                  initial="initial"
-                  whileHover="hover"
-                >
-                  <motion.div variants={floatingAnimation} animate="animate">
-                    <Icon className="w-8 h-8 text-white" />
-                  </motion.div>
-                </motion.div>
+                <div className="w-16 h-16 rounded-2xl bg-white border shadow-[0_4px_16px_rgba(0,0,0,0.06)] flex items-center justify-center mb-6">
+                  <Icon className="w-8 h-8 text-blue-600" />
+                </div>
 
-                <h4 className="text-xl font-bold mb-4">{element.title}</h4>
+                <h4 className="text-xl font-bold mb-3 text-gray-900">
+                  {element.title}
+                </h4>
+
                 <p className="text-gray-600">{element.description}</p>
               </motion.div>
             );

@@ -23,7 +23,7 @@ export function ContactHero() {
 
   // Generate a new math CAPTCHA
   const generateMathCaptcha = (): void => {
-    const operators = ['+', '-', '*'];
+    const operators = ['+', '-'];
     const operator = operators[Math.floor(Math.random() * operators.length)];
     const num1 = Math.floor(Math.random() * 10) + 1;
     const num2 = Math.floor(Math.random() * 10) + 1;
@@ -33,11 +33,6 @@ export function ContactHero() {
       return generateMathCaptcha(); // Regenerate if subtraction would be negative
     }
     
-    // Ensure multiplication doesn't result in very large numbers
-    if (operator === '*' && (num1 > 12 || num2 > 12)) {
-      return generateMathCaptcha(); // Regenerate if multiplication would be too large
-    }
-    
     setMathCaptcha({ num1, num2, operator });
     
     // Calculate the correct result
@@ -45,7 +40,6 @@ export function ContactHero() {
     switch (operator) {
       case '+': result = num1 + num2; break;
       case '-': result = num1 - num2; break;
-      case '*': result = num1 * num2; break;
       default: result = 0;
     }
     setCaptchaResult(result);

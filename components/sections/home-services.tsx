@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
@@ -111,9 +111,8 @@ export default function HomeServices() {
   return (
     <section className="relative py-20 bg-gradient-to-b from-white to-slate-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative">
-        {/* -------------------------------------------------------
-         ✅ HEADER SECTION
-        -------------------------------------------------------- */}
+        
+        {/* ✅ HEADER */}
         <motion.div
           variants={fadeIn}
           initial="hidden"
@@ -121,7 +120,7 @@ export default function HomeServices() {
           viewport={{ once: true }}
           className="text-center max-w-3xl mx-auto mb-20"
         >
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/70 backdrop-blur-md border rounded-full shadow-sm">
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/80 backdrop-blur-md border rounded-full shadow-sm">
             <span className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-orange-500 animate-pulse"></span>
             <p className="text-sm font-medium uppercase tracking-wide text-gray-700">
               Our Services
@@ -137,16 +136,14 @@ export default function HomeServices() {
           </h2>
 
           <p className="mt-4 text-lg text-gray-600 leading-relaxed">
-            End-to-end professional services designed to elevate your digital
-            presence and drive sustainable results.
+            End-to-end solutions designed to elevate your digital infrastructure,
+            strengthen security, and accelerate growth.
           </p>
         </motion.div>
 
-        {/* -------------------------------------------------------
-         ✅ SERVICES GRID — Balanced + Center Aligned
-        -------------------------------------------------------- */}
+        {/* ✅ SERVICES GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
-          {services.map((service, index) => (
+          {services.map((service) => (
             <motion.div
               key={service.title}
               variants={cardVariants}
@@ -184,9 +181,7 @@ export default function HomeServices() {
           ))}
         </div>
 
-        {/* -------------------------------------------------------
-         ✅ WHY CHOOSE US — Perfectly Symmetric Layout
-        -------------------------------------------------------- */}
+        {/* ✅ WHY CHOOSE US */}
         <motion.div
           variants={fadeIn}
           initial="hidden"
@@ -201,13 +196,13 @@ export default function HomeServices() {
           </h3>
 
           <p className="mt-3 text-gray-600 max-w-2xl mx-auto">
-            Count on expertise, results, and long-term partnership built on
-            trust and innovation.
+            Trust our expertise, innovation, and long-lasting commitment to 
+            delivering transformative technology solutions.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {advantages.map((adv, index) => {
+          {advantages.map((adv) => {
             const Icon = adv.icon;
 
             return (
@@ -219,12 +214,14 @@ export default function HomeServices() {
                 viewport={{ once: true }}
                 className="bg-white rounded-2xl border shadow-sm p-8 text-center"
               >
+                
+                {/* ✅ FIXED: PURE WHITE ICON BACKGROUND */}
                 <motion.div
                   variants={iconFloat}
                   animate="animate"
-                  className="w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-r from-blue-500 to-orange-500 flex items-center justify-center"
+                  className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-white shadow-[0_4px_16px_rgba(0,0,0,0.06)] border border-gray-100 flex items-center justify-center"
                 >
-                  <Icon className="w-7 h-7 text-white" />
+                  <Icon className="w-7 h-7 text-blue-600" />
                 </motion.div>
 
                 <h4 className="text-lg font-semibold text-gray-900 mb-2">
@@ -235,7 +232,7 @@ export default function HomeServices() {
                   {adv.desc}
                 </p>
 
-                <span className="inline-block px-4 py-1 bg-blue-50 text-blue-600 font-medium text-sm rounded-full">
+                <span className="inline-block px-4 py-1 bg-blue-50 text-blue-700 font-medium text-sm rounded-full">
                   {adv.stats}
                 </span>
               </motion.div>
