@@ -268,20 +268,18 @@ export default function AboutHero() {
                 variants={itemVariants}
                 className="text-5xl md:text-7xl font-black mb-8 text-slate-900 tracking-tight leading-tight"
               >
-                THIS IS{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 animate-gradient-x">
-                  WHO WE ARE
-                </span>
+                THIS IS  WHO WE ARE
+               
               </motion.h1>
               
               <motion.p 
                 variants={itemVariants}
-                className="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto mb-12 font-light leading-relaxed"
+                className="text-xl md:text-2xl text-slate-900 max-w-4xl mx-auto mb-12 font-light leading-relaxed"
               >
                 A high-speed tech startup revolutionizing ICT with 
-                <span className="font-bold text-blue-600"> lightning-fast solutions</span>, 
-                <span className="font-bold text-purple-600"> cutting-edge innovation</span>, and 
-                <span className="font-bold text-cyan-600"> agile delivery</span>.
+                lightning-fast solutions, 
+                cutting-edge innovation, and 
+                agile delivery.
               </motion.p>
 
               {/* Animated Stats */}
@@ -358,12 +356,7 @@ export default function AboutHero() {
                     From emerging startups to growing enterprises, organizations trust Technify Solutions to architect resilient technology ecosystems that scale with their ambitions. Our commitment to innovation and customer success drives extraordinary results.
                   </p>
                   
-                  <motion.blockquote 
-                    whileHover={{ scale: 1.02 }}
-                    className="border-l-4 border-blue-600 pl-6 italic text-slate-900 bg-blue-50/50 p-6 rounded-2xl"
-                  >
-                    "We don't just implement technology—we craft digital experiences that transform businesses and empower teams to achieve extraordinary results."
-                  </motion.blockquote>
+                 
                 </div>
               </motion.div>
               
@@ -383,26 +376,12 @@ export default function AboutHero() {
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent"></div>
+                                           
                   
-                  {/* Floating elements */}
-                  <motion.div
-                    animate={floatingAnimation}
-                    className="absolute top-8 left-8 bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg"
-                  >
-                    <div className="text-2xl">🚀</div>
-                  </motion.div>
-                  
-                  <motion.div
-                    animate={floatingAnimation}
-                    transition={{ delay: 1 }}
-                    className="absolute bottom-8 right-8 bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg"
-                  >
-                    <div className="text-2xl">🌐</div>
-                  </motion.div>
                 </motion.div>
                 
                 {/* Background accent */}
-                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-3xl flex items-center justify-center text-4xl text-white shadow-2xl -z-10">
+                <div className="absolute -bottom-6 -right-6 w-32 h-32 ">
                   ⚡
                 </div>
               </motion.div>
@@ -421,10 +400,8 @@ export default function AboutHero() {
               className="text-center mb-20"
             >
               <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-black text-slate-900 mb-6">
-                WHY CHOOSE{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">
-                  TECHNIFY
-                </span>
+                WHY CHOOSE TECHNIFY
+                
               </motion.h2>
               <motion.p variants={itemVariants} className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
                 Discover what sets us apart in the technology solutions industry with our innovative approach and global expertise
@@ -489,10 +466,7 @@ export default function AboutHero() {
               className="text-center mb-20"
             >
               <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-black text-slate-900 mb-6">
-                VISION &{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">
-                  MISSION
-                </span>
+                VISION &  MISSION
               </motion.h2>
             </motion.div>
 
@@ -505,7 +479,7 @@ export default function AboutHero() {
               >
                 <motion.div 
                   whileHover={{ scale: 1.1 }}
-                  className="w-20 h-20 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-2xl flex items-center justify-center mb-8 shadow-lg"
+                  className="w-20 h-20 flex items-center justify-center mb-8 shadow-lg"
                 >
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -520,19 +494,19 @@ export default function AboutHero() {
               {/* Vision */}
               <motion.div 
                 variants={itemVariants} 
-                className="bg-white p-10 rounded-3xl border border-slate-200/60 shadow-2xl hover:shadow-3xl transition-all group"
+                className="bg-gray p-10 rounded-3xl border border-slate-200/60 shadow-2xl hover:shadow-3xl transition-all group"
                 whileHover={{ y: -5 }}
               >
                 <motion.div 
                   whileHover={{ scale: 1.1 }}
-                  className="w-20 h-20 bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl flex items-center justify-center mb-8 shadow-lg"
+                  className="w-20 h-20 flex items-center justify-center mb-8 shadow-lg"
                 >
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                   </svg>
                 </motion.div>
-                <h3 className="text-3xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-8">OUR VISION</h3>
+                <h3 className="text-3xl font-black bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-8">OUR VISION</h3>
                 <p className="text-slate-600 leading-relaxed text-lg">
                   To create solutions that empower communities with safety, intelligence, and security, fostering a brighter future for all. Our commitment to excellence drives us to continuously enhance our business using leading edge technology and dynamic innovation.
                 </p>
@@ -549,11 +523,11 @@ export default function AboutHero() {
                     whileHover={{ y: -8, scale: 1.05 }}
                     onHoverStart={() => setHoveredValue(index)}
                     onHoverEnd={() => setHoveredValue(null)}
-                    className="text-center bg-white p-8 rounded-3xl border border-slate-200/60 shadow-lg hover:shadow-2xl transition-all relative overflow-hidden group"
+                    className="text-center p-8 rounded-3xl border border-slate-200/60 shadow-lg hover:shadow-2xl transition-all relative overflow-hidden group"
                   >
                     <motion.div
                       animate={hoveredValue === index ? { scale: 1.1 } : { scale: 1 }}
-                      className={`w-16 h-16 bg-gradient-to-br ${value.color} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg text-2xl text-white`}
+                      className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg text-2xl text-white`}
                     >
                       {value.icon}
                     </motion.div>

@@ -10,8 +10,6 @@ import ict from '../../assets/ict.png';
 import { SEO } from '@/components/seo/seo';
 import { useState } from 'react';
 
-
-
 // Animation variants
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },

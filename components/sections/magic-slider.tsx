@@ -282,7 +282,7 @@ const MagicSlider: React.FC = () => {
                 
                 {/* Content overlay - optimized for mobile */}
                 <div className="absolute inset-0 flex items-end justify-center md:justify-end z-10 p-3 sm:p-4 md:p-12 md:pr-16">
-                  <div className="max-w-md bg-gradient-to-br from-white/95 via-white/90 to-white/85 backdrop-blur-2xl rounded-3xl p-5 sm:p-6 md:p-8 shadow-2xl border border-gray-200/50 transform transition-all duration-700 ease-out hover:scale-[1.03] hover:bg-gradient-to-br hover:from-white hover:via-white/95 hover:to-white/90 hover:shadow-3xl hover:border-gray-300/60 w-[90%] sm:w-[85%] md:w-full relative overflow-hidden group">
+                  <div className="max-w-md bg-gradient-to-br from-white/95 via-white/90 to-white/85 backdrop-blur-2xl rounded-3xl p-5 sm:p-6 md:p-8 shadow-2xl border border-gray-200/50 transform transition-all duration-700 ease-out hover:scale-[1.03] hover:bg-gradient-to-br hover:from-white hover:via-white/95 hover:to-white/90 hover:shadow-3xl hover:border-gray-300/60 w-[90%] sm:w-[85%] md:w-full relative overflow-hidden group hidden md:block">
                     {/* Animated glassmorphism overlays */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-white/8 to-transparent rounded-3xl opacity-60 group-hover:opacity-80 transition-opacity duration-700"></div>
                     <div className="absolute inset-0 bg-gradient-to-tl from-transparent via-white/5 to-white/15 rounded-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-700"></div>

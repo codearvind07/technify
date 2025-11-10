@@ -99,9 +99,8 @@ function PartnerLogo({ name, logo }: { name: string; logo: string | StaticImageD
     <Image 
       src={logo} 
       alt={name} 
-      width={48} 
-      height={48} 
-      className="object-contain"
+      fill
+      className="object-contain p-1 bg-white/20 rounded-md"
       onError={() => setImageError(true)}
     />
   );
@@ -112,7 +111,7 @@ export function TechnologyPartnersSection() {
     {
       id: 'displays',
       title: 'Displays & Visualization',
-      icon: <Monitor className="w-6 h-6" />,
+     
       partners: [
         { 
           name: 'Samsung', 
@@ -134,7 +133,7 @@ export function TechnologyPartnersSection() {
     {
       id: 'servers',
       title: 'Servers & Storage',
-      icon: <Server className="w-6 h-6" />,
+     
       partners: [
         { 
           name: 'Myten', 
@@ -161,7 +160,7 @@ export function TechnologyPartnersSection() {
     {
       id: 'vms',
       title: 'VMS & Analytics',
-      icon: <Shield className="w-6 h-6" />,
+      
       partners: [
         {
           name: 'EasyVigil',
@@ -183,7 +182,7 @@ export function TechnologyPartnersSection() {
     {
       id: 'security',
       title: 'Security & Surveillance',
-      icon: <Shield className="w-6 h-6" />,
+    
       partners: [
         { 
           name: 'Honeywell', 
@@ -215,7 +214,7 @@ export function TechnologyPartnersSection() {
     {
       id: 'audio',
       title: 'Public Address & Audio-Visual',
-      icon: <Wifi className="w-6 h-6" />,
+     
       partners: [
         { 
           name: 'Heinrich', 
@@ -227,7 +226,7 @@ export function TechnologyPartnersSection() {
     {
       id: 'networking',
       title: 'Networking Solutions',
-      icon: <Wifi className="w-6 h-6" />,
+     
       partners: [
         { 
           name: 'Legrand', 
@@ -322,20 +321,7 @@ export function TechnologyPartnersSection() {
                 {/* Category header with icon */}
                 <div className="p-6 border-b border-[#3b82f6]/20 bg-gradient-to-r from-[#232946] to-[#1e293b]">
                   <div className="flex items-center gap-4">
-                    <motion.div 
-                      className="p-3 rounded-lg bg-gradient-to-br from-[#3b82f6]/20 to-[#ff7849]/20 text-[#3b82f6]"
-                      whileHover="hover"
-                      whileTap="tap"
-                      initial="initial"
-                      variants={iconVariants}
-                    >
-                      <motion.div
-                        variants={floatingAnimation}
-                        animate="animate"
-                      >
-                        {category.icon}
-                      </motion.div>
-                    </motion.div>
+                   
                     <h3 className="text-xl font-bold text-white group-hover:text-[#3b82f6] transition-colors">
                       {category.title}
                     </h3>
@@ -347,14 +333,14 @@ export function TechnologyPartnersSection() {
                   <div className="space-y-5">
                     {category.partners.map((partner, partnerIndex) => (
                       <div key={partnerIndex} className="flex items-start gap-4 group/partner">
-                        <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-[#232946] flex items-center justify-center overflow-hidden border border-[#3b82f6]/20">
+                        <div className="flex-shrink-0 w-14 h-14 rounded-lg bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center overflow-hidden border border-white/20 shadow-lg relative">
                           <PartnerLogo name={partner.name} logo={partner.logo} />
                         </div>
                         <div>
-                          <h4 className="font-semibold text-white group-hover/partner:text-[#3b82f6] transition-colors">
+                          <h4 className="font-bold text-white text-lg group-hover/partner:text-[#3b82f6] transition-colors">
                             {partner.name}
                           </h4>
-                          <p className="text-sm text-gray-300 mt-1">
+                          <p className="text-sm text-gray-300 mt-2">
                             {partner.description}
                           </p>
                         </div>

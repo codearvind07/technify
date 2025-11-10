@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import banner from "../../assets/contact.jpg"
 
 // Professional online images
 const contactImageUrl = "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600&q=80";
-const heroBackgroundUrl = "https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1950&q=80";
 const officeImageUrl = "https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600&q=80";
 
 export function ContactHero() {
@@ -228,13 +228,13 @@ export function ContactHero() {
           {/* Background with gradient overlay */}
           <div className="absolute inset-0">
             <Image
-              src={heroBackgroundUrl}
+              src={banner}
               alt="Professional office background"
               fill
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-purple-900/80 to-cyan-900/90"></div>
+            <div className="absolute inset-0 "></div>
           </div>
           
           {/* Animated background elements */}
@@ -276,12 +276,12 @@ export function ContactHero() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center bg-white/20 backdrop-blur-sm text-white/90 px-6 py-3 rounded-2xl mb-12 border border-white/30"
+              className="inline-flex items-center  bg-white/20 backdrop-blur-sm text-black px-6 py-3 rounded-2xl mb-12 border border-white/30"
             >
               <motion.span 
                 animate={{ scale: [1, 1.3, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="w-2 h-2 bg-cyan-400 rounded-full mr-3"
+                className="w-2 h-2  bg-cyan-400 rounded-full mr-3"
               />
               Get In Touch With Technify
             </motion.div>
@@ -292,11 +292,7 @@ export function ContactHero() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight"
             >
-              Let's Start{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
-                Something Amazing
-              </span>{" "}
-              Together
+              Let's Start Something Amazing Together
             </motion.h1>
             
             <motion.p
@@ -329,7 +325,7 @@ export function ContactHero() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
-                  className="bg-white rounded-3xl shadow-2xl p-8 border border-slate-200/60"
+                  className="bg-white rounded-3xl shadow-2xl p-8 border border-slate-200/60 h-full"
                 >
                   <h2 className="text-3xl font-black bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-8">
                     Get In Touch
@@ -347,12 +343,12 @@ export function ContactHero() {
                       >
                         <motion.div
                           whileHover={{ scale: 1.1 }}
-                          className={`bg-gradient-to-br ${info.color} p-3 rounded-2xl text-white flex-shrink-0 shadow-lg`}
+                          className="p-3 rounded-2xl text-slate-700 flex-shrink-0 shadow-lg border border-slate-200 bg-white"
                         >
                           <info.icon className="w-6 h-6" />
                         </motion.div>
                         <div>
-                          <div className="font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                          <div className="font-bold text-slate-900 mb-2  ">
                             {info.title}
                           </div>
                           <div className="text-slate-600 space-y-1">
@@ -375,37 +371,13 @@ export function ContactHero() {
                           href={social.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          whileHover={{ scale: 1.1, y: -2 }}
                           whileTap={{ scale: 0.95 }}
-                          className="bg-gradient-to-br from-blue-600 to-cyan-600 p-3 rounded-2xl text-white hover:shadow-lg transition-all shadow-md"
+                          className="p-3 rounded-2xl text-slate-700 transition-all shadow-md border border-slate-200 bg-white"
                         >
                           {social.icon}
                         </motion.a>
                       ))}
                     </div>
-                  </div>
-                </motion.div>
-
-                {/* Office Image */}
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="bg-white rounded-3xl shadow-2xl p-6 border border-slate-200/60"
-                >
-                  <div className="relative h-64 rounded-2xl overflow-hidden">
-                    <Image
-                      src={officeImageUrl}
-                      alt="Technify Office"
-                      fill
-                      className="object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent"></div>
-                  </div>
-                  <div className="mt-4 text-center">
-                    <h3 className="text-xl font-bold text-slate-900">Visit Our Office</h3>
-                    <p className="text-slate-600 mt-2">Modern workspace designed for innovation</p>
                   </div>
                 </motion.div>
               </div>
@@ -418,8 +390,10 @@ export function ContactHero() {
                 transition={{ duration: 0.7, delay: 0.2 }}
                 className="lg:col-span-2 bg-white rounded-3xl shadow-2xl p-8 border border-slate-200/60"
               >
-                <div className="mb-8">
-                  <h3 className="text-3xl font-black text-slate-900 mb-3">Send us a Message</h3>
+                <div className="mb-6">
+                  <h3 className="text-3xl font-black bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-8">
+                    Send us a Message
+                  </h3>
                   <p className="text-slate-600 text-lg">
                     Have a project in mind? Let's discuss how we can help bring your ideas to life.
                   </p>
@@ -467,7 +441,7 @@ export function ContactHero() {
                       value={formData.subject}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-5 py-4 rounded-2xl bg-slate-50 text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 border border-slate-200 transition-all hover:border-blue-300"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 border border-slate-200 transition-all hover:border-blue-300"
                       placeholder="What is this regarding?"
                     />
                   </div>
@@ -481,48 +455,50 @@ export function ContactHero() {
                       value={formData.message}
                       onChange={handleInputChange}
                       required
-                      rows={6}
-                      className="w-full px-5 py-4 rounded-2xl bg-slate-50 text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 border border-slate-200 transition-all hover:border-blue-300 resize-none"
+                      rows={4}
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 border border-slate-200 transition-all hover:border-blue-300 resize-none"
                       placeholder="Tell us about your project or inquiry..."
                     />
                   </div>
                   
                   {/* Math CAPTCHA */}
-                  <div className="py-4">
+                  <div className="py-2">
                     <div className="flex flex-col items-center">
-                      <label className="block text-sm font-semibold text-slate-700 mb-2">
-                        Solve this math problem to prove you're human *
+                      <label className="block text-sm font-medium text-slate-700 mb-1">
+                        Solve this math problem to prove you're human
                       </label>
-                      <div className="flex items-center justify-center space-x-4 bg-slate-50 rounded-2xl p-6 w-full max-w-xs mx-auto">
-                        <div className="text-2xl font-bold text-slate-900">
+                      <div className="flex items-center justify-center space-x-3 bg-slate-50 rounded-xl p-4 w-full max-w-xs mx-auto">
+                        <div className="text-xl font-bold text-slate-900">
                           {mathCaptcha.num1} {mathCaptcha.operator} {mathCaptcha.num2} = ?
                         </div>
                       </div>
-                      <div className="mt-4 w-full max-w-xs mx-auto">
+                      <div className="mt-3 w-full max-w-xs mx-auto">
                         <input
                           type="number"
                           value={userCaptchaAnswer}
                           onChange={handleCaptchaInputChange}
                           required
-                          className="w-full px-5 py-4 rounded-2xl bg-white text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 border border-slate-200 transition-all hover:border-blue-300 text-center"
-                          placeholder="Enter your answer"
+                          className="w-full px-4 py-2.5 rounded-lg bg-white text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 border border-slate-200 transition-all text-center text-sm"
+                          placeholder="Answer"
                         />
                       </div>
                       <button
                         type="button"
                         onClick={generateMathCaptcha}
-                        className="mt-3 text-sm text-blue-600 hover:text-blue-800 underline"
+                        className="mt-2 flex items-center justify-center text-blue-600 hover:text-blue-800"
+                        aria-label="Generate new CAPTCHA problem"
                       >
-                        Generate new problem
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
+                        </svg>
                       </button>
                     </div>
                   </div>
                   
                   <motion.button
                     type="submit"
-                    whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-5 rounded-2xl font-semibold hover:shadow-2xl transition-all shadow-lg flex items-center justify-center group"
+                    className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-3.5 rounded-xl font-semibold hover:shadow-lg transition-all shadow-md flex items-center justify-center group"
                   >
                     <Send className="w-5 h-5 mr-3" />
                     Send Message

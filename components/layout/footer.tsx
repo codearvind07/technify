@@ -191,14 +191,17 @@ export function Footer() {
               viewport={{ once: true }}
               className="text-gray-400 text-sm"
             >
-              Powered by{' '}
               <Link
-                href="https://dmiraki.com"
+                href="https://www.dmiraki.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-orange-600 hover:text-orange-700 font-medium transition-colors"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.open('https://www.dmiraki.com', '_blank', 'noopener,noreferrer');
+                }}
               >
-                D'miraki
+                Powered by Dmiraki
               </Link>
             </motion.div>
           </div>

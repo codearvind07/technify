@@ -69,7 +69,7 @@ export default function HomeSolutions() {
       image: auto,
       link: "/solutions/automation",
       color: "blue",
-      icon: "🤖"
+     
     },
     {
       title: "ELV SOLUTIONS",
@@ -94,7 +94,7 @@ export default function HomeSolutions() {
       image: elv,
       link: "/solutions/elv",
       color: "orange",
-      icon: "🔌"
+      
     },
     {
       title: "ICT SOLUTIONS",
@@ -119,7 +119,7 @@ export default function HomeSolutions() {
       image: ict,
       link: "/solutions/ict",
       color: "blue",
-      icon: "🌐"
+     
     },
   ];
 
@@ -230,10 +230,7 @@ export default function HomeSolutions() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0D1117] to-transparent opacity-70"></div>
                 
-                {/* Icon badge */}
-                <div className="absolute top-4 right-4 w-12 h-12 rounded-lg bg-[#232946]/80 backdrop-blur-sm border border-[#1F6FEB]/30 flex items-center justify-center text-2xl">
-                  {solution.icon}
-                </div>
+               
               </div>
               
               {/* Content */}

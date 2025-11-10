@@ -153,8 +153,8 @@ export function Header() {
             >
               ✉️
             </motion.span>
-            <a href="mailto:info@technify.com" className="hover:underline caption">
-              info@technify.com
+            <a href="mailto:info@technify.co.in" className="hover:underline caption">
+             info@technify.co.in
             </a>
           </motion.span>
         </div>

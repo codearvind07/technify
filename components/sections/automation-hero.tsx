@@ -46,7 +46,7 @@ export default function AutomationHero() {
   const solutions = [
     {
       title: "Energy Management Monitoring System",
-      icon: BarChart3,
+     
       image: heroimg,
       description:
         "A smart energy monitoring platform that tracks usage, analyzes patterns, and optimizes consumption for commercial and industrial operations.",
@@ -68,7 +68,7 @@ export default function AutomationHero() {
     },
     {
       title: "Command Control Center (CCSI)",
-      icon: Command,
+    
       image: Commanda,
       description:
         "A centralized command platform that unifies real-time data, system alerts, and critical operations into one intelligent control environment.",
@@ -79,7 +79,7 @@ export default function AutomationHero() {
     },
     {
       title: "Lighting Control System (LCS)",
-      icon: Lightbulb,
+     
       image: Lighting,
       description:
         "An intelligent network-based lighting system that adapts to user needs and boosts efficiency through automation and energy optimization.",
@@ -90,7 +90,7 @@ export default function AutomationHero() {
     },
     {
       title: "Building Management System (BMS)",
-      icon: Building,
+      
       image: buildingManagement,
       description:
         "A comprehensive building automation suite that manages HVAC, lighting, electrical systems, and safety infrastructure with precision.",
@@ -101,7 +101,7 @@ export default function AutomationHero() {
     },
     {
       title: "Integrated Building Management System (IBMS)",
-      icon: Cpu,
+  
       image: building,
       description:
         "A next-generation unified platform that integrates multiple building systems with web-based access, analytics, and automated control.",
@@ -112,7 +112,7 @@ export default function AutomationHero() {
     },
     {
       title: "Robotics & Automation",
-      icon: Settings,
+     
       image: robotics,
       description:
         "Custom robotic and industrial automation solutions designed to streamline workflows, increase reliability, and support complex operations.",
@@ -148,7 +148,7 @@ export default function AutomationHero() {
                   variants={itemVariants}
                   className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-blue-200 shadow-lg"
                 >
-                  <Zap className="w-4 h-4 text-blue-600" />
+                  <Zap className="w-4 h-4 text-white" />
                   <span className="text-sm font-medium text-blue-700">Leading Automation Solutions</span>
                 </motion.div>
 
@@ -164,15 +164,15 @@ export default function AutomationHero() {
 
                 <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4 text-slate-600">
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <CheckCircle className="w-5 h-5 text-white" />
                     <span className="text-sm font-medium">24/7 Support</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <CheckCircle className="w-5 h-5 text-white" />
                     <span className="text-sm font-medium">Custom Solutions</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <CheckCircle className="w-5 h-5 text-white" />
                     <span className="text-sm font-medium">Energy Efficient</span>
                   </div>
                 </motion.div>
@@ -234,13 +234,7 @@ export default function AutomationHero() {
                           className="object-cover transition-transform duration-700 group-hover:scale-110"
                         />
 
-                        <motion.div
-                          className={`absolute top-4 right-4 p-3 sm:p-4 bg-gradient-to-r ${solution.color} rounded-xl sm:rounded-2xl shadow-lg`}
-                          whileHover={{ rotate: 360, scale: 1.2 }}
-                          transition={{ type: "spring", stiffness: 300, damping: 10 }}
-                        >
-                          <Icon className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
-                        </motion.div>
+                        
                       </div>
 
                       <div className="relative p-5 sm:p-6 bg-white/80 backdrop-blur-sm">
