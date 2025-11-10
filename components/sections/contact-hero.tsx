@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Professional online images
 const contactImageUrl = "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600&q=80";
@@ -17,6 +17,44 @@ export function ContactHero() {
     subject: '',
     message: ''
   });
+  const [mathCaptcha, setMathCaptcha] = useState({ num1: 0, num2: 0, operator: '' });
+  const [userCaptchaAnswer, setUserCaptchaAnswer] = useState('');
+  const [captchaResult, setCaptchaResult] = useState<number | null>(null);
+
+  // Generate a new math CAPTCHA
+  const generateMathCaptcha = (): void => {
+    const operators = ['+', '-', '*'];
+    const operator = operators[Math.floor(Math.random() * operators.length)];
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    
+    // Ensure subtraction doesn't result in negative numbers
+    if (operator === '-' && num1 < num2) {
+      return generateMathCaptcha(); // Regenerate if subtraction would be negative
+    }
+    
+    // Ensure multiplication doesn't result in very large numbers
+    if (operator === '*' && (num1 > 12 || num2 > 12)) {
+      return generateMathCaptcha(); // Regenerate if multiplication would be too large
+    }
+    
+    setMathCaptcha({ num1, num2, operator });
+    
+    // Calculate the correct result
+    let result = 0;
+    switch (operator) {
+      case '+': result = num1 + num2; break;
+      case '-': result = num1 - num2; break;
+      case '*': result = num1 * num2; break;
+      default: result = 0;
+    }
+    setCaptchaResult(result);
+  };
+
+  // Initialize CAPTCHA on component mount
+  useEffect(() => {
+    generateMathCaptcha();
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -25,10 +63,34 @@ export function ContactHero() {
     });
   };
 
+  const handleCaptchaInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserCaptchaAnswer(e.target.value);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Check if CAPTCHA is completed correctly
+    const userAnswer = parseInt(userCaptchaAnswer);
+    if (isNaN(userAnswer) || userAnswer !== captchaResult) {
+      alert('Please solve the math CAPTCHA correctly');
+      generateMathCaptcha(); // Generate a new CAPTCHA
+      setUserCaptchaAnswer(''); // Clear the input
+      return;
+    }
+    
     // Handle form submission here
     console.log('Form submitted:', formData);
+    
+    // Reset form and CAPTCHA
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    });
+    setUserCaptchaAnswer('');
+    generateMathCaptcha(); // Generate a new CAPTCHA for next use
   };
 
   const contactInfo = [
@@ -160,7 +222,7 @@ export function ContactHero() {
         ))}
       </div>
 
-      <main className="relative">
+      <main className="relative pt-16 sm:pt-20 md:pt-24">
         {/* Enhanced Hero Section */}
         <section className="relative py-28 flex flex-col items-center justify-center text-white overflow-hidden">
           {/* Background with gradient overlay */}
@@ -214,7 +276,7 @@ export function ContactHero() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center bg-white/20 backdrop-blur-sm text-white/90 px-6 py-3 rounded-2xl mb-8 border border-white/30"
+              className="inline-flex items-center bg-white/20 backdrop-blur-sm text-white/90 px-6 py-3 rounded-2xl mb-12 border border-white/30"
             >
               <motion.span 
                 animate={{ scale: [1, 1.3, 1] }}
@@ -246,36 +308,12 @@ export function ContactHero() {
               Ready to transform your vision into reality? Our team is here to help you achieve extraordinary results with cutting-edge technology solutions.
             </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            >
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="bg-white text-slate-900 px-8 py-4 rounded-2xl font-semibold hover:shadow-2xl transition-all shadow-lg flex items-center justify-center group"
-              >
-                <Phone className="w-5 h-5 mr-3" />
-                Call Us Now
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-              </motion.button>
-              
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="bg-transparent border-2 border-white/30 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 hover:border-white/50 transition-all flex items-center justify-center group"
-              >
-                <Mail className="w-5 h-5 mr-3" />
-                Send Email
-              </motion.button>
-            </motion.div>
+
           </motion.div>
         </section>
 
         {/* Contact Section */}
-        <section className="py-20 relative -mt-20">
+        <section className="py-20 relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -447,6 +485,37 @@ export function ContactHero() {
                       className="w-full px-5 py-4 rounded-2xl bg-slate-50 text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 border border-slate-200 transition-all hover:border-blue-300 resize-none"
                       placeholder="Tell us about your project or inquiry..."
                     />
+                  </div>
+                  
+                  {/* Math CAPTCHA */}
+                  <div className="py-4">
+                    <div className="flex flex-col items-center">
+                      <label className="block text-sm font-semibold text-slate-700 mb-2">
+                        Solve this math problem to prove you're human *
+                      </label>
+                      <div className="flex items-center justify-center space-x-4 bg-slate-50 rounded-2xl p-6 w-full max-w-xs mx-auto">
+                        <div className="text-2xl font-bold text-slate-900">
+                          {mathCaptcha.num1} {mathCaptcha.operator} {mathCaptcha.num2} = ?
+                        </div>
+                      </div>
+                      <div className="mt-4 w-full max-w-xs mx-auto">
+                        <input
+                          type="number"
+                          value={userCaptchaAnswer}
+                          onChange={handleCaptchaInputChange}
+                          required
+                          className="w-full px-5 py-4 rounded-2xl bg-white text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 border border-slate-200 transition-all hover:border-blue-300 text-center"
+                          placeholder="Enter your answer"
+                        />
+                      </div>
+                      <button
+                        type="button"
+                        onClick={generateMathCaptcha}
+                        className="mt-3 text-sm text-blue-600 hover:text-blue-800 underline"
+                      >
+                        Generate new problem
+                      </button>
+                    </div>
                   </div>
                   
                   <motion.button

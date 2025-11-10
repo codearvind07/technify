@@ -78,14 +78,7 @@ export default function HomeAbout() {
           >
             Discover the innovative technology solutions that drive business transformation
           </motion.h2>
-          <motion.button
-            variants={itemVariants}
-            whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1)" }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full shadow-xl hover:from-orange-600 hover:to-orange-700 transition-all duration-300 transform hover:-translate-y-1"
-          >
-            Explore Our Solutions
-          </motion.button>
+         
         </motion.div>
       </section>
 

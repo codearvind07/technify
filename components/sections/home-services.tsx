@@ -19,12 +19,11 @@ import {
 } from "lucide-react";
 
 // Import images
-import designInnovation from "../../assets/slider1.png";
-import supportMaintenance from "../../assets/slide2.jpg";
-import implementation from "../../assets/slide3.jpg";
-import securityCompliance from "../../assets/automation.jpg";
-import heroBg from "../../assets/beanbag-person.png";
-import beanbagPerson from "../../assets/beanbag-person.png";
+import designInnovation from "../../assets/Design.jpg";
+import supportMaintenance from "../../assets/Support.jpg";
+import implementation from "../../assets/Implementation.jpg";
+import securityCompliance from "../../assets/Security.jpg";
+
 
 const services = [
   {
@@ -456,14 +455,7 @@ export default function HomeServices() {
                       ))}
                     </div>
                     
-                    {/* Learn more button */}
-                    <motion.button
-                      whileHover={{ x: 5 }}
-                      className="mt-auto flex items-center justify-center gap-1 caption font-medium text-blue-600 hover:text-blue-700 transition-colors duration-300 pt-2"
-                    >
-                      <span>Learn more</span>
-                      <ChevronRight className="w-4 h-4" />
-                    </motion.button>
+                   
                   </div>
                 </div>
               </motion.div>

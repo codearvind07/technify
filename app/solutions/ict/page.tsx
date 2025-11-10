@@ -381,12 +381,7 @@ export default function ICTSolutionsPage() {
               >
                 Get Free Consultation
               </a>
-              <a 
-                href="/solutions" 
-                className="inline-block border-2 border-white text-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-blue-600 transition-all duration-300"
-              >
-                Explore All Solutions
-              </a>
+             
             </div>
           </div>
         </section>

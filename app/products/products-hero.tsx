@@ -341,12 +341,10 @@ export default function ProductsHero() {
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <button className="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all shadow-lg hover:-translate-y-1">
-                Request a Demo
-              </button>
-              <button className="bg-blue-700 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-800 transition-all shadow-lg hover:-translate-y-1 border-2 border-transparent">
+              
+              <Link href="/contact" className="bg-blue-700 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-800 transition-all shadow-lg hover:-translate-y-1 border-2 border-transparent">
                 Contact Sales
-              </button>
+              </Link>
             </motion.div>
           </div>
         </section>

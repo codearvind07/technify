@@ -71,28 +71,28 @@ const processSteps = [
   {
     step: 1,
     title: "Virtual Consultation",
-    description: "We begin with online meetings to understand your unique requirements and challenges.",
+    description: "We begin with online meetings to understand your unique requirements and challenges in detail.",
     icon: "💬",
     onlineAspect: "Video Conferencing"
   },
   {
     step: 2,
     title: "Digital Design",
-    description: "Our expert team creates comprehensive solutions using cloud-based design tools.",
+    description: "Our expert team creates comprehensive solutions using cloud-based design tools and platforms.",
     icon: "🎯",
     onlineAspect: "Cloud Collaboration"
   },
   {
     step: 3,
     title: "Remote Implementation",
-    description: "We build and deploy your solution with precision using remote access tools.",
+    description: "We build and deploy your solution with precision using secure remote access tools.",
     icon: "⚡",
     onlineAspect: "Remote Deployment"
   },
   {
     step: 4,
     title: "Online Support",
-    description: "Our dedicated team provides ongoing support through digital channels.",
+    description: "Our dedicated team provides ongoing support through multiple digital channels and platforms.",
     icon: "🛠️",
     onlineAspect: "Digital Support"
   }
@@ -341,7 +341,7 @@ export default function ServicesHero() {
               
               <motion.h1 
                 variants={itemVariants}
-                className="text-5xl md:text-7xl font-black mb-8 text-slate-900 tracking-tight leading-tight"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 text-slate-900 tracking-tight leading-tight"
               >
                 Transform Your{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 animate-gradient-x">
@@ -380,33 +380,6 @@ export default function ServicesHero() {
                 variants={itemVariants}
                 className="flex flex-col sm:flex-row gap-4 justify-center items-center"
               >
-                <motion.button 
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-10 py-4 rounded-2xl font-semibold hover:shadow-2xl transition-all shadow-lg flex items-center justify-center group"
-                >
-                  <span>Start Digital Project</span>
-                  <motion.svg 
-                    className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform"
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </motion.svg>
-                </motion.button>
-                
-                <motion.button 
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="bg-white/80 backdrop-blur-sm text-slate-700 border-2 border-slate-200 px-10 py-4 rounded-2xl font-semibold hover:border-blue-300 hover:bg-white transition-all shadow-lg flex items-center justify-center group"
-                >
-                  <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  View Digital Portfolio
-                </motion.button>
               </motion.div>
             </motion.div>
           </div>
@@ -522,7 +495,7 @@ export default function ServicesHero() {
                   >
                     <motion.div
                       variants={cardHover}
-                      className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-200/60 relative"
+                      className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-200/60 relative h-full flex flex-col"
                       transition={{ type: "spring", stiffness: 300 }}
                     >
                       {/* Service Header with Gradient */}
@@ -542,12 +515,12 @@ export default function ServicesHero() {
                       </div>
                       
                       {/* Service Content */}
-                      <div className="p-8">
-                        <p className="text-slate-600 mb-6 leading-relaxed text-lg">
+                      <div className="p-8 flex-grow flex flex-col">
+                        <p className="text-slate-600 mb-6 leading-relaxed text-lg flex-grow">
                           {service.description}
                         </p>
                         
-                        <div className="bg-slate-50 rounded-2xl p-6 mb-6 border border-slate-200/60">
+                        <div className="bg-slate-50 rounded-2xl p-6 mb-6 border border-slate-200/60 flex-grow">
                           <p className="text-slate-700 leading-relaxed italic">
                             {service.detailedDescription}
                           </p>
@@ -572,7 +545,7 @@ export default function ServicesHero() {
                           </div>
                         </div>
                         
-                        <div className="mb-8">
+                        <div className="mb-8 flex-grow">
                           <h4 className="text-lg font-semibold text-slate-900 mb-4 flex items-center">
                             <span className="w-2 h-2 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full mr-3"></span>
                             Key Features
@@ -592,23 +565,7 @@ export default function ServicesHero() {
                         </div>
                         
                         <div className="flex flex-col sm:flex-row gap-4">
-                          <motion.button 
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            className={`flex-1 ${service.gradient} text-white py-4 rounded-2xl font-semibold hover:shadow-lg transition-all shadow-md flex items-center justify-center group`}
-                          >
-                            Start Online Consultation
-                            <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                          </motion.button>
-                          <motion.button 
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            className="flex-1 border-2 border-slate-300 text-slate-700 py-4 rounded-2xl font-semibold hover:border-blue-500 hover:bg-blue-50 transition-all flex items-center justify-center"
-                          >
-                            Schedule Video Call
-                          </motion.button>
+                          
                         </div>
                       </div>
                     </motion.div>
@@ -727,7 +684,8 @@ export default function ServicesHero() {
                   variants={itemVariants}
                   className="flex flex-col sm:flex-row gap-4 justify-center items-center"
                 >
-                  <motion.button 
+                  <motion.a 
+                    href="/contact"
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     className="bg-white text-slate-900 px-12 py-4 rounded-2xl font-semibold hover:shadow-2xl transition-all shadow-lg flex items-center justify-center group"
@@ -735,20 +693,9 @@ export default function ServicesHero() {
                     <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    Schedule Video Call
-                  </motion.button>
-                  
-                  <motion.button 
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="bg-transparent border-2 border-white/30 text-white px-12 py-4 rounded-2xl font-semibold hover:bg-white/10 hover:border-white/50 transition-all flex items-center justify-center group"
-                  >
-                    <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg>
-                    View Digital Portfolio
-                  </motion.button>
+                    Get Connected
+                  </motion.a>
+                 
                 </motion.div>
 
                 {/* Online Availability Badge */}

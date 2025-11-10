@@ -102,33 +102,9 @@ export default function CareerHero() {
         />
       </div>
 
-      {/* Floating particles */}
-      <div className="fixed inset-0 -z-10">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              x: [0, Math.random() * 20 - 10, 0],
-              opacity: [0, 0.6, 0],
-              scale: [0, 1, 0],
-            }}
-            transition={{
-              duration: 4 + Math.random() * 6,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-              ease: "easeInOut"
-            }}
-          />
-        ))}
-      </div>
+     
 
-      <main className="relative">
+      <main className="relative pt-16 sm:pt-20 md:pt-24">
         {/* Enhanced Hero Section with Images */}
         <section className="relative py-28 flex flex-col items-center justify-center text-white overflow-hidden">
           {/* Background Images with Gradient Overlay */}
@@ -159,50 +135,10 @@ export default function CareerHero() {
             <div className="absolute inset-0 bg-gradient-to-br from-orange-900/85 via-amber-900/75 to-yellow-900/80"></div>
           </div>
 
-          {/* Floating tech elements */}
-          <div className="absolute inset-0 overflow-hidden">
-            <motion.div
-              animate={{
-                y: [0, -20, 0],
-                rotate: [0, 5, 0],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="absolute top-20 left-10 w-24 h-24 opacity-20"
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
-                alt="Tech element"
-                className="w-full h-full object-cover rounded-lg"
-              />
-            </motion.div>
-            
-            <motion.div
-              animate={{
-                y: [0, 15, 0],
-                rotate: [0, -3, 0],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1
-              }}
-              className="absolute bottom-20 right-10 w-20 h-20 opacity-20"
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
-                alt="Tech element"
-                className="w-full h-full object-cover rounded-lg"
-              />
-            </motion.div>
-          </div>
+         
 
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 40 }} 
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative z-10 w-full max-w-6xl mx-auto text-center px-4"
@@ -211,14 +147,14 @@ export default function CareerHero() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center bg-white/20 backdrop-blur-sm text-white/90 px-6 py-3 rounded-2xl mb-8 border border-white/30"
+              className="inline-flex items-center bg-white/20 backdrop-blur-sm text-white/90 px-6 py-3 rounded-2xl mb-12 border border-white/30"
             >
               <motion.span 
                 animate={{ scale: [1, 1.3, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
                 className="w-2 h-2 bg-amber-400 rounded-full mr-3"
               />
-              Build Your Future With Us
+              Build Your Career With Technify
             </motion.div>
             
             <motion.h1
@@ -242,35 +178,11 @@ export default function CareerHero() {
             >
               Join our team of innovators and visionaries. Create cutting-edge solutions that transform industries and impact millions.
             </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            >
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="bg-white text-orange-600 px-8 py-4 rounded-2xl font-semibold hover:bg-orange-50 hover:shadow-2xl transition-all flex items-center justify-center group shadow-lg"
-              >
-                View Open Positions
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-              </motion.button>
-              
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="bg-transparent border-2 border-white/30 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 hover:border-white/50 transition-all flex items-center justify-center group"
-              >
-                Learn About Culture
-              </motion.button>
-            </motion.div>
           </motion.div>
         </section>
 
         {/* Benefits Section */}
-        <section className="py-20 relative -mt-20">
+        <section className="py-20 relative -mt-2">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 40 }}

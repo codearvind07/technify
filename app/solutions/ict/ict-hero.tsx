@@ -1,10 +1,32 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
 import ictNetwork from '../../../assets/ict.png';
 import ictTracking from '../../../assets/elv.png';
 import ictStorage from '../../../assets/automation.jpg';
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { y: 40, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.7, ease: [0.42, 0, 0.58, 1] },
+  },
+  hover: {
+    scale: 1.04,
+    boxShadow: "0 20px 40px rgba(59, 130, 246, 0.15)",
+    transition: { duration: 0.3 }
+  }
+};
 
 const ictSolutions = [
   {
@@ -35,52 +57,69 @@ const ictSolutions = [
 export function ICTHero() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-gray-100 font-[Poppins,sans-serif]">
-      <section className="relative py-20 flex flex-col items-center justify-center text-gray-900 overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="absolute inset-0 bg-gradient-to-br from-white to-gray-100 opacity-90"
-        />
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative z-10 w-full max-w-4xl mx-auto text-center rounded-3xl bg-gradient-to-br from-white to-gray-50 p-12 shadow-lg border border-gray-200"
-        >
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-6"
-          >
-            ICT Solutions
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="mt-6 text-2xl bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent max-w-2xl mx-auto font-medium"
-          >
-            Discover our comprehensive range of cutting-edge ICT solutions designed to transform your business and drive digital innovation.
-          </motion.p>
+      <main className="relative pt-16 sm:pt-20 md:pt-24 overflow-hidden">
+        {/* ================= HERO SECTION ================= */}
+        <section className="relative py-16 md:py-20 lg:py-24">
           
-          {/* Added CTA button with blue-orange gradient */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-10"
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+            className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
           >
-            <a
-              href="#solutions"
-              className="inline-block bg-gradient-to-r from-blue-600 to-orange-500 text-white px-8 py-4 rounded-full font-semibold hover:from-blue-700 hover:to-orange-600 transition-all shadow-lg hover:-translate-y-1"
-            >
-              Explore Solutions
-            </a>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Left Side */}
+              <div className="space-y-6">
+                <motion.div
+                  variants={itemVariants}
+                  className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-blue-200 shadow-lg"
+                >
+                  <div className="w-4 h-4 bg-gradient-to-r from-blue-600 to-orange-500 rounded-full"></div>
+                  <span className="text-sm font-medium text-blue-700">Leading ICT Solutions</span>
+                </motion.div>
+
+                <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">Advanced</span><br />
+                  <span className="text-slate-900">ICT Solutions</span><br />
+                  <span className="text-slate-700">For Digital Transformation</span>
+                </motion.h1>
+
+                <motion.p variants={itemVariants} className="text-lg sm:text-xl text-slate-600 leading-relaxed">
+                  Transform your business with our comprehensive range of cutting-edge ICT solutions designed to drive digital innovation and efficiency.
+                </motion.p>
+
+                <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4 text-slate-600">
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 text-green-500 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"></div>
+                    <span className="text-sm font-medium">24/7 Support</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 text-green-500 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"></div>
+                    <span className="text-sm font-medium">Scalable Solutions</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 text-green-500 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"></div>
+                    <span className="text-sm font-medium">Secure Infrastructure</span>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Right Image */}
+              <motion.div variants={itemVariants} className="relative">
+                <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-8 border-white/30">
+                  <Image
+                    src={ictNetwork}
+                    alt="ICT Solutions"
+                    width={700}
+                    height={600}
+                    className="object-cover w-full h-auto max-h-[500px]"
+                    priority
+                  />
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
-        </motion.div>
-      </section>
+        </section>
 
       {/* Solutions Grid */}
       <section className="py-16">
@@ -145,6 +184,7 @@ export function ICTHero() {
           </div>
         </div>
       </section>
+      </main>
     </div>
   );
 }

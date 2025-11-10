@@ -4,9 +4,10 @@ import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import AboutHeroImage from "../../assets/abouthero.jpg";
 
 // Online image URLs - Replace these with actual professional images
-const AboutHeroImage = "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80";
+
 const TeamImage = "https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80";
 const OnlineCollaborationImage = "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80";
 const GlobalNetworkImage = "https://images.unsplash.com/photo-1596524460574-c594e355e48f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80";
@@ -679,27 +680,7 @@ export default function AboutHero() {
                   variants={itemVariants}
                   className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12"
                 >
-                  <motion.button 
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="bg-white text-slate-900 px-12 py-4 rounded-2xl font-semibold hover:shadow-2xl transition-all shadow-lg flex items-center justify-center group"
-                  >
-                    <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                    Schedule Consultation
-                  </motion.button>
                   
-                  <motion.button 
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="bg-transparent border-2 border-white/30 text-white px-12 py-4 rounded-2xl font-semibold hover:bg-white/10 hover:border-white/50 transition-all flex items-center justify-center group"
-                  >
-                    <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                    </svg>
-                    Start Conversation
-                  </motion.button>
                 </motion.div>
               </div>
             </motion.div>
