@@ -2,14 +2,33 @@
 
 import { SEO } from '@/components/seo/seo';
 import Image from 'next/image';
-import networkInfrastructure from '../../../assets/BuildingManagementSystem.jpg';
-import dataStorage from '../../../assets/EnergyManagement.jpg';
-import ictHero from '../../../assets/ict.png';
-import trackingImage from '../../../assets/anunay-rai-6zXiSHgQDcM-unsplash.jpg';
+import { motion, Variants } from "framer-motion";
+import { CheckCircle } from "lucide-react";
+import networkInfrastructure from '../../../assets/Intelligent.jpg';
+import dataStorage from '../../../assets/AdvancedDataStorage.jpg';
+import ictHero from '../../../assets/ictnabber.jpg';
+import trackingImage from '../../../assets/SmartAsset.jpg';
 import { useState } from 'react';
 
 export default function ICTSolutionsPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { y: 40, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.7, ease: [0.42, 0, 0.58, 1] },
+    },
+  };
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -48,47 +67,81 @@ export default function ICTSolutionsPage() {
       />
       
       {/* Animated Hero Section */}
-      <div className="relative bg-gray-900 text-white py-24 overflow-hidden pt-24"> {/* Increased padding from pt-20 to pt-24 */}
-        <div className="absolute inset-0">
-          <Image 
-            src={networkInfrastructure} 
-            alt="ICT Solutions Background" 
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-blue-700/70 to-orange-600/70"></div>
-        </div>
-        <div className="absolute top-0 left-0 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div className="absolute top-0 right-0 w-72 h-72 bg-orange-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
-        
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <div className="flex justify-center mb-8">
-            
+      <section className="relative py-16 md:py-20 lg:py-24 pt-16 sm:pt-20 md:pt-24">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side */}
+            <div className="space-y-6">
+              <motion.div
+                variants={itemVariants}
+                className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-blue-200 shadow-lg"
+              >
+                <div className="w-4 h-4 rounded-full bg-gradient-to-r from-blue-500 to-orange-500 animate-pulse"></div>
+                <span className="text-sm font-medium text-blue-700">Leading ICT Solutions</span>
+              </motion.div>
+
+              <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">Smart</span><br />
+                <span className="text-slate-900">ICT Solutions</span><br />
+                <span className="text-slate-700">For Modern Businesses</span>
+              </motion.h1>
+
+              <motion.p variants={itemVariants} className="text-lg sm:text-xl text-slate-600 leading-relaxed">
+                Transform your business with cutting-edge Information Communication Technology infrastructure.
+              </motion.p>
+
+              <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4 text-slate-600">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-blue-500" />
+                  <span className="text-sm font-medium">99.9% Network Uptime</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-blue-500" />
+                  <span className="text-sm font-medium">24/7 Support</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-blue-500" />
+                  <span className="text-sm font-medium">Scalable Solutions</span>
+                </div>
+              </motion.div>
+
+              <motion.div variants={itemVariants} className="flex flex-wrap gap-4 pt-4">
+                <a 
+                  href="/contact" 
+                  className="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full font-bold hover:shadow-lg transform hover:scale-105 transition-all duration-300 shadow-md"
+                >
+                  Start Your Digital Transformation
+                </a>
+                <a 
+                  href="#solutions" 
+                  className="inline-block border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-full font-bold hover:bg-slate-50 transition-all duration-300"
+                >
+                  Explore Solutions
+                </a>
+              </motion.div>
+            </div>
+
+            {/* Right Image */}
+            <motion.div variants={itemVariants} className="relative">
+              <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-8 border-white/30">
+                <Image
+                  src={ictHero}
+                  alt="ICT Solutions"
+                  width={700}
+                  height={600}
+                  className="object-cover w-full h-auto max-h-[500px]"
+                  priority
+                />
+              </div>
+            </motion.div>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb- bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
-            ICT Solutions
-          </h1>
-          <p className="text-xl md:text-2xl opacity-90 mb-8 max-w-3xl mx-auto">
-            Transform Your Business with Cutting-Edge Information Communication Technology Infrastructure
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="/contact" 
-              className="inline-block bg-white text-blue-600 px-8 py-4 rounded-full font-bold hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg"
-            >
-              Start Your Digital Transformation
-            </a>
-            <a 
-              href="#solutions" 
-              className="inline-block border-2 border-white text-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-blue-600 transition-all duration-300"
-            >
-              Explore Solutions
-            </a>
-          </div>
-        </div>
-      </div>
+        </motion.div>
+      </section>
 
       {/* Main Content */}
       <div id="solutions" className="container mx-auto px-4 py-20">
@@ -387,23 +440,6 @@ export default function ICTSolutionsPage() {
         </section>
       </div>
 
-      <style jsx>{`
-        @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
-        }
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-      `}</style>
     </>
   );
 }

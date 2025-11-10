@@ -17,9 +17,9 @@ import {
   Play
 } from "lucide-react";
 import { SEO } from '@/components/seo/seo';
-import heroImage from '@/assets/CommandControl.jpg';
-import durabilityImage from '@/assets/BuildingManagementSystem.jpg';
-import complianceImage from '@/assets/EnergyManagement.jpg';
+import heroImage from '@/assets/Berhard Control Kiosk.jpg';
+import durabilityImage from '@/assets/DurabilityandProtection.jpg';
+
 
 export default function BerhardPage() {
   const containerVariants: Variants = {

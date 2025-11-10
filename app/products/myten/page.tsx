@@ -671,15 +671,7 @@ export default function MytenPage() {
                         {doc.title}
                       </h3>
                       <p className="text-gray-600 text-sm mb-4">{doc.description}</p>
-                      <motion.a
-                        whileHover={{ scale: 1.05 }}
-                        href={`/pdf/${doc.file}`}
-                        download
-                        className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors"
-                      >
-                        <Download className="w-4 h-4 mr-2" />
-                        Download PDF
-                      </motion.a>
+                      
                     </motion.div>
                   );
                 })}

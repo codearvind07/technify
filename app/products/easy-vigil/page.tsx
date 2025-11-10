@@ -21,9 +21,9 @@ import {
   Play
 } from "lucide-react";
 import { SEO } from '@/components/seo/seo';
-import heroImage from '@/assets/CommandControl.jpg';
-import analyticsImage from '@/assets/BuildingManagementSystem.jpg';
-import platformImage from '@/assets/EnergyManagement.jpg';
+import heroImage from '@/assets/IntelligentVideo.jpg';
+import analyticsImage from '@/assets/AdvancedAI.jpg';
+import platformImage from '@/assets/UnifiedSecurity.jpg';
 
 export default function EasyVigilPage() {
   const containerVariants: Variants = {

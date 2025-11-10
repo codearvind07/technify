@@ -371,7 +371,7 @@ export default function CareerHero() {
                   </div>
                   <div className="bg-white rounded-2xl p-6 text-center shadow-lg border border-slate-200/60">
                     <div className="text-2xl font-black bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
-                      15+
+                      5+
                     </div>
                     <div className="text-slate-600 text-sm">Years Experience</div>
                   </div>
