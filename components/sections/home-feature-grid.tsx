@@ -127,14 +127,11 @@ export function HomeFeatureGridSection() {
               <SplitText text="Our Solutions" splitType="words" />
             </span>
           </div>
-          <h2 className="heading-2 mb-3 sm:mb-4 text-gray-800 leading-tight">
-            Comprehensive Technology Infrastructure Services
+          <h2 className="heading-3 mb-3 sm:mb-4 text-gray-800 leading-tight">
+            End-to-end solutions for enterprises and smart environments with cutting-edge technology integration
           </h2>
-          <SplitText
-            text="End-to-end solutions for enterprises and smart environments with cutting-edge technology integration."
-            className="body-large text-gray-600 max-w-3xl mx-auto font-light leading-relaxed"
-            splitType="words"
-          />
+          
+        
         </motion.header>
 
         {/* Grid - Optimized for mobile */}
@@ -177,25 +174,7 @@ export function HomeFeatureGridSection() {
           </motion.div>
         </main>
 
-        {/* Closing Statement */}
-        <motion.footer variants={fadeIn} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center max-w-4xl mx-auto">
-          <SplitText text="Integrated Technology Solutions" className="heading-3 text-gray-800 mb-4 sm:mb-6" splitType="words" />
-          <SplitText
-            text="We blend innovation with expertise to deliver solutions that enhance security, efficiency, and user experience across your infrastructure."
-            className="body-base text-gray-600 mb-6 sm:mb-8 leading-relaxed"
-            splitType="words"
-          />
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-            {["System Integration", "24/7 Support", "Scalable Design", "Security First"].map((item, i) => (
-              <div
-                key={i}
-                className="px-3 py-1.5 sm:px-5 sm:py-2 bg-gradient-to-r from-blue-500/10 to-orange-500/10 rounded-full text-gray-700 body-small font-medium shadow-sm hover:shadow-md transition border border-gray-200/50"
-              >
-                <SplitText text={item} splitType="words" />
-              </div>
-            ))}
-          </div>
-        </motion.footer>
+       
       </div>
     </section>
   );

@@ -5,7 +5,7 @@ import { StaticImageData } from 'next/image';
 import slider1 from '../../assets/slider1.png';
 import slider2 from '../../assets/slide2.jpg';
 import slider3 from '../../assets/slide3.jpg';
-import { cn } from '@/lib/utils';
+
 
 interface Slide {
   id: number;

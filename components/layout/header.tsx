@@ -4,23 +4,12 @@ import Image from "next/image";
 import logo from "../../assets/Technify-logo.png";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebookF,
-  faTwitter,
-  faLinkedinIn,
-  faPinterestP,
-  faGooglePlusG,
-} from "@fortawesome/free-brands-svg-icons";
 import { motion, AnimatePresence } from "framer-motion";
-
-type TimeoutRef = ReturnType<typeof setTimeout> | null;
 
 interface NavItem {
   label: string;
   href: string;
   subItems?: NavItem[];
-  cta?: boolean;
 }
 
 const NAV_ITEMS: NavItem[] = [
@@ -34,392 +23,314 @@ const NAV_ITEMS: NavItem[] = [
       { label: "ICT Solution", href: "/solutions/ict" },
     ],
   },
-  { label: "Products", href: "/products" },
+  {
+    label: "Products",
+    href: "/products",
+    subItems: [
+      {
+        label: "Airport Solutions",
+        href: "/products/airport",
+        subItems: [
+          { label: "CCTV Surveillance Systems", href: "/products/airport/cctv" },
+          { label: "Public Address System (PAS)", href: "/products/airport/pas" },
+          { label: "Fire Alarm System", href: "/products/airport/fire-alarm" },
+          { label: "FIDS (Flight Information Display System)", href: "/products/airport/fids" },
+          { label: "Vehicle / Parking Management System", href: "/products/airport/parking" },
+          { label: "IP PBX & Communication System", href: "/products/airport/ip-pbx" },
+          { label: "Audio-Visual (AV) Solutions", href: "/products/airport/av" },
+        ],
+      },
+      {
+        label: "Railway Solutions",
+        href: "/products/railway",
+        subItems: [
+          { label: "CCTV Surveillance Systems", href: "/products/railway/cctv" },
+          { label: "Public Address System (PAS)", href: "/products/railway/pas" },
+          { label: "Fire Alarm System", href: "/products/railway/fire-alarm" },
+          { label: "PIDS (Passenger Information Display System)", href: "/products/railway/pids" },
+          { label: "Vehicle / Parking Management System", href: "/products/railway/parking" },
+          { label: "IP PBX & Communication System", href: "/products/railway/ip-pbx" },
+          { label: "Audio-Visual (AV) Solutions", href: "/products/railway/av" },
+        ],
+      },
+      {
+        label: "Hospital Solutions",
+        href: "/products/hospital",
+        subItems: [
+          { label: "CCTV Surveillance Systems", href: "/products/hospital/cctv" },
+          { label: "Panic Alarm / Nurse Call System (NCS)", href: "/products/hospital/ncs" },
+          { label: "Queue Management System", href: "/products/hospital/qms" },
+          { label: "Parking Management System", href: "/products/hospital/parking" },
+          { label: "HIMS (Hospital Information Management System)", href: "/products/hospital/hims" },
+        ],
+      },
+      {
+        label: "Enterprise Solutions",
+        href: "/products/enterprise",
+        subItems: [
+          { label: "CCTV Surveillance Systems", href: "/products/enterprise/cctv" },
+          { label: "Building Management System (BMS)", href: "/products/enterprise/bms" },
+          { label: "Active & Passive Network Infrastructure", href: "/products/enterprise/network" },
+          { label: "Fire Alarm System", href: "/products/enterprise/fire-alarm" },
+          { label: "Audio-Visual (AV) Solutions", href: "/products/enterprise/av" },
+          { label: "Parking Management System", href: "/products/enterprise/parking" },
+        ],
+      },
+    ],
+  },
   { label: "Services", href: "/services" },
   { label: "About Us", href: "/about" },
-  { label: "Contact Us", href: "/contact" },
   { label: "Career", href: "/career" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 export function Header() {
   const pathname = usePathname();
-  const [desktopSolutionsOpen, setDesktopSolutionsOpen] = useState(false);
-  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null); // top-level desktop
+  const [activeSubDropdown, setActiveSubDropdown] = useState<string | null>(null); // second-level desktop
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileActiveDropdown, setMobileActiveDropdown] = useState<string | null>(null); // top-level mobile
+  const [mobileActiveSubDropdown, setMobileActiveSubDropdown] = useState<string | null>(null); // second-level mobile
   const [scrolled, setScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const leaveTimerRef = useRef<TimeoutRef>(null);
+  const navRef = useRef<HTMLElement | null>(null);
 
-  // Scroll effect for header shrinking
+  // shrink on scroll
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 5);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Reset dropdown when route changes
+  // close on route change
   useEffect(() => {
-    setDesktopSolutionsOpen(false);
-    setMobileSolutionsOpen(false);
-    setIsMenuOpen(false);
+    setActiveDropdown(null);
+    setActiveSubDropdown(null);
+    setMobileOpen(false);
+    setMobileActiveDropdown(null);
+    setMobileActiveSubDropdown(null);
   }, [pathname]);
 
-  // Close dropdown when clicking outside (desktop only)
+  // close dropdown on outside click (desktop)
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setDesktopSolutionsOpen(false);
+    const handler = (e: MouseEvent) => {
+      if (!navRef.current) return;
+      if (!navRef.current.contains(e.target as Node)) {
+        setActiveDropdown(null);
+        setActiveSubDropdown(null);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  const handleMouseEnter = () => {
-    if (leaveTimerRef.current) clearTimeout(leaveTimerRef.current);
-    setDesktopSolutionsOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    leaveTimerRef.current = setTimeout(() => setDesktopSolutionsOpen(false), 150);
-  };
-
-  const toggleMobileSolutions = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setMobileSolutionsOpen(!mobileSolutionsOpen);
-  };
-
-  const closeMobileMenu = () => {
-    setIsMenuOpen(false);
-    setMobileSolutionsOpen(false);
-  };
-
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full font-sans bg-white" style={{ willChange: 'transform' }}>
-      {/* Top info bar with enhanced animation and mobile optimization */}
-      <motion.div 
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ 
-          type: "spring", 
-          stiffness: 100, 
-          damping: 15,
-          delay: 0.1 
-        }}
-        className="bg-gray-900 text-white caption py-2 px-4 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0 relative"
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+      {/* MAIN WRAPPER (NO WHITE SPACE) */}
+      <div
+        className={`w-full transition-all duration-300 ${scrolled ? "py-1 shadow-md" : "py-1"}`}
       >
-        <div className="flex items-center gap-4 xs:gap-6 font-medium text-gray-300 z-10">
-          <motion.span
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400 }}
-            className="flex items-center gap-1"
-            whileTap={{ scale: 0.95 }}
-          >
-            <motion.span 
-              className="inline-block"
-              animate={{ 
-                scale: [1, 1.2, 1],
-              }}
-              transition={{ 
-                duration: 2,
-                repeat: Infinity,
-                repeatType: "reverse"
-              }}
-            >
-              📞
-            </motion.span>
-            <a href="tel:9999769378" className="hover:underline caption">
-              +91 9999769378
-            </a>
-          </motion.span>
-          <motion.span
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400 }}
-            className="flex items-center gap-1"
-            whileTap={{ scale: 0.95 }}
-          >
-            <motion.span 
-              className="inline-block"
-              animate={{ 
-                scale: [1, 1.2, 1],
-              }}
-              transition={{ 
-                duration: 2,
-                repeat: Infinity,
-                repeatType: "reverse",
-                delay: 0.5
-              }}
-            >
-              ✉️
-            </motion.span>
-            <a href="mailto:info@technify.co.in" className="hover:underline caption">
-             info@technify.co.in
-            </a>
-          </motion.span>
-        </div>
-        
-        <div className="flex items-center gap-2 xs:gap-3 z-10">
-          {[faFacebookF, faTwitter, faLinkedinIn, faPinterestP, faGooglePlusG].map((icon, index) => (
-            <motion.a
-              key={index}
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#FFB300] hover:text-white bg-[#ffffff08] rounded-full p-1.5 xs:p-2 w-6 h-6 xs:w-8 xs:h-8 sm:w-9 sm:h-9 flex items-center justify-center transition-colors duration-200"
-              whileHover={{ 
-                scale: 1.2,
-                rotate: 360,
-                backgroundColor: "rgba(255, 179, 0, 0.3)"
-              }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ 
-                type: "spring", 
-                stiffness: 400,
-                rotate: { duration: 0.5 }
-              }}
-              aria-label={`Follow us on ${['Facebook', 'Twitter', 'LinkedIn', 'Pinterest', 'Google+'][index]}`}
-            >
-              <span className="sr-only">{['Facebook', 'Twitter', 'LinkedIn', 'Pinterest', 'Google+'][index]}</span>
-              <FontAwesomeIcon icon={icon} className="text-[#FFB300] caption" />
-            </motion.a>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Main navbar */}
-      <motion.div
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ 
-          type: "spring", 
-          stiffness: 120, 
-          damping: 15,
-          delay: 0.1 
-        }}
-        className={`bg-white w-full transition-all duration-300 ${
-          scrolled ? "py-1 shadow-xl border-b border-[#e5e7eb]" : "py-2 sm:py-3"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between w-full">
+        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
           {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.08 }}
-            transition={{ type: "spring", stiffness: 400 }}
-            className="flex items-center flex-shrink-0"
-            whileTap={{ scale: 0.95 }}
-          >
-            <Image
-              src={logo}
-              alt="Technify Logo"
-              width={130}
-              height={45}
-              priority
-              className="h-9 sm:h-11 md:h-14 w-auto cursor-pointer"
-            />
-          </motion.div>
+          <Image
+            src={logo}
+            alt="Technify Logo"
+            width={130}
+            height={45}
+            className="cursor-pointer"
+            priority
+          />
 
-          {/* Desktop Navigation with responsive improvements */}
-          <nav className="hidden md:flex items-center gap-3 lg:gap-5 xl:gap-7 text-[#222] font-bold body-small lg:body-base" style={{ willChange: 'transform' }}>
-            {NAV_ITEMS.map((item, index) =>
+          {/* Desktop Navigation */}
+          <nav ref={navRef} className="hidden md:flex items-center gap-6 font-semibold text-[#111]">
+            {NAV_ITEMS.map((item) =>
               item.subItems ? (
                 <div
                   key={item.label}
+                  onMouseEnter={() => setActiveDropdown(item.label)}
+                  onMouseLeave={() => {
+                    setActiveDropdown((prev) => (prev === item.label ? null : prev));
+                    setActiveSubDropdown(null);
+                  }}
                   className="relative"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                  ref={dropdownRef}
                 >
-                  <motion.button 
-                    className="hover:text-[#1F6FEB] flex items-center gap-1 transition-colors duration-200"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <motion.span
-                      className="whitespace-nowrap"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.05 * index }}
-                    >
-                      {item.label}
-                    </motion.span>
-                    <motion.span
-                      animate={{ rotate: desktopSolutionsOpen ? 180 : 0 }}
-                      transition={{ duration: 0.15 }}
-                    >
-                      &#9662;
-                    </motion.span>
-                  </motion.button>
+                  <button className="flex items-center gap-1 hover:text-[#1F6FEB]">
+                    {item.label}
+                  </button>
+
                   <AnimatePresence>
-                    {desktopSolutionsOpen && (
+                    {activeDropdown === item.label && (
                       <motion.div
-                        initial={{ opacity: 0, y: -10, scale: 0.9 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -10, scale: 0.9 }}
-                        transition={{ duration: 0.15, ease: "easeOut" }}
-                        className="absolute left-0 mt-2 bg-white shadow-xl rounded-lg z-40 min-w-[160px] sm:min-w-[180px] overflow-hidden border border-gray-100"
+                        initial={{ opacity: 0, y: -6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute left-0 mt-2 bg-white shadow-lg border rounded-lg min-w-[200px] z-40"
                       >
-                        {item.subItems.map((sub, subIndex) => (
-                          <motion.a
-                            key={sub.label}
-                            href={sub.href}
-                            className="block px-4 py-2.5 hover:bg-[#1F6FEB]/10 hover:text-[#1F6FEB] transition-colors border-b border-gray-100 last:border-b-0 body-small font-medium"
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: subIndex * 0.05 }}
-                            whileHover={{ 
-                              x: 5,
-                              backgroundColor: "rgba(31, 111, 235, 0.1)"
-                            }}
-                          >
-                            {sub.label}
-                          </motion.a>
-                        ))}
+                        {item.subItems.map((sub) =>
+                          sub.subItems ? (
+                            <div
+                              key={sub.label}
+                              onMouseEnter={() => setActiveSubDropdown(sub.label)}
+                              onMouseLeave={() => setActiveSubDropdown((prev) => (prev === sub.label ? null : prev))}
+                              className="relative"
+                            >
+                              <button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 flex justify-between items-center">
+                                <span>{sub.label}</span>
+                                <span className="text-xs opacity-60">▸</span>
+                              </button>
+
+                              <AnimatePresence>
+                                {activeSubDropdown === sub.label && (
+                                  <motion.div
+                                    initial={{ opacity: 0, x: -6 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: -6 }}
+                                    transition={{ duration: 0.12 }}
+                                    className="absolute left-full top-0 ml-2 mt-0 bg-white shadow-lg border rounded-lg min-w-[220px] z-50"
+                                  >
+                                    {sub.subItems.map((child) => (
+                                      <a key={child.label} href={child.href} className="block px-4 py-2 text-sm hover:bg-gray-100">
+                                        {child.label}
+                                      </a>
+                                    ))}
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </div>
+                          ) : (
+                            <a key={sub.label} href={sub.href} className="block px-4 py-2 text-sm hover:bg-gray-100">
+                              {sub.label}
+                            </a>
+                          )
+                        )}
                       </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
               ) : (
-                <motion.a
-                  key={item.label}
-                  href={item.href}
-                  className={`hover:text-[#1F6FEB] relative group transition-colors duration-200 ${item.cta ? "bg-gradient-to-r from-[#1F6FEB] to-[#FFB300] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:from-[#1a5fd4] hover:to-[#e5a000] body-small font-bold" : "font-bold"}`}
-                  whileHover={{ scale: item.cta ? 1.05 : 1 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.05 * index }}
-                >
-                  <motion.span>
-                    {item.label}
-                  </motion.span>
-                  {!item.cta && (
-                    <motion.span 
-                      className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#1F6FEB] transition-all duration-200 group-hover:w-full"
-                      whileHover={{ width: "100%" }}
-                    />
-                  )}
-                </motion.a>
+                <a key={item.label} href={item.href} className="hover:text-[#1F6FEB] transition">
+                  {item.label}
+                </a>
               )
             )}
           </nav>
 
-          {/* Mobile menu button with enhanced touch target */}
-          <motion.button 
-            className="md:hidden flex flex-col w-8 h-8 sm:w-10 sm:h-10 justify-center items-center rounded-full hover:bg-gray-100 transition-colors duration-200"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            whileTap={{ scale: 0.95 }}
-            whileHover={{ scale: 1.05 }}
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isMenuOpen}
-          >
-            <span className="sr-only">{isMenuOpen ? "Close menu" : "Open menu"}</span>
-            <motion.span 
-              className="w-5 h-0.5 bg-[#0D1A3A] rounded-full transition-colors duration-200"
-              animate={{ 
-                rotate: isMenuOpen ? 45 : 0, 
-                y: isMenuOpen ? 2 : 0 
-              }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            />
-            <motion.span 
-              className="w-5 h-0.5 bg-[#0D1A3A] rounded-full absolute transition-all duration-200"
-              animate={{ 
-                opacity: isMenuOpen ? 0 : 1,
-                width: isMenuOpen ? 0 : 20
-              }}
-              transition={{ duration: 0.2 }}
-            />
-            <motion.span 
-              className="w-5 h-0.5 bg-[#0D1A3A] rounded-full transition-colors duration-200"
-              animate={{ 
-                rotate: isMenuOpen ? -45 : 0, 
-                y: isMenuOpen ? -2 : 0 
-              }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            />
-          </motion.button>
+          {/* Mobile menu button */}
+          <button className="md:hidden flex flex-col gap-1" onClick={() => setMobileOpen(!mobileOpen)}>
+            <span className="w-6 h-0.5 bg-black"></span>
+            <span className="w-6 h-0.5 bg-black"></span>
+            <span className="w-6 h-0.5 bg-black"></span>
+          </button>
         </div>
 
-        {/* Mobile menu with enhanced animation and accessibility */}
+        {/* Mobile Menu */}
         <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div 
-              className="md:hidden bg-white border-t border-gray-200 shadow-lg"
-              initial={{ opacity: 0, y: -20 }}
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -6 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              role="dialog"
-              aria-modal="true"
-              aria-label="Mobile navigation menu"
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.18 }}
+              className="md:hidden bg-white border-t shadow-sm"
             >
-              <div className="px-4 py-5 flex flex-col gap-1 max-h-[70vh] overflow-y-auto">
-                {/* Backdrop for better separation */}
-                <div className="absolute inset-0 bg-black/5 backdrop-blur-sm -z-10"></div>
-                {NAV_ITEMS.map((item, index) => (
-                  <motion.div
-                    key={item.label}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    {item.subItems ? (
-                    <div className="border-b border-gray-100 last:border-b-0">
-                      <button 
-                        className="flex items-center justify-between w-full py-3 px-2 text-left font-medium text-gray-800 hover:bg-gray-50 rounded-lg transition-colors duration-200 body-base"
-                        onClick={toggleMobileSolutions}
-                        aria-expanded={mobileSolutionsOpen}
-                        aria-haspopup="true"
+              <div className="px-4 py-4 space-y-2">
+                {NAV_ITEMS.map((item) =>
+                  item.subItems ? (
+                    <div key={item.label}>
+                      <button
+                        className="flex justify-between w-full py-2 font-medium"
+                        onClick={() =>
+                          setMobileActiveDropdown((prev) => (prev === item.label ? null : item.label))
+                        }
                       >
-                        <span className="body-small">{item.label}</span>
-                        <motion.span
-                          className="text-gray-500"
-                          animate={{ rotate: mobileSolutionsOpen ? 180 : 0 }}
-                          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                        >
-                          &#9662;
-                        </motion.span>
+                        {item.label}
+                        <span className="opacity-60">{mobileActiveDropdown === item.label ? "▾" : "▸"}</span>
                       </button>
+
                       <AnimatePresence>
-                        {mobileSolutionsOpen && (
+                        {mobileActiveDropdown === item.label && (
                           <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.3, ease: "easeOut" }}
-                            className="pl-5 pr-2 pt-1 pb-2 space-y-1 bg-gray-50 rounded-lg mb-2"
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.18 }}
+                            className="ml-3 overflow-hidden"
                           >
-                            {item.subItems.map((sub) => (
-                              <a
-                                key={sub.label}
-                                href={sub.href}
-                                className="block py-2.5 px-3 text-xs text-gray-700 hover:bg-white hover:text-[#FFB300] rounded-md transition-colors duration-200 body-small"
-                                onClick={closeMobileMenu}
-                              >
-                                {sub.label}
-                              </a>
-                            ))}
+                            {item.subItems.map((sub) =>
+                              sub.subItems ? (
+                                <div key={sub.label} className="mb-1">
+                                  <button
+                                    className="flex justify-between w-full py-2 text-sm font-medium"
+                                    onClick={() =>
+                                      setMobileActiveSubDropdown((prev) => (prev === sub.label ? null : sub.label))
+                                    }
+                                  >
+                                    {sub.label}
+                                    <span className="opacity-60">{mobileActiveSubDropdown === sub.label ? "▾" : "▸"}</span>
+                                  </button>
+
+                                  <AnimatePresence>
+                                    {mobileActiveSubDropdown === sub.label && (
+                                      <motion.div
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: "auto", opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.15 }}
+                                        className="ml-4 overflow-hidden"
+                                      >
+                                        {sub.subItems.map((child) => (
+                                          <a
+                                            key={child.label}
+                                            href={child.href}
+                                            className="block py-2 text-sm text-gray-700"
+                                            onClick={() => {
+                                              setMobileOpen(false);
+                                              setMobileActiveDropdown(null);
+                                              setMobileActiveSubDropdown(null);
+                                            }}
+                                          >
+                                            {child.label}
+                                          </a>
+                                        ))}
+                                      </motion.div>
+                                    )}
+                                  </AnimatePresence>
+                                </div>
+                              ) : (
+                                <a
+                                  key={sub.label}
+                                  href={sub.href}
+                                  className="block py-2 text-sm text-gray-700"
+                                  onClick={() => {
+                                    setMobileOpen(false);
+                                    setMobileActiveDropdown(null);
+                                  }}
+                                >
+                                  {sub.label}
+                                </a>
+                              )
+                            )}
                           </motion.div>
                         )}
                       </AnimatePresence>
                     </div>
                   ) : (
                     <a
+                      key={item.label}
                       href={item.href}
-                      className={`block py-3 px-2 rounded-lg body-small font-medium transition-colors duration-200 ${item.cta ? "text-[#FFB300] hover:bg-orange-50" : "text-gray-800 hover:bg-gray-50"}`}
-                      onClick={closeMobileMenu}
+                      className="block py-2 font-medium"
+                      onClick={() => setMobileOpen(false)}
                     >
                       {item.label}
                     </a>
-                  )}
-                  </motion.div>
-                ))}
+                  )
+                )}
               </div>
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.div>
+      </div>
     </header>
   );
 }

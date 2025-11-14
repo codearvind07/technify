@@ -34,7 +34,8 @@ export function HeroSection() {
       `}</style>
 
       {/* Magic Slider - moved down after header */}
-      <div className="w-full h-full absolute inset-0 pt-32">
+      {/* place slider flush under header (removed extra top padding causing gap) */}
+      <div className="w-full h-full absolute inset-0">
         <MagicSlider />
       </div>
     </section>
