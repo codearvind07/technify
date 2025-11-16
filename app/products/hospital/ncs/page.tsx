@@ -9,9 +9,17 @@ import {
   Battery, 
   Download,
   ArrowRight,
-  Play
+  Play,
+  Check,
+  Monitor,
+  HardDrive,
+  Lock,
+  AlertTriangle,
+  Clock,
+  Zap
 } from "lucide-react";
 import { SEO } from '@/components/seo/seo';
+import Image from "next/image";
 
 export default function HospitalNCSSPage() {
   const containerVariants: Variants = {
@@ -54,51 +62,120 @@ export default function HospitalNCSSPage() {
     }
   };
 
-  const features = [
+  const capabilities = [
     {
-      icon: Bell,
-      title: "Instant Emergency Response",
-      description: "One-touch panic buttons for immediate emergency response throughout the facility."
+      title: "Bedside Call Units",
+      points: [
+        "Single-touch call button",
+        "Pull-cord switches for washrooms",
+        "Bedside nurse call panels",
+        "Visual & audio indicators"
+      ],
+      note: "Perfect for ICUs, general wards, and private rooms."
     },
     {
-      icon: Users,
-      title: "Nurse Call Integration",
-      description: "Integrated nurse call system with priority-based patient request management."
+      title: "Corridor Displays & Visual Indicators",
+      points: [
+        "LED corridor lights showing call priority",
+        "Multi-color indicators (emergency / normal / urgent)",
+        "Instant visibility for nurses"
+      ]
     },
     {
-      icon: Shield,
-      title: "Enhanced Security",
-      description: "Advanced security features to protect patients, staff, and visitors."
+      title: "Nurse Station Consoles",
+      points: [
+        "Touchscreen console",
+        "Real-time call notifications",
+        "Ward-wise call overview",
+        "Call acknowledgment & tracking",
+        "Event logging for audits"
+      ]
     },
     {
-      icon: Wifi,
-      title: "Wireless Connectivity",
-      description: "Reliable wireless communication for real-time alerts and notifications."
+      title: "Priority & Emergency Call Handling",
+      points: [
+        "Emergency code calls",
+        "Nurse assist requests",
+        "Doctor-on-call alerts",
+        "Fall alerts (via sensors, optional)"
+      ]
+    },
+    {
+      title: "Mobile App Integration",
+      points: [
+        "Nurses receive calls on mobile devices",
+        "Instant acknowledgment",
+        "Location-based call routing"
+      ],
+      note: "Enables faster movement and response."
+    },
+    {
+      title: "Event Logging & Reporting",
+      points: [
+        "Call time, response time, resolution time",
+        "Complete activity logs",
+        "Reports for hospital audits & compliance"
+      ]
     }
   ];
 
+  const technicalHighlights = [
+    "Wired/Wireless NCS options",
+    "IP-based backend system",
+    "Fail-safe architecture",
+    "UPS-supported operation",
+    "Anti-microbial switch panels",
+    "Integration-ready with HIMS & CCTV",
+    "EN-60601 compliant (medical electrical safety)"
+  ];
+
+  const deploymentAreas = [
+    "ICU and NICU wards",
+    "General wards",
+    "Isolation rooms",
+    "Emergency & trauma centers",
+    "Maternity & labor rooms",
+    "OT recovery rooms",
+    "Dialysis units",
+    "Washrooms & restrooms"
+  ];
+
+  const integrations = [
+    "CCTV → Auto camera pop-up for emergency calls",
+    "HIMS → Patient details linked with alerts",
+    "Access Control → Priority zone access for doctors",
+    "Fire Alarm → Emergency override alerts"
+  ];
+
   const benefits = [
-    "24/7 emergency response",
-    "Reduced response times",
-    "Enhanced patient safety",
-    "Staff duress protection",
-    "Integration with security systems",
-    "Mobile app for remote monitoring"
+    "Faster patient response",
+    "Improved patient satisfaction",
+    "Better coordination between nurses & doctors",
+    "Complete tracking & accountability",
+    "Enhanced emergency handling",
+    "Higher quality of care",
+    "Reduced patient risk"
   ];
 
   return (
     <>
       <SEO 
         title="Panic Alarm / Nurse Call System (NCS) for Hospitals"
-        description="Advanced Panic Alarm and Nurse Call Systems featuring instant emergency response, wireless connectivity, and integration with hospital security for enhanced patient and staff safety."
+        description="Advanced Panic Alarm and Nurse Call Systems featuring instant emergency response, wireless connectivity, and integration with hospital security for enhanced patient and staff safety. hospital nurse call system, panic alarm system, patient communication system, healthcare emergency response, medical call system"
         path="/products/hospital/ncs"
         image="/images/og-hospital-ncs.jpg"
       />
       
-      <div className="min-h-screen bg-white text-gray-800">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white text-gray-800">
         <main>
           {/* Hero Section */}
-          <section className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-white">
+          <section className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
+            {/* Background Elements */}
+            <div className="absolute inset-0 overflow-hidden -z-10">
+              <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+              <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-1000"></div>
+            </div>
+            
             <div className="max-w-7xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <motion.div 
@@ -110,7 +187,7 @@ export default function HospitalNCSSPage() {
                     variants={itemVariants}
                     className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-6"
                   >
-                    Healthcare Safety Solution
+                    Instant Patient Assistance. Faster Response. Life-Saving Alerts.
                   </motion.div>
                   
                   <motion.h1 
@@ -118,7 +195,7 @@ export default function HospitalNCSSPage() {
                     className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900"
                   >
                     Panic Alarm / Nurse Call{" "}
-                    <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                       System
                     </span>
                   </motion.h1>
@@ -129,27 +206,6 @@ export default function HospitalNCSSPage() {
                   >
                     Advanced panic alarm and nurse call systems designed to ensure immediate assistance for patients and staff, enhancing safety and security throughout healthcare facilities.
                   </motion.p>
-                  
-                  <motion.div 
-                    variants={itemVariants}
-                    className="flex flex-col sm:flex-row gap-4"
-                  >
-                    <a 
-                      href="/contact" 
-                      className="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center"
-                    >
-                      Request Demo
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </a>
-                    <a 
-                      href="/pdf/hospital-ncs-brochure.pdf" 
-                      download
-                      className="bg-white text-gray-700 border border-gray-300 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all shadow-md flex items-center justify-center"
-                    >
-                      <Play className="mr-2 h-5 w-5" />
-                      View Brochure
-                    </a>
-                  </motion.div>
                 </motion.div>
                 
                 <motion.div 
@@ -159,62 +215,85 @@ export default function HospitalNCSSPage() {
                   className="relative"
                 >
                   <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-                    <div className="bg-gradient-to-br from-blue-500 to-blue-700 w-full h-96 flex items-center justify-center">
-                      <div className="text-white text-center p-8">
-                        <Bell className="w-24 h-24 mx-auto mb-6" />
-                        <h3 className="text-2xl font-bold">Nurse Call Systems</h3>
-                        <p className="mt-2 opacity-90">Instant Emergency Response</p>
-                      </div>
-                    </div>
+                    <Image 
+                      src="https://images.unsplash.com/photo-1588268393007-068bc70a443d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8UGFuaWMlMjBBbGFybSUyMCUyRiUyME51cnNlJTIwQ2FsbCUyMFN5c3RlbXxlbnwwfHwwfHx8MA%3D%3D" 
+                      alt="Hospital Nurse Call System" 
+                      width={600} 
+                      height={400} 
+                      className="w-full h-auto object-cover"
+                    />
                   </div>
                 </motion.div>
               </div>
             </div>
           </section>
 
-          {/* Features Section */}
+          {/* Importance Section */}
           <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
             <div className="max-w-7xl mx-auto">
               <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                variants={fadeInUp}
+                variants={containerVariants}
                 className="text-center mb-16"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-                  Advanced Safety Features
-                </h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                  Cutting-edge technology designed to ensure immediate response and enhanced safety in healthcare environments.
-                </p>
-              </motion.div>
-              
-              <motion.div 
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={staggerChildren}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-              >
-                {features.map((feature, index) => (
-                  <motion.div
-                    key={index}
+                <motion.h2 
+                  variants={itemVariants}
+                  className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
+                >
+                  Why NCS Is Essential for Hospitals
+                </motion.h2>
+                
+                <motion.p 
+                  variants={itemVariants}
+                  className="text-lg text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
+                >
+                  In hospitals, every second matters. Patients, especially those in critical wards, need immediate attention at the press of a button.
+                </motion.p>
+                
+                <motion.div 
+                  variants={staggerChildren}
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                >
+                  <motion.div 
                     variants={fadeInUp}
-                    className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:border-blue-200"
+                    className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl border border-gray-200 shadow-sm"
                   >
-                    <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
-                      <feature.icon className="w-6 h-6 text-blue-600" />
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                      <Zap className="w-6 h-6 text-blue-600" />
                     </div>
-                    <h3 className="text-lg font-semibold mb-3 text-gray-900">{feature.title}</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Fast Communication</h3>
+                    <p className="text-gray-600">Immediate patient-to-nurse communication reduces response time during emergencies.</p>
                   </motion.div>
-                ))}
+                  
+                  <motion.div 
+                    variants={fadeInUp}
+                    className="bg-gradient-to-br from-purple-50 to-white p-8 rounded-2xl border border-gray-200 shadow-sm"
+                  >
+                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                      <Bell className="w-6 h-6 text-purple-600" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Emergency Response</h3>
+                    <p className="text-gray-600">Life-saving alerts that can literally save lives with faster emergency handling.</p>
+                  </motion.div>
+                  
+                  <motion.div 
+                    variants={fadeInUp}
+                    className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl border border-gray-200 shadow-sm"
+                  >
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                      <Shield className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Enhanced Safety</h3>
+                    <p className="text-gray-600">Improved safety in isolation & private rooms with constant monitoring capabilities.</p>
+                  </motion.div>
+                </motion.div>
               </motion.div>
             </div>
           </section>
 
-          {/* Benefits Section */}
+          {/* What We Deliver Section */}
           <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
             <div className="max-w-7xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -225,13 +304,13 @@ export default function HospitalNCSSPage() {
                   variants={fadeInUp}
                 >
                   <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200">
-                    <div className="bg-gradient-to-br from-blue-600 to-blue-800 w-full h-96 flex items-center justify-center">
-                      <div className="text-white text-center p-8">
-                        <Shield className="w-24 h-24 mx-auto mb-6" />
-                        <h3 className="text-2xl font-bold">Safety Benefits</h3>
-                        <p className="mt-2 opacity-90">Enhanced Healthcare Protection</p>
-                      </div>
-                    </div>
+                    <Image 
+                      src="https://images.unsplash.com/photo-1643264560215-9c2f72485ca1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTF8fFBhbmljJTIwQWxhcm0lMjAlMkYlMjBOdXJzZSUyMENhbGwlMjBTeXN0ZW18ZW58MHx8MHx8fDA%3D" 
+                      alt="Integrated Nurse Call System" 
+                      width={600} 
+                      height={400} 
+                      className="w-full h-auto object-cover"
+                    />
                   </div>
                 </motion.div>
                 
@@ -245,14 +324,312 @@ export default function HospitalNCSSPage() {
                     variants={itemVariants}
                     className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
                   >
-                    Key Benefits
+                    What Technify Delivers
                   </motion.h2>
                   
                   <motion.p 
                     variants={itemVariants}
                     className="text-lg text-gray-600 mb-8 leading-relaxed"
                   >
-                    Our Panic Alarm / Nurse Call System provides comprehensive safety coverage tailored for healthcare environments.
+                    A reliable, integrated NCS platform engineered for ICU, NICU, IPD wards, isolation units, and multi-floor hospitals.
+                  </motion.p>
+                  
+                  <motion.div 
+                    variants={itemVariants}
+                    className="space-y-4"
+                  >
+                    <div className="flex items-start gap-4 p-4 rounded-lg bg-white border border-gray-200">
+                      <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mt-1">
+                        <Check className="h-5 w-5 text-blue-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-1">Hospital-Grade Reliability</h3>
+                        <p className="text-gray-600 text-sm">Engineered for 24/7 operation in critical healthcare environments.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-4 p-4 rounded-lg bg-white border border-gray-200">
+                      <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mt-1">
+                        <Shield className="h-5 w-5 text-blue-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-1">Integrated Platform</h3>
+                        <p className="text-gray-600 text-sm">Seamless integration with existing hospital infrastructure and systems.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-4 p-4 rounded-lg bg-white border border-gray-200">
+                      <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mt-1">
+                        <Zap className="h-5 w-5 text-blue-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-1">Instant Response</h3>
+                        <p className="text-gray-600 text-sm">Life-saving alerts with minimal response time for critical situations.</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+
+          {/* Core Capabilities Section */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+            <div className="max-w-7xl mx-auto">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="text-center mb-16"
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                  Core Capabilities
+                </h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  Comprehensive nurse call solutions with advanced features for modern healthcare facilities.
+                </p>
+              </motion.div>
+              
+              <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerChildren}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              >
+                {capabilities.map((capability, index) => (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    className="bg-gradient-to-b from-white to-gray-50 rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
+                  >
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+                        <Bell className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900">{capability.title}</h3>
+                    </div>
+                    
+                    <ul className="space-y-3 mb-6">
+                      {capability.points.map((point, idx) => (
+                        <li key={idx} className="flex items-start gap-3">
+                          <div className="flex-shrink-0 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
+                            <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                          </div>
+                          <span className="text-gray-600 text-sm">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    
+                    {capability.note && (
+                      <div className="pt-4 border-t border-gray-200">
+                        <p className="text-xs text-gray-500 italic">{capability.note}</p>
+                      </div>
+                    )}
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Technical Highlights Section */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={containerVariants}
+                >
+                  <motion.h2 
+                    variants={itemVariants}
+                    className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
+                  >
+                    Technical Highlights
+                  </motion.h2>
+                  
+                  <motion.p 
+                    variants={itemVariants}
+                    className="text-lg text-gray-600 mb-8 leading-relaxed"
+                  >
+                    Cutting-edge technology designed to meet the unique challenges of healthcare environments with reliability and compliance.
+                  </motion.p>
+                  
+                  <motion.div 
+                    variants={staggerChildren}
+                    className="grid grid-cols-1 gap-4"
+                  >
+                    {technicalHighlights.map((highlight, index) => (
+                      <motion.div 
+                        key={index}
+                        variants={fadeInUp}
+                        className="flex items-center gap-4 p-4 rounded-lg bg-white border border-gray-200"
+                      >
+                        <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
+                          <Zap className="h-5 w-5 text-blue-600" />
+                        </div>
+                        <div className="font-medium text-gray-900">{highlight}</div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </motion.div>
+                
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  variants={fadeInUp}
+                  className="relative"
+                >
+                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+                    <Image 
+                      src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=600&auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                      alt="NCS Technical Highlights" 
+                      width={600} 
+                      height={400} 
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+
+          {/* Deployment Areas Section */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+            <div className="max-w-7xl mx-auto">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="text-center mb-16"
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                  Where NCS Is Deployed
+                </h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+                  Strategic placement across all critical hospital zones for comprehensive coverage and patient safety.
+                </p>
+              </motion.div>
+              
+              <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerChildren}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                {deploymentAreas.map((area, index) => (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    className="flex items-start gap-4 p-6 rounded-xl bg-gradient-to-br from-blue-50 to-white border border-gray-200"
+                  >
+                    <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mt-1">
+                      <Monitor className="h-5 w-5 text-blue-600" />
+                    </div>
+                    <span className="font-medium text-gray-900">{area}</span>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+
+          {/* System Integrations Section */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+            <div className="max-w-7xl mx-auto">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={containerVariants}
+                className="text-center mb-16"
+              >
+                <motion.h2 
+                  variants={itemVariants}
+                  className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
+                >
+                  System Integrations
+                </motion.h2>
+                
+                <motion.p 
+                  variants={itemVariants}
+                  className="text-lg text-gray-600 mb-12 max-w-3xl mx-auto"
+                >
+                  Seamless connectivity with existing hospital infrastructure for enhanced operational efficiency.
+                </motion.p>
+                
+                <motion.div 
+                  variants={staggerChildren}
+                  className="max-w-4xl mx-auto space-y-4"
+                >
+                  {integrations.map((integration, index) => (
+                    <motion.div
+                      key={index}
+                      variants={fadeInUp}
+                      className="flex items-center gap-4 p-6 rounded-xl bg-white border border-gray-200 shadow-sm"
+                    >
+                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
+                        <Zap className="h-6 w-6 text-white" />
+                      </div>
+                      <div className="text-left">
+                        <p className="font-medium text-gray-900">{integration}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+                
+                <motion.p 
+                  variants={itemVariants}
+                  className="text-lg text-gray-600 mt-8 max-w-3xl mx-auto"
+                >
+                  This creates a smart patient care ecosystem.
+                </motion.p>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Benefits Section */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInUp}
+                >
+                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+                    <Image 
+                      src="https://images.unsplash.com/photo-1659353886868-753b0c5c5772?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fFBhbmljJTIwQWxhcm0lMjAlMkYlMjBOdXJzZSUyMENhbGwlMjBTeXN0ZW0lMjBoYXBweSUyMHBhdGllbnR8ZW58MHx8MHx8fDA%3D" 
+                      alt="Hospital NCS Benefits" 
+                      width={600} 
+                      height={400} 
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+                </motion.div>
+                
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={containerVariants}
+                >
+                  <motion.h2 
+                    variants={itemVariants}
+                    className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
+                  >
+                    Benefits for Hospitals
+                  </motion.h2>
+                  
+                  <motion.p 
+                    variants={itemVariants}
+                    className="text-lg text-gray-600 mb-8 leading-relaxed"
+                  >
+                    Our Panic Alarm / Nurse Call System provides comprehensive benefits tailored for healthcare environments.
                   </motion.p>
                   
                   <motion.div 
@@ -263,10 +640,10 @@ export default function HospitalNCSSPage() {
                       <motion.div 
                         key={index}
                         variants={fadeInUp}
-                        className="flex items-center gap-4 p-4 rounded-lg bg-white border border-gray-200"
+                        className="flex items-center gap-4 p-4 rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 border border-gray-200"
                       >
-                        <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
-                          <Battery className="h-5 w-5 text-blue-600" />
+                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+                          <Check className="h-5 w-5 text-white" />
                         </div>
                         <div className="font-medium text-gray-900">{benefit}</div>
                       </motion.div>
@@ -278,7 +655,7 @@ export default function HospitalNCSSPage() {
           </section>
 
           {/* CTA Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-blue-800">
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-purple-600">
             <div className="max-w-5xl mx-auto">
               <motion.div
                 initial="hidden"
@@ -293,18 +670,11 @@ export default function HospitalNCSSPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
-                    href="/pdf/hospital-ncs-brochure.pdf" 
-                    download
-                    className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all shadow-lg flex items-center"
-                  >
-                    <Download className="h-5 w-5 mr-2" />
-                    Download Brochure
-                  </a>
-                  <a 
                     href="/contact" 
-                    className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all"
+                    className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all shadow-lg flex items-center justify-center"
                   >
-                    Request Demo
+                    Schedule a Consultation
+                    <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </div>
               </motion.div>

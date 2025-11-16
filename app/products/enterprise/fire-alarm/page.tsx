@@ -9,9 +9,15 @@ import {
   Battery, 
   Download,
   ArrowRight,
-  Play
+  Play,
+  Eye,
+  Monitor,
+  Volume2,
+  HardDrive,
+  Check
 } from "lucide-react";
 import { SEO } from '@/components/seo/seo';
+import Image from "next/image";
 
 export default function EnterpriseFireAlarmPage() {
   const containerVariants: Variants = {
@@ -54,51 +60,120 @@ export default function EnterpriseFireAlarmPage() {
     }
   };
 
-  const features = [
+  const capabilities = [
     {
-      icon: Bell,
-      title: "Advanced Detection",
-      description: "Multi-sensor detection technology for early fire identification and rapid response."
+      title: "Addressable Smoke & Heat Detectors",
+      points: [
+        "Optical smoke detectors",
+        "Heat detectors (fixed & rate-of-rise)",
+        "Multi-sensor detectors",
+        "Beam detectors for long corridors",
+        "Gas & flame detectors (optional)"
+      ],
+      note: "Each device identifies the exact room and location."
     },
     {
-      icon: Shield,
-      title: "Comprehensive Coverage",
-      description: "Complete system coverage with strategically placed detectors and notification devices."
+      title: "Fire Alarm Control Panels (FACP)",
+      points: [
+        "Intelligent multi-loop systems",
+        "Touchscreen or LED display",
+        "Zone-wise status monitoring",
+        "Real-time event logs",
+        "Multi-building connectivity"
+      ]
     },
     {
-      icon: Wifi,
-      title: "Remote Monitoring",
-      description: "24/7 remote monitoring capabilities with instant alerts to security personnel."
+      title: "Notification Appliances",
+      points: [
+        "Sounders",
+        "Strobes",
+        "Hooters",
+        "Voice evacuation speakers"
+      ],
+      note: "Ensures alerts are clear and audible across office floors."
     },
     {
-      icon: Battery,
-      title: "Backup Power",
-      description: "Uninterrupted operation with battery backup systems and generator integration."
+      title: "Voice Evacuation System",
+      points: [
+        "Pre-recorded multi-language messages",
+        "Automated emergency broadcasts",
+        "Priority override during fire events",
+        "Integration with PAS & AV systems"
+      ]
+    },
+    {
+      title: "Suppression System Integration",
+      points: [
+        "FM200",
+        "NOVEC 1230",
+        "Clean agent systems",
+        "CO₂ suppression",
+        "Inert gas systems"
+      ],
+      note: "Prevents downtime and data loss."
     }
   ];
 
+  const technicalHighlights = [
+    "EN-54 certified components",
+    "IP-based panel networking",
+    "Redundant loop architecture",
+    "Automatic fault diagnostics",
+    "UPS-backed power supply",
+    "Central monitoring system",
+    "Integration-ready with BMS"
+  ];
+
+  const deploymentAreas = [
+    "Corporate offices",
+    "IT parks",
+    "Banking & finance buildings",
+    "Retail malls",
+    "Manufacturing units",
+    "Data centers",
+    "Server rooms",
+    "Warehouses",
+    "Commercial towers",
+    "Meeting & training halls"
+  ];
+
+  const integrations = [
+    "BMS → HVAC shutdown, elevator recall, smoke extraction",
+    "CCTV → Auto camera pop-up for fire zones",
+    "Access Control → Emergency door release",
+    "PA/AV Systems → Evacuation announcements",
+    "Network Systems → Alerts sent to facility heads"
+  ];
+
   const benefits = [
-    "Instant emergency response",
-    "Compliance with safety regulations",
-    "Integration with security systems",
-    "Mobile app for real-time alerts",
-    "Scalable for enterprise facilities",
-    "24/7 professional monitoring"
+    "Early detection avoids major damage",
+    "Faster evacuation & emergency handling",
+    "Centralized monitoring of multiple floors",
+    "Highly reliable EN-54 certified system",
+    "Reduced downtime & business disruption",
+    "Protection for critical IT infrastructure",
+    "Compliance with global fire safety norms"
   ];
 
   return (
     <>
       <SEO 
         title="Enterprise Fire Alarm System - Advanced Fire Detection & Emergency Response"
-        description="Comprehensive fire alarm systems for enterprises featuring advanced detection technology, remote monitoring, backup power, and integration with security systems for maximum safety."
+        description="Comprehensive fire alarm systems for enterprises featuring advanced detection technology, remote monitoring, backup power, and integration with security systems for maximum safety. enterprise fire alarm system, commercial fire detection, office fire safety solution, addressable fire alarm, building fire protection technology"
         path="/products/enterprise/fire-alarm"
         image="/images/og-enterprise-fire-alarm.jpg"
       />
       
-      <div className="min-h-screen bg-white text-gray-800">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white text-gray-800">
         <main>
           {/* Hero Section */}
-          <section className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-white">
+          <section className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
+            {/* Background Elements */}
+            <div className="absolute inset-0 overflow-hidden -z-10">
+              <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+              <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-1000"></div>
+            </div>
+            
             <div className="max-w-7xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <motion.div 
@@ -110,7 +185,7 @@ export default function EnterpriseFireAlarmPage() {
                     variants={itemVariants}
                     className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-6"
                   >
-                    Enterprise Safety Solution
+                    Early Detection. Zero Downtime Safety. Complete Building Protection.
                   </motion.div>
                   
                   <motion.h1 
@@ -118,7 +193,7 @@ export default function EnterpriseFireAlarmPage() {
                     className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900"
                   >
                     Fire Alarm{" "}
-                    <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                       System
                     </span>
                   </motion.h1>
@@ -130,27 +205,6 @@ export default function EnterpriseFireAlarmPage() {
                     Advanced fire detection and alarm systems designed to provide comprehensive protection for enterprise 
                     environments with instant alerts, remote monitoring, and seamless integration with security systems.
                   </motion.p>
-                  
-                  <motion.div 
-                    variants={itemVariants}
-                    className="flex flex-col sm:flex-row gap-4"
-                  >
-                    <a 
-                      href="/contact" 
-                      className="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center"
-                    >
-                      Request Demo
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </a>
-                    <a 
-                      href="/pdf/enterprise-fire-alarm-brochure.pdf" 
-                      download
-                      className="bg-white text-gray-700 border border-gray-300 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all shadow-md flex items-center justify-center"
-                    >
-                      <Play className="mr-2 h-5 w-5" />
-                      View Brochure
-                    </a>
-                  </motion.div>
                 </motion.div>
                 
                 <motion.div 
@@ -160,62 +214,85 @@ export default function EnterpriseFireAlarmPage() {
                   className="relative"
                 >
                   <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-                    <div className="bg-gradient-to-br from-blue-500 to-blue-700 w-full h-96 flex items-center justify-center">
-                      <div className="text-white text-center p-8">
-                        <Shield className="w-24 h-24 mx-auto mb-6" />
-                        <h3 className="text-2xl font-bold">Fire Alarm Systems</h3>
-                        <p className="mt-2 opacity-90">Advanced Fire Protection</p>
-                      </div>
-                    </div>
+                    <Image 
+                      src="https://plus.unsplash.com/premium_photo-1683133349751-bade432dd6ee?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzN8fEZpcmUlMjBBbGFybSUyMFN5c3RlbXxlbnwwfHwwfHx8MA%3D%3D" 
+                      alt="Enterprise Fire Alarm System" 
+                      width={600} 
+                      height={400} 
+                      className="w-full h-auto object-cover"
+                    />
                   </div>
                 </motion.div>
               </div>
             </div>
           </section>
 
-          {/* Features Section */}
+          {/* Importance Section */}
           <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
             <div className="max-w-7xl mx-auto">
               <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                variants={fadeInUp}
+                variants={containerVariants}
                 className="text-center mb-16"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-                  Advanced Fire Protection Features
-                </h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                  Cutting-edge technology designed to provide maximum safety and rapid response in emergency situations.
-                </p>
-              </motion.div>
-              
-              <motion.div 
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={staggerChildren}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-              >
-                {features.map((feature, index) => (
-                  <motion.div
-                    key={index}
+                <motion.h2 
+                  variants={itemVariants}
+                  className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
+                >
+                  Why Fire Alarms Matter for Enterprises
+                </motion.h2>
+                
+                <motion.p 
+                  variants={itemVariants}
+                  className="text-lg text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
+                >
+                  Enterprises operate in multi-floor buildings, data centers, server rooms, meeting halls, production areas, and high-density office spaces. Ensuring immediate fire detection and safe evacuation is essential to protect employees, assets, and mission-critical operations.
+                </motion.p>
+                
+                <motion.div 
+                  variants={staggerChildren}
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                >
+                  <motion.div 
                     variants={fadeInUp}
-                    className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:border-blue-200"
+                    className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl border border-gray-200 shadow-sm"
                   >
-                    <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
-                      <feature.icon className="w-6 h-6 text-blue-600" />
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                      <Eye className="w-6 h-6 text-blue-600" />
                     </div>
-                    <h3 className="text-lg font-semibold mb-3 text-gray-900">{feature.title}</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Early Detection</h3>
+                    <p className="text-gray-600">Detect smoke/heat at the earliest stage to prevent major damage and ensure fast evacuation.</p>
                   </motion.div>
-                ))}
+                  
+                  <motion.div 
+                    variants={fadeInUp}
+                    className="bg-gradient-to-br from-purple-50 to-white p-8 rounded-2xl border border-gray-200 shadow-sm"
+                  >
+                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                      <Shield className="w-6 h-6 text-purple-600" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Asset Protection</h3>
+                    <p className="text-gray-600">Protect high-value IT & electrical infrastructure and meet compliance standards.</p>
+                  </motion.div>
+                  
+                  <motion.div 
+                    variants={fadeInUp}
+                    className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl border border-gray-200 shadow-sm"
+                  >
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                      <Zap className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Business Continuity</h3>
+                    <p className="text-gray-600">Reduce downtime & business risk while preventing costly damages and data loss.</p>
+                  </motion.div>
+                </motion.div>
               </motion.div>
             </div>
           </section>
 
-          {/* Benefits Section */}
+          {/* What We Deliver Section */}
           <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
             <div className="max-w-7xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -226,13 +303,13 @@ export default function EnterpriseFireAlarmPage() {
                   variants={fadeInUp}
                 >
                   <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200">
-                    <div className="bg-gradient-to-br from-blue-600 to-blue-800 w-full h-96 flex items-center justify-center">
-                      <div className="text-white text-center p-8">
-                        <Bell className="w-24 h-24 mx-auto mb-6" />
-                        <h3 className="text-2xl font-bold">Safety Benefits</h3>
-                        <p className="mt-2 opacity-90">Comprehensive Fire Protection</p>
-                      </div>
-                    </div>
+                    <Image 
+                      src="https://images.unsplash.com/photo-1603417405991-4fd97e52ccea?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODB8fEZpcmUlMjBBbGFybSUyMFN5c3RlbXxlbnwwfHwwfHx8MA%3D%3D" 
+                      alt="Integrated Fire Alarm System" 
+                      width={600} 
+                      height={400} 
+                      className="w-full h-auto object-cover"
+                    />
                   </div>
                 </motion.div>
                 
@@ -246,7 +323,309 @@ export default function EnterpriseFireAlarmPage() {
                     variants={itemVariants}
                     className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
                   >
-                    Key Benefits
+                    What Technify Delivers
+                  </motion.h2>
+                  
+                  <motion.p 
+                    variants={itemVariants}
+                    className="text-lg text-gray-600 mb-8 leading-relaxed"
+                  >
+                    A fully integrated, addressable life-safety system with precise zone-level monitoring.
+                  </motion.p>
+                  
+                  <motion.div 
+                    variants={itemVariants}
+                    className="space-y-4"
+                  >
+                    <div className="flex items-start gap-4 p-4 rounded-lg bg-white border border-gray-200">
+                      <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mt-1">
+                        <Check className="h-5 w-5 text-blue-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-1">Addressable System</h3>
+                        <p className="text-gray-600 text-sm">Each device identifies the exact room and location for precise monitoring.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-4 p-4 rounded-lg bg-white border border-gray-200">
+                      <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mt-1">
+                        <Shield className="h-5 w-5 text-blue-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-1">EN-54 Certified</h3>
+                        <p className="text-gray-600 text-sm">Highly reliable components that meet global fire safety standards.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-4 p-4 rounded-lg bg-white border border-gray-200">
+                      <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mt-1">
+                        <Zap className="h-5 w-5 text-blue-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-1">Integrated Solution</h3>
+                        <p className="text-gray-600 text-sm">Seamless integration with BMS, CCTV, and other enterprise systems.</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+
+          {/* Core Capabilities Section */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+            <div className="max-w-7xl mx-auto">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="text-center mb-16"
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                  Core Capabilities
+                </h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  Comprehensive fire safety solutions with advanced detection and notification features.
+                </p>
+              </motion.div>
+              
+              <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerChildren}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              >
+                {capabilities.map((capability, index) => (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    className="bg-gradient-to-b from-white to-gray-50 rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
+                  >
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+                        {index === 0 && <Bell className="w-6 h-6 text-white" />}
+                        {index === 1 && <Monitor className="w-6 h-6 text-white" />}
+                        {index === 2 && <Volume2 className="w-6 h-6 text-white" />}
+                        {index === 3 && <Volume2 className="w-6 h-6 text-white" />}
+                        {index === 4 && <HardDrive className="w-6 h-6 text-white" />}
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900">{capability.title}</h3>
+                    </div>
+                    
+                    <ul className="space-y-3 mb-6">
+                      {capability.points.map((point, idx) => (
+                        <li key={idx} className="flex items-start gap-3">
+                          <div className="flex-shrink-0 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
+                            <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                          </div>
+                          <span className="text-gray-600 text-sm">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    
+                    {capability.note && (
+                      <div className="pt-4 border-t border-gray-200">
+                        <p className="text-xs text-gray-500 italic">{capability.note}</p>
+                      </div>
+                    )}
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Technical Highlights Section */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={containerVariants}
+                >
+                  <motion.h2 
+                    variants={itemVariants}
+                    className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
+                  >
+                    Technical Highlights
+                  </motion.h2>
+                  
+                  <motion.p 
+                    variants={itemVariants}
+                    className="text-lg text-gray-600 mb-8 leading-relaxed"
+                  >
+                    Cutting-edge technology designed to meet the fire safety challenges of enterprise environments with reliability and compliance.
+                  </motion.p>
+                  
+                  <motion.div 
+                    variants={staggerChildren}
+                    className="grid grid-cols-1 gap-4"
+                  >
+                    {technicalHighlights.map((highlight, index) => (
+                      <motion.div 
+                        key={index}
+                        variants={fadeInUp}
+                        className="flex items-center gap-4 p-4 rounded-lg bg-white border border-gray-200"
+                      >
+                        <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
+                          <Zap className="h-5 w-5 text-blue-600" />
+                        </div>
+                        <div className="font-medium text-gray-900">{highlight}</div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </motion.div>
+                
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  variants={fadeInUp}
+                  className="relative"
+                >
+                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+                    <Image 
+                      src="https://images.unsplash.com/photo-1748290140799-7eacc3d65574?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTE1fHxGaXJlJTIwQWxhcm0lMjBTeXN0ZW18ZW58MHx8MHx8fDA%3D" 
+                      alt="Fire Alarm Technical Highlights" 
+                      width={600} 
+                      height={400} 
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+
+          {/* Deployment Areas Section */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+            <div className="max-w-7xl mx-auto">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="text-center mb-16"
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                  Where Fire Alarm Systems Are Deployed
+                </h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+                  Strategic placement across all critical enterprise environments for comprehensive fire safety.
+                </p>
+              </motion.div>
+              
+              <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerChildren}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                {deploymentAreas.map((area, index) => (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    className="flex items-start gap-4 p-6 rounded-xl bg-gradient-to-br from-blue-50 to-white border border-gray-200"
+                  >
+                    <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mt-1">
+                      <Monitor className="h-5 w-5 text-blue-600" />
+                    </div>
+                    <span className="font-medium text-gray-900">{area}</span>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+
+          {/* System Integrations Section */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+            <div className="max-w-7xl mx-auto">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={containerVariants}
+                className="text-center mb-16"
+              >
+                <motion.h2 
+                  variants={itemVariants}
+                  className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
+                >
+                  System Integrations
+                </motion.h2>
+                
+                <motion.p 
+                  variants={itemVariants}
+                  className="text-lg text-gray-600 mb-12 max-w-3xl mx-auto"
+                >
+                  Seamless connectivity with existing enterprise infrastructure for enhanced operational efficiency.
+                </motion.p>
+                
+                <motion.div 
+                  variants={staggerChildren}
+                  className="max-w-4xl mx-auto space-y-4"
+                >
+                  {integrations.map((integration, index) => (
+                    <motion.div
+                      key={index}
+                      variants={fadeInUp}
+                      className="flex items-center gap-4 p-6 rounded-xl bg-gradient-to-r from-blue-50 to-purple-50 border border-gray-200 shadow-sm"
+                    >
+                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
+                        <Zap className="h-6 w-6 text-white" />
+                      </div>
+                      <div className="text-left">
+                        <p className="font-medium text-gray-900">{integration}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+                
+                <motion.p 
+                  variants={itemVariants}
+                  className="text-lg text-gray-600 mt-8 max-w-3xl mx-auto"
+                >
+                  Creates a unified life safety ecosystem.
+                </motion.p>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Benefits Section */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInUp}
+                >
+                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+                    <Image 
+                      src="https://plus.unsplash.com/premium_photo-1661808623936-1423b8f94e17?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjV8fEZpcmUlMjBBbGFybSUyMFN5c3RlbSUyMG9mZmljZSUyMHNwcmlua2Vyc3xlbnwwfHwwfHx8MA%3D%3D" 
+                      alt="Enterprise Fire Alarm Benefits" 
+                      width={600} 
+                      height={400} 
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+                </motion.div>
+                
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={containerVariants}
+                >
+                  <motion.h2 
+                    variants={itemVariants}
+                    className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
+                  >
+                    Benefits for Enterprises
                   </motion.h2>
                   
                   <motion.p 
@@ -264,10 +643,10 @@ export default function EnterpriseFireAlarmPage() {
                       <motion.div 
                         key={index}
                         variants={fadeInUp}
-                        className="flex items-center gap-4 p-4 rounded-lg bg-white border border-gray-200"
+                        className="flex items-center gap-4 p-4 rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 border border-gray-200"
                       >
-                        <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
-                          <Zap className="h-5 w-5 text-blue-600" />
+                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+                          <Check className="h-5 w-5 text-white" />
                         </div>
                         <div className="font-medium text-gray-900">{benefit}</div>
                       </motion.div>
@@ -279,7 +658,7 @@ export default function EnterpriseFireAlarmPage() {
           </section>
 
           {/* CTA Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-blue-800">
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-purple-600">
             <div className="max-w-5xl mx-auto">
               <motion.div
                 initial="hidden"
@@ -294,18 +673,11 @@ export default function EnterpriseFireAlarmPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
-                    href="/pdf/enterprise-fire-alarm-brochure.pdf" 
-                    download
-                    className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all shadow-lg flex items-center"
-                  >
-                    <Download className="h-5 w-5 mr-2" />
-                    Download Brochure
-                  </a>
-                  <a 
                     href="/contact" 
-                    className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all"
+                    className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all shadow-lg flex items-center justify-center"
                   >
-                    Request Demo
+                    Schedule a Consultation
+                    <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </div>
               </motion.div>
