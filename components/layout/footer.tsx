@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Twitter, Linkedin, Mail, Phone, MapPin, Facebook, Instagram, ArrowRight } from 'lucide-react';
+import { Twitter, Linkedin, Mail, Phone, MapPin, Facebook, Instagram, ArrowRight, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from "../../assets/Technify-logo.png";
@@ -183,25 +183,23 @@ export function Footer() {
               </Link>
             </motion.div>
 
-            {/* Powered by */}
+            {/* Powered by Dmiraki */}
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-              className="text-gray-400 text-sm"
+              className="flex items-center gap-2 text-gray-400 text-sm"
             >
+              <span>Powered by</span>
               <Link
-                href="https://www.dmiraki.com"
+                href="https://dmiraki.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-orange-600 hover:text-orange-700 font-medium transition-colors"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.open('https://www.dmiraki.com', '_blank', 'noopener,noreferrer');
-                }}
+                className="flex items-center gap-1 text-orange-600 hover:text-orange-700 font-medium transition-colors group"
               >
-                Powered by Dmiraki
+                Dmiraki
+                <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
             </motion.div>
           </div>

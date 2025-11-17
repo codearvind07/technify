@@ -210,57 +210,66 @@ export function Header() {
     );
   };
 
-  // Mobile renderer (unchanged)
-  const renderMobileDropdown = (items: NavItem[], level: number, activeState: string | null, setActiveState: React.Dispatch<React.SetStateAction<string | null>>) => {
+  // Mobile renderer - Fixed version
+  const renderMobileDropdown = (items: NavItem[], level: number, parentLabel: string) => {
+    const getStateSetter = (level: number) => {
+      if (level === 1) return setMobileActiveSubDropdown;
+      if (level === 2) return setMobileActiveThirdDropdown;
+      return () => {};
+    };
+
+    const getActiveState = (level: number) => {
+      if (level === 1) return mobileActiveSubDropdown;
+      if (level === 2) return mobileActiveThirdDropdown;
+      return null;
+    };
+
+    const activeState = getActiveState(level);
+    const setState = getStateSetter(level);
+
     return (
       <AnimatePresence>
-        {activeState && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.18 }}
-            className={`overflow-hidden ${level === 1 ? "ml-3" : level === 2 ? "ml-4" : "ml-5"}`}
-          >
-            <div className="py-1">
-              {items.map((item) =>
-                item.subItems ? (
-                  <div key={item.label} className="border-b border-gray-100 last:border-b-0">
-                    <button
-                      className="flex justify-between w-full py-3 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-150"
-                      onClick={() => setActiveState((prev) => (prev === item.label ? null : item.label))}
-                    >
-                      <span>{item.label}</span>
-                      <span className="text-gray-400 ml-2">{activeState === item.label ? "▾" : "▸"}</span>
-                    </button>
-
-                    {item.subItems &&
-                      renderMobileDropdown(
-                        item.subItems,
-                        level + 1,
-                        level === 1 ? mobileActiveSubDropdown : mobileActiveThirdDropdown,
-                        level === 1 ? setMobileActiveSubDropdown : setMobileActiveThirdDropdown
-                      )}
-                  </div>
-                ) : (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="block py-3 text-sm text-gray-600 hover:text-blue-600 transition-colors duration-150 border-b border-gray-100 last:border-b-0"
-                    onClick={() => {
-                      setMobileOpen(false);
-                      setMobileActiveDropdown(null);
-                      setMobileActiveSubDropdown(null);
-                      setMobileActiveThirdDropdown(null);
-                    }}
+        <motion.div
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: "auto", opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.18 }}
+          className={`overflow-hidden ${level === 1 ? "ml-3" : level === 2 ? "ml-4" : "ml-5"}`}
+        >
+          <div className="py-1">
+            {items.map((item) =>
+              item.subItems ? (
+                <div key={item.label} className="border-b border-gray-100 last:border-b-0">
+                  <button
+                    className="flex justify-between w-full py-3 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-150"
+                    onClick={() => setState((prev) => (prev === item.label ? null : item.label))}
                   >
-                    {item.label}
-                  </a>
-                )
-              )}
-            </div>
-          </motion.div>
-        )}
+                    <span>{item.label}</span>
+                    <span className="text-gray-400 ml-2">
+                      {activeState === item.label ? "▾" : "▸"}
+                    </span>
+                  </button>
+
+                  {item.subItems && activeState === item.label && renderMobileDropdown(item.subItems, level + 1, item.label)}
+                </div>
+              ) : (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="block py-3 text-sm text-gray-600 hover:text-blue-600 transition-colors duration-150 border-b border-gray-100 last:border-b-0"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    setMobileActiveDropdown(null);
+                    setMobileActiveSubDropdown(null);
+                    setMobileActiveThirdDropdown(null);
+                  }}
+                >
+                  {item.label}
+                </a>
+              )
+            )}
+          </div>
+        </motion.div>
       </AnimatePresence>
     );
   };
@@ -331,7 +340,7 @@ export function Header() {
                       </button>
 
                       {mobileActiveDropdown === item.label &&
-                        renderMobileDropdown(item.subItems, 1, mobileActiveDropdown, setMobileActiveSubDropdown)}
+                        renderMobileDropdown(item.subItems, 1, item.label)}
                     </div>
                   ) : (
                     <a key={item.label} href={item.href} className="block py-4 font-medium text-gray-800 hover:text-blue-600 transition-colors duration-150" onClick={() => setMobileOpen(false)}>
