@@ -23,7 +23,8 @@ import {
   Scissors,
   User,
   Box,
-  Settings
+  Settings,
+  Car
 } from "lucide-react";
 import { SEO } from '@/components/seo/seo';
 import Image from "next/image";
@@ -441,20 +442,20 @@ export default function HospitalHIMSPage() {
                   <motion.div
                     key={index}
                     variants={fadeInUp}
-                    className="bg-gradient-to-b from-white to-gray-50 rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
+                    className="rounded-2xl p-8 border border-gray-200 transition-all duration-300"
                   >
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-                        {index === 0 && <Users className="w-6 h-6 text-white" />}
-                        {index === 1 && <Bed className="w-6 h-6 text-white" />}
-                        {index === 2 && <CreditCard className="w-6 h-6 text-white" />}
-                        {index === 3 && <ShoppingCart className="w-6 h-6 text-white" />}
-                        {index === 4 && <Microscope className="w-6 h-6 text-white" />}
-                        {index === 5 && <ImageIcon className="w-6 h-6 text-white" />}
-                        {index === 6 && <Scissors className="w-6 h-6 text-white" />}
-                        {index === 7 && <User className="w-6 h-6 text-white" />}
-                        {index === 8 && <Box className="w-6 h-6 text-white" />}
-                        {index === 9 && <Settings className="w-6 h-6 text-white" />}
+                      <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center text-blue-600">
+                        {index === 0 && <Users className="w-6 h-6" />}
+                        {index === 1 && <Bed className="w-6 h-6" />}
+                        {index === 2 && <CreditCard className="w-6 h-6" />}
+                        {index === 3 && <ShoppingCart className="w-6 h-6" />}
+                        {index === 4 && <Microscope className="w-6 h-6" />}
+                        {index === 5 && <ImageIcon className="w-6 h-6" />}
+                        {index === 6 && <Scissors className="w-6 h-6" />}
+                        {index === 7 && <User className="w-6 h-6" />}
+                        {index === 8 && <Box className="w-6 h-6" />}
+                        {index === 9 && <Settings className="w-6 h-6" />}
                       </div>
                       <h3 className="text-xl font-semibold text-gray-900">{module.title}</h3>
                     </div>
@@ -570,10 +571,15 @@ export default function HospitalHIMSPage() {
                     <motion.div
                       key={index}
                       variants={fadeInUp}
-                      className="flex items-center gap-4 p-6 rounded-xl bg-gradient-to-r from-blue-50 to-purple-50 border border-gray-200 shadow-sm"
+                      className="flex items-center gap-4 p-6 rounded-xl border border-gray-200"
                     >
-                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
-                        <Zap className="h-6 w-6 text-white" />
+                      <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center text-blue-600">
+                        {index === 0 && <Monitor className="h-6 w-6" />}
+                        {index === 1 && <Zap className="h-6 w-6" />}
+                        {index === 2 && <BarChart3 className="h-6 w-6" />}
+                        {index === 3 && <ImageIcon className="h-6 w-6" />}
+                        {index === 4 && <Car className="h-6 w-6" />}
+                        {index === 5 && <Shield className="h-6 w-6" />}
                       </div>
                       <div className="text-left">
                         <p className="font-medium text-gray-900">{integration}</p>
@@ -641,10 +647,10 @@ export default function HospitalHIMSPage() {
                       <motion.div 
                         key={index}
                         variants={fadeInUp}
-                        className="flex items-center gap-4 p-4 rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 border border-gray-200"
+                        className="flex items-center gap-4 p-4 rounded-lg border border-gray-200"
                       >
-                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-                          <Check className="h-5 w-5 text-white" />
+                        <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-blue-600">
+                          <Check className="h-5 w-5" />
                         </div>
                         <div className="font-medium text-gray-900">{benefit}</div>
                       </motion.div>

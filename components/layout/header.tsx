@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import logo from "../../assets/Technify-logo.png";
+import logo from "../../assets/Technify-logo1.png";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -143,8 +143,8 @@ export function Header() {
   const renderDesktopDropdown = (items: NavItem[], level: number) => {
     const isFirstLevel = level === 1;
     const containerClass = isFirstLevel
-      ? "absolute left-0 top-full bg-white shadow-lg border rounded-lg min-w-[240px]"
-      : "absolute top-0 left-full ml-2 bg-white shadow-lg border rounded-lg min-w-[220px] whitespace-nowrap";
+      ? "absolute left-0 top-full bg-white/90 backdrop-blur-xl shadow-2xl border border-white/30 rounded-2xl min-w-[280px] overflow-hidden"
+      : "absolute top-0 left-full ml-2 bg-white/90 backdrop-blur-xl shadow-2xl border border-white/30 rounded-2xl min-w-[250px] whitespace-nowrap overflow-hidden";
 
     return (
       <motion.div
@@ -156,7 +156,7 @@ export function Header() {
         className={containerClass}
         style={{ overflow: "visible", zIndex: 999999 }}
       >
-        <div className="py-1">
+        <div className="py-0.5">
           {items.map((it) => (
             <div
               key={it.label}
@@ -184,7 +184,7 @@ export function Header() {
             >
               <a
                 href={it.href}
-                className="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors"
+                className="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-700 transition-all duration-300 rounded-lg mx-1 my-0.5"
                 onClick={() => {
                   // close dropdowns on navigation
                   setActiveDropdown(null);
@@ -192,7 +192,7 @@ export function Header() {
                   setActiveThirdDropdown(null);
                 }}
               >
-                <span className="truncate">{it.label}</span>
+                <span className="truncate font-medium">{it.label}</span>
                 {it.subItems && <span className="text-xs text-gray-400 ml-2">▸</span>}
               </a>
 
@@ -234,14 +234,14 @@ export function Header() {
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.18 }}
-          className={`overflow-hidden ${level === 1 ? "ml-3" : level === 2 ? "ml-4" : "ml-5"}`}
+          className={`overflow-hidden ${level === 1 ? "ml-2" : level === 2 ? "ml-3" : "ml-4"}`}
         >
-          <div className="py-1">
+          <div className="py-0.5">
             {items.map((item) =>
               item.subItems ? (
                 <div key={item.label} className="border-b border-gray-100 last:border-b-0">
                   <button
-                    className="flex justify-between w-full py-3 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-150"
+                    className="flex justify-between w-full py-3 text-sm font-semibold text-gray-800 hover:text-blue-600 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 rounded-lg px-3"
                     onClick={() => setState((prev) => (prev === item.label ? null : item.label))}
                   >
                     <span>{item.label}</span>
@@ -256,7 +256,7 @@ export function Header() {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="block py-3 text-sm text-gray-600 hover:text-blue-600 transition-colors duration-150 border-b border-gray-100 last:border-b-0"
+                  className="block py-1.5 text-sm text-gray-700 hover:text-blue-600 transition-all duration-300 border-b border-gray-100 last:border-b-0 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 px-3 rounded-sm mx-0.5"
                   onClick={() => {
                     setMobileOpen(false);
                     setMobileActiveDropdown(null);
@@ -275,12 +275,12 @@ export function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white z-[99999] shadow-sm">
+    <header className="fixed top-0 left-0 right-0 bg-gradient-to-b from-white/90 to-white/70 backdrop-blur-md z-[99999] shadow-sm">
       <div className={`w-full transition-all duration-300 ${scrolled ? "py-1 shadow-md" : "py-1"}`}>
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
           {/* LOGO */}
           <div className="flex-shrink-0">
-            <Image src={logo} alt="Technify Logo" width={130} height={45} priority />
+            <Image src={logo} alt="Technify Logo" width={220} height={75} priority />
           </div>
 
           {/* DESKTOP NAV */}
@@ -301,10 +301,11 @@ export function Header() {
               >
                 <a
                   href={item.href}
-                  className="hover:text-[#1F6FEB] transition-colors duration-200 py-2 block font-medium"
+                  className="hover:text-[#1F6FEB] transition-all duration-300 py-2 block font-semibold relative group"
                 >
-                  {item.label}
+                  <span className="relative z-10">{item.label}</span>
                   {item.subItems && <span className="ml-1 text-xs opacity-60">▾</span>}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full transition-all duration-300 group-hover:w-full"></span>
                 </a>
 
                 {/* Render first-level dropdown directly (no extra wrapper/gap) */}
@@ -326,7 +327,7 @@ export function Header() {
         {/* MOBILE MENU */}
         <AnimatePresence>
           {mobileOpen && (
-            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.2 }} className="md:hidden bg-white border-t border-gray-200 shadow-lg overflow-hidden">
+            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.3 }} className="md:hidden bg-white/95 backdrop-blur-xl border-t border-white/30 shadow-2xl overflow-hidden rounded-b-2xl">
               <div className="px-4 py-3 space-y-0">
                 {NAV_ITEMS.map((item) =>
                   item.subItems ? (

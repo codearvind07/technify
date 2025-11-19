@@ -17,7 +17,15 @@ import {
   AlertTriangle,
   Users,
   Clock,
-  Check
+  Check,
+  DoorOpen,
+  Server,
+  Car,
+  Package,
+  Coffee,
+  Fence,
+  Building,
+  Box
 } from "lucide-react";
 import { SEO } from '@/components/seo/seo';
 import Image from "next/image";
@@ -397,11 +405,15 @@ export default function EnterpriseCCTVPage() {
                   <motion.div
                     key={index}
                     variants={fadeInUp}
-                    className="bg-gradient-to-b from-white to-gray-50 rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
+                    className="rounded-2xl p-8 border border-gray-200 transition-all duration-300"
                   >
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-                        <Camera className="w-6 h-6 text-white" />
+                      <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center text-blue-600">
+                        {index === 0 && <Camera className="w-6 h-6" />}
+                        {index === 1 && <Eye className="w-6 h-6" />}
+                        {index === 2 && <Monitor className="w-6 h-6" />}
+                        {index === 3 && <HardDrive className="w-6 h-6" />}
+                        {index === 4 && <Zap className="w-6 h-6" />}
                       </div>
                       <h3 className="text-xl font-semibold text-gray-900">{capability.title}</h3>
                     </div>
@@ -520,10 +532,19 @@ export default function EnterpriseCCTVPage() {
                   <motion.div
                     key={index}
                     variants={fadeInUp}
-                    className="flex items-start gap-4 p-6 rounded-xl bg-gradient-to-br from-blue-50 to-white border border-gray-200"
+                    className="flex items-start gap-4 p-6 rounded-xl border border-gray-200"
                   >
-                    <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mt-1">
-                      <Monitor className="h-5 w-5 text-blue-600" />
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-blue-600 mt-1">
+                      {index === 0 && <Monitor className="h-5 w-5" />}
+                      {index === 1 && <Users className="h-5 w-5" />}
+                      {index === 2 && <DoorOpen className="h-5 w-5" />}
+                      {index === 3 && <Server className="h-5 w-5" />}
+                      {index === 4 && <Car className="h-5 w-5" />}
+                      {index === 5 && <Package className="h-5 w-5" />}
+                      {index === 6 && <Coffee className="h-5 w-5" />}
+                      {index === 7 && <Fence className="h-5 w-5" />}
+                      {index === 8 && <Building className="h-5 w-5" />}
+                      {index === 9 && <Box className="h-5 w-5" />}
                     </div>
                     <span className="font-medium text-gray-900">{area}</span>
                   </motion.div>
@@ -581,10 +602,10 @@ export default function EnterpriseCCTVPage() {
                       <motion.div 
                         key={index}
                         variants={fadeInUp}
-                        className="flex items-center gap-4 p-4 rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 border border-gray-200"
+                        className="flex items-center gap-4 p-4 rounded-lg border border-gray-200"
                       >
-                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-                          <Check className="h-5 w-5 text-white" />
+                        <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-blue-600">
+                          <Check className="h-5 w-5" />
                         </div>
                         <div className="font-medium text-gray-900">{benefit}</div>
                       </motion.div>

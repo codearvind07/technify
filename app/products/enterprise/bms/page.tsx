@@ -204,8 +204,8 @@ export default function EnterpriseBMSPage() {
                     variants={fadeInUp}
                     className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:border-blue-200"
                   >
-                    <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
-                      <feature.icon className="w-6 h-6 text-blue-600" />
+                    <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4 text-blue-600">
+                      <feature.icon className="w-6 h-6" />
                     </div>
                     <h3 className="text-lg font-semibold mb-3 text-gray-900">{feature.title}</h3>
                     <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
@@ -264,10 +264,10 @@ export default function EnterpriseBMSPage() {
                       <motion.div 
                         key={index}
                         variants={fadeInUp}
-                        className="flex items-center gap-4 p-4 rounded-lg bg-white border border-gray-200"
+                        className="flex items-center gap-4 p-4 rounded-lg border border-gray-200"
                       >
-                        <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
-                          <Zap className="h-5 w-5 text-blue-600" />
+                        <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-blue-600">
+                          <Zap className="h-5 w-5" />
                         </div>
                         <div className="font-medium text-gray-900">{benefit}</div>
                       </motion.div>

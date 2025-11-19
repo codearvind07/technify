@@ -402,11 +402,16 @@ export default function HospitalNCSSPage() {
                   <motion.div
                     key={index}
                     variants={fadeInUp}
-                    className="bg-gradient-to-b from-white to-gray-50 rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
+                    className="rounded-2xl p-8 border border-gray-200 hover:shadow-md transition-all duration-300"
                   >
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-                        <Bell className="w-6 h-6 text-white" />
+                      <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center text-blue-600">
+                        {index === 0 && <Bell className="w-6 h-6" />}
+                        {index === 1 && <Users className="w-6 h-6" />}
+                        {index === 2 && <Zap className="w-6 h-6" />}
+                        {index === 3 && <Monitor className="w-6 h-6" />}
+                        {index === 4 && <HardDrive className="w-6 h-6" />}
+                        {index === 5 && <Shield className="w-6 h-6" />}
                       </div>
                       <h3 className="text-xl font-semibold text-gray-900">{capability.title}</h3>
                     </div>
@@ -414,7 +419,7 @@ export default function HospitalNCSSPage() {
                     <ul className="space-y-3 mb-6">
                       {capability.points.map((point, idx) => (
                         <li key={idx} className="flex items-start gap-3">
-                          <div className="flex-shrink-0 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
+                          <div className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5">
                             <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
                           </div>
                           <span className="text-gray-600 text-sm">{point}</span>
@@ -525,10 +530,20 @@ export default function HospitalNCSSPage() {
                   <motion.div
                     key={index}
                     variants={fadeInUp}
-                    className="flex items-start gap-4 p-6 rounded-xl bg-gradient-to-br from-blue-50 to-white border border-gray-200"
+                    className="flex items-start gap-4 p-6 rounded-xl border border-gray-200"
                   >
-                    <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mt-1">
-                      <Monitor className="h-5 w-5 text-blue-600" />
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-blue-600 mt-1">
+                      {index === 0 && <AlertTriangle className="h-5 w-5" />}
+                      {index === 1 && <Users className="h-5 w-5" />}
+                      {index === 2 && <Shield className="h-5 w-5" />}
+                      {index === 3 && <AlertTriangle className="h-5 w-5" />}
+                      {index === 4 && <Users className="h-5 w-5" />}
+                      {index === 5 && <Monitor className="h-5 w-5" />}
+                      {index === 6 && <Monitor className="h-5 w-5" />}
+                      {index === 7 && <HardDrive className="h-5 w-5" />}
+                      {index === 8 && <Lock className="h-5 w-5" />}
+                      {index === 9 && <HardDrive className="h-5 w-5" />}
+                      {index > 9 && <Monitor className="h-5 w-5" />}
                     </div>
                     <span className="font-medium text-gray-900">{area}</span>
                   </motion.div>
@@ -569,10 +584,10 @@ export default function HospitalNCSSPage() {
                     <motion.div
                       key={index}
                       variants={fadeInUp}
-                      className="flex items-center gap-4 p-6 rounded-xl bg-white border border-gray-200 shadow-sm"
+                      className="flex items-center gap-4 p-6 rounded-xl border border-gray-200"
                     >
-                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
-                        <Zap className="h-6 w-6 text-white" />
+                      <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center text-blue-600">
+                        <Zap className="h-6 w-6" />
                       </div>
                       <div className="text-left">
                         <p className="font-medium text-gray-900">{integration}</p>
@@ -640,10 +655,10 @@ export default function HospitalNCSSPage() {
                       <motion.div 
                         key={index}
                         variants={fadeInUp}
-                        className="flex items-center gap-4 p-4 rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 border border-gray-200"
+                        className="flex items-center gap-4 p-4 rounded-lg border border-gray-200"
                       >
-                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-                          <Check className="h-5 w-5 text-white" />
+                        <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-blue-600">
+                          <Check className="h-5 w-5" />
                         </div>
                         <div className="font-medium text-gray-900">{benefit}</div>
                       </motion.div>

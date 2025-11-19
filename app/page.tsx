@@ -27,9 +27,10 @@ export default function Home() {
       />
       <main className="relative">
         <ScrollProgress />
-        <HeroSection />
-        <HomeFeatureGridSection />
+        <HeroSection /> 
         <HomeAbout />
+        <HomeFeatureGridSection />
+       
        
         <HomeSolutions />
         <HomeServices />
