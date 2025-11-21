@@ -146,12 +146,19 @@ export default function AirportCCTVPage() {
                 </motion.div>
                 
                 <motion.h1 variants={fadeInUp} className={`text-4xl md:text-5xl text-gray-900 mb-6 leading-tight ${fonts.h1}`}>
-                  Enterprise <span className="font-poppins font-semibold">CCTV Surveillance</span> for Modern Airports
+                  CCTV Surveillance Systems for Airports
                 </motion.h1>
 
+                <motion.p variants={fadeInUp} className={`text-lg text-gray-600 mb-4 leading-relaxed ${fonts.body}`}>
+                  <strong>Smart Monitoring. Zero Blind Spots. Total Security.</strong>
+                </motion.p>
+
                 <motion.p variants={fadeInUp} className={`text-lg text-gray-600 mb-8 leading-relaxed ${fonts.body}`}>
-                  Advanced monitoring systems designed for complex airport environments. 
-                  Zero blind spots, intelligent analytics, and seamless integration for comprehensive security.
+                  Airports operate 24×7, handling thousands of passengers, aircraft movements, and high-value zones. 
+                  A robust CCTV Surveillance System is the backbone of airport security.{" "}
+                  <span className="font-semibold text-gray-900">
+                    Technify delivers enterprise-grade, analytics-driven CCTV solutions designed specifically for complex airport environments.
+                  </span>
                 </motion.p>
 
                 {/* Feature Grid */}
@@ -175,45 +182,58 @@ export default function AirportCCTVPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
-                
-               
               </motion.div>
             </div>
           </section>
 
-         
-
-          {/* ------------------ WHY IT MATTERS ------------------ */}
+          {/* ------------------ WHY AIRPORT CCTV MATTERS ------------------ */}
           <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-100">
             <div className="max-w-6xl mx-auto">
               <motion.div variants={staggerContainer} className="text-center mb-16">
                 <motion.h2 variants={fadeInUp} className={`text-3xl text-gray-900 mb-4 ${fonts.h2}`}>
-                  Why <span className="font-poppins font-semibold">Airport Surveillance</span> Matters
+                  Why Airport CCTV Matters
                 </motion.h2>
                 <motion.p variants={fadeInUp} className={`text-gray-600 max-w-2xl mx-auto ${fonts.body}`}>
-                  Comprehensive security monitoring for high-traffic, sensitive airport environments
+                  Airports are high-security zones with multiple sensitive areas: check-in counters, boarding gates, 
+                  baggage zones, airside operations, perimeters, runways, and passenger movement areas.
                 </motion.p>
               </motion.div>
 
-              <motion.div variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <motion.p variants={fadeInUp} className={`text-lg text-gray-600 mb-8 text-center ${fonts.body}`}>
+                A well-designed CCTV system ensures:
+              </motion.p>
+
+              <motion.div variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-4xl mx-auto">
                 {[
-                  { icon: Shield, text: "Continuous monitoring of all zones" },
-                  { icon: Eye, text: "Real-time incident detection" },
-                  { icon: Users, text: "Enhanced passenger safety" },
-                  { icon: BarChart3, text: "Operational efficiency analytics" },
-                  { icon: Building, text: "Regulatory compliance" },
-                  { icon: Plane, text: "Flight operation security" },
+                  "Non-stop monitoring",
+                  "Rapid incident detection",
+                  "Passenger safety",
+                  "Operational efficiency",
+                  "Compliance with global aviation security standards",
                 ].map((item, i) => (
                   <motion.div
                     key={i}
                     variants={fadeInUp}
-                    className="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-all duration-300"
+                    className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-all duration-300"
                   >
-                    <item.icon className="w-5 h-5 text-gray-600 flex-shrink-0" />
-                    <span className={`text-gray-700 text-sm ${fonts.body}`}>{item.text}</span>
+                    <Check className="w-4 h-4 text-green-600 flex-shrink-0" />
+                    <span className={`text-gray-700 text-sm text-center ${fonts.body}`}>{item}</span>
                   </motion.div>
                 ))}
               </motion.div>
+            </div>
+          </section>
+
+          {/* ------------------ WHAT TECHNIFY DELIVERS ------------------ */}
+          <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-100">
+            <div className="max-w-6xl mx-auto text-center">
+              <motion.h2 variants={fadeInUp} className={`text-3xl text-gray-900 mb-4 ${fonts.h2}`}>
+                What Technify Delivers
+              </motion.h2>
+              <motion.p variants={fadeInUp} className={`text-lg text-gray-600 max-w-4xl mx-auto ${fonts.body}`}>
+                We integrate an advanced, scalable CCTV ecosystem that covers every inch of your airport environment —{" "}
+                <span className="font-semibold text-gray-900">both airside and terminal side.</span>
+              </motion.p>
             </div>
           </section>
 
@@ -222,11 +242,8 @@ export default function AirportCCTVPage() {
             <div className="max-w-7xl mx-auto">
               <motion.div variants={staggerContainer} className="text-center mb-16">
                 <motion.h2 variants={fadeInUp} className={`text-3xl text-gray-900 mb-4 ${fonts.h2}`}>
-                  Core <span className="font-poppins font-semibold">Capabilities</span>
+                  Core Capabilities
                 </motion.h2>
-                <motion.p variants={fadeInUp} className={`text-gray-600 max-w-2xl mx-auto ${fonts.body}`}>
-                  Advanced surveillance technologies designed for airport security requirements
-                </motion.p>
               </motion.div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -234,21 +251,23 @@ export default function AirportCCTVPage() {
                   icon={Camera}
                   title="High-Definition IP Surveillance"
                   items={[
-                    "4K / 8MP IP Cameras with superior image quality",
-                    "Wide Dynamic Range for challenging lighting",
-                    "Advanced low-light & night vision capabilities",
-                    "Thermal imaging for perimeter security",
+                    "4K/8MP IP cameras",
+                    "Wide dynamic range",
+                    "Low-light & night-vision capability",
+                    "Thermal imaging for perimeter and runway safety",
                   ]}
                 />
 
                 <CapabilityCard
                   icon={Eye}
-                  title="Intelligent Video Analytics"
+                  title="Intelligent Video Analytics (IVA)"
                   items={[
-                    "Facial Recognition for access control",
-                    "Automatic Number Plate Recognition",
-                    "Crowd density and behavior analytics",
-                    "Left luggage and object detection",
+                    "Face Recognition (FR)",
+                    "ANPR (Automatic Number Plate Recognition)",
+                    "Crowd detection & density monitoring",
+                    "Left luggage detection",
+                    "Intrusion & perimeter breach alerts",
+                    "Queue monitoring analytics",
                   ]}
                 />
 
@@ -257,151 +276,161 @@ export default function AirportCCTVPage() {
                   title="Centralized Command & Control"
                   items={[
                     "Real-time monitoring dashboards",
-                    "Multi-screen video wall integration",
-                    "Automated alert workflows",
-                    "Remote access for authorized personnel",
+                    "Multi-screen video walls",
+                    "Integrated alarms and alert workflows",
+                    "Remote access for authorized departments",
                   ]}
                 />
 
                 <CapabilityCard
-                  icon={Settings}
-                  title="Redundant Architecture"
+                  icon={Server}
+                  title="Redundant & Fail-Safe Architecture"
                   items={[
-                    "24/7 continuous recording",
-                    "RAID storage with NVR redundancy",
-                    "Backup servers and failover systems",
-                    "Proactive device health monitoring",
+                    "24×7 recording",
+                    "RAID/NVR storage redundancy",
+                    "Backup servers & network failover",
+                    "Health monitoring of all devices",
                   ]}
                 />
               </div>
             </div>
           </section>
 
-          {/* ------------------ INTEGRATION & FEATURES ------------------ */}
+          {/* ------------------ SEAMLESS INTEGRATION ------------------ */}
           <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-100">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                
-                {/* Integration */}
-                <motion.div variants={staggerContainer}>
-                  <motion.h2 variants={fadeInUp} className={`text-2xl text-gray-900 mb-8 ${fonts.h2}`}>
-                    System <span className="font-poppins font-semibold">Integration</span>
-                  </motion.h2>
-                  <motion.div variants={staggerContainer} className="space-y-3">
-                    {[
-                      "Access Control Systems",
-                      "Public Address System (PAS)",
-                      "Fire Alarm and Safety Systems",
-                      "Building Management System",
-                      "Perimeter Security Systems",
-                      "Flight Information Displays",
-                    ].map((item, i) => (
-                      <IntegrationItem key={i} text={item} />
-                    ))}
-                  </motion.div>
-                </motion.div>
-
-                {/* Technical Features */}
-                <motion.div variants={staggerContainer}>
-                  <motion.h2 variants={fadeInUp} className={`text-2xl text-gray-900 mb-8 ${fonts.h2}`}>
-                    Technical <span className="font-poppins font-semibold">Features</span>
-                  </motion.h2>
-                  <motion.div variants={staggerContainer} className="space-y-3">
-                    {[
-                      "ONVIF-compliant multi-vendor support",
-                      "Fiber-optic backbone infrastructure",
-                      "AI-driven storage optimization",
-                      "Cybersecurity hardened firmware",
-                      "SLA-backed maintenance services",
-                    ].map((item, i) => (
-                      <IntegrationItem key={i} text={item} />
-                    ))}
-                  </motion.div>
-                </motion.div>
-
-              </div>
-            </div>
-          </section>
-
-          {/* ------------------ COVERAGE AREAS ------------------ */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 border-b border-gray-100">
             <div className="max-w-7xl mx-auto">
               <motion.div variants={staggerContainer} className="text-center mb-16">
                 <motion.h2 variants={fadeInUp} className={`text-3xl text-gray-900 mb-4 ${fonts.h2}`}>
-                  Comprehensive <span className="font-poppins font-semibold">Coverage</span>
+                  Seamless Integration with Airport Systems
                 </motion.h2>
                 <motion.p variants={fadeInUp} className={`text-gray-600 max-w-2xl mx-auto ${fonts.body}`}>
-                  Strategic camera placement across all critical airport zones and operations
+                  Our CCTV integrates with all critical airport systems for comprehensive security management.
                 </motion.p>
               </motion.div>
 
-              <motion.div variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <motion.div variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
                 {[
-                  "Terminal Entry & Exit Points",
-                  "Check-in and Baggage Counters",
-                  "Security Screening Areas",
-                  "Immigration & Customs Zones",
-                  "Boarding Gates and Lounges",
-                  "Apron and Airside Operations",
-                  "Runway and Taxiway Monitoring",
-                  "Parking and Ground Transport",
-                  "Cargo and Logistics Facilities",
-                ].map((area, i) => (
+                  "Access control",
+                  "Public Address System (PAS)",
+                  "Fire alarm systems",
+                  "Building Management System (BMS)",
+                  "Perimeter security",
+                  "Flight information systems",
+                ].map((item, i) => (
                   <motion.div
                     key={i}
                     variants={fadeInUp}
-                    className="p-4 bg-white border border-gray-200 rounded-lg hover:border-gray-300 transition-all duration-300"
+                    className="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-lg hover:border-gray-300 transition-all duration-300"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 bg-blue-500 rounded-full flex-shrink-0"></div>
-                      <span className={`text-gray-700 text-sm ${fonts.body}`}>{area}</span>
-                    </div>
+                    <Network className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                    <span className={`text-gray-700 text-sm ${fonts.body}`}>{item}</span>
                   </motion.div>
                 ))}
               </motion.div>
             </div>
           </section>
 
-        {/* ------------------ ELEGANT BENEFITS ------------------ */}
-<section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-orange-50">
-  <div className="max-w-6xl mx-auto">
-    <motion.div variants={staggerContainer} className="text-center mb-16">
-      <motion.h2 variants={fadeInUp} className={`text-3xl text-gray-900 mb-4 ${fonts.h2}`}>
-        Operational <span className="font-semibold">Benefits</span>
-      </motion.h2>
-      <motion.p variants={fadeInUp} className={`text-gray-600 max-w-2xl mx-auto ${fonts.body}`}>
-        Enhancing airport security, efficiency, and passenger experience
-      </motion.p>
-    </motion.div>
+          {/* ------------------ KEY TECHNICAL HIGHLIGHTS ------------------ */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 border-b border-gray-100">
+            <div className="max-w-6xl mx-auto">
+              <motion.div variants={staggerContainer} className="text-center mb-16">
+                <motion.h2 variants={fadeInUp} className={`text-3xl text-gray-900 mb-4 ${fonts.h2}`}>
+                  Key Technical Highlights
+                </motion.h2>
+              </motion.div>
 
-    <motion.div variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {[
-        "Enhanced situational awareness and monitoring",
-        "Reduced security incidents and response time",
-        "Faster emergency response coordination",
-        "Improved passenger experience and flow",
-        "Cross-department operational coordination",
-        "Comprehensive audit trails and compliance",
-      ].map((item, i) => (
-        <motion.div
-          key={i}
-          variants={fadeInUp}
-          whileHover={{ y: -4 }}
-          className="p-6 bg-white rounded-xl border border-gray-100 hover:border-blue-200 hover:shadow-md transition-all duration-300 group"
-        >
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-6 h-6 bg-blue-50 rounded-full flex items-center justify-center group-hover:bg-blue-100 transition-colors duration-300">
-              <div className="w-2 h-2 bg-blue-500 rounded-full group-hover:scale-110 transition-transform duration-300"></div>
+              <motion.div variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 max-w-4xl mx-auto">
+                {[
+                  "ONVIF-compliant for multi-brand camera support",
+                  "Fiber-based backbone for zero data loss",
+                  "AI-enabled storage optimization",
+                  "Cybersecure camera firmware",
+                  "SLA-backed maintenance & AMC options",
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    variants={fadeInUp}
+                    className="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-lg hover:border-gray-300 transition-all duration-300"
+                  >
+                    <Settings className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                    <span className={`text-gray-700 text-sm text-center ${fonts.body}`}>{item}</span>
+                  </motion.div>
+                ))}
+              </motion.div>
             </div>
-            <div className={`text-gray-700 leading-relaxed ${fonts.body} group-hover:text-gray-900 transition-colors duration-300`}>
-              {item}
+          </section>
+
+          {/* ------------------ DEPLOYMENT AREAS ------------------ */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-100">
+            <div className="max-w-7xl mx-auto">
+              <motion.div variants={staggerContainer} className="text-center mb-16">
+                <motion.h2 variants={fadeInUp} className={`text-3xl text-gray-900 mb-4 ${fonts.h2}`}>
+                  Where CCTV Is Deployed in Airports
+                </motion.h2>
+              </motion.div>
+
+              <motion.div variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                {[
+                  "Terminal entry & exit gates",
+                  "Check-in counters",
+                  "Security hold area",
+                  "Immigration & customs",
+                  "Boarding gates",
+                  "Apron & airside",
+                  "Runway and taxiway perimeters",
+                  "Car parking & vehicle entry",
+                  "Cargo and logistics area",
+                ].map((area, i) => (
+                  <motion.div
+                    key={i}
+                    variants={fadeInUp}
+                    className="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-lg hover:border-gray-300 transition-all duration-300"
+                  >
+                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full flex-shrink-0"></div>
+                    <span className={`text-gray-700 text-sm ${fonts.body}`}>{area}</span>
+                  </motion.div>
+                ))}
+              </motion.div>
             </div>
-          </div>
-        </motion.div>
-      ))}
-    </motion.div>
-  </div>
-</section>
+          </section>
+
+          {/* ------------------ BENEFITS FOR AIRPORT OPERATORS ------------------ */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-orange-50">
+            <div className="max-w-6xl mx-auto">
+              <motion.div variants={staggerContainer} className="text-center mb-16">
+                <motion.h2 variants={fadeInUp} className={`text-3xl text-gray-900 mb-4 ${fonts.h2}`}>
+                  Benefits for Airport Operators
+                </motion.h2>
+              </motion.div>
+
+              <motion.div variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  "Enhanced situational awareness",
+                  "Reduced security incidents",
+                  "Faster response to emergencies",
+                  "Better passenger experience",
+                  "Smooth coordination between departments",
+                  "Data logging for audits and compliance",
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    variants={fadeInUp}
+                    whileHover={{ y: -4 }}
+                    className="p-6 bg-white rounded-xl border border-gray-100 hover:border-blue-200 hover:shadow-md transition-all duration-300 group"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-6 h-6 bg-blue-50 rounded-full flex items-center justify-center group-hover:bg-blue-100 transition-colors duration-300">
+                        <Check className="w-3 h-3 text-green-600" />
+                      </div>
+                      <div className={`text-gray-700 leading-relaxed ${fonts.body} group-hover:text-gray-900 transition-colors duration-300`}>
+                        {item}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
 
         </main>
       </div>
