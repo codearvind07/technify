@@ -26,8 +26,6 @@ import OptiExactaIcon from "../../assets/icon/OptiExacta.png";
 import HeinrichIcon from "../../assets/icon/Heinrich.png";
 import LegrandIcon from "../../assets/icon/legrand.png";
 import WatchdogIcon from "../../assets/icon/watchdog.png";
-// Fortinet SVG import commented out due to processing issues
-// import FortinetIcon from "../../assets/icon/Fortinet.svg";
 
 // Animation variants
 const fadeIn: Variants = {
@@ -89,8 +87,8 @@ function PartnerLogo({ name, logo }: { name: string; logo: string | StaticImageD
 
   if (imageError) {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100/20 to-orange-100/20">
-        <span className="text-lg font-bold text-blue-600">{name.charAt(0)}</span>
+      <div className="w-full h-full flex items-center justify-center bg-white">
+        <span className="text-xl font-bold text-blue-600">{name.charAt(0)}</span>
       </div>
     );
   }
@@ -100,7 +98,7 @@ function PartnerLogo({ name, logo }: { name: string; logo: string | StaticImageD
       src={logo} 
       alt={name} 
       fill
-      className="object-contain p-1 bg-white/20 rounded-md"
+      className="object-contain p-2 filter brightness-100 contrast-100 saturate-100"
       onError={() => setImageError(true)}
     />
   );
@@ -253,9 +251,9 @@ export function TechnologyPartnersSection() {
   ];
 
   return (
-    <section className="relative w-full py-20 md:py-28 bg-gradient-to-br from-[#232946] via-[#1e293b] to-[#3b82f6] text-white">
+    <section className="relative w-full py-20 md:py-28 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] text-white">
       {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-[0.08] pointer-events-none">
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
         <div className="w-full h-full" style={{
           backgroundImage: `radial-gradient(circle at 15% 50%, #3b82f6cc 1px, transparent 1px),
                             radial-gradient(circle at 85% 30%, #ff7849cc 1px, transparent 1px)`,
@@ -265,16 +263,16 @@ export function TechnologyPartnersSection() {
 
       {/* Animated background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-br from-[#3b82f6]/30 to-[#232946]/30 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-gradient-to-br from-[#ff7849]/30 to-[#232946]/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-br from-[#3b82f6]/20 to-[#232946]/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-gradient-to-br from-[#ff7849]/20 to-[#232946]/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative">
         {/* Decorative corner accents */}
-        <div className="absolute top-0 left-0 w-20 h-20 border-t border-l border-[#3b82f6]/30"></div>
-        <div className="absolute top-0 right-0 w-20 h-20 border-t border-r border-[#ff7849]/30"></div>
-        <div className="absolute bottom-0 left-0 w-20 h-20 border-b border-l border-[#3b82f6]/30"></div>
-        <div className="absolute bottom-0 right-0 w-20 h-20 border-b border-r border-[#ff7849]/30"></div>
+        <div className="absolute top-0 left-0 w-20 h-20 border-t border-l border-[#3b82f6]/20"></div>
+        <div className="absolute top-0 right-0 w-20 h-20 border-t border-r border-[#ff7849]/20"></div>
+        <div className="absolute bottom-0 left-0 w-20 h-20 border-b border-l border-[#3b82f6]/20"></div>
+        <div className="absolute bottom-0 right-0 w-20 h-20 border-b border-r border-[#ff7849]/20"></div>
         
         {/* Professional header */}
         <motion.div
@@ -317,9 +315,9 @@ export function TechnologyPartnersSection() {
               whileHover={{ y: -10 }}
               className="group relative"
             >
-              <div className="flex flex-col h-full rounded-2xl border border-[#3b82f6]/20 bg-[#232946]/90 backdrop-blur-xl shadow-xl transition-all duration-500 group-hover:bg-[#1e293b] group-hover:shadow-2xl group-hover:shadow-[#3b82f6]/20 overflow-hidden">
+              <div className="flex flex-col h-full rounded-2xl border border-[#3b82f6]/30 bg-[#1e293b]/80 backdrop-blur-xl shadow-xl transition-all duration-500 group-hover:bg-[#0f172a] group-hover:shadow-2xl group-hover:shadow-[#3b82f6]/30 overflow-hidden">
                 {/* Category header with icon */}
-                <div className="p-6 border-b border-[#3b82f6]/20 bg-gradient-to-r from-[#232946] to-[#1e293b]">
+                <div className="p-6 border-b border-[#3b82f6]/30 bg-gradient-to-r from-[#232946] to-[#1e293b]">
                   <div className="flex items-center gap-4">
                    
                     <h3 className="text-xl font-bold text-white group-hover:text-[#3b82f6] transition-colors">
@@ -330,17 +328,17 @@ export function TechnologyPartnersSection() {
                 
                 {/* Partners list with logos */}
                 <div className="p-6 flex-grow">
-                  <div className="space-y-5">
+                  <div className="space-y-6">
                     {category.partners.map((partner, partnerIndex) => (
                       <div key={partnerIndex} className="flex items-start gap-4 group/partner">
-                        <div className="flex-shrink-0 w-14 h-14 rounded-lg bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center overflow-hidden border border-white/20 shadow-lg relative">
+                        <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-white flex items-center justify-center overflow-hidden border border-gray-200 shadow-md relative">
                           <PartnerLogo name={partner.name} logo={partner.logo} />
                         </div>
-                        <div>
+                        <div className="flex flex-col justify-center">
                           <h4 className="font-bold text-white text-lg group-hover/partner:text-[#3b82f6] transition-colors">
                             {partner.name}
                           </h4>
-                          <p className="text-sm text-gray-300 mt-2">
+                          <p className="text-sm text-gray-300 mt-1">
                             {partner.description}
                           </p>
                         </div>
@@ -394,7 +392,7 @@ export function TechnologyPartnersSection() {
               <motion.div
                 key={index}
                 whileHover={{ y: -8 }}
-                className="p-6 rounded-2xl border border-[#3b82f6]/20 bg-[#232946]/90 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                className="p-6 rounded-2xl border border-[#3b82f6]/30 bg-[#1e293b]/80 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <div className="text-4xl mb-4 bg-gradient-to-r from-[#3b82f6] to-[#ff7849] bg-clip-text text-transparent">{item.icon}</div>
                 <h4 className="text-xl font-bold text-white mb-2">{item.title}</h4>

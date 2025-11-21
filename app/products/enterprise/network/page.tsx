@@ -287,7 +287,7 @@ export default function EnterpriseNetworkPage() {
                     variants={fadeInUp}
                     className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl border border-gray-200 shadow-sm"
                   >
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                    <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-6">
                       <Zap className="w-6 h-6 text-blue-600" />
                     </div>
                     <h3 className="text-xl font-semibold mb-4 text-gray-900">High Performance</h3>
@@ -298,7 +298,7 @@ export default function EnterpriseNetworkPage() {
                     variants={fadeInUp}
                     className="bg-gradient-to-br from-purple-50 to-white p-8 rounded-2xl border border-gray-200 shadow-sm"
                   >
-                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                    <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-6">
                       <Shield className="w-6 h-6 text-purple-600" />
                     </div>
                     <h3 className="text-xl font-semibold mb-4 text-gray-900">Security & Reliability</h3>
@@ -309,7 +309,7 @@ export default function EnterpriseNetworkPage() {
                     variants={fadeInUp}
                     className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl border border-gray-200 shadow-sm"
                   >
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                    <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-6">
                       <Wifi className="w-6 h-6 text-blue-600" />
                     </div>
                     <h3 className="text-xl font-semibold mb-4 text-gray-900">Collaboration</h3>
@@ -366,7 +366,7 @@ export default function EnterpriseNetworkPage() {
                     className="space-y-4"
                   >
                     <div className="flex items-start gap-4 p-4 rounded-lg bg-white border border-gray-200">
-                      <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mt-1">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center mt-1">
                         <Check className="h-5 w-5 text-blue-600" />
                       </div>
                       <div>
@@ -376,7 +376,7 @@ export default function EnterpriseNetworkPage() {
                     </div>
                     
                     <div className="flex items-start gap-4 p-4 rounded-lg bg-white border border-gray-200">
-                      <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mt-1">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center mt-1">
                         <Server className="h-5 w-5 text-blue-600" />
                       </div>
                       <div>
@@ -386,7 +386,7 @@ export default function EnterpriseNetworkPage() {
                     </div>
                     
                     <div className="flex items-start gap-4 p-4 rounded-lg bg-white border border-gray-200">
-                      <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mt-1">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center mt-1">
                         <Zap className="h-5 w-5 text-blue-600" />
                       </div>
                       <div>
@@ -441,7 +441,7 @@ export default function EnterpriseNetworkPage() {
                     <ul className="space-y-3 mb-6">
                       {solution.points.map((point, idx) => (
                         <li key={idx} className="flex items-start gap-3">
-                          <div className="flex-shrink-0 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
+                          <div className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5">
                             <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
                           </div>
                           <span className="text-gray-600 text-sm">{point}</span>
@@ -495,7 +495,7 @@ export default function EnterpriseNetworkPage() {
                     <ul className="space-y-3 mb-6">
                       {solution.points.map((point, idx) => (
                         <li key={idx} className="flex items-start gap-3">
-                          <div className="flex-shrink-0 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
+                          <div className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5">
                             <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
                           </div>
                           <span className="text-gray-600 text-sm">{point}</span>
@@ -542,7 +542,7 @@ export default function EnterpriseNetworkPage() {
                         variants={fadeInUp}
                         className="flex items-center gap-4 p-4 rounded-lg bg-white border border-gray-200"
                       >
-                        <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center">
                           <Zap className="h-5 w-5 text-blue-600" />
                         </div>
                         <div className="font-medium text-gray-900">{highlight}</div>
@@ -717,8 +717,8 @@ export default function EnterpriseNetworkPage() {
                         variants={fadeInUp}
                         className="flex items-center gap-4 p-4 rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 border border-gray-200"
                       >
-                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-                          <Check className="h-5 w-5 text-white" />
+                        <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-blue-600">
+                          <Check className="h-5 w-5" />
                         </div>
                         <div className="font-medium text-gray-900">{benefit}</div>
                       </motion.div>
