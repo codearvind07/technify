@@ -25,7 +25,7 @@ const NAV_ITEMS: NavItem[] = [
   },
   {
     label: "Products",
-    href: "/products",
+    href: "#", // Disabled link
     subItems: [
       {
         label: "Transport",
@@ -33,7 +33,7 @@ const NAV_ITEMS: NavItem[] = [
         subItems: [
           {
             label: "Airport",
-            href: "/products/airport",
+            href: "#", // Disabled link
             subItems: [
               { label: "CCTV Surveillance Systems", href: "/products/airport/cctv" },
               { label: "Public Address System (PAS)", href: "/products/airport/pas" },
@@ -46,7 +46,7 @@ const NAV_ITEMS: NavItem[] = [
           },
           {
             label: "Railway",
-            href: "/products/railway",
+            href: "#", // Disabled link
             subItems: [
               { label: "CCTV Surveillance Systems", href: "/products/railway/cctv" },
               { label: "Public Address System (PAS)", href: "/products/railway/pas" },
@@ -61,7 +61,7 @@ const NAV_ITEMS: NavItem[] = [
       },
       {
         label: "Hospital",
-        href: "/products/hospital",
+        href: "#", // Disabled link
         subItems: [
           { label: "CCTV Surveillance Systems", href: "/products/hospital/cctv" },
           { label: "Panic Alarm / Nurse Call System (NCS)", href: "/products/hospital/ncs" },
@@ -72,7 +72,7 @@ const NAV_ITEMS: NavItem[] = [
       },
       {
         label: "Enterprise",
-        href: "/products/enterprise",
+        href: "#", // Disabled link
         subItems: [
           { label: "CCTV Surveillance Systems", href: "/products/enterprise/cctv" },
           { label: "Building Management System (BMS)", href: "/products/enterprise/bms" },
@@ -139,38 +139,130 @@ export function Header() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  // Desktop recursive dropdown renderer
-  const renderDesktopDropdown = (items: NavItem[], level: number) => {
-    const isFirstLevel = level === 1;
-    const containerClass = isFirstLevel
-      ? "absolute left-0 top-full bg-white/90 backdrop-blur-xl shadow-2xl border border-white/30 rounded-2xl min-w-[280px] overflow-hidden"
-      : "absolute top-0 left-full ml-2 bg-white/90 backdrop-blur-xl shadow-2xl border border-white/30 rounded-2xl min-w-[250px] whitespace-nowrap overflow-hidden";
+  // Function to split items into single row with Transport first
+  const getSingleRowLayout = (items: NavItem[]) => {
+    // Sort items: Hospital first, then Enterprise, then Transport
+    const sortedItems = [...items].sort((a, b) => {
+      if (a.label === "Hospital") return -1;
+      if (b.label === "Hospital") return 1;
+      if (a.label === "Enterprise") return -1;
+      if (b.label === "Enterprise") return 1;
+      if (a.label === "Transport") return -1;
+      if (b.label === "Transport") return 1;
+      return a.label.localeCompare(b.label);
+    });
 
+    return sortedItems;
+  };
+
+  // Desktop recursive dropdown renderer
+  const renderDesktopDropdown = (items: NavItem[], level: number, parentLabel?: string) => {
+    const isFirstLevel = level === 1;
+    const isSecondLevel = level === 2;
+    const isThirdLevel = level === 3;
+
+    // For Products dropdown, use single row layout
+    const useSingleRowLayout = isFirstLevel && parentLabel === "Products";
+
+    // Container class - all dropdowns open below their parent
+    const containerClass = isFirstLevel
+      ? `absolute top-full mt-5 bg-white/95 shadow-2xl border border-gray-100 rounded-xl overflow-hidden ${parentLabel === "Products"
+        ? "left-0 transform -translate-x-8 min-w-[500px]"
+        : "left-0 min-w-[280px]"
+      }`
+      : "absolute top-full left-0 mt-1 bg-white/95 shadow-2xl border border-gray-100 rounded-xl min-w-[260px] whitespace-nowrap overflow-hidden";
+
+    // For Products dropdown, render single row layout
+    if (useSingleRowLayout) {
+      const singleRowItems = getSingleRowLayout(items);
+
+      return (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.15, ease: "easeOut" }}
+          className={containerClass}
+          style={{ overflow: "visible", zIndex: 999999 + level }}
+        >
+          <div className="p-4">
+            {/* Main row with Transport, Hospital, Enterprise */}
+            <div className="flex gap-3">
+              {singleRowItems.map((it) => (
+                <div
+                  key={it.label}
+                  className="relative flex-1"
+                  onMouseEnter={() => {
+                    if (it.subItems) {
+                      setActiveSubDropdown(it.label);
+                    } else {
+                      setActiveSubDropdown(null);
+                    }
+                  }}
+                >
+                  <a
+                    href={it.href}
+                    className={`flex items-center justify-between p-3 text-sm transition-all duration-300 rounded-lg border border-transparent ${it.subItems
+    ? "text-gray-900 font-semibold bg-gray-50/50 hover:bg-blue-100/80 hover:border-l-2 hover:border-l-blue-500 hover:pl-4"
+    : "text-gray-700 font-medium bg-white hover:bg-blue-50/80 hover:border-l-2 hover:border-l-blue-500 hover:pl-4"
+  }`}
+                    onClick={() => {
+                      setActiveDropdown(null);
+                      setActiveSubDropdown(null);
+                      setActiveThirdDropdown(null);
+                    }}
+                  >
+                    <span className="truncate">{it.label}</span>
+                    {it.subItems && (
+                      <span className="text-gray-400 ml-2 transition-transform group-hover:translate-x-0.5">▸</span>
+                    )}
+                  </a>
+
+                  {/* Render sub-dropdown below the parent item */}
+                  {it.subItems && activeSubDropdown === it.label && (
+                    <div className="absolute top-full left-0 w-full mt-1 z-50">
+                      {renderDesktopDropdown(it.subItems, 2, it.label)}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      );
+    }
+
+    // Regular dropdown layout for other items
     return (
       <motion.div
         key={`${level}-${items.map(i => i.label).join("-")}`}
-        initial={{ opacity: 0, y: 6 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 6 }}
-        transition={{ duration: 0.14 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.1, ease: "easeOut" }}
         className={containerClass}
-        style={{ overflow: "visible", zIndex: 999999 }}
+        style={{ overflow: "visible", zIndex: 999999 + level }}
       >
-        <div className="py-0.5">
+        {/* Dropdown Header for better context */}
+        {isSecondLevel && parentLabel && (
+          <div className="px-4 py-2 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white">
+            <h3 className="text-sm font-semibold text-gray-900 truncate">{parentLabel}</h3>
+          </div>
+        )}
+
+        <div className="py-1">
           {items.map((it) => (
             <div
               key={it.label}
               className="relative"
               onMouseEnter={() => {
                 if (level === 1) {
-                  // hovered a first-level item (e.g. Transport, Hospital)
                   if (it.subItems) {
                     setActiveSubDropdown(it.label);
                   } else {
                     setActiveSubDropdown(null);
                   }
                 } else if (level === 2) {
-                  // hovered a second-level item (e.g. Airport, Railway)
                   if (it.subItems) {
                     setActiveThirdDropdown(it.label);
                   } else {
@@ -178,29 +270,38 @@ export function Header() {
                   }
                 }
               }}
-              onMouseLeave={() => {
-                // do not aggressively clear here — let top-level handlers control close
-              }}
             >
               <a
                 href={it.href}
-                className="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-700 transition-all duration-300 rounded-lg mx-1 my-0.5"
+                className={`flex items-center justify-between px-4 py-2 text-sm transition-all duration-300 rounded-lg mx-1 my-0.5 ${it.subItems
+    ? "text-gray-900 font-medium hover:bg-blue-100/80 hover:border-l-2 hover:border-l-blue-500 hover:pl-4"
+    : "text-gray-700 font-normal hover:bg-blue-50/80 hover:border-l-2 hover:border-l-blue-500 hover:pl-4"
+  }`}
                 onClick={() => {
-                  // close dropdowns on navigation
                   setActiveDropdown(null);
                   setActiveSubDropdown(null);
                   setActiveThirdDropdown(null);
                 }}
               >
-                <span className="truncate font-medium">{it.label}</span>
-                {it.subItems && <span className="text-xs text-gray-400 ml-2">▸</span>}
+                <span className="truncate">{it.label}</span>
+                {it.subItems && (
+                  <span className="text-gray-400 ml-2 transition-transform group-hover:translate-x-0.5">▸</span>
+                )}
               </a>
 
-              {/* Render next level if active */}
+              {/* Render next level dropdown below the parent item */}
               {it.subItems && (
                 <>
-                  {level === 1 && activeSubDropdown === it.label && renderDesktopDropdown(it.subItems, 2)}
-                  {level === 2 && activeThirdDropdown === it.label && renderDesktopDropdown(it.subItems, 3)}
+                  {level === 1 && activeSubDropdown === it.label &&
+                    <div className="absolute top-full left-0 w-full mt-1 z-50">
+                      {renderDesktopDropdown(it.subItems, 2, it.label)}
+                    </div>
+                  }
+                  {level === 2 && activeThirdDropdown === it.label &&
+                    <div className="absolute top-full left-0 w-full mt-1 z-50">
+                      {renderDesktopDropdown(it.subItems, 3, it.label)}
+                    </div>
+                  }
                 </>
               )}
             </div>
@@ -210,12 +311,12 @@ export function Header() {
     );
   };
 
-  // Mobile renderer - Fixed version
+  // Mobile renderer - Enhanced version
   const renderMobileDropdown = (items: NavItem[], level: number, parentLabel: string) => {
     const getStateSetter = (level: number) => {
       if (level === 1) return setMobileActiveSubDropdown;
       if (level === 2) return setMobileActiveThirdDropdown;
-      return () => {};
+      return () => { };
     };
 
     const getActiveState = (level: number) => {
@@ -233,30 +334,37 @@ export function Header() {
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
-          transition={{ duration: 0.18 }}
-          className={`overflow-hidden ${level === 1 ? "ml-2" : level === 2 ? "ml-3" : "ml-4"}`}
+          transition={{ duration: 0.2 }}
+          className={`overflow-hidden ${level === 1 ? "ml-3 bg-gray-50/50 rounded-lg mt-2" :
+              level === 2 ? "ml-4 bg-gray-40/30 rounded-lg mt-2" :
+                "ml-5 bg-gray-30/20 rounded-lg mt-2"
+            }`}
         >
-          <div className="py-0.5">
+          <div className="py-1">
             {items.map((item) =>
               item.subItems ? (
-                <div key={item.label} className="border-b border-gray-100 last:border-b-0">
+                <div key={item.label} className="border-b border-gray-100/50 last:border-b-0">
                   <button
-                    className="flex justify-between w-full py-3 text-sm font-semibold text-gray-800 hover:text-blue-600 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 rounded-lg px-3"
+                    className="flex justify-between w-full py-3.5 text-sm font-medium text-gray-900 hover:text-blue-600 transition-all duration-200 hover:bg-white/50 rounded-lg px-4"
                     onClick={() => setState((prev) => (prev === item.label ? null : item.label))}
                   >
-                    <span>{item.label}</span>
-                    <span className="text-gray-400 ml-2">
+                    <div className="flex items-center">
+                      <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-3 opacity-60"></span>
+                      <span className="font-semibold text-sm">{item.label}</span>
+                    </div>
+                    <span className="text-gray-400 ml-2 transition-transform duration-200">
                       {activeState === item.label ? "▾" : "▸"}
                     </span>
                   </button>
 
-                  {item.subItems && activeState === item.label && renderMobileDropdown(item.subItems, level + 1, item.label)}
+                  {item.subItems && activeState === item.label &&
+                    renderMobileDropdown(item.subItems, level + 1, item.label)}
                 </div>
               ) : (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="block py-1.5 text-sm text-gray-700 hover:text-blue-600 transition-all duration-300 border-b border-gray-100 last:border-b-0 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 px-3 rounded-sm mx-0.5"
+                  className="flex items-center py-3 text-sm text-gray-700 hover:text-blue-600 transition-all duration-200 border-b border-gray-100/50 last:border-b-0 hover:bg-white/50 px-4 rounded-sm"
                   onClick={() => {
                     setMobileOpen(false);
                     setMobileActiveDropdown(null);
@@ -264,7 +372,8 @@ export function Header() {
                     setMobileActiveThirdDropdown(null);
                   }}
                 >
-                  {item.label}
+                  <span className="w-1.5 h-1.5 bg-gray-300 rounded-full mr-3"></span>
+                  <span className="font-medium text-sm">{item.label}</span>
                 </a>
               )
             )}
@@ -275,16 +384,23 @@ export function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-gradient-to-b from-white/90 to-white/70 backdrop-blur-md z-[99999] shadow-sm">
-      <div className={`w-full transition-all duration-300 ${scrolled ? "py-1 shadow-md" : "py-1"}`}>
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
+    <header className="fixed top-0 left-0 right-0 bg-white/95 z-[99999] border-b border-gray-100/80">
+      <div className={`w-full transition-all duration-300 ${scrolled ? "py-0 shadow-lg" : "py-0"}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-20">
           {/* LOGO */}
           <div className="flex-shrink-0">
-            <Image src={logo} alt="Technify Logo" width={220} height={75} priority />
+            <Image
+              src={logo}
+              alt="Technify Logo"
+              width={220}
+              height={90}
+              priority
+              className="transition-transform duration-300 hover:scale-105"
+            />
           </div>
 
           {/* DESKTOP NAV */}
-          <nav ref={navRef} className="hidden md:flex items-center gap-8 font-semibold text-[#111] flex-1 justify-center">
+          <nav ref={navRef} className="hidden lg:flex items-center gap-8 font-semibold text-[#111] flex-1 justify-center">
             {NAV_ITEMS.map((item) => (
               <div
                 key={item.label}
@@ -292,60 +408,83 @@ export function Header() {
                 onMouseEnter={() => {
                   setActiveDropdown(item.label);
                 }}
-                onMouseLeave={() => {
-                  // close all when leaving the top-level item area
-                  setActiveDropdown(null);
-                  setActiveSubDropdown(null);
-                  setActiveThirdDropdown(null);
-                }}
+                onMouseLeave={() => setActiveDropdown(null)}
               >
                 <a
                   href={item.href}
-                  className="hover:text-[#1F6FEB] transition-all duration-300 py-2 block font-semibold relative group"
+                  className={`hover:text-blue-600 transition-all duration-300 py-2 block font-semibold relative group text-sm ${pathname === item.href ? 'text-blue-600' : 'text-gray-800'
+                    }`}
                 >
-                  <span className="relative z-10">{item.label}</span>
-                  {item.subItems && <span className="ml-1 text-xs opacity-60">▾</span>}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full transition-all duration-300 group-hover:w-full"></span>
+                  <span className="relative z-10 flex items-center">
+                    {item.label}
+                    {item.subItems && <span className="ml-1.5 text-xs opacity-60 transition-transform group-hover:rotate-180">▸</span>}
+                  </span>
+                  <span className={`absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full transition-all duration-300 group-hover:w-full ${pathname === item.href ? 'w-full' : ''
+                    }`}></span>
                 </a>
 
-                {/* Render first-level dropdown directly (no extra wrapper/gap) */}
                 <AnimatePresence>
-                  {activeDropdown === item.label && item.subItems && renderDesktopDropdown(item.subItems, 1)}
+                  {activeDropdown === item.label && item.subItems &&
+                    renderDesktopDropdown(item.subItems, 1, item.label)}
                 </AnimatePresence>
               </div>
             ))}
           </nav>
 
           {/* MOBILE BUTTON */}
-          <button className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200" onClick={() => setMobileOpen((s) => !s)}>
-            <span className={`w-6 h-0.5 bg-black transition-all duration-200 ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-            <span className={`w-6 h-0.5 bg-black transition-all duration-200 ${mobileOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`w-6 h-0.5 bg-black transition-all duration-200 ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+          <button
+            className="lg:hidden flex flex-col gap-1.5 p-3 rounded-xl hover:bg-gray-100/80 transition-all duration-200 border border-transparent hover:border-gray-200"
+            onClick={() => setMobileOpen((s) => !s)}
+            aria-label="Toggle menu"
+          >
+            <span className={`w-6 h-0.5 bg-gray-700 transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-2 bg-blue-600' : ''
+              }`}></span>
+            <span className={`w-6 h-0.5 bg-gray-700 transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''
+              }`}></span>
+            <span className={`w-6 h-0.5 bg-gray-700 transition-all duration-300 ${mobileOpen ? '-rotate-45 -translate-y-2 bg-blue-600' : ''
+              }`}></span>
           </button>
         </div>
 
         {/* MOBILE MENU */}
         <AnimatePresence>
           {mobileOpen && (
-            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.3 }} className="md:hidden bg-white/95 backdrop-blur-xl border-t border-white/30 shadow-2xl overflow-hidden rounded-b-2xl">
-              <div className="px-4 py-3 space-y-0">
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="lg:hidden bg-white/98 border-t border-gray-100 shadow-2xl overflow-hidden"
+            >
+              <div className="px-4 py-2 space-y-0">
                 {NAV_ITEMS.map((item) =>
                   item.subItems ? (
                     <div key={item.label} className="border-b border-gray-100 last:border-b-0">
                       <button
-                        className="flex justify-between w-full py-4 font-medium text-gray-800 hover:text-blue-600 transition-colors duration-150"
+                        className="flex justify-between w-full py-4 text-sm font-semibold text-gray-900 hover:text-blue-600 transition-colors duration-200 items-center"
                         onClick={() => setMobileActiveDropdown((prev) => (prev === item.label ? null : item.label))}
                       >
-                        <span>{item.label}</span>
-                        <span className="text-gray-400 ml-2">{mobileActiveDropdown === item.label ? "▾" : "▸"}</span>
+                        <div className="flex items-center">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                          <span className="font-semibold text-sm">{item.label}</span>
+                        </div>
+                        <span className="text-gray-400 ml-2 transition-transform duration-200">
+                          {mobileActiveDropdown === item.label ? "▾" : "▸"}
+                        </span>
                       </button>
 
                       {mobileActiveDropdown === item.label &&
                         renderMobileDropdown(item.subItems, 1, item.label)}
                     </div>
                   ) : (
-                    <a key={item.label} href={item.href} className="block py-4 font-medium text-gray-800 hover:text-blue-600 transition-colors duration-150" onClick={() => setMobileOpen(false)}>
-                      {item.label}
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      className="flex items-center py-4 text-sm font-semibold text-gray-900 hover:text-blue-600 transition-colors duration-200 border-b border-gray-100 last:border-b-0"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <span className="w-2 h-2 bg-gray-400 rounded-full mr-3"></span>
+                      <span className="font-semibold text-sm">{item.label}</span>
                     </a>
                   )
                 )}
