@@ -100,8 +100,9 @@ export default function EnterpriseBMSPage() {
         "Demand-based cooling/heating",
         "Zone-wise HVAC scheduling",
         "Integration with occupancy sensors",
-        "20–30% reduction in power usage",
+        "20-30% reduction in power usage",
       ],
+      note: "Actual savings may vary based on building size and usage patterns.",
     },
     {
       icon: Sun,
