@@ -1,13 +1,22 @@
 'use client';
 
 import { motion, Variants } from 'framer-motion';
-import { Upload, Send, ArrowRight, Users, Target, TrendingUp } from 'lucide-react';
+import { Upload, Send, ArrowRight, Users, Target, TrendingUp, CheckCircle } from 'lucide-react';
 import { useState } from 'react';
 
 /* Motion Variants */
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
 };
 
 const staggerContainer: Variants = {
@@ -40,11 +49,23 @@ export default function CareerHero() {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-gray-800">
-      <main>
+    <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white text-gray-800 overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute -top-20 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl animate-pulse-slower"></div>
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div className="w-full h-full" style={{
+            backgroundImage: `linear-gradient(to right, #1F6FEB 1px, transparent 1px),
+                              linear-gradient(to bottom, #fb8500 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}></div>
+        </div>
+      </div>
 
+      <main>
         {/* ------------------ HERO SECTION ------------------ */}
-        <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-100">
+        <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
             {/* TEXT */}
@@ -80,7 +101,7 @@ export default function CareerHero() {
         </section>
 
         {/* ------------------ BENEFITS SECTION ------------------ */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-100 bg-gray-50">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
           <div className="max-w-7xl mx-auto">
             <motion.div variants={staggerContainer} className="text-center mb-16">
               <motion.h2 variants={fadeInUp} className="text-3xl text-gray-900 font-semibold mb-4">
@@ -95,8 +116,12 @@ export default function CareerHero() {
               {benefits.map((benefit, index) => (
                 <motion.div
                   key={index}
-                  variants={fadeInUp}
-                  className="p-8 bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-all duration-300"
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 text-center transition-all duration-300 hover:shadow-lg relative overflow-hidden group"
                 >
                   <div className="w-14 h-14 mx-auto mb-4 flex items-center justify-center bg-blue-50 rounded-xl">
                     <benefit.icon className="w-7 h-7 text-blue-600" />
@@ -107,6 +132,7 @@ export default function CareerHero() {
                   <p className="text-gray-600 text-center leading-relaxed">
                     {benefit.description}
                   </p>
+                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-blue-500 transition-all duration-300 pointer-events-none"></div>
                 </motion.div>
               ))}
             </div>
@@ -118,23 +144,41 @@ export default function CareerHero() {
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
             
             {/* INFO */}
-            <motion.div variants={fadeInUp} className="bg-white p-8 rounded-xl border border-gray-200">
+            <motion.div 
+              initial="hidden" 
+              whileInView="visible" 
+              variants={cardVariants}
+              viewport={{ once: true }}
+              className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm"
+            >
               <h2 className="text-3xl font-semibold text-gray-900 mb-6">Ready to Join Us?</h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-6">
                 Send us your application and let's start a conversation.
               </p>
               <ul className="space-y-3 text-gray-600">
-                <li className="flex items-center gap-2"><div className="w-2 h-2 bg-blue-500 rounded-full"></div>Fast application process</li>
-                <li className="flex items-center gap-2"><div className="w-2 h-2 bg-blue-500 rounded-full"></div>Response within 48 hours</li>
-                <li className="flex items-center gap-2"><div className="w-2 h-2 bg-blue-500 rounded-full"></div>Multiple interview rounds</li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-blue-500 flex-shrink-0" />
+                  <span>Fast application process</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-blue-500 flex-shrink-0" />
+                  <span>Response within 48 hours</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-blue-500 flex-shrink-0" />
+                  <span>Multiple interview rounds</span>
+                </li>
               </ul>
             </motion.div>
 
             {/* FORM */}
             <motion.form
               onSubmit={handleSubmit}
-              className="bg-white p-8 rounded-xl border border-gray-200 space-y-6"
-              variants={fadeInUp}
+              className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm space-y-6"
+              initial="hidden"
+              whileInView="visible"
+              variants={cardVariants}
+              viewport={{ once: true }}
             >
               <h3 className="text-2xl font-semibold text-gray-900">Apply Now</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -154,7 +198,6 @@ export default function CareerHero() {
             </motion.form>
           </div>
         </section>
-
       </main>
     </div>
   );

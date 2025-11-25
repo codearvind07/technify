@@ -44,7 +44,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative bg-white border-t border-gray-100">
+    <footer className="relative bg-gray-500">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -67,7 +67,7 @@ export function Footer() {
               />
             </Link>
 
-            <p className="text-gray-600 mb-8 leading-relaxed max-w-md">
+            <p className="text-gray-300 mb-8 leading-relaxed max-w-md">
               Empowering businesses with smart, automated, and connected solutions to shape the future of technology.
             </p>
 
@@ -77,12 +77,12 @@ export function Footer() {
                 <motion.div 
                   key={idx}
                   whileHover={{ x: 4 }}
-                  className="flex items-start gap-3 text-gray-600 group"
+                  className="flex items-start gap-3 text-gray-300 group"
                 >
-                  <span className="text-orange-500 mt-0.5 group-hover:scale-110 transition-transform">
+                  <span className="text-orange-400 mt-0.5 group-hover:scale-110 transition-transform">
                     {item.icon}
                   </span>
-                  <span className="text-sm">{item.text}</span>
+                  <span className="text-gray-200 text-sm">{item.text}</span>
                 </motion.div>
               ))}
             </div>
@@ -96,7 +96,7 @@ export function Footer() {
                   aria-label={social.label}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="p-3 bg-gray-50 hover:bg-orange-50 border border-gray-200 rounded-lg text-gray-600 hover:text-orange-600 transition-all duration-300"
+                  className="p-3 bg-gray-700 hover:bg-orange-500 border border-gray-600 rounded-lg text-gray-300 hover:text-white transition-all duration-300"
                 >
                   {social.icon}
                 </motion.a>
@@ -114,7 +114,7 @@ export function Footer() {
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 viewport={{ once: true }}
               >
-                <h3 className="font-semibold text-gray-900 mb-6 text-lg">
+                <h3 className="font-semibold text-white mb-6 text-lg">
                   {section.title}
                 </h3>
                 <ul className="space-y-3">
@@ -122,7 +122,7 @@ export function Footer() {
                     <motion.li key={j} whileHover={{ x: 4 }}>
                       <Link 
                         href={link.href} 
-                        className="flex items-center gap-2 text-gray-600 hover:text-orange-600 transition-all group text-sm"
+                        className="flex items-center gap-2 text-gray-300 hover:text-orange-400 transition-all group text-sm"
                       >
                         <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                         {link.text}
@@ -137,8 +137,8 @@ export function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
+      <div className="border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             
             <motion.p
@@ -146,7 +146,7 @@ export function Footer() {
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="text-gray-500 text-sm"
+              className="text-gray-400 text-sm"
             >
               © {new Date().getFullYear()} Technify. All rights reserved.
             </motion.p>
@@ -158,9 +158,9 @@ export function Footer() {
               viewport={{ once: true }}
               className="flex gap-6 text-sm"
             >
-              <Link href="#" className="text-gray-500 hover:text-gray-700 transition-colors">Privacy Policy</Link>
-              <Link href="#" className="text-gray-500 hover:text-gray-700 transition-colors">Terms of Service</Link>
-              <Link href="#" className="text-gray-500 hover:text-gray-700 transition-colors">Cookies</Link>
+              <Link href="#" className="text-gray-400 hover:text-gray-200 transition-colors">Privacy Policy</Link>
+              <Link href="#" className="text-gray-400 hover:text-gray-200 transition-colors">Terms of Service</Link>
+              <Link href="#" className="text-gray-400 hover:text-gray-200 transition-colors">Cookies</Link>
             </motion.div>
 
             <motion.div
@@ -168,14 +168,14 @@ export function Footer() {
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-              className="flex items-center gap-2 text-gray-400 text-sm"
+              className="flex items-center gap-2 text-gray-300 text-sm"
             >
               <span>Powered by</span>
               <Link
                 href="https://dmiraki.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 text-orange-600 hover:text-orange-700 font-medium transition-colors group"
+                className="flex items-center gap-1 text-orange-400 hover:text-orange-300 font-medium transition-colors group"
               >
                 Dmiraki
                 <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />

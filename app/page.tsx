@@ -19,7 +19,7 @@ import { NewsletterSection } from '@/components/sections/newsletter';
 export default function Home() {
   return (
     <>
-      <SEO 
+      <SEO
         title="Technify Solutions - Dynamic Startup Partner for Digital Transformation"
         description="Technify Solutions is more than just a technology provider, we're your strategic partner in digital transformation. As a dynamic startup, we bring fresh perspectives and cutting-edge solutions to drive your business forward."
         path="/"
@@ -27,17 +27,14 @@ export default function Home() {
       />
       <main className="relative">
         <ScrollProgress />
-        <HeroSection /> 
+        <HeroSection />
         <HomeAbout />
         <HomeFeatureGridSection />
-       
-       
         <HomeSolutions />
         <HomeServices />
         <ProcessSection />
         <TestimonialsSection />
         <TechnologyPartnersSection />
-        {/* <CallToActionSection /> */}
         <NewsletterSection />
       </main>
     </>

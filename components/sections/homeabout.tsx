@@ -1,6 +1,7 @@
-"use client";
+'use client';
 
 import Head from "next/head";
+import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import {
   Server,
@@ -13,11 +14,14 @@ import {
   Cloud,
 } from "lucide-react";
 
+import aboutImage from "../../assets/Implementation.jpg";
+
+/* ------------------ MOTION VARIANTS ------------------ */
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.25, delayChildren: 0.3 },
+    transition: { staggerChildren: 0.25, delayChildren: 0.2 },
   },
 };
 
@@ -26,24 +30,51 @@ const itemVariants: Variants = {
   visible: {
     y: 0,
     opacity: 1,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.6, ease: "easeOut" },
   },
 };
 
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const iconFloat: Variants = {
+  animate: {
+    y: [-5, 5, -5],
+    transition: { duration: 4, repeat: Infinity, repeatType: "reverse" },
+  },
+};
+
+/* ------------------ SERVICES ------------------ */
 const services = [
-  { name: "IT Solutions", icon: Server },
-  { name: "Security Systems", icon: Shield },
-  { name: "Gate Automation", icon: KeySquare },
-  { name: "Detection Systems", icon: Activity },
-  { name: "Fire Safety", icon: Flame },
-  { name: "Public Address", icon: Mic2 },
-  { name: "AV Systems", icon: MonitorSmartphone },
-  { name: "Cloud Services", icon: Cloud },
+  { name: "IT Solutions", desc: "Scalable and robust IT infrastructure.", icon: Server, stats: "99.9% Uptime" },
+  { name: "Gate Automation", desc: "Seamless and secure access control.", icon: KeySquare, stats: "Automated" },
+  { name: "Fire Safety", desc: "Reliable fire detection and suppression.", icon: Flame, stats: "Certified" },
+  { name: "Public Address", desc: "Clear and effective communication.", icon: Mic2, stats: "Crystal Clear" },
 ];
 
 export default function HomeAbout() {
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 text-gray-800">
+    <div className="relative w-full overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white text-gray-800">
+      {/* Background Elements */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute -top-20 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl animate-pulse-slower"></div>
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div className="w-full h-full" style={{
+            backgroundImage: `linear-gradient(to right, #1F6FEB 1px, transparent 1px),
+                              linear-gradient(to bottom, #fb8500 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}></div>
+        </div>
+      </div>
+
+      {/* ------------------ PAGE HEAD ------------------ */}
       <Head>
         <title>About Us | Technify Solutions</title>
         <meta
@@ -52,14 +83,8 @@ export default function HomeAbout() {
         />
       </Head>
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 text-white py-24 px-6 text-center relative overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-orange-500 rounded-full mix-blend-soft-light filter blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/3 right-1/4 w-72 h-72 bg-blue-500 rounded-full mix-blend-soft-light filter blur-3xl animate-pulse"></div>
-        </div>
-        
+      {/* ------------------ HERO SECTION (UPDATED) ------------------ */}
+      <section className="pt-20 pb-10 px-6 text-center relative">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -68,109 +93,83 @@ export default function HomeAbout() {
         >
           <motion.h1
             variants={itemVariants}
-            className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-orange-200 to-orange-100"
+            className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 text-gray-900 leading-tight"
           >
             About Us
           </motion.h1>
-          <motion.h2
+
+          <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl lg:text-2xl font-medium text-gray-200 mb-10 max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto"
           >
-            Discover the innovative technology solutions that drive business transformation
-          </motion.h2>
-         
+            Discover the innovative technology solutions that drive business transformation.
+          </motion.p>
         </motion.div>
       </section>
 
-      {/* About Content */}
-      <main className="relative container mx-auto px-6 py-20 md:py-28 z-10">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-          className="max-w-6xl mx-auto"
-        >
-          {/* About Card */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/30 p-8 md:p-12 mb-20 relative overflow-hidden"
-          >
-            {/* Glassmorphism effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-blue-50/30 backdrop-blur-sm -z-10"></div>
-            
-            <motion.h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-purple-700">
+      {/* ------------------ ABOUT CONTENT (UNCHANGED) ------------------ */}
+      <main className="relative container mx-auto px-6 pt-8 pb-20 z-10">
+        <motion.div initial="hidden" animate="visible" variants={containerVariants} className="max-w-6xl mx-auto">
+          
+          {/* ABOUT SECTION */}
+          <div className="grid md:grid-cols-2 gap-12 items-center mb-24">
+            <motion.div variants={itemVariants}>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Empowering Innovation Through Technology
-              </span>
-            </motion.h2>
-            
-            <motion.p
-              className="text-gray-700 mb-8 leading-relaxed text-lg md:text-xl"
+              </h2>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                <span className="font-bold text-gray-800">Technify Solutions</span> is a young and ambitious startup driven by innovation and passion for technology.
+              </p>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                We specialize in IT infrastructure, cybersecurity, automation, cloud technologies — and turn complex ideas into simple, impactful digital solutions.
+              </p>
+              <p className="italic border-l-4 border-blue-500 pl-4 text-gray-700">
+                "We craft digital experiences that help businesses evolve, adapt, and thrive in a connected world."
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={itemVariants}
+              whileHover={{ scale: 1.03 }}
+              className="relative h-80 md:h-full rounded-2xl overflow-hidden shadow-xl border border-gray-200"
             >
-              <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600 text-2xl md:text-3xl">
-                Technify Solutions
-              </span>{" "}
-              is a young and ambitious startup driven by innovation and passion for technology. We're not just building digital solutions , we're shaping the future of how businesses grow and connect in the digital world.
-            </motion.p>
-            <motion.p className="text-gray-600 text-base md:text-lg leading-relaxed mb-6">
-              As a new-age tech company, we specialize in creating smart, scalable, and customized solutions across IT infrastructure, cybersecurity, automation, and cloud technologies. Our agile and creative team loves turning complex ideas into simple, impactful digital experiences.
-            </motion.p>
-            <motion.p className="text-gray-600 text-base md:text-lg leading-relaxed mb-6">
-              We understand that every business is unique, so we work closely with our clients to design technology strategies that truly fit their goals and vision.
-            </motion.p>
-            <motion.p className="text-gray-600 text-base md:text-lg leading-relaxed mb-6">
-              Whether you're a growing startup or an established business ready to innovate, Technify Solutions is your trusted partner for building modern, future-ready technology ecosystems.
-            </motion.p>
-            <motion.p className="text-gray-600 text-base md:text-lg leading-relaxed italic border-l-4 border-orange-500 pl-6 py-2 bg-orange-50/50 rounded-r-lg">
-              "We don't just deliver technology — we craft digital experiences that help businesses evolve, adapt, and thrive in a connected world."
-            </motion.p>
-          </motion.div>
+              <Image src={aboutImage} alt="About Technify Solutions" fill className="object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+            </motion.div>
+          </div>
 
-          {/* Services Section Title */}
-          <motion.h2 
-            variants={itemVariants}
-            className="text-3xl md:text-4xl font-bold text-center mb-16"
-          >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-purple-700">
-              Comprehensive Technology Services
-            </span>
+          {/* SERVICES GRID (UPDATED) */}
+          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-6">
+            Comprehensive Technology Services
           </motion.h2>
+          <motion.p variants={itemVariants} className="text-lg text-gray-600 max-w-2xl mx-auto text-center mb-16">
+            Trust our expertise, innovation, and long-lasting commitment to delivering transformative technology solutions.
+          </motion.p>
 
-          {/* Services Grid */}
-          <motion.div
-            variants={itemVariants}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
-          >
-            {services.map((service, idx) => {
+          <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service) => {
               const Icon = service.icon;
               return (
-                <motion.div
-                  key={service.name}
-                  className="group relative flex flex-col items-center justify-center bg-gradient-to-br from-white to-gray-50 border border-gray-200/50 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer backdrop-blur-sm"
-                  whileHover={{ y: -10, rotateY: 5 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.15, duration: 0.6 }}
+                <motion.div 
+                  key={service.name} 
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 text-center hover:shadow-lg transition-all duration-300 relative overflow-hidden group"
                 >
-                  {/* Floating Icon with Glow */}
-                  <motion.div
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: idx * 0.1,
-                    }}
-                    className="relative mb-6 p-5 rounded-full bg-gradient-to-br from-orange-100 to-orange-200 group-hover:from-orange-200 group-hover:to-orange-300 shadow-lg shadow-orange-200/50 transition-all duration-500"
+                  <motion.div 
+                    variants={iconFloat} 
+                    animate="animate" 
+                    className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-blue-100 to-orange-100 flex items-center justify-center"
                   >
-                    <Icon className="w-10 h-10 text-orange-600 drop-shadow-md" />
+                    <Icon className="w-7 h-7 text-blue-600" />
                   </motion.div>
-                  <h3 className="text-lg font-bold text-gray-900 group-hover:text-orange-600 text-center transition-colors duration-300">
-                    {service.name}
-                  </h3>
-
-                  {/* Hover effect */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-orange-200/10 to-orange-300/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2">{service.name}</h4>
+                  <p className="text-gray-600 text-sm mb-4">{service.desc}</p>
+                  <span className="inline-block px-4 py-1 bg-blue-50 text-blue-700 text-sm rounded-full">{service.stats}</span>
+                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-blue-500 transition-all duration-300 pointer-events-none"></div>
                 </motion.div>
               );
             })}

@@ -7,12 +7,21 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative overflow-hidden min-h-screen flex items-center justify-center bg-background"
+      className="relative overflow-hidden min-h-screen flex items-center justify-center bg-background py-20 md:py-28 bg-gradient-to-b from-white via-slate-50 to-white"
       aria-label="Technify Solutions Hero Section"
     >
-      {/* Enhanced background lighting effects */}
-      <div className="absolute top-0 left-0 w-[min(600px,100vw)] h-[600px] bg-[#1F6FEB]/20 rounded-full blur-[160px] opacity-10 animate-pulse -z-10" />
-      <div className="absolute bottom-0 right-0 w-[min(700px,100vw)] h-[700px] bg-[#FFB300]/20 rounded-full blur-[180px] opacity-10 animate-pulse -z-10" />
+      {/* Background Elements */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute -top-20 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl animate-pulse-slower"></div>
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div className="w-full h-full" style={{
+            backgroundImage: `linear-gradient(to right, #1F6FEB 1px, transparent 1px),
+                              linear-gradient(to bottom, #fb8500 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}></div>
+        </div>
+      </div>
       
       {/* Subtle scanline overlay */}
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-[0.06]">

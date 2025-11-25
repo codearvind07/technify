@@ -295,11 +295,7 @@
   }
   
   /* Professional card backgrounds */
-  .feature-card {
-    background: linear-gradient(135deg, hsl(0 0% 98%) 0%, hsl(0 0% 100%) 100%);
-    border: 1px solid hsl(0 0% 90%);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.02);
-  }
+  .feature-card { @apply bg-card border border-border rounded-xl shadow-md p-3 sm:p-4 md:p-5 lg:p-6; }
   
   .dark .feature-card {
     background: linear-gradient(135deg, hsl(0 0% 98%) 0%, hsl(0 0% 100%) 100%);
@@ -307,11 +303,7 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.02);
   }
   
-  .service-card {
-    background: linear-gradient(135deg, hsl(0 0% 99%) 0%, hsl(0 0% 100%) 100%);
-    border: 1px solid hsl(0 0% 90%);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
-  }
+  .service-card { @apply bg-card border border-border rounded-xl shadow-md p-3 sm:p-4 md:p-5 lg:p-6; }
   
   .dark .service-card {
     background: linear-gradient(135deg, hsl(0 0% 99%) 0%, hsl(0 0% 100%) 100%);
@@ -391,6 +383,7 @@
     font-family: var(--font-heading);
     @apply text-2xl md:text-3xl lg:text-4xl font-bold leading-snug;
   }
+  .heading-responsive { @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl; }
   
   .heading-4 {
     font-family: var(--font-heading);

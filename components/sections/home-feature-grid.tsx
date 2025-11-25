@@ -21,6 +21,7 @@ interface Feature {
   label: string;
 }
 
+/* ---------- Feature Data ---------- */
 const leftFeatures: Feature[] = [
   { icon: videoCamera, label: "Video Systems" },
   { icon: accessControl, label: "Access Control" },
@@ -35,10 +36,19 @@ const rightFeatures: Feature[] = [
   { icon: publicAddress, label: "Public Address" },
 ];
 
-/* ---------- Variants ---------- */
+/* ---------- Animation Variants ---------- */
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
 };
 
 const staggerContainer: Variants = {
@@ -53,7 +63,11 @@ const itemVariants: Variants = {
 
 const iconVariants: Variants = {
   initial: { scale: 1, rotate: 0 },
-  hover: { scale: 1.15, rotate: 360, transition: { duration: 0.7, ease: "easeInOut" } },
+  hover: {
+    scale: 1.15,
+    rotate: 360,
+    transition: { duration: 0.7, ease: "easeInOut" },
+  },
 };
 
 const floating: Variants = {
@@ -63,18 +77,21 @@ const floating: Variants = {
   },
 };
 
-/* ---------- FeatureCard ---------- */
-const FeatureCard: React.FC<{ feature: Feature; className?: string; iconSize?: number }> = ({
-  feature,
-  className = "",
-  iconSize = 48,
-}) => (
+/* ---------- FeatureCard Component ---------- */
+const FeatureCard: React.FC<{
+  feature: Feature;
+  className?: string;
+  iconSize?: number;
+}> = ({ feature, className = "", iconSize = 48 }) => (
   <motion.div
-    variants={itemVariants}
+    variants={cardVariants}
+    initial="hidden"
+    whileInView="show"
+    viewport={{ once: true }}
     whileHover={{ y: -8, boxShadow: "0 10px 32px rgba(0,0,0,0.1)" }}
     className={`group ${className}`}
   >
-    <div className="flex flex-col items-center text-center p-4 sm:p-5 md:p-6 rounded-2xl border border-gray-200 bg-gray-50/80 backdrop-blur-xl shadow-md transition-all duration-500 group-hover:bg-white group-hover:border-orange-300/40">
+    <div className="flex flex-col items-center text-center p-4 sm:p-5 md:p-6 rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-500 group-hover:bg-white group-hover:border-orange-300/40 group-hover:shadow-lg">
       <motion.div
         className="mb-3 sm:mb-4 p-2 sm:p-3 rounded-xl bg-gradient-to-br from-gray-100 to-gray-50"
         whileHover="hover"
@@ -82,7 +99,13 @@ const FeatureCard: React.FC<{ feature: Feature; className?: string; iconSize?: n
         variants={iconVariants}
       >
         <motion.div variants={floating} animate="animate">
-          <Image src={feature.icon} alt={feature.label} width={iconSize} height={iconSize} className="drop-shadow-sm" />
+          <Image
+            src={feature.icon}
+            alt={feature.label}
+            width={iconSize}
+            height={iconSize}
+            className="drop-shadow-sm"
+          />
         </motion.div>
       </motion.div>
       <SplitText
@@ -99,66 +122,87 @@ const FeatureCard: React.FC<{ feature: Feature; className?: string; iconSize?: n
   </motion.div>
 );
 
-/* ---------- Main Section ---------- */
+/* ---------- HomeFeatureGridSection ---------- */
 export function HomeFeatureGridSection() {
   return (
-    <section className="relative w-full py-12 sm:py-16 md:py-24 mt-0 pt-0 bg-gray-50/40">
-      {/* Iridescent & Background Effects */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <Iridescence color={[1, 1, 1]} mouseReact={false} amplitude={0.1} speed={1.0} />
-      </div>
-      <div className="absolute inset-0 opacity-[0.01] z-0">
-        <div
-          className="w-full h-full"
-          style={{
-            backgroundImage: `radial-gradient(circle at 15% 50%, hsl(210 20% 92%) 1px, transparent 1px),
-                              radial-gradient(circle at 85% 30%, hsl(30 20% 88%) 1px, transparent 1px)`,
-            backgroundSize: "50px 50px",
-          }}
-        />
+    <section className="relative w-full py-20 md:py-28 bg-gradient-to-b from-white via-slate-50 to-white">
+      {/* Background Elements */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute -top-20 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl animate-pulse-slower"></div>
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div className="w-full h-full" style={{
+            backgroundImage: `linear-gradient(to right, #1F6FEB 1px, transparent 1px),
+                              linear-gradient(to bottom, #fb8500 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}></div>
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <motion.header variants={fadeIn} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-orange-500/10 backdrop-blur-sm border border-blue-500/20 rounded-full px-4 sm:px-6 py-1.5 sm:py-2 mb-4 sm:mb-6 shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-orange-500 animate-pulse" />
-            <span className="caption font-medium uppercase tracking-wider text-gray-700">
-              <SplitText text="Our Solutions" splitType="words" />
-            </span>
-          </div>
+        <motion.header
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="text-center mb-12 sm:mb-16"
+        >
           <h2 className="heading-3 mb-3 sm:mb-4 text-gray-800 leading-tight">
-            End-to-end solutions for enterprises and smart environments with cutting-edge technology integration
+            End-to-end solutions for enterprises and smart environments with
+            cutting-edge technology integration
           </h2>
-          
-        
         </motion.header>
 
         {/* Grid - Optimized for mobile */}
         <main className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-start mb-12 sm:mb-16 md:mb-20">
           {/* Left */}
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true }} className="space-y-4 sm:space-y-6">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="space-y-4 sm:space-y-6"
+          >
             {leftFeatures.map((f, i) => (
-              <FeatureCard key={f.label} feature={f} className={i === 1 ? "md:translate-x-4" : ""} iconSize={40} />
+              <FeatureCard
+                key={f.label}
+                feature={f}
+                className={i === 1 ? "md:translate-x-4" : ""}
+                iconSize={40}
+              />
             ))}
           </motion.div>
 
           {/* Center */}
-          <motion.div variants={fadeIn} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex flex-col items-center">
+          <motion.div
+            variants={fadeIn}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="flex flex-col items-center"
+          >
             <motion.div
               className="relative mb-6 sm:mb-8"
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
             >
               <div className="relative w-32 h-32 sm:w-44 sm:h-44 md:w-64 md:h-64 rounded-2xl sm:rounded-3xl overflow-hidden border border-gray-200 shadow-xl mx-auto">
-                <Image src={bag} alt="Technology solutions" fill className="object-cover" priority sizes="(max-width: 768px) 176px, 256px" />
+                <Image
+                  src={bag}
+                  alt="Technology solutions"
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 768px) 176px, 256px"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 via-transparent to-transparent" />
               </div>
             </motion.div>
             <FeatureCard feature={centerFeature} iconSize={40} />
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="mt-4 sm:mt-6">
-              <Link 
-                href="/products" 
+              <Link
+                href="/products"
                 className="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold px-4 py-2 sm:px-6 sm:py-3 rounded-lg shadow-md hover:shadow-lg transition body-base cursor-pointer text-center block"
               >
                 View All Solutions
@@ -167,14 +211,23 @@ export function HomeFeatureGridSection() {
           </motion.div>
 
           {/* Right */}
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true }} className="space-y-4 sm:space-y-6">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="space-y-4 sm:space-y-6"
+          >
             {rightFeatures.map((f, i) => (
-              <FeatureCard key={f.label} feature={f} className={i === 1 ? "md:-translate-x-4" : ""} iconSize={40} />
+              <FeatureCard
+                key={f.label}
+                feature={f}
+                className={i === 1 ? "md:-translate-x-4" : ""}
+                iconSize={40}
+              />
             ))}
           </motion.div>
         </main>
-
-       
       </div>
     </section>
   );

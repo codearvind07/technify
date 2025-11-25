@@ -30,7 +30,16 @@ import WatchdogIcon from "../../assets/icon/watchdog.png";
 // Animation variants
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
 };
 
 const staggerContainer: Variants = {
@@ -251,29 +260,21 @@ export function TechnologyPartnersSection() {
   ];
 
   return (
-    <section className="relative w-full py-20 md:py-28 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] text-white">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-        <div className="w-full h-full" style={{
-          backgroundImage: `radial-gradient(circle at 15% 50%, #3b82f6cc 1px, transparent 1px),
-                            radial-gradient(circle at 85% 30%, #ff7849cc 1px, transparent 1px)`,
-          backgroundSize: '40px 40px'
-        }}></div>
-      </div>
-
-      {/* Animated background elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-br from-[#3b82f6]/20 to-[#232946]/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-gradient-to-br from-[#ff7849]/20 to-[#232946]/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+    <section className="relative w-full py-20 md:py-28 bg-gradient-to-b from-white via-slate-50 to-white">
+      {/* Background Elements */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute -top-20 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl animate-pulse-slower"></div>
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div className="w-full h-full" style={{
+            backgroundImage: `linear-gradient(to right, #1F6FEB 1px, transparent 1px),
+                              linear-gradient(to bottom, #fb8500 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}></div>
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative">
-        {/* Decorative corner accents */}
-        <div className="absolute top-0 left-0 w-20 h-20 border-t border-l border-[#3b82f6]/20"></div>
-        <div className="absolute top-0 right-0 w-20 h-20 border-t border-r border-[#ff7849]/20"></div>
-        <div className="absolute bottom-0 left-0 w-20 h-20 border-b border-l border-[#3b82f6]/20"></div>
-        <div className="absolute bottom-0 right-0 w-20 h-20 border-b border-r border-[#ff7849]/20"></div>
-        
         {/* Professional header */}
         <motion.div
           variants={fadeIn}
@@ -282,20 +283,16 @@ export function TechnologyPartnersSection() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <div className="inline-flex items-center gap-3 bg-[#232946]/80 backdrop-blur-md border border-[#3b82f6]/30 rounded-full px-6 py-3 mb-8 shadow-lg">
-            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-[#3b82f6] to-[#ff7849] animate-pulse"></div>
-            <div className="w-2 h-2 rounded-full bg-[#3b82f6]"></div>
-            <span className="text-[#3b82f6] text-sm font-semibold tracking-wider uppercase">Strategic Partnerships</span>
-          </div>
+         
           
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            <span className="block text-white mb-3">Trusted Technology</span>
-            <span className="block bg-gradient-to-r from-[#3b82f6] via-[#ff7849] to-[#3b82f6] bg-clip-text text-transparent">
-              Partners Worldwide
+            <span className="block text-gray-900 mb-3">Trusted Technology <br /> Partners Worldwide </span>
+            <span className="block bg-gradient-to-r from-blue-600 via-orange-500 to-blue-600 bg-clip-text text-transparent">
+             
             </span>
           </h2>
           
-          <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto font-light leading-relaxed tracking-wide">
+          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed tracking-wide">
             We collaborate with industry-leading technology partners to deliver cutting-edge solutions that drive innovation and ensure reliability across all infrastructure needs.
           </p>
         </motion.div>
@@ -311,16 +308,19 @@ export function TechnologyPartnersSection() {
           {categories.map((category) => (
             <motion.div
               key={category.id}
-              variants={staggerItem}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
               whileHover={{ y: -10 }}
               className="group relative"
             >
-              <div className="flex flex-col h-full rounded-2xl border border-[#3b82f6]/30 bg-[#1e293b]/80 backdrop-blur-xl shadow-xl transition-all duration-500 group-hover:bg-[#0f172a] group-hover:shadow-2xl group-hover:shadow-[#3b82f6]/30 overflow-hidden">
+              <div className="flex flex-col h-full rounded-2xl border border-gray-200 bg-white backdrop-blur-xl shadow-sm transition-all duration-500 group-hover:bg-white group-hover:shadow-lg group-hover:shadow-blue-500/10 overflow-hidden">
                 {/* Category header with icon */}
-                <div className="p-6 border-b border-[#3b82f6]/30 bg-gradient-to-r from-[#232946] to-[#1e293b]">
+                <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-white to-gray-50">
                   <div className="flex items-center gap-4">
                    
-                    <h3 className="text-xl font-bold text-white group-hover:text-[#3b82f6] transition-colors">
+                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
                       {category.title}
                     </h3>
                   </div>
@@ -331,14 +331,14 @@ export function TechnologyPartnersSection() {
                   <div className="space-y-6">
                     {category.partners.map((partner, partnerIndex) => (
                       <div key={partnerIndex} className="flex items-start gap-4 group/partner">
-                        <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-white flex items-center justify-center overflow-hidden border border-gray-200 shadow-md relative">
+                        <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-white flex items-center justify-center overflow-hidden border border-gray-200 shadow-sm relative">
                           <PartnerLogo name={partner.name} logo={partner.logo} />
                         </div>
                         <div className="flex flex-col justify-center">
-                          <h4 className="font-bold text-white text-lg group-hover/partner:text-[#3b82f6] transition-colors">
+                          <h4 className="font-bold text-gray-900 text-lg group-hover/partner:text-blue-600 transition-colors">
                             {partner.name}
                           </h4>
-                          <p className="text-sm text-gray-300 mt-1">
+                          <p className="text-sm text-gray-600 mt-1">
                             {partner.description}
                           </p>
                         </div>
@@ -348,7 +348,7 @@ export function TechnologyPartnersSection() {
                 </div>
                 
                 {/* Decorative accent */}
-                <div className="absolute top-4 right-4 w-3 h-3 border-t-2 border-r-2 border-[#3b82f6]/30 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute top-4 right-4 w-3 h-3 border-t-2 border-r-2 border-blue-200 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </div>
             </motion.div>
           ))}
@@ -362,12 +362,12 @@ export function TechnologyPartnersSection() {
           viewport={{ once: true }}
           className="text-center mb-24"
         >
-          <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            <span className="bg-gradient-to-r from-[#3b82f6] via-[#ff7849] to-[#3b82f6] bg-clip-text text-transparent">
+          <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <span className="text-gray-900">
               Why Our Partnerships Matter
             </span>
           </h3>
-          <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-12 leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed">
             Our strategic technology partnerships ensure we deliver solutions built on the most reliable, 
             innovative, and future-ready platforms in the industry.
           </p>
@@ -391,12 +391,16 @@ export function TechnologyPartnersSection() {
             ].map((item, index) => (
               <motion.div
                 key={index}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
                 whileHover={{ y: -8 }}
-                className="p-6 rounded-2xl border border-[#3b82f6]/30 bg-[#1e293b]/80 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                className="p-6 rounded-2xl border border-gray-200 bg-white backdrop-blur-xl shadow-sm hover:shadow-md transition-all duration-300"
               >
-                <div className="text-4xl mb-4 bg-gradient-to-r from-[#3b82f6] to-[#ff7849] bg-clip-text text-transparent">{item.icon}</div>
-                <h4 className="text-xl font-bold text-white mb-2">{item.title}</h4>
-                <p className="text-gray-300">{item.description}</p>
+                <div className="text-4xl mb-4 bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent">{item.icon}</div>
+                <h4 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h4>
+                <p className="text-gray-600">{item.description}</p>
               </motion.div>
             ))}
           </div>

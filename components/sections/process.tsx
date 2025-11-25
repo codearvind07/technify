@@ -96,33 +96,6 @@ export function ProcessSection() {
     }
   ];
 
-  const storyElements = [
-    {
-      title: "Our Partnership Philosophy",
-      description:
-        "We don’t just deliver solutions — we become your long-term technology partner.",
-      icon: Users,
-      image:
-        "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1470&q=80"
-    },
-    {
-      title: "Proven Methodology",
-      description:
-        "Our time-tested approach has delivered exceptional results for hundreds of clients.",
-      icon: Award,
-      image:
-        "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1470&q=80"
-    },
-    {
-      title: "Continuous Innovation",
-      description:
-        "We stay ahead of technology trends to ensure your solution remains cutting-edge.",
-      icon: Lightbulb,
-      image:
-        "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?auto=format&fit=crop&w=1470&q=80"
-    }
-  ];
-
   const fadeIn: Variants = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
@@ -141,7 +114,6 @@ export function ProcessSection() {
       className="relative w-full py-20 md:py-28 overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative">
-
         {/* ✅ HEADER */}
         <motion.div
           variants={fadeIn}
@@ -156,7 +128,7 @@ export function ProcessSection() {
           </div>
 
           <h2 className="text-4xl md:text-5xl font-extrabold mb-5 leading-snug">
-            <span className="bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent">
+            <span className="text-gray-900">
               The Technify Transformation Story
             </span>
           </h2>
@@ -272,45 +244,6 @@ export function ProcessSection() {
               </div>
             </div>
           </div>
-        </motion.div>
-
-        {/* ✅ STORY ELEMENTS GRID */}
-        <motion.div
-          variants={fadeIn}
-          initial="hidden"
-          whileInView="show"
-          className="grid grid-cols-1 md:grid-cols-3 gap-10"
-        >
-          {storyElements.map((element, idx) => {
-            const Icon = element.icon;
-
-            return (
-              <motion.div
-                whileHover={{ y: -8 }}
-                key={idx}
-                className="p-8 bg-white rounded-3xl border shadow-lg transition-all"
-              >
-                <div className="relative h-40 rounded-xl overflow-hidden mb-6 border">
-                  <Image
-                    src={element.image}
-                    alt=""
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-
-                <div className="w-16 h-16 rounded-2xl bg-white border shadow-[0_4px_16px_rgba(0,0,0,0.06)] flex items-center justify-center mb-6">
-                  <Icon className="w-8 h-8 text-blue-600" />
-                </div>
-
-                <h4 className="text-xl font-bold mb-3 text-gray-900">
-                  {element.title}
-                </h4>
-
-                <p className="text-gray-600">{element.description}</p>
-              </motion.div>
-            );
-          })}
         </motion.div>
       </div>
     </section>
