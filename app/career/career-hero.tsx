@@ -1,8 +1,19 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Upload, Send, ArrowRight, Users, Target, TrendingUp } from 'lucide-react';
 import { useState } from 'react';
+
+/* Motion Variants */
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
+const staggerContainer: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15, delayChildren: 0.2 } },
+};
 
 export default function CareerHero() {
   const [formData, setFormData] = useState({
@@ -13,213 +24,87 @@ export default function CareerHero() {
     message: ''
   });
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Form submission logic would go here
     console.log('Form submitted:', formData);
   };
 
   const benefits = [
-    {
-      icon: Target,
-      title: "Career Growth",
-      description: "Clear progression paths and professional development opportunities"
-    },
-    {
-      icon: TrendingUp,
-      title: "Competitive Salary",
-      description: "Industry-leading compensation with performance bonuses"
-    },
-    {
-      icon: Users,
-      title: "Great Culture",
-      description: "Collaborative environment with work-life balance"
-    }
-  ];
-
-  const positions = [
-    {
-      title: "Frontend Developer",
-      type: "Full-time",
-      location: "Remote",
-      experience: "2+ years"
-    },
-    {
-      title: "Backend Engineer",
-      type: "Full-time",
-      location: "New Delhi",
-      experience: "3+ years"
-    },
-    {
-      title: "UI/UX Designer",
-      type: "Full-time",
-      location: "Hybrid",
-      experience: "2+ years"
-    },
-    {
-      title: "DevOps Engineer",
-      type: "Full-time",
-      location: "Remote",
-      experience: "4+ years"
-    }
+    { icon: Target, title: "Career Growth", description: "Clear progression paths and professional development opportunities" },
+    { icon: TrendingUp, title: "Competitive Salary", description: "Industry-leading compensation with performance bonuses" },
+    { icon: Users, title: "Great Culture", description: "Collaborative environment with work-life balance" }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-cyan-50/20 font-sans overflow-hidden">
-      {/* Background Elements */}
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.1, 0.15, 0.1],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute -top-40 -right-40 w-80 h-80 bg-orange-500 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1.1, 1, 1.1],
-            opacity: [0.1, 0.15, 0.1],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-          className="absolute -bottom-40 -left-40 w-80 h-80 bg-amber-500 rounded-full blur-3xl"
-        />
-      </div>
+    <div className="min-h-screen bg-white text-gray-800">
+      <main>
 
-     
-
-      <main className="relative pt-16 sm:pt-20 md:pt-24">
-        {/* Enhanced Hero Section with Images */}
-        <section className="relative py-28 flex flex-col items-center justify-center text-white overflow-hidden">
-          {/* Background Images with Gradient Overlay */}
-          <div className="absolute inset-0">
-            {/* Main hero image */}
-            <motion.div
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.5 }}
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-              style={{
-                backgroundImage: 'url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80")'
-              }}
-            />
+        {/* ------------------ HERO SECTION ------------------ */}
+        <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-100">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
-            {/* Secondary overlay image for depth */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.4 }}
-              transition={{ duration: 2, delay: 0.5 }}
-              className="absolute inset-0 bg-cover bg-center mix-blend-overlay"
-              style={{
-                backgroundImage: 'url("https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80")'
-              }}
-            />
-            
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-900/85 via-amber-900/75 to-yellow-900/80"></div>
-          </div>
+            {/* TEXT */}
+            <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
+              <motion.div variants={fadeInUp} className="flex items-center gap-2 mb-6">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
+                  Build Your Career with Technify
+                </span>
+              </motion.div>
 
-         
+              <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl text-gray-900 mb-6 leading-tight font-semibold">
+                Shape The <span className="text-blue-600">Future</span> With Technify
+              </motion.h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 40 }} 
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative z-10 w-full max-w-6xl mx-auto text-center px-4"
-          >
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center bg-white/20 backdrop-blur-sm text-white/90 px-6 py-3 rounded-2xl mb-12 border border-white/30"
-            >
-              <motion.span 
-                animate={{ scale: [1, 1.3, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-2 h-2 bg-amber-400 rounded-full mr-3"
-              />
-              Build Your Career With Technify
+              <motion.p variants={fadeInUp} className="text-lg text-gray-600 max-w-2xl leading-relaxed mb-4">
+                Join our team of innovators and visionaries. Create cutting-edge solutions that transform industries.
+              </motion.p>
             </motion.div>
-            
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight"
-            >
-              Shape The{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">
-                Future
-              </span>{" "}
-              With Technify
-            </motion.h1>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8 font-light leading-relaxed"
-            >
-              Join our team of innovators and visionaries. Create cutting-edge solutions that transform industries and impact millions.
-            </motion.p>
-          </motion.div>
+
+            {/* IMAGE */}
+            <motion.div variants={fadeInUp} className="relative">
+              <div className="relative rounded-lg overflow-hidden border border-gray-200 shadow-lg">
+                <img
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200"
+                  alt="Career Hero"
+                  className="w-full h-[420px] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+              </div>
+            </motion.div>
+          </div>
         </section>
 
-        {/* Benefits Section */}
-        <section className="py-20 relative -mt-2">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-4xl font-black bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent mb-6">
+        {/* ------------------ BENEFITS SECTION ------------------ */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-100 bg-gray-50">
+          <div className="max-w-7xl mx-auto">
+            <motion.div variants={staggerContainer} className="text-center mb-16">
+              <motion.h2 variants={fadeInUp} className="text-3xl text-gray-900 font-semibold mb-4">
                 Why Join Technify?
-              </h2>
-              <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+              </motion.h2>
+              <motion.p variants={fadeInUp} className="text-gray-600 max-w-2xl mx-auto">
                 We invest in our team's growth and success with comprehensive benefits and opportunities.
-              </p>
+              </motion.p>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {benefits.map((benefit, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white rounded-3xl p-8 shadow-2xl border border-slate-200/60 hover:shadow-3xl transition-all group text-center"
-                  whileHover={{ y: -8, scale: 1.02 }}
+                  variants={fadeInUp}
+                  className="p-8 bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-all duration-300"
                 >
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="bg-gradient-to-br from-orange-500 to-amber-500 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 text-white shadow-lg"
-                  >
-                    <benefit.icon className="w-8 h-8" />
-                  </motion.div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-orange-600 transition-colors">
+                  <div className="w-14 h-14 mx-auto mb-4 flex items-center justify-center bg-blue-50 rounded-xl">
+                    <benefit.icon className="w-7 h-7 text-blue-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3 text-center">
                     {benefit.title}
                   </h3>
-                  <p className="text-slate-600 leading-relaxed">
+                  <p className="text-gray-600 text-center leading-relaxed">
                     {benefit.description}
                   </p>
                 </motion.div>
@@ -228,271 +113,48 @@ export default function CareerHero() {
           </div>
         </section>
 
-        {/* Team Culture Section with Images */}
-        <section className="py-20 bg-slate-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+        {/* ------------------ FORM SECTION ------------------ */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-gray-50">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            {/* INFO */}
+            <motion.div variants={fadeInUp} className="bg-white p-8 rounded-xl border border-gray-200">
+              <h2 className="text-3xl font-semibold text-gray-900 mb-6">Ready to Join Us?</h2>
+              <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                Send us your application and let's start a conversation.
+              </p>
+              <ul className="space-y-3 text-gray-600">
+                <li className="flex items-center gap-2"><div className="w-2 h-2 bg-blue-500 rounded-full"></div>Fast application process</li>
+                <li className="flex items-center gap-2"><div className="w-2 h-2 bg-blue-500 rounded-full"></div>Response within 48 hours</li>
+                <li className="flex items-center gap-2"><div className="w-2 h-2 bg-blue-500 rounded-full"></div>Multiple interview rounds</li>
+              </ul>
+            </motion.div>
+
+            {/* FORM */}
+            <motion.form
+              onSubmit={handleSubmit}
+              className="bg-white p-8 rounded-xl border border-gray-200 space-y-6"
+              variants={fadeInUp}
             >
-              <div className="space-y-6">
-                <h2 className="text-4xl font-black bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
-                  Our Culture
-                </h2>
-                <p className="text-slate-600 text-lg leading-relaxed">
-                  At Technify, we believe in creating an environment where innovation thrives and team members grow together. Our culture is built on collaboration, creativity, and continuous learning.
-                </p>
-                <div className="grid grid-cols-2 gap-4">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200/60"
-                  >
-                    <div className="text-2xl font-black text-orange-600 mb-2">Flexible</div>
-                    <div className="text-slate-600">Remote & hybrid work options</div>
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200/60"
-                  >
-                    <div className="text-2xl font-black text-orange-600 mb-2">Learning</div>
-                    <div className="text-slate-600">Regular training & workshops</div>
-                  </motion.div>
-                </div>
+              <h3 className="text-2xl font-semibold text-gray-900">Apply Now</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <input name="name" value={formData.name} onChange={handleInputChange} required placeholder="Full Name" className="input-field" />
+                <input name="email" value={formData.email} onChange={handleInputChange} required placeholder="Email" className="input-field" />
               </div>
-              
-              <motion.div
-                initial={{ opacity: 0, x: 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                className="grid grid-cols-2 gap-4"
-              >
-                <div className="space-y-4">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="rounded-2xl overflow-hidden shadow-lg"
-                  >
-                    <img 
-                      src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                      alt="Team collaboration"
-                      className="w-full h-48 object-cover"
-                    />
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="rounded-2xl overflow-hidden shadow-lg"
-                  >
-                    <img 
-                      src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                      alt="Office environment"
-                      className="w-full h-32 object-cover"
-                    />
-                  </motion.div>
-                </div>
-                <div className="space-y-4 pt-8">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="rounded-2xl overflow-hidden shadow-lg"
-                  >
-                    <img 
-                      src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                      alt="Team meeting"
-                      className="w-full h-32 object-cover"
-                    />
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="rounded-2xl overflow-hidden shadow-lg"
-                  >
-                    <img 
-                      src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                      alt="Innovation workspace"
-                      className="w-full h-48 object-cover"
-                    />
-                  </motion.div>
-                </div>
-              </motion.div>
-            </motion.div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <input name="mobile" value={formData.mobile} onChange={handleInputChange} required placeholder="Mobile Number" className="input-field" />
+                <input name="experience" value={formData.experience} onChange={handleInputChange} placeholder="Experience" className="input-field" />
+              </div>
+              <textarea name="message" value={formData.message} onChange={handleInputChange} rows={4} placeholder="Cover Letter" className="input-field" />
+              <motion.button whileHover={{ scale: 1.02 }} className="w-full bg-gradient-to-r from-blue-600 to-sky-500 text-white py-4 rounded-lg flex items-center justify-center gap-2">
+                <Send className="w-5 h-5" />
+                Submit Application
+                <ArrowRight className="w-4 h-4" />
+              </motion.button>
+            </motion.form>
           </div>
         </section>
 
-        {/* Application Form Section */}
-        <section className="py-20 relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-12"
-            >
-              {/* Company Info */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="space-y-8"
-              >
-                <div className="bg-white rounded-3xl shadow-2xl p-8 border border-slate-200/60">
-                  <h2 className="text-3xl font-black bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent mb-6">
-                    Ready to Join Us?
-                  </h2>
-                  <p className="text-slate-600 text-lg leading-relaxed mb-6">
-                    Send us your application and let's start a conversation about your future at Technify. We're always looking for talented individuals who share our passion for innovation.
-                  </p>
-                  
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                      <span className="text-slate-700">Fast application process</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                      <span className="text-slate-700">Response within 48 hours</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                      <span className="text-slate-700">Multiple interview rounds</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Quick Stats */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white rounded-2xl p-6 text-center shadow-lg border border-slate-200/60">
-                    <div className="text-2xl font-black bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
-                      50+
-                    </div>
-                    <div className="text-slate-600 text-sm">Team Members</div>
-                  </div>
-                  <div className="bg-white rounded-2xl p-6 text-center shadow-lg border border-slate-200/60">
-                    <div className="text-2xl font-black bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
-                      5+
-                    </div>
-                    <div className="text-slate-600 text-sm">Years Experience</div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Application Form */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                className="bg-white rounded-3xl shadow-2xl p-8 border border-slate-200/60"
-              >
-                <h3 className="text-2xl font-black text-slate-900 mb-2">Apply Now</h3>
-                <p className="text-slate-600 mb-8">Fill out the form below to start your application</p>
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-semibold text-slate-700 mb-2">
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full px-5 py-4 rounded-2xl bg-slate-50 text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-orange-500 border border-slate-200 transition-all hover:border-orange-300"
-                        placeholder="Enter your full name"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-slate-700 mb-2">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full px-5 py-4 rounded-2xl bg-slate-50 text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-orange-500 border border-slate-200 transition-all hover:border-orange-300"
-                        placeholder="your.email@example.com"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-semibold text-slate-700 mb-2">
-                        Mobile Number *
-                      </label>
-                      <input
-                        type="text"
-                        name="mobile"
-                        value={formData.mobile}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full px-5 py-4 rounded-2xl bg-slate-50 text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-orange-500 border border-slate-200 transition-all hover:border-orange-300"
-                        placeholder="+91 99999 99999"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-slate-700 mb-2">
-                        Experience
-                      </label>
-                      <input
-                        type="text"
-                        name="experience"
-                        value={formData.experience}
-                        onChange={handleInputChange}
-                        className="w-full px-5 py-4 rounded-2xl bg-slate-50 text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-orange-500 border border-slate-200 transition-all hover:border-orange-300"
-                        placeholder="Years of experience"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      Upload Resume *
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="file"
-                        className="w-full px-5 py-4 rounded-2xl bg-slate-50 text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-orange-500 border border-slate-200 transition-all hover:border-orange-300 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-orange-500/10 file:text-orange-600 hover:file:bg-orange-500/20"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      Cover Letter
-                    </label>
-                    <textarea
-                      name="message"
-                      placeholder="Tell us why you're interested in joining Technify..."
-                      rows={4}
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      className="w-full px-5 py-4 rounded-2xl bg-slate-50 text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-orange-500 border border-slate-200 transition-all hover:border-orange-300 resize-none"
-                    />
-                  </div>
-
-                  <motion.button
-                    type="submit"
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full bg-gradient-to-r from-orange-600 to-amber-600 text-white py-5 rounded-2xl font-semibold hover:shadow-2xl transition-all shadow-lg flex items-center justify-center group"
-                  >
-                    <Send className="w-5 h-5 mr-3" />
-                    Submit Application
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </motion.button>
-                </form>
-              </motion.div>
-            </motion.div>
-          </div>
-        </section>
       </main>
     </div>
   );

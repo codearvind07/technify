@@ -1,64 +1,69 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import Image from "next/image";
 import { 
   Tv, 
   Video, 
   Speaker, 
   Monitor, 
   Zap, 
-  Download,
-  ArrowRight,
-  Play,
   Mic,
   Eye,
   HardDrive,
-  Check
+  Check,
+  Building
 } from "lucide-react";
 import { SEO } from '@/components/seo/seo';
-import Image from "next/image";
+import hero from "@/assets/enterprise-av.jpg"; // Placeholder, change if needed
 
-export default function EnterpriseAVPage() {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { 
-        staggerChildren: 0.1, 
-        delayChildren: 0.2,
-        ease: "easeOut"
-      },
-    },
-  };
+/* ------------------ FONT CLASSES ------------------ */
+const fonts = {
+  h1: "font-poppins font-semibold",
+  h2: "font-poppins font-semibold",
+  h3: "font-poppins font-semibold",
+  body: "font-raleway",
+  other: "font-open-sans",
+};
 
-  const itemVariants: Variants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { 
-        duration: 0.5, 
-        ease: "easeOut" 
-      },
-    },
-  };
-
+/* ------------------ MOTION VARIANTS ------------------ */
   const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
-
-  const staggerChildren: Variants = {
+  const staggerContainer: Variants = {
     hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { 
-        staggerChildren: 0.15,
-        delayChildren: 0.1
-      } 
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.2 } },
   };
 
+export default function EnterpriseAVPage() {
+  /* ------------------ REUSABLE COMPONENT ------------------ */
+  function CapabilityCard({ icon: Icon, title, items, note }: any) {
+    return (
+      <motion.div
+        variants={fadeInUp}
+        className="group p-8 bg-white rounded-xl border border-gray-200 hover:border-blue-300 transition-all duration-300 hover:shadow-lg"
+      >
+        <div className="flex items-center gap-4 mb-6">
+          <div className="p-3 rounded-lg border border-gray-300 group-hover:border-blue-400 transition-colors duration-300">
+            <Icon className="w-6 h-6 text-gray-700 group-hover:text-blue-600 transition-colors duration-300" />
+          </div>
+          <h3 className={`text-xl text-gray-900 ${fonts.h3}`}>{title}</h3>
+        </div>
+        <ul className="space-y-3">
+          {items.map((item: string, i: number) => (
+            <li key={i} className="flex gap-3 items-start">
+              <Check className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span className={`text-gray-600 text-sm leading-relaxed ${fonts.body}`}>{item}</span>
+            </li>
+          ))}
+        </ul>
+        {note && <p className="mt-4 text-xs italic text-gray-500">{note}</p>}
+      </motion.div>
+    );
+  }
+
+  /* ------------------ PAGE CONTENT ------------------ */
   const capabilities = [
     {
       title: "Meeting Room & Boardroom AV",
@@ -126,7 +131,8 @@ export default function EnterpriseAVPage() {
         "Encoder/decoder systems",
         "Redundant AV racks for 24×7 operations"
       ]
-    }
+    },
+    // Add icons to the objects above
   ];
 
   const technicalHighlights = [
@@ -172,531 +178,158 @@ export default function EnterpriseAVPage() {
   return (
     <>
       <SEO 
-        title="Enterprise Audio-Visual (AV) Solutions - Conference Room & Digital Signage Systems"
-        description="Comprehensive AV solutions for enterprises featuring video conferencing, sound systems, digital signage, and content management for enhanced collaboration and communication. enterprise av solutions, corporate meeting room av, digital signage systems, noc soc video wall, boardroom audio visual setup, office av integration"
+        title="Enterprise AV Solutions | Corporate Meeting Room & Digital Signage"
+        description="Technify delivers enterprise-grade AV solutions, including video conferencing, digital signage, and command center video walls to enhance collaboration and brand experience."
         path="/products/enterprise/av"
-        image="/images/og-enterprise-av.jpg"
+        image={hero.src}
       />
       
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white text-gray-800">
+      <div className="min-h-screen bg-white text-gray-800">
         <main>
-          {/* Hero Section */}
-          <section className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
-            {/* Background Elements */}
-            <div className="absolute inset-0 overflow-hidden -z-10">
-              <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-              <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-1000"></div>
-            </div>
-            
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <motion.div 
-                  initial="hidden"
-                  animate="visible"
-                  variants={containerVariants}
-                >
-                  <motion.div 
-                    variants={itemVariants}
-                    className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-6"
-                  >
-                    Smart Meetings. Digital Collaboration. Visual Intelligence for Modern Workplaces.
-                  </motion.div>
-                  
-                  <motion.h1 
-                    variants={itemVariants}
-                    className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900"
-                  >
-                    Audio-Visual{" "}
-                    <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                      Solutions
-                    </span>
-                  </motion.h1>
-                  
-                  <motion.p 
-                    variants={itemVariants}
-                    className="text-xl text-gray-600 mb-8 max-w-2xl leading-relaxed"
-                  >
-                    Complete AV systems designed to enhance collaboration, communication, and presentation capabilities 
-                    for enterprise environments with seamless integration and professional quality.
-                  </motion.p>
+          {/* ------------------ HERO ------------------ */}
+          <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-100">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <motion.div variants={staggerContainer} initial="hidden" animate="visible">
+                <motion.div variants={fadeInUp} className="flex items-center gap-2 mb-6">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span className={`text-sm text-gray-500 font-semibold uppercase tracking-wide ${fonts.other}`}>
+                    Enterprise Collaboration Solutions
+                  </span>
                 </motion.div>
-                
-                <motion.div 
-                  initial="hidden"
-                  animate="visible"
-                  variants={fadeInUp}
-                  className="relative"
-                >
-                  <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-                    <Image 
-                      src="https://plus.unsplash.com/premium_photo-1756776238206-31335d74a4eb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTh8fEVudGVycHJpY2UlMjBBdWRpby1WaXN1YWwlMjBTb2x1dGlvbnN8ZW58MHx8MHx8fDA%3D" 
-                      alt="Enterprise Audio-Visual Systems" 
-                      width={600} 
-                      height={400} 
-                      className="w-full h-auto object-cover"
-                    />
-                  </div>
-                </motion.div>
-              </div>
+
+                <motion.h1 variants={fadeInUp} className={`text-4xl md:text-5xl ${fonts.h1} text-gray-900 mb-6`}>
+                  Audio-Visual (AV) Solutions for Enterprises
+                </motion.h1>
+
+                <motion.p variants={fadeInUp} className={`text-lg text-gray-600 ${fonts.body} mb-6`}>
+                  <strong>Smart Meetings. Digital Collaboration. Visual Intelligence for Modern Workplaces.</strong>
+                </motion.p>
+
+                <motion.p variants={fadeInUp} className={`text-lg text-gray-600 ${fonts.body}`}>
+                  Enterprises require advanced AV systems for conference rooms, training centers, and command centers. Technify delivers enterprise-grade AV solutions that enhance collaboration and decision-making.
+                </motion.p>
+              </motion.div>
+
+              <motion.div variants={fadeInUp}>
+                <Image src={hero} alt="Enterprise AV Solutions" width={800} height={600} className="rounded-lg border border-gray-200" />
+              </motion.div>
             </div>
           </section>
 
-          {/* Importance Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-            <div className="max-w-7xl mx-auto">
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={containerVariants}
-                className="text-center mb-16"
-              >
-                <motion.h2 
-                  variants={itemVariants}
-                  className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
-                >
+          {/* ------------------ WHY IMPORTANT ------------------ */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-100 bg-gray-50">
+            <div className="max-w-6xl mx-auto text-center">
+              <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+                <motion.h2 variants={fadeInUp} className={`text-3xl ${fonts.h2} text-gray-900 mb-4`}>
                   Why AV Systems Matter for Enterprises
                 </motion.h2>
-                
-                <motion.p 
-                  variants={itemVariants}
-                  className="text-lg text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
-                >
-                  Enterprises require advanced Audio-Visual systems for conference rooms, training centers, digital signage, NOC/SOC command centers, and workspace communication.
+                <motion.p variants={fadeInUp} className={`text-gray-600 max-w-3xl mx-auto ${fonts.body}`}>
+                  Modern offices rely on AV systems for professional meetings, real-time monitoring in NOCs/SOCs, digital signage, and hybrid work environments. They help create a smart, collaborative, and productive enterprise.
                 </motion.p>
-                
-                <motion.div 
-                  variants={staggerChildren}
-                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                >
-                  <motion.div 
-                    variants={fadeInUp}
-                    className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl border border-gray-200 shadow-sm"
-                  >
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                      <Video className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Professional Meetings</h3>
-                    <p className="text-gray-600">High-quality video conferencing and hybrid meeting solutions for seamless collaboration.</p>
-                  </motion.div>
-                  
-                  <motion.div 
-                    variants={fadeInUp}
-                    className="bg-gradient-to-br from-purple-50 to-white p-8 rounded-2xl border border-gray-200 shadow-sm"
-                  >
-                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
-                      <Monitor className="w-6 h-6 text-purple-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Real-Time Monitoring</h3>
-                    <p className="text-gray-600">Visual intelligence for NOCs/SOCs with real-time data visualization and dashboards.</p>
-                  </motion.div>
-                  
-                  <motion.div 
-                    variants={fadeInUp}
-                    className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl border border-gray-200 shadow-sm"
-                  >
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                      <Tv className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Digital Communication</h3>
-                    <p className="text-gray-600">Corporate messaging and branding through digital signage and communication systems.</p>
-                  </motion.div>
-                </motion.div>
               </motion.div>
             </div>
           </section>
 
-          {/* What We Deliver Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+          {/* ------------------ CORE CAPABILITIES ------------------ */}
+          <section className="py-20 bg-white px-4 sm:px-6 lg:px-8 border-b border-gray-100">
             <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={fadeInUp}
-                >
-                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200">
-                    <Image 
-                      src="https://plus.unsplash.com/premium_photo-1754211772292-9dc99de0dd22?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjZ8fEVudGVycHJpY2UlMjBBdWRpby1WaXN1YWwlMjBTb2x1dGlvbnN8ZW58MHx8MHx8fDA%3D" 
-                      alt="Complete AV Ecosystem" 
-                      width={600} 
-                      height={400} 
-                      className="w-full h-auto object-cover"
-                    />
-                  </div>
-                </motion.div>
-                
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={containerVariants}
-                >
-                  <motion.h2 
-                    variants={itemVariants}
-                    className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
-                  >
-                    What Technify Delivers
-                  </motion.h2>
-                  
-                  <motion.p 
-                    variants={itemVariants}
-                    className="text-lg text-gray-600 mb-8 leading-relaxed"
-                  >
-                    A complete AV ecosystem for meeting rooms, auditoriums, corporate floors, and command centers.
-                  </motion.p>
-                  
-                  <motion.div 
-                    variants={itemVariants}
-                    className="space-y-4"
-                  >
-                    <div className="flex items-start gap-4 p-4 rounded-lg bg-white border border-gray-200">
-                      <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mt-1">
-                        <Check className="h-5 w-5 text-blue-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">Enterprise-Grade Solutions</h3>
-                        <p className="text-gray-600 text-sm">Professional AV systems designed for reliability and scalability in enterprise environments.</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start gap-4 p-4 rounded-lg bg-white border border-gray-200">
-                      <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mt-1">
-                        <Monitor className="h-5 w-5 text-blue-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">Seamless Integration</h3>
-                        <p className="text-gray-600 text-sm">Full compatibility with Microsoft Teams Rooms, Zoom Rooms, and other collaboration platforms.</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start gap-4 p-4 rounded-lg bg-white border border-gray-200">
-                      <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mt-1">
-                        <Zap className="h-5 w-5 text-blue-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">Centralized Management</h3>
-                        <p className="text-gray-600 text-sm">Unified control of all AV devices with remote monitoring and automatic scheduling.</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              </div>
-            </div>
-          </section>
+              <motion.h2 variants={fadeInUp} className={`text-center text-3xl ${fonts.h2} text-gray-900 mb-16`}>
+                Core Capabilities
+              </motion.h2>
 
-          {/* Core Capabilities Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-            <div className="max-w-7xl mx-auto">
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeInUp}
-                className="text-center mb-16"
-              >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-                  Core Capabilities
-                </h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                  Comprehensive AV solutions with specialized features for different enterprise environments.
-                </p>
-              </motion.div>
-              
               <motion.div 
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                variants={staggerChildren}
+                variants={staggerContainer}
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
               >
                 {capabilities.map((capability, index) => (
-                  <motion.div
-                    key={index}
-                    variants={fadeInUp}
-                    className="bg-gradient-to-b from-white to-gray-50 rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
-                  >
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-                        {index === 0 && <Monitor className="w-6 h-6 text-white" />}
-                        {index === 1 && <Mic className="w-6 h-6 text-white" />}
-                        {index === 2 && <Tv className="w-6 h-6 text-white" />}
-                        {index === 3 && <Eye className="w-6 h-6 text-white" />}
-                        {index === 4 && <Video className="w-6 h-6 text-white" />}
-                        {index === 5 && <HardDrive className="w-6 h-6 text-white" />}
-                      </div>
-                      <h3 className="text-xl font-semibold text-gray-900">{capability.title}</h3>
-                    </div>
-                    
-                    <ul className="space-y-3 mb-6">
-                      {capability.points.map((point, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <div className="flex-shrink-0 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
-                            <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
-                          </div>
-                          <span className="text-gray-600 text-sm">{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    
-                    {capability.note && (
-                      <div className="pt-4 border-t border-gray-200">
-                        <p className="text-xs text-gray-500 italic">{capability.note}</p>
-                      </div>
-                    )}
+                  <CapabilityCard key={index} icon={Monitor} title={capability.title} items={capability.points} note={capability.note} />
+                ))}
+              </motion.div>
+            </div>
+          </section>
+
+          {/* ------------------ TECH HIGHLIGHTS ------------------ */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+            <div className="max-w-7xl mx-auto">
+              <motion.h2 className={`text-center text-3xl ${fonts.h2} mb-16 text-gray-900`} variants={fadeInUp}>
+                Technical Highlights
+              </motion.h2>
+
+              <motion.div variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {technicalHighlights.map((item, i) => (
+                  <motion.div key={i} variants={fadeInUp} className="flex items-center gap-3 p-4 border rounded-lg bg-white">
+                    <Zap className="h-5 w-5 text-blue-600" />
+                    <p className={`text-gray-700 ${fonts.body}`}>{item}</p>
                   </motion.div>
                 ))}
               </motion.div>
             </div>
           </section>
 
-          {/* Technical Highlights Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={containerVariants}
-                >
-                  <motion.h2 
-                    variants={itemVariants}
-                    className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
-                  >
-                    Technical Highlights
-                  </motion.h2>
-                  
-                  <motion.p 
-                    variants={itemVariants}
-                    className="text-lg text-gray-600 mb-8 leading-relaxed"
-                  >
-                    Cutting-edge technology designed to meet the AV requirements of modern enterprise environments with reliability and performance.
-                  </motion.p>
-                  
-                  <motion.div 
-                    variants={staggerChildren}
-                    className="grid grid-cols-1 gap-4"
-                  >
-                    {technicalHighlights.map((highlight, index) => (
-                      <motion.div 
-                        key={index}
-                        variants={fadeInUp}
-                        className="flex items-center gap-4 p-4 rounded-lg bg-white border border-gray-200"
-                      >
-                        <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
-                          <Zap className="h-5 w-5 text-blue-600" />
-                        </div>
-                        <div className="font-medium text-gray-900">{highlight}</div>
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                </motion.div>
-                
-                <motion.div
-                  initial="hidden"
-                  animate="visible"
-                  variants={fadeInUp}
-                  className="relative"
-                >
-                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200">
-                    <Image 
-                      src="https://plus.unsplash.com/premium_photo-1747277562555-f38a347250bb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nzh8fEVudGVycHJpY2UlMjBBdWRpby1WaXN1YWwlMjBTb2x1dGlvbnN8ZW58MHx8MHx8fDA%3D" 
-                      alt="AV Technical Highlights" 
-                      width={600} 
-                      height={400} 
-                      className="w-full h-auto object-cover"
-                    />
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-          </section>
+          {/* ------------------ DEPLOYMENT AREAS ------------------ */}
+          <section className="py-20 bg-white px-4 sm:px-6 lg:px-8">
+            <motion.h2 className={`text-center text-3xl ${fonts.h2} mb-16 text-gray-900`} variants={fadeInUp}>
+              Where AV Solutions Are Deployed
+            </motion.h2>
 
-          {/* Deployment Areas Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-            <div className="max-w-7xl mx-auto">
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeInUp}
-                className="text-center mb-16"
-              >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-                  Where AV Solutions Are Deployed
-                </h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
-                  Strategic placement across all critical enterprise zones for comprehensive AV coverage.
-                </p>
-              </motion.div>
-              
               <motion.div 
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                variants={staggerChildren}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                variants={staggerContainer}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
               >
                 {deploymentAreas.map((area, index) => (
                   <motion.div
                     key={index}
                     variants={fadeInUp}
-                    className="flex items-start gap-4 p-6 rounded-xl bg-gradient-to-br from-blue-50 to-white border border-gray-200"
+                    className="flex items-center gap-4 border p-4 rounded-lg bg-gray-50"
                   >
-                    <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mt-1">
-                      <Monitor className="h-5 w-5 text-blue-600" />
-                    </div>
-                    <span className="font-medium text-gray-900">{area}</span>
+                    <Building className="text-blue-600 w-4 h-4" />
+                    <p className={fonts.body}>{area}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+          </section>
+
+          {/* ------------------ SYSTEM INTEGRATIONS ------------------ */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+            <div className="max-w-7xl mx-auto">
+              <motion.h2 className={`text-center text-3xl ${fonts.h2} mb-16 text-gray-900`} variants={fadeInUp}>
+                System Integrations
+              </motion.h2>
+              <p className="text-center text-lg text-gray-600 -mt-12 mb-12 max-w-2xl mx-auto">Technify integrates AV with other building systems to create a smart, connected workplace experience.</p>
+
+              <motion.div variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                {integrations.map((item, i) => (
+                  <motion.div key={i} variants={fadeInUp} className="flex items-center gap-3 p-4 border rounded-lg bg-white">
+                    <Zap className="h-5 w-5 text-blue-600" />
+                    <p className={`text-gray-700 ${fonts.body}`}>{item}</p>
                   </motion.div>
                 ))}
               </motion.div>
             </div>
           </section>
 
-          {/* System Integrations Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-            <div className="max-w-7xl mx-auto">
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={containerVariants}
-                className="text-center mb-16"
-              >
-                <motion.h2 
-                  variants={itemVariants}
-                  className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
-                >
-                  System Integrations
-                </motion.h2>
-                
-                <motion.p 
-                  variants={itemVariants}
-                  className="text-lg text-gray-600 mb-12 max-w-3xl mx-auto"
-                >
-                  Seamless connectivity with existing enterprise infrastructure for enhanced operational efficiency.
-                </motion.p>
-                
-                <motion.div 
-                  variants={staggerChildren}
-                  className="max-w-4xl mx-auto space-y-4"
-                >
-                  {integrations.map((integration, index) => (
-                    <motion.div
-                      key={index}
-                      variants={fadeInUp}
-                      className="flex items-center gap-4 p-6 rounded-xl bg-gradient-to-r from-blue-50 to-purple-50 border border-gray-200 shadow-sm"
-                    >
-                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
-                        <Zap className="h-6 w-6 text-white" />
-                      </div>
-                      <div className="text-left">
-                        <p className="font-medium text-gray-900">{integration}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
-                
-                <motion.p 
-                  variants={itemVariants}
-                  className="text-lg text-gray-600 mt-8 max-w-3xl mx-auto"
-                >
-                  Creates a smart, connected workplace experience.
-                </motion.p>
-              </motion.div>
-            </div>
-          </section>
+          {/* ------------------ BENEFITS ------------------ */}
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-orange-50">
+            <motion.h2 className={`text-center text-3xl ${fonts.h2} mb-16 text-gray-900`} variants={fadeInUp}>
+              Benefits for Enterprises
+            </motion.h2>
 
-          {/* Benefits Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={fadeInUp}
-                >
-                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200">
-                    <Image 
-                      src="https://images.unsplash.com/photo-1627848455575-370d989211f6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTN8fEVudGVycHJpY2UlMjBBdWRpby1WaXN1YWwlMjBTb2x1dGlvbnN8ZW58MHx8MHx8fDA%3D" 
-                      alt="Enterprise AV Benefits" 
-                      width={600} 
-                      height={400} 
-                      className="w-full h-auto object-cover"
-                    />
+            <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto" variants={staggerContainer}>
+              {benefits.map((benefit, i) => (
+                <motion.div key={i} variants={fadeInUp} className="p-6 bg-white rounded-xl border hover:shadow-md transition">
+                  <div className="flex gap-3">
+                    <Check className="w-4 h-4 text-green-600" />
+                    <p className={fonts.body}>{benefit}</p>
                   </div>
                 </motion.div>
-                
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={containerVariants}
-                >
-                  <motion.h2 
-                    variants={itemVariants}
-                    className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
-                  >
-                    Benefits for Enterprises
-                  </motion.h2>
-                  
-                  <motion.p 
-                    variants={itemVariants}
-                    className="text-lg text-gray-600 mb-8 leading-relaxed"
-                  >
-                    Our Audio-Visual Solutions enhance communication and collaboration tailored for enterprise environments.
-                  </motion.p>
-                  
-                  <motion.div 
-                    variants={staggerChildren}
-                    className="grid grid-cols-1 gap-4"
-                  >
-                    {benefits.map((benefit, index) => (
-                      <motion.div 
-                        key={index}
-                        variants={fadeInUp}
-                        className="flex items-center gap-4 p-4 rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 border border-gray-200"
-                      >
-                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-                          <Check className="h-5 w-5 text-white" />
-                        </div>
-                        <div className="font-medium text-gray-900">{benefit}</div>
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                </motion.div>
-              </div>
-            </div>
-          </section>
-
-          {/* CTA Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-purple-600">
-            <div className="max-w-5xl mx-auto">
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeInUp}
-                className="text-center text-white"
-              >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Enhance Your AV Systems?</h2>
-                <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
-                  Contact our experts to discuss how our Audio-Visual Solutions can transform your enterprise communication.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a 
-                    href="/contact" 
-                    className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all shadow-lg flex items-center justify-center"
-                  >
-                    Schedule a Consultation
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
-                </div>
-              </motion.div>
-            </div>
+              ))}
+            </motion.div>
           </section>
         </main>
       </div>

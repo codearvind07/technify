@@ -1,35 +1,33 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { 
-  Car, 
-  Scan, 
-  UserCheck, 
-  QrCode, 
-  MapPin, 
+import {
+  Car,
+  Scan,
+  UserCheck,
+  QrCode,
   BarChart3,
   Shield,
-  Eye,
   Zap,
-  Download,
   ArrowRight,
-  Play,
-  Ticket,
-  Lock,
   Check,
   HardDrive,
-  Monitor
+  Monitor,
+  MapPin,
 } from "lucide-react";
 import { SEO } from '@/components/seo/seo';
 import Image from "next/image";
+import hero from "@/assets/Parkingenterprice.jpg"
+import hero1 from "@/assets/parkingenterprice1.jpg"
+import hero2 from "@/assets/parkingenterprice2.jpg"
 
 export default function EnterpriseParkingPage() {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { 
-        staggerChildren: 0.1, 
+      transition: {
+        staggerChildren: 0.1,
         delayChildren: 0.2,
         ease: "easeOut"
       },
@@ -41,9 +39,9 @@ export default function EnterpriseParkingPage() {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { 
-        duration: 0.5, 
-        ease: "easeOut" 
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
       },
     },
   };
@@ -55,12 +53,12 @@ export default function EnterpriseParkingPage() {
 
   const staggerChildren: Variants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
-      transition: { 
+      transition: {
         staggerChildren: 0.15,
         delayChildren: 0.1
-      } 
+      }
     }
   };
 
@@ -162,36 +160,31 @@ export default function EnterpriseParkingPage() {
   ];
 
   const benefits = [
-    "Faster vehicle flow at peak hours",
-    "Organized parking allocation",
-    "Higher security and tracking",
-    "Reduced manual effort & staffing costs",
-    "Better visitor experience",
-    "Analytics-driven decision-making",
-    "Zero congestion and smoother operations"
+    "✔ Faster vehicle flow at peak hours",
+    "✔ Organized parking allocation",
+    "✔ Higher security and tracking",
+    "✔ Reduced manual effort & staffing costs",
+    "✔ Better visitor experience",
+    "✔ Analytics-driven decision-making",
+    "✔ Zero congestion and smoother operations"
   ];
 
   return (
     <>
-      <SEO 
-        title="Enterprise Parking Management System - ANPR Corporate Parking Automation"
-        description="AI-powered parking management systems for enterprises featuring ANPR, RFID, smart guidance, real-time dashboards, and integration with security systems for seamless employee and visitor experience."
+      <SEO
+        title="Enterprise Parking Management System | ANPR Corporate Parking"
+        description="Technify provides AI-powered, fully automated Parking Management Systems for enterprises, ensuring smooth entry/exit, intelligent parking allocation, and complete visibility of vehicle movement."
         path="/products/enterprise/parking"
       />
       
       {/* Main content */}
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white text-gray-800">
+      <div className="min-h-screen bg-white text-gray-800">
         <main>
           {/* Hero Section */}
-          <section className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
-            {/* Background Elements */}
-            <div className="absolute inset-0 overflow-hidden -z-10">
-              <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-              <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-1000"></div>
-            </div>
+          <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-100">
             
             <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <motion.div 
                   initial="hidden"
                   animate="visible"
@@ -199,26 +192,27 @@ export default function EnterpriseParkingPage() {
                 >
                   <motion.div 
                     variants={itemVariants}
-                    className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-6"
+                    className="flex items-center gap-2 mb-6"
                   >
+                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <span className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
                     Smart Access. Organized Parking. Seamless Employee & Visitor Experience.
+                    </span>
                   </motion.div>
                   
                   <motion.h1 
                     variants={itemVariants}
-                    className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900"
+                    className="text-4xl md:text-5xl text-gray-900 mb-6 leading-tight font-semibold"
                   >
-                    Parking Management{" "}
-                    <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                      System
-                    </span>
+                    Parking Management System for  Enterprises{" "}
+                   
                   </motion.h1>
                   
                   <motion.p 
                     variants={itemVariants}
-                    className="text-xl text-gray-600 mb-8 max-w-2xl leading-relaxed"
+                    className="text-lg text-gray-600 mb-8 leading-relaxed"
                   >
-                    AI-powered, fully automated Parking Management Systems that ensure smooth entry/exit, intelligent parking allocation, and complete visibility of vehicle movement.
+                    Corporate offices, IT parks, and business campuses deal with heavy daily vehicle traffic. Technify provides AI-powered, fully automated Parking Management Systems that ensure smooth entry/exit, intelligent parking allocation, and complete visibility of vehicle movement.
                   </motion.p>
                 </motion.div>
                 
@@ -228,14 +222,15 @@ export default function EnterpriseParkingPage() {
                   variants={fadeInUp}
                   className="relative"
                 >
-                  <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
+                  <div className="relative rounded-lg overflow-hidden border border-gray-200">
                     <Image 
-                      src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGFya2luZyUyMG1hbmFnZW1lbnQlMjBzeXN0ZW18ZW58MHx8MHx8fDA%3D" 
+                      src={hero} 
                       alt="Enterprise Parking Management System" 
                       width={600} 
                       height={400} 
                       className="w-full h-auto object-cover"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
                   </div>
                 </motion.div>
               </div>
@@ -243,7 +238,7 @@ export default function EnterpriseParkingPage() {
           </section>
 
           {/* Importance Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+          <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-100">
             <div className="max-w-7xl mx-auto">
               <motion.div
                 initial="hidden"
@@ -254,7 +249,7 @@ export default function EnterpriseParkingPage() {
               >
                 <motion.h2 
                   variants={itemVariants}
-                  className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
+                  className="text-3xl md:text-4xl font-semibold mb-4 text-gray-900"
                 >
                   Why Smart Parking Matters for Enterprises
                 </motion.h2>
@@ -263,44 +258,43 @@ export default function EnterpriseParkingPage() {
                   variants={itemVariants}
                   className="text-lg text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
                 >
-                  A modern parking system helps organizations avoid congestion, improve security, and enhance the overall workplace experience.
+                  A modern parking system helps organizations avoid congestion, improve security, and enhance the overall workplace experience. A well-managed parking system reflects a professional and modern workplace.
                 </motion.p>
                 
                 <motion.div 
                   variants={staggerChildren}
-                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
                 >
                   <motion.div 
                     variants={fadeInUp}
-                    className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl border border-gray-200 shadow-sm"
+                    className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-all duration-300"
                   >
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                      <Zap className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Efficiency</h3>
-                    <p className="text-gray-600">Faster vehicle flow at peak hours with organized parking allocation and reduced manual effort.</p>
+                    <Check className="w-4 h-4 text-green-600 flex-shrink-0" />
+                    <span className="text-gray-700 text-sm text-center">Avoid Congestion</span>
                   </motion.div>
                   
                   <motion.div 
                     variants={fadeInUp}
-                    className="bg-gradient-to-br from-purple-50 to-white p-8 rounded-2xl border border-gray-200 shadow-sm"
+                    className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-all duration-300"
                   >
-                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
-                      <Shield className="w-6 h-6 text-purple-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Security</h3>
-                    <p className="text-gray-600">Higher security and tracking with automated monitoring and incident recording.</p>
+                    <Check className="w-4 h-4 text-green-600 flex-shrink-0" />
+                    <span className="text-gray-700 text-sm text-center">Improve Security</span>
                   </motion.div>
                   
                   <motion.div 
                     variants={fadeInUp}
-                    className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl border border-gray-200 shadow-sm"
+                    className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-all duration-300"
                   >
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                      <Car className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Experience</h3>
-                    <p className="text-gray-600">Better visitor experience with seamless entry/exit and smooth parking guidance.</p>
+                    <Check className="w-4 h-4 text-green-600 flex-shrink-0" />
+                    <span className="text-gray-700 text-sm text-center">Increase Efficiency</span>
+                  </motion.div>
+
+                  <motion.div 
+                    variants={fadeInUp}
+                    className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:border-gray-300 transition-all duration-300"
+                  >
+                    <Check className="w-4 h-4 text-green-600 flex-shrink-0" />
+                    <span className="text-gray-700 text-sm text-center">Enhance Experience</span>
                   </motion.div>
                 </motion.div>
               </motion.div>
@@ -308,7 +302,7 @@ export default function EnterpriseParkingPage() {
           </section>
 
           {/* What We Deliver Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 border-b border-gray-200">
             <div className="max-w-7xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <motion.div
@@ -317,9 +311,9 @@ export default function EnterpriseParkingPage() {
                   viewport={{ once: true }}
                   variants={fadeInUp}
                 >
-                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+                  <div className="relative rounded-lg overflow-hidden shadow-lg border border-gray-200">
                     <Image 
-                      src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBhcmtpbmd8ZW58MHx8MHx8fDA%3D" 
+                      src={hero2} 
                       alt="Complete Parking Management System" 
                       width={600} 
                       height={400} 
@@ -336,7 +330,7 @@ export default function EnterpriseParkingPage() {
                 >
                   <motion.h2 
                     variants={itemVariants}
-                    className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
+                    className="text-3xl md:text-4xl font-semibold mb-6 text-gray-900"
                   >
                     What Technify Delivers
                   </motion.h2>
@@ -350,11 +344,11 @@ export default function EnterpriseParkingPage() {
                   
                   <motion.div 
                     variants={itemVariants}
-                    className="space-y-4"
+                    className="space-y-4 mt-8"
                   >
-                    <div className="flex items-start gap-4 p-4 rounded-lg bg-white border border-gray-200">
-                      <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mt-1">
-                        <Check className="h-5 w-5 text-blue-600" />
+                    <div className="flex items-start gap-3 p-4 rounded-lg bg-white border border-gray-200">
+                      <div className="flex-shrink-0 w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center mt-1">
+                        <Check className="h-4 w-4 text-blue-600" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-1">Complete Ecosystem</h3>
@@ -362,9 +356,9 @@ export default function EnterpriseParkingPage() {
                       </div>
                     </div>
                     
-                    <div className="flex items-start gap-4 p-4 rounded-lg bg-white border border-gray-200">
-                      <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mt-1">
-                        <HardDrive className="h-5 w-5 text-blue-600" />
+                    <div className="flex items-start gap-3 p-4 rounded-lg bg-white border border-gray-200">
+                      <div className="flex-shrink-0 w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center mt-1">
+                        <HardDrive className="h-4 w-4 text-blue-600" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-1">Smart Technology</h3>
@@ -372,9 +366,9 @@ export default function EnterpriseParkingPage() {
                       </div>
                     </div>
                     
-                    <div className="flex items-start gap-4 p-4 rounded-lg bg-white border border-gray-200">
-                      <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mt-1">
-                        <Zap className="h-5 w-5 text-blue-600" />
+                    <div className="flex items-start gap-3 p-4 rounded-lg bg-white border border-gray-200">
+                      <div className="flex-shrink-0 w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center mt-1">
+                        <Zap className="h-4 w-4 text-blue-600" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-1">Seamless Integration</h3>
@@ -388,7 +382,7 @@ export default function EnterpriseParkingPage() {
           </section>
 
           {/* Core Capabilities Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-100">
             <div className="max-w-7xl mx-auto">
               <motion.div
                 initial="hidden"
@@ -397,7 +391,7 @@ export default function EnterpriseParkingPage() {
                 variants={fadeInUp}
                 className="text-center mb-16"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-gray-900">
                   Core Capabilities
                 </h2>
                 <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -416,15 +410,15 @@ export default function EnterpriseParkingPage() {
                   <motion.div
                     key={index}
                     variants={fadeInUp}
-                    className="bg-gradient-to-b from-white to-gray-50 rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
+                    className="group p-8 bg-white rounded-xl border border-gray-200 hover:border-blue-300 transition-all duration-300 hover:shadow-lg"
                   >
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+                      <div className="p-3 rounded-lg border border-gray-300 group-hover:border-blue-400 transition-colors duration-300">
                         {index === 0 && <Scan className="w-6 h-6 text-white" />}
                         {index === 1 && <UserCheck className="w-6 h-6 text-white" />}
                         {index === 2 && <QrCode className="w-6 h-6 text-white" />}
                         {index === 3 && <MapPin className="w-6 h-6 text-white" />}
-                        {index === 4 && <BarChart3 className="w-6 h-6 text-white" />}
+                        {index === 4 && <Car className="w-6 h-6 text-white" />}
                         {index === 5 && <Monitor className="w-6 h-6 text-white" />}
                         {index === 6 && <Shield className="w-6 h-6 text-white" />}
                       </div>
@@ -434,10 +428,8 @@ export default function EnterpriseParkingPage() {
                     <ul className="space-y-3 mb-6">
                       {capability.points.map((point, idx) => (
                         <li key={idx} className="flex items-start gap-3">
-                          <div className="flex-shrink-0 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
-                            <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
-                          </div>
-                          <span className="text-gray-600 text-sm">{point}</span>
+                          <Check className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                          <span className="text-gray-600 text-sm leading-relaxed">{point}</span>
                         </li>
                       ))}
                     </ul>
@@ -448,7 +440,7 @@ export default function EnterpriseParkingPage() {
           </section>
 
           {/* Technical Highlights Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 border-b border-gray-100">
             <div className="max-w-7xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <motion.div
@@ -459,7 +451,7 @@ export default function EnterpriseParkingPage() {
                 >
                   <motion.h2 
                     variants={itemVariants}
-                    className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
+                    className="text-3xl md:text-4xl font-semibold mb-6 text-gray-900"
                   >
                     Technical Highlights
                   </motion.h2>
@@ -479,12 +471,10 @@ export default function EnterpriseParkingPage() {
                       <motion.div 
                         key={index}
                         variants={fadeInUp}
-                        className="flex items-center gap-4 p-4 rounded-lg bg-white border border-gray-200"
+                        className="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-300 transition-all duration-300"
                       >
-                        <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
-                          <Zap className="h-5 w-5 text-blue-600" />
-                        </div>
-                        <div className="font-medium text-gray-900">{highlight}</div>
+                        <Zap className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                        <span className="text-gray-700 text-sm font-medium">{highlight}</span>
                       </motion.div>
                     ))}
                   </motion.div>
@@ -496,9 +486,9 @@ export default function EnterpriseParkingPage() {
                   variants={fadeInUp}
                   className="relative"
                 >
-                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+                  <div className="relative rounded-lg overflow-hidden shadow-lg border border-gray-200">
                     <Image 
-                      src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHBhcmtpbmd8ZW58MHx8MHx8fDA%3D" 
+                      src={hero1} 
                       alt="Parking Technical Highlights" 
                       width={600} 
                       height={400} 
@@ -511,7 +501,7 @@ export default function EnterpriseParkingPage() {
           </section>
 
           {/* Deployment Areas Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+          <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-100">
             <div className="max-w-7xl mx-auto">
               <motion.div
                 initial="hidden"
@@ -520,10 +510,10 @@ export default function EnterpriseParkingPage() {
                 variants={fadeInUp}
                 className="text-center mb-16"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-gray-900">
                   Where Systems Are Deployed
                 </h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                   Our parking management solutions are ideal for various enterprise environments.
                 </p>
               </motion.div>
@@ -533,18 +523,16 @@ export default function EnterpriseParkingPage() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={staggerChildren}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto"
               >
                 {deploymentAreas.map((area, index) => (
                   <motion.div
                     key={index}
                     variants={fadeInUp}
-                    className="flex items-start gap-4 p-6 rounded-xl bg-gradient-to-br from-blue-50 to-white border border-gray-200"
+                    className="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-lg hover:border-gray-300 transition-all duration-300"
                   >
-                    <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mt-1">
-                      <Monitor className="h-5 w-5 text-blue-600" />
-                    </div>
-                    <span className="font-medium text-gray-900">{area}</span>
+                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full flex-shrink-0"></div>
+                    <span className="text-gray-700 text-sm">{area}</span>
                   </motion.div>
                 ))}
               </motion.div>
@@ -552,7 +540,7 @@ export default function EnterpriseParkingPage() {
           </section>
 
           {/* System Integrations Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 border-b border-gray-100">
             <div className="max-w-7xl mx-auto">
               <motion.div
                 initial="hidden"
@@ -563,33 +551,31 @@ export default function EnterpriseParkingPage() {
               >
                 <motion.h2 
                   variants={itemVariants}
-                  className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
+                  className="text-3xl md:text-4xl font-semibold mb-4 text-gray-900"
                 >
                   System Integrations
                 </motion.h2>
                 
                 <motion.p 
                   variants={itemVariants}
-                  className="text-lg text-gray-600 mb-12 max-w-3xl mx-auto"
+                  className="text-lg text-gray-600 max-w-2xl mx-auto"
                 >
                   Creating a connected mobility ecosystem inside the enterprise.
                 </motion.p>
                 
                 <motion.div 
                   variants={staggerChildren}
-                  className="max-w-4xl mx-auto space-y-4"
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto"
                 >
                   {integrations.map((integration, index) => (
                     <motion.div
                       key={index}
                       variants={fadeInUp}
-                      className="flex items-center gap-4 p-6 rounded-xl bg-gradient-to-r from-blue-50 to-purple-50 border border-gray-200 shadow-sm"
+                      className="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-lg hover:border-gray-300 transition-all duration-300"
                     >
-                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
-                        <Zap className="h-6 w-6 text-white" />
-                      </div>
+                      <Zap className="w-4 h-4 text-blue-600 flex-shrink-0" />
                       <div className="text-left">
-                        <p className="font-medium text-gray-900">{integration}</p>
+                        <p className="text-gray-700 text-sm">{integration}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -597,7 +583,7 @@ export default function EnterpriseParkingPage() {
                 
                 <motion.p 
                   variants={itemVariants}
-                  className="text-lg text-gray-600 mt-8 max-w-3xl mx-auto"
+                  className="text-lg text-gray-600 mt-12 max-w-3xl mx-auto"
                 >
                   Everything runs on a single, intelligent parking management platform.
                 </motion.p>
@@ -606,7 +592,7 @@ export default function EnterpriseParkingPage() {
           </section>
 
           {/* Benefits Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-gray-50">
             <div className="max-w-7xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <motion.div
@@ -615,7 +601,7 @@ export default function EnterpriseParkingPage() {
                   viewport={{ once: true }}
                   variants={fadeInUp}
                 >
-                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+                  <div className="relative rounded-lg overflow-hidden shadow-lg border border-gray-200">
                     <Image 
                       src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fHBhcmtpbmd8ZW58MHx8MHx8fDA%3D" 
                       alt="Enterprise Parking Benefits" 
@@ -634,7 +620,7 @@ export default function EnterpriseParkingPage() {
                 >
                   <motion.h2 
                     variants={itemVariants}
-                    className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
+                    className="text-3xl md:text-4xl font-semibold mb-6 text-gray-900"
                   >
                     Benefits for Enterprises
                   </motion.h2>
@@ -654,12 +640,9 @@ export default function EnterpriseParkingPage() {
                       <motion.div 
                         key={index}
                         variants={fadeInUp}
-                        className="flex items-center gap-4 p-4 rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 border border-gray-200"
+                        className="flex items-center gap-4 p-4 rounded-lg bg-gray-800 border-gray-700"
                       >
-                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-                          <Check className="h-5 w-5 text-white" />
-                        </div>
-                        <div className="font-medium text-gray-900">{benefit}</div>
+                        <div className="font-medium text-white">{benefit}</div>
                       </motion.div>
                     ))}
                   </motion.div>
@@ -668,32 +651,7 @@ export default function EnterpriseParkingPage() {
             </div>
           </section>
 
-          {/* CTA Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-purple-600">
-            <div className="max-w-5xl mx-auto">
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeInUp}
-                className="text-center text-white"
-              >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Enterprise Parking?</h2>
-                <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
-                  Contact our experts to discuss how our Parking Management System can enhance your enterprise facility.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a 
-                    href="/contact" 
-                    className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all shadow-lg flex items-center justify-center"
-                  >
-                    Schedule a Consultation
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
-                </div>
-              </motion.div>
-            </div>
-          </section>
+         
         </main>
       </div>
     </>

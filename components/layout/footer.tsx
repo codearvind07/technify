@@ -11,32 +11,21 @@ export function Footer() {
     {
       title: 'Products',
       links: [
-        { text: 'Easy Vigil', href: '/products/easy-vigil' },
-        { text: 'Berhard', href: '/products/berhard' },
-        { text: 'Myten', href: '/products/myten' },
-        { text: 'ELV Solutions', href: '/solutions/elv' },
-        { text: 'ICT Solutions', href: '/solutions/ict' },
-        { text: 'Automation Solutions', href: '/solutions/automation' }
+        { text: 'CCTV Surveillance Systems', href: '/products/airport/cctv' },
+        { text: 'Panic Alarm / Nurse Call System (NCS)', href: '/products/hospital/ncs' },
+        { text: 'Queue Management System', href: '/products/hospital/qms' },
+        { text: 'Public Address System (PAS)', href: '/products/airport/pas' },
+        { text: 'Fire Alarm System', href: '/products/airport/fire-alarm' },
+        { text: 'FIDS (Flight Information Display System)', href: '/products/airport/fids' },
       ],
     },
     {
-      title: 'Company',
+      title: 'Company Pages',
       links: [
+        { text: 'Services', href: '/services' },
         { text: 'About Us', href: '/about' },
-        { text: 'Leadership', href: '/about/leadership' },
-        { text: 'Careers', href: '/career' },
-        { text: 'Press', href: '/press' },
-        { text: 'Partners', href: '/partners' },
-      ],
-    },
-    {
-      title: 'Support',
-      links: [
-        { text: 'Help Center', href: '/support/help' },
-        { text: 'Documentation', href: '/support/docs' },
-        { text: 'Status', href: '/status' },
-        { text: 'Contact', href: '/contact' },
-        { text: 'FAQs', href: '/support/faqs' },
+        { text: 'Career', href: '/career' },
+        { text: 'Contact Us', href: '/contact' },
       ],
     },
   ];
@@ -59,6 +48,7 @@ export function Footer() {
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          
           {/* Brand Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -115,7 +105,7 @@ export function Footer() {
           </motion.div>
 
           {/* Links Sections */}
-          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
             {footerSections.map((section, idx) => (
               <motion.div
                 key={idx}
@@ -129,10 +119,7 @@ export function Footer() {
                 </h3>
                 <ul className="space-y-3">
                   {section.links.map((link, j) => (
-                    <motion.li 
-                      key={j} 
-                      whileHover={{ x: 4 }}
-                    >
+                    <motion.li key={j} whileHover={{ x: 4 }}>
                       <Link 
                         href={link.href} 
                         className="flex items-center gap-2 text-gray-600 hover:text-orange-600 transition-all group text-sm"
@@ -153,7 +140,7 @@ export function Footer() {
       <div className="border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            {/* Copyright */}
+            
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -164,7 +151,6 @@ export function Footer() {
               © {new Date().getFullYear()} Technify. All rights reserved.
             </motion.p>
 
-            {/* Legal Links */}
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -172,18 +158,11 @@ export function Footer() {
               viewport={{ once: true }}
               className="flex gap-6 text-sm"
             >
-              <Link href="#" className="text-gray-500 hover:text-gray-700 transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="#" className="text-gray-500 hover:text-gray-700 transition-colors">
-                Terms of Service
-              </Link>
-              <Link href="#" className="text-gray-500 hover:text-gray-700 transition-colors">
-                Cookies
-              </Link>
+              <Link href="#" className="text-gray-500 hover:text-gray-700 transition-colors">Privacy Policy</Link>
+              <Link href="#" className="text-gray-500 hover:text-gray-700 transition-colors">Terms of Service</Link>
+              <Link href="#" className="text-gray-500 hover:text-gray-700 transition-colors">Cookies</Link>
             </motion.div>
 
-            {/* Powered by Dmiraki */}
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
