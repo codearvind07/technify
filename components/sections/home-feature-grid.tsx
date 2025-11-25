@@ -4,8 +4,6 @@ import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import React from "react";
 import { motion, Variants } from "framer-motion";
-import SplitText from "../ui/split-text";
-import Iridescence from "../ui/iridescence";
 
 import bag from "../../assets/fabio.jpg";
 import videoCamera from "../../assets/icon/video-camera.png";
@@ -19,110 +17,66 @@ import publicAddress from "../../assets/icon/Public.png";
 interface Feature {
   icon: StaticImageData;
   label: string;
+  desc?: string;
 }
 
 /* ---------- Feature Data ---------- */
 const leftFeatures: Feature[] = [
-  { icon: videoCamera, label: "Video Systems" },
-  { icon: accessControl, label: "Access Control" },
-  { icon: fireAlarm, label: "Fire Safety" },
+  { icon: videoCamera, label: "Video Systems", desc: "Smart surveillance for 24/7 monitoring." },
+  { icon: accessControl, label: "Access Control", desc: "Secure and controlled access management." },
+  { icon: fireAlarm, label: "Fire Safety", desc: "Early detection & prompt alerting." },
 ];
 
-const centerFeature: Feature = { icon: powerSolution, label: "Power Solutions" };
+const centerFeature: Feature = { icon: powerSolution, label: "Power Solutions", desc: "Reliable & scalable energy backup." };
 
 const rightFeatures: Feature[] = [
-  { icon: dataNetworking, label: "Data Networking" },
-  { icon: buildingManagement, label: "Building Systems" },
-  { icon: publicAddress, label: "Public Address" },
+  { icon: dataNetworking, label: "Data Networking", desc: "High-speed & secure connectivity." },
+  { icon: buildingManagement, label: "Building Systems", desc: "Smart infrastructure automation." },
+  { icon: publicAddress, label: "Public Address", desc: "Clear and effective communication." },
 ];
 
-/* ---------- Animation Variants ---------- */
-const fadeIn: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
-
+/* ---------- Animation ---------- */
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
-};
-
-const staggerContainer: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.12 } },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 15 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
-const iconVariants: Variants = {
-  initial: { scale: 1, rotate: 0 },
-  hover: {
-    scale: 1.15,
-    rotate: 360,
-    transition: { duration: 0.7, ease: "easeInOut" },
-  },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
 const floating: Variants = {
-  animate: {
-    y: [-3, 3, -3],
-    transition: { duration: 3, repeat: Infinity, repeatType: "reverse" },
-  },
+  animate: { y: [-5, 5, -5], transition: { duration: 4, repeat: Infinity, repeatType: "reverse" } }
 };
 
-/* ---------- FeatureCard Component ---------- */
-const FeatureCard: React.FC<{
-  feature: Feature;
-  className?: string;
-  iconSize?: number;
-}> = ({ feature, className = "", iconSize = 48 }) => (
+/* ---------- Card Component (SIZE FIXED) ---------- */
+const FeatureCard: React.FC<{ feature: Feature }> = ({ feature }) => (
   <motion.div
     variants={cardVariants}
     initial="hidden"
     whileInView="show"
     viewport={{ once: true }}
-    whileHover={{ y: -8, boxShadow: "0 10px 32px rgba(0,0,0,0.1)" }}
-    className={`group ${className}`}
+    className="bg-white rounded-2xl border border-gray-200 shadow-md w-[280px] h-[240px] p-6 text-center flex flex-col justify-between mx-auto transition duration-300 relative group"
   >
-    <div className="flex flex-col items-center text-center p-4 sm:p-5 md:p-6 rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-500 group-hover:bg-white group-hover:border-orange-300/40 group-hover:shadow-lg">
-      <motion.div
-        className="mb-3 sm:mb-4 p-2 sm:p-3 rounded-xl bg-gradient-to-br from-gray-100 to-gray-50"
-        whileHover="hover"
-        initial="initial"
-        variants={iconVariants}
-      >
-        <motion.div variants={floating} animate="animate">
-          <Image
-            src={feature.icon}
-            alt={feature.label}
-            width={iconSize}
-            height={iconSize}
-            className="drop-shadow-sm"
-          />
-        </motion.div>
-      </motion.div>
-      <SplitText
-        text={feature.label}
-        className="body-base font-semibold text-gray-700 group-hover:text-orange-600 transition-colors duration-300"
-        delay={0.1}
-        duration={0.5}
-        ease="power3.out"
-        splitType="words"
-        from={{ opacity: 0, y: 20 }}
-        to={{ opacity: 1, y: 0 }}
-      />
-    </div>
+    {/* ICON */}
+    <motion.div
+      variants={floating}
+      animate="animate"
+      className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-blue-100 to-orange-100 flex items-center justify-center"
+    >
+      <Image src={feature.icon} alt={feature.label} width={40} height={40} />
+    </motion.div>
+
+    {/* DESCRIPTION */}
+    {feature.desc && (
+      <p className="text-gray-600 text-sm mb-3">{feature.desc}</p>
+    )}
+
+    {/* TITLE */}
+    <h4 className="text-lg font-semibold text-gray-900 mb-2">{feature.label}</h4>
+    
+    {/* Border effect to match homeabout */}
+    <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-blue-500 transition-all duration-300 pointer-events-none"></div>
   </motion.div>
 );
 
-/* ---------- HomeFeatureGridSection ---------- */
+/* ---------- PAGE SECTION ---------- */
 export function HomeFeatureGridSection() {
   return (
     <section className="relative w-full py-20 md:py-28 bg-gradient-to-b from-white via-slate-50 to-white">
@@ -140,93 +94,80 @@ export function HomeFeatureGridSection() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <motion.header
-          variants={fadeIn}
+        <motion.h2 
+          variants={cardVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-center mb-12 sm:mb-16"
+          className="text-center heading-3 text-gray-800 mb-12 sm:mb-16"
         >
-          <h2 className="heading-3 mb-3 sm:mb-4 text-gray-800 leading-tight">
-            End-to-end solutions for enterprises and smart environments with
-            cutting-edge technology integration
-          </h2>
-        </motion.header>
+          End-to-end solutions for enterprises and smart environments with
+          cutting-edge technology integration
+        </motion.h2>
 
-        {/* Grid - Optimized for mobile */}
         <main className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-start mb-12 sm:mb-16 md:mb-20">
-          {/* Left */}
+
+          {/* LEFT */}
           <motion.div
-            variants={staggerContainer}
+            variants={cardVariants}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
             className="space-y-4 sm:space-y-6"
           >
             {leftFeatures.map((f, i) => (
-              <FeatureCard
-                key={f.label}
-                feature={f}
-                className={i === 1 ? "md:translate-x-4" : ""}
-                iconSize={40}
-              />
+              <FeatureCard key={f.label} feature={f} />
             ))}
           </motion.div>
 
-          {/* Center */}
+          {/* CENTER */}
           <motion.div
-            variants={fadeIn}
+            variants={cardVariants}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
             className="flex flex-col items-center"
           >
             <motion.div
-              className="relative mb-6 sm:mb-8"
+              className="relative mb-8"
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
             >
-              <div className="relative w-32 h-32 sm:w-44 sm:h-44 md:w-64 md:h-64 rounded-2xl sm:rounded-3xl overflow-hidden border border-gray-200 shadow-xl mx-auto">
-                <Image
-                  src={bag}
-                  alt="Technology solutions"
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="(max-width: 768px) 176px, 256px"
-                />
+              <div className="relative w-64 h-64 rounded-2xl overflow-hidden border border-gray-200 shadow-xl mx-auto">
+                <Image src={bag} alt="Technology solutions" fill className="object-cover" priority />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 via-transparent to-transparent" />
               </div>
             </motion.div>
-            <FeatureCard feature={centerFeature} iconSize={40} />
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="mt-4 sm:mt-6">
+
+            <FeatureCard feature={centerFeature} />
+
+            <motion.div 
+              whileHover={{ scale: 1.05 }} 
+              whileTap={{ scale: 0.95 }} 
+              className="mt-6"
+            >
               <Link
                 href="/products"
-                className="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold px-4 py-2 sm:px-6 sm:py-3 rounded-lg shadow-md hover:shadow-lg transition body-base cursor-pointer text-center block"
+                className="bg-gradient-to-r from-blue-600 to-orange-500 text-white font-semibold px-6 py-3 rounded-xl shadow-sm hover:shadow-md transition body-base cursor-pointer text-center block"
               >
                 View All Solutions
               </Link>
             </motion.div>
           </motion.div>
 
-          {/* Right */}
+          {/* RIGHT */}
           <motion.div
-            variants={staggerContainer}
+            variants={cardVariants}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
             className="space-y-4 sm:space-y-6"
           >
             {rightFeatures.map((f, i) => (
-              <FeatureCard
-                key={f.label}
-                feature={f}
-                className={i === 1 ? "md:-translate-x-4" : ""}
-                iconSize={40}
-              />
+              <FeatureCard key={f.label} feature={f} />
             ))}
           </motion.div>
+
         </main>
       </div>
     </section>

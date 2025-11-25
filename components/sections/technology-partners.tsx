@@ -281,7 +281,7 @@ export function TechnologyPartnersSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-10"
         >
          
           
