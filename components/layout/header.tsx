@@ -215,7 +215,7 @@ export function Header() {
                   >
                     <span className="truncate">{it.label}</span>
                     {it.subItems && (
-                      <ChevronRight className="w-4 h-4 text-gray-400 ml-2 transition-transform group-hover:translate-x-0.5" />
+                      <ChevronRight className="w-5 h-5 text-gray-600 ml-2 transition-transform group-hover:translate-x-0.5" strokeWidth={2.5} />
                     )}
                   </a>
 
@@ -275,7 +275,7 @@ export function Header() {
               <a
                 href={it.href}
                 className={`flex items-center justify-between px-4 py-2 text-sm transition-all duration-300 rounded-lg mx-1 my-0.5 ${it.subItems
-                  ? "text-gray-900 font-medium hover:bg-blue-100/80 hover:border-l-2 hover:border-l-blue-500 hover:pl-4"
+                  ? "text-gray-900 font-bold hover:bg-blue-100/80 hover:border-l-2 hover:border-l-blue-500 hover:pl-4"
                   : "text-gray-700 font-normal hover:bg-blue-50/80 hover:border-l-2 hover:border-l-blue-500 hover:pl-4"
                   } ${it.href === "#" ? "cursor-default" : "cursor-pointer"}`}
                 onClick={(e) => {
@@ -287,7 +287,7 @@ export function Header() {
               >
                 <span className="truncate">{it.label}</span>
                 {it.subItems && (
-                  <ChevronRight className="w-4 h-4 text-gray-400 ml-2 transition-transform group-hover:translate-x-0.5" />
+                  <ChevronRight className="w-5 h-5 text-gray-600 ml-2 transition-transform group-hover:translate-x-0.5" strokeWidth={2.5} />
                 )}
               </a>
 
@@ -355,7 +355,7 @@ export function Header() {
                       <span className="font-semibold text-sm">{item.label}</span>
                     </div>
                     <span className="text-gray-400 ml-2 transition-transform duration-200">
-                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${activeState === item.label ? "rotate-180" : ""}`} />
+                      <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${activeState === item.label ? "rotate-180" : ""}`} strokeWidth={2.5} />
                     </span>
                   </button>
 
@@ -419,7 +419,7 @@ export function Header() {
                 >
                   <span className="relative z-10 flex items-center">
                     {item.label}
-                    {item.subItems && <ChevronDown className="w-3.5 h-3.5 ml-1.5 opacity-60 transition-transform group-hover:rotate-180" />}
+                    {item.subItems && <ChevronDown className="w-5 h-5 ml-1.5 text-gray-600 transition-transform group-hover:rotate-180" strokeWidth={2.5} />}
                   </span>
                   <span className={`absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full transition-all duration-300 group-hover:w-full ${pathname === item.href ? 'w-full' : ''
                     }`}></span>
@@ -471,7 +471,7 @@ export function Header() {
                           <span className="font-semibold text-sm">{item.label}</span>
                         </div>
                         <span className="text-gray-400 ml-2 transition-transform duration-200">
-                          <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${mobileActiveDropdown === item.label ? "rotate-180" : ""}`} />
+                          <ChevronDown className={`w-5 h-5 text-gray-600 transition-transform duration-200 ${mobileActiveDropdown === item.label ? "rotate-180" : ""}`} strokeWidth={2.5} />
                         </span>
                       </button>
 
