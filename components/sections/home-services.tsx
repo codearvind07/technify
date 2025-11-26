@@ -109,7 +109,7 @@ const iconFloat: Variants = {
 ------------------------------------------------ */
 export default function HomeServices() {
   return (
-    <section className="relative py-20 md:py-28 bg-gradient-to-b from-white via-slate-50 to-white overflow-hidden">
+<section className="relative pt-6 pb-16 md:pt-8 md:pb-20 bg-gradient-to-b from-white via-slate-50 to-white overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute -top-20 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow"></div>

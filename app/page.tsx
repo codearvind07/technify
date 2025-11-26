@@ -35,7 +35,6 @@ export default function Home() {
         <ProcessSection />
         <TestimonialsSection />
         <TechnologyPartnersSection />
-       
         <NewsletterSection />
       </main>
     </>

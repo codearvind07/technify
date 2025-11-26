@@ -123,7 +123,7 @@ export default function HomeSolutions() {
   ];
 
   return (
-    <section className="relative w-full py-8 md:py-16 bg-gradient-to-b from-white via-slate-50 to-white overflow-hidden">
+<section className="relative w-full pt-6 pb-14 md:pt-8 md:pb-20 bg-gradient-to-b from-white via-slate-50 to-white overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute -top-20 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow"></div>

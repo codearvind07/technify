@@ -111,8 +111,9 @@ export function ProcessSection() {
   return (
     <section
       ref={ref}
-      className="relative w-full py-20 md:py-28 overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white"
-    >
+      className="relative w-full pt-6 pb-16 md:pt-8 md:pb-20 overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white">
+
+    
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative">
         {/* ✅ HEADER */}
         <motion.div

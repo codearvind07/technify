@@ -52,20 +52,21 @@ const FeatureCard: React.FC<{ feature: Feature }> = ({ feature }) => (
     initial="hidden"
     whileInView="show"
     viewport={{ once: true }}
-    className="bg-white rounded-2xl border border-gray-200 shadow-md w-[280px] h-[240px] p-6 text-center flex flex-col justify-between mx-auto transition duration-300 relative group"
+    whileHover={{ y: -5, scale: 1.02 }}
+    className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 text-center hover:shadow-lg transition-all duration-300 relative overflow-hidden group w-full max-w-[300px] h-[260px]"
   >
     {/* ICON */}
     <motion.div
       variants={floating}
       animate="animate"
-      className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-blue-100 to-orange-100 flex items-center justify-center"
+      className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-blue-100 to-orange-100 flex items-center justify-center"
     >
       <Image src={feature.icon} alt={feature.label} width={40} height={40} />
     </motion.div>
 
     {/* DESCRIPTION */}
     {feature.desc && (
-      <p className="text-gray-600 text-sm mb-3">{feature.desc}</p>
+      <p className="text-gray-600 text-sm mb-4">{feature.desc}</p>
     )}
 
     {/* TITLE */}
@@ -79,7 +80,7 @@ const FeatureCard: React.FC<{ feature: Feature }> = ({ feature }) => (
 /* ---------- PAGE SECTION ---------- */
 export function HomeFeatureGridSection() {
   return (
-    <section className="relative w-full py-20 md:py-28 bg-gradient-to-b from-white via-slate-50 to-white">
+<section className="relative w-full pt-8 pb-16 md:pt-10 md:pb-20 bg-gradient-to-b from-white via-slate-50 to-white">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute -top-20 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
