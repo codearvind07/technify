@@ -4,6 +4,7 @@ import { motion, Variants } from 'framer-motion';
 import { Mail, Send, CheckCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
+// ...existing code...
 export function NewsletterSection() {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,7 +32,6 @@ export function NewsletterSection() {
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
 
-  // Floating particle animation
   useEffect(() => {
     const createParticle = () => {
       const particle = document.createElement('span');
@@ -83,13 +83,13 @@ export function NewsletterSection() {
           {/* Header */}
           <div className="text-center mb-6">
             <motion.div
-              className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-blue-500 to-orange-500 shadow-lg mb-4"
+              className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-100 shadow-lg mb-4"
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               transition={{ type: 'spring', stiffness: 220 }}
               viewport={{ once: true }}
             >
-              <Mail className="w-8 h-8 text-white" />
+              <Mail className="w-8 h-8 text-blue-600" />
             </motion.div>
 
             <motion.h2
@@ -117,29 +117,27 @@ export function NewsletterSection() {
             className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto bg-gradient-to-r from-gray-50/70 to-gray-100/70 p-3 rounded-2xl shadow-sm backdrop-blur-md"
           >
             <div className="relative flex-grow">
-              <Mail className="absolute left-5 top-1/2 transform -translate-y-1/2 text-blue-500 w-5 h-5" />
+              <Mail className="absolute left-5 top-1/2 transform -translate-y-1/2 text-blue-600 w-5 h-5" />
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
-                className="w-full pl-14 pr-4 py-3 text-base bg-white/70 rounded-xl focus:ring-4 focus:ring-blue-200 outline-none transition-all shadow-sm border border-gray-200"
+                className="w-full pl-14 pr-4 py-3 text-base bg-white/70 rounded-xl focus:ring-4 focus:ring-blue-100 outline-none transition-all shadow-sm border border-gray-200"
               />
             </div>
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-6 py-3 text-base font-semibold text-white bg-gradient-to-r from-blue-600 to-orange-500 rounded-xl shadow-sm hover:from-blue-700 hover:to-orange-600"
+              className="px-6 py-3 text-base font-semibold text-blue-700 bg-blue-100 rounded-xl shadow-sm hover:bg-blue-200 transition-colors"
             >
               {isSubmitting ? 'Sending...' : 'Subscribe'}
             </button>
           </form>
         </motion.div>
       </div>
-
-      
     </section>
   );
 }

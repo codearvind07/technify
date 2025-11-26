@@ -207,17 +207,24 @@ export default function HomeSolutions() {
                   </div>
                 </div>
 
-                {/* Learn More Button */}
-                <Link
-                  href={solution.link}
-                  className="inline-flex items-center bg-gradient-to-r from-blue-600 to-orange-500 text-white font-medium px-5 py-3 rounded-lg hover:from-blue-700 hover:to-orange-600 shadow-sm hover:shadow-md transform hover:-translate-y-1 transition-all duration-300"
-                >
-                  <span>Learn More</span>
-                  <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
-                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                  </svg>
-                </Link>
+                {/* Button - Light blue style (updated) */}
+                <div className="mt-2">
+                  <Link
+                    href={solution.link}
+                    className="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-blue-100 bg-blue-50 text-blue-600 font-medium text-sm sm:text-base shadow-sm hover:bg-blue-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-colors duration-200"
+                  >
+                    Learn More
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </Link>
+                </div>
               </div>
             </motion.div>
           ))}
