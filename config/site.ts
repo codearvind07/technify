@@ -1,0 +1,43 @@
+export const siteConfig = {
+  name: 'Technify Solutions - Dynamic Startup Partner for Digital Transformation',
+  description: 'Technify Solutions is more than just a technology provider, we\'re your strategic partner in digital transformation. As a dynamic startup, we bring fresh perspectives and cutting-edge solutions to drive your business forward.',
+  url: 'https://www.technify.com',
+  ogImage: '/images/og-default.jpg',
+  keywords: [
+    'dynamic startup',
+    'digital transformation',
+    'strategic technology partner',
+    'IT infrastructure',
+    'cybersecurity',
+    'automation systems',
+    'cloud technologies',
+    'business growth',
+    'operational excellence',
+    'agile team',
+    'technology solutions',
+    'emerging startups',
+    'growing enterprises',
+    'technology ecosystems',
+    'innovation',
+    'customer success',
+    'technology leadership',
+    'comprehensive solutions',
+    'business transformation',
+    'technology consulting'
+  ],
+  author: 'Technify Team',
+  twitterHandle: '@technify',
+  companyName: 'Technify Solutions',
+  companyAddress: '123 Innovation Drive, Tech City, TC 12345',
+  companyEmail: 'hello@technify.com',
+  companyPhone: '+1 (555) STARTUP',
+  companyIndustry: 'Information Communication Technology (ICT)',
+  companyFoundedYear: 2023,
+  companySize: '10-50 employees',
+  companySocialLinks: {
+    twitter: 'https://twitter.com/technify',
+    linkedin: 'https://linkedin.com/company/technify',
+    github: 'https://github.com/technify',
+    facebook: 'https://facebook.com/technify'
+  }
+};
