@@ -105,85 +105,89 @@ export default function BerhardPage() {
         image="/images/og-berhard.jpg"
       />
       
-      <div className="min-h-screen bg-white text-gray-800">
+      <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white text-slate-800 overflow-hidden">
+        {/* Consistent Background Elements */}
+        <div className="absolute inset-0 -z-10 pointer-events-none">
+          <div className="absolute -top-20 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+          <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl animate-pulse-slower"></div>
+          <div className="absolute inset-0 opacity-[0.03]">
+            <div className="w-full h-full" style={{
+              backgroundImage: `linear-gradient(to right, #1F6FEB 1px, transparent 1px),
+                                linear-gradient(to bottom, #fb8500 1px, transparent 1px)`,
+              backgroundSize: '50px 50px'
+            }}></div>
+          </div>
+        </div>
+
         <main>
           {/* Hero Section */}
-          <section className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-white">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <motion.div 
-                  initial="hidden"
-                  animate="visible"
-                  variants={containerVariants}
+          <section className="relative pt-28 pb-20 px-5">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <motion.div 
+                initial="hidden"
+                animate="visible"
+                variants={containerVariants}
+              >
+                <motion.p variants={itemVariants} className="text-sm tracking-wider font-semibold uppercase text-blue-600 mb-4">
+                  Berhard Control Kiosk
+                </motion.p>
+                
+                <motion.h1 
+                  variants={itemVariants}
+                  className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-slate-900"
                 >
-                  <motion.div 
-                    variants={itemVariants}
-                    className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-6"
-                  >
-                    
-
-                  </motion.div>
-                  
-                  <motion.h1 
-                    variants={itemVariants}
-                    className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900"
-                  >
-                    Berhard{" "}
-                    <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-                      Control Kiosk
-                    </span>
-                  </motion.h1>
-                  
-                  <motion.p 
-                    variants={itemVariants}
-                    className="text-xl text-gray-600 mb-8 max-w-2xl leading-relaxed"
-                  >
-                    Durable and high-performance <span className="font-semibold">Control Kiosk</span> designed for Parking Management, Retail, Airports, Banking, and IT Networking applications.
-                  </motion.p>
-                  
-                  <motion.div 
-                    variants={itemVariants}
-                    className="flex flex-col sm:flex-row gap-4"
-                  >
-                    <a 
-                      href="/contact" 
-                      className="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center"
-                    >
-                      Request Demo
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </a>
-                    <a 
-                      href="/pdf/berhard.pdf" 
-                      download
-                      className="bg-white text-gray-700 border border-gray-300 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all shadow-md flex items-center justify-center"
-                    >
-                      <Play className="mr-2 h-5 w-5" />
-                      View Brochure
-                    </a>
-                  </motion.div>
-                </motion.div>
+                  High-Performance Industrial Control Kiosk
+                </motion.h1>
+                
+                <motion.p 
+                  variants={itemVariants}
+                  className="text-lg text-slate-600 mb-8 max-w-xl leading-relaxed"
+                >
+                  Durable and high-performance control kiosk designed for Parking Management, Retail, Airports, Banking, and IT Networking applications.
+                </motion.p>
                 
                 <motion.div 
-                  initial="hidden"
-                  animate="visible"
-                  variants={fadeInUp}
-                  className="relative"
+                  variants={itemVariants}
+                  className="flex flex-col sm:flex-row gap-4"
                 >
-                  <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-                    <Image 
-                      src={heroImage} 
-                      alt="Berhard Control Kiosk" 
-                      className="w-full h-auto object-cover"
-                      priority
-                    />
-                  </div>
+                  <a 
+                    href="/contact" 
+                    className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                  >
+                    Request Demo
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                  <a 
+                    href="/pdf/berhard.pdf" 
+                    download
+                    className="bg-white border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-all shadow-sm flex items-center justify-center gap-2"
+                  >
+                    <Download className="h-4 w-4" />
+                    View Brochure
+                  </a>
                 </motion.div>
-              </div>
+              </motion.div>
+              
+              <motion.div 
+                initial="hidden"
+                animate="visible"
+                variants={fadeInUp}
+                className="relative"
+              >
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
+                  <Image 
+                    src={heroImage} 
+                    alt="Berhard Control Kiosk" 
+                    className="w-full h-auto object-cover"
+                    priority
+                  />
+                </div>
+              </motion.div>
             </div>
           </section>
 
           {/* Quality Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+          <section className="py-20 px-5 bg-gray-50">
             <div className="max-w-7xl mx-auto">
               <motion.div
                 initial="hidden"
@@ -192,10 +196,10 @@ export default function BerhardPage() {
                 variants={fadeInUp}
                 className="text-center mb-16"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
                   Quality and Longevity Requirements
                 </h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                <p className="text-lg text-slate-600 max-w-3xl mx-auto">
                   Engineered to the highest standards for industrial applications.
                 </p>
               </motion.div>
@@ -205,19 +209,19 @@ export default function BerhardPage() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={staggerChildren}
-                className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                className="grid grid-cols-1 md:grid-cols-3 gap-8"
               >
                 {qualityFeatures.map((feature, index) => (
                   <motion.div
                     key={index}
                     variants={fadeInUp}
-                    className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:border-blue-200"
+                    className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-blue-200 flex flex-col text-center"
                   >
-                    <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
+                    <div className="w-14 h-14 mx-auto bg-blue-50 rounded-lg flex items-center justify-center mb-5">
                       <feature.icon className="w-6 h-6 text-blue-600" />
                     </div>
-                    <h3 className="text-lg font-semibold mb-3 text-gray-900">{feature.title}</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">{feature.desc}</p>
+                    <h3 className="text-lg font-semibold mb-3 text-slate-900">{feature.title}</h3>
+                    <p className="text-slate-600 text-sm leading-relaxed flex-grow">{feature.desc}</p>
                   </motion.div>
                 ))}
               </motion.div>
@@ -225,7 +229,7 @@ export default function BerhardPage() {
           </section>
 
           {/* Durability Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+          <section className="py-20 px-5 bg-white">
             <div className="max-w-7xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <motion.div
@@ -251,27 +255,27 @@ export default function BerhardPage() {
                 >
                   <motion.h2 
                     variants={itemVariants}
-                    className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
+                    className="text-3xl md:text-4xl font-bold mb-6 text-slate-900"
                   >
                     Durability and Protection
                   </motion.h2>
                   
                   <motion.p 
                     variants={itemVariants}
-                    className="text-lg text-gray-600 mb-8 leading-relaxed"
+                    className="text-lg text-slate-600 mb-8 leading-relaxed"
                   >
                     Built to withstand the harshest industrial environments with robust construction and protective features.
                   </motion.p>
                   
                   <motion.div 
                     variants={staggerChildren}
-                    className="grid grid-cols-1 gap-4"
+                    className="grid grid-cols-1 sm:grid-cols-2 gap-4"
                   >
                     {durabilityFeatures.map((feature, index) => (
                       <motion.div 
                         key={index}
                         variants={fadeInUp}
-                        className="flex items-start gap-4 p-4 rounded-lg bg-white border border-gray-200"
+                        className="flex items-start gap-4 p-4 rounded-lg bg-gray-50 border border-gray-200"
                       >
                         <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
                           <Shield className="h-5 w-5 text-blue-600" />
@@ -289,7 +293,7 @@ export default function BerhardPage() {
           </section>
 
           {/* Compliance Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+          <section className="py-20 px-5 bg-gray-50">
             <div className="max-w-7xl mx-auto">
               <motion.div
                 initial="hidden"
@@ -298,10 +302,10 @@ export default function BerhardPage() {
                 variants={fadeInUp}
                 className="text-center mb-16"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
                   Additional Compliance & Design Features
                 </h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                <p className="text-lg text-slate-600 max-w-3xl mx-auto">
                   Designed with industry standards and user experience in mind.
                 </p>
               </motion.div>
@@ -311,19 +315,19 @@ export default function BerhardPage() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={staggerChildren}
-                className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                className="grid grid-cols-1 md:grid-cols-3 gap-8"
               >
                 {complianceFeatures.map((feature, index) => (
                   <motion.div
                     key={index}
                     variants={fadeInUp}
-                    className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-all relative"
+                    className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm hover:shadow-lg transition-all text-center"
                   >
-                    <div className="absolute -top-3 left-4 w-8 h-8 flex items-center justify-center rounded-full bg-blue-600 text-white font-bold shadow-lg">
+                    <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-5 font-bold text-lg">
                       {feature.num}
                     </div>
-                    <h3 className="text-lg font-semibold mb-3 text-gray-900 mt-2">{feature.title}</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">{feature.desc}</p>
+                    <h3 className="text-lg font-semibold mb-3 text-slate-900">{feature.title}</h3>
+                    <p className="text-slate-600 text-sm leading-relaxed">{feature.desc}</p>
                   </motion.div>
                 ))}
               </motion.div>
@@ -331,7 +335,7 @@ export default function BerhardPage() {
           </section>
 
           {/* Technology Partners Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+          <section className="py-20 px-5 bg-white">
             <div className="max-w-7xl mx-auto">
               <motion.div
                 initial="hidden"
@@ -340,10 +344,10 @@ export default function BerhardPage() {
                 variants={fadeInUp}
                 className="text-center mb-16"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
                   Technology Partners & Products
                 </h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                <p className="text-lg text-slate-600 max-w-3xl mx-auto">
                   Integrated with industry-leading technology providers for comprehensive solutions.
                 </p>
               </motion.div>
@@ -353,16 +357,16 @@ export default function BerhardPage() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={containerVariants}
-                className="space-y-12"
+                className="grid grid-cols-1 md:grid-cols-2 gap-8"
               >
                 {technologyPartners.map((category, index) => (
                   <motion.div 
                     key={index}
                     variants={itemVariants} 
-                    className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200"
+                    className="bg-white rounded-xl shadow-sm p-8 border border-gray-200"
                   >
-                    <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <h3 className="text-xl font-semibold text-slate-900 mb-6 flex items-center gap-3">
+                      <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
                         {index === 0 ? (
                           <Settings className="w-5 h-5 text-blue-600" />
                         ) : (
@@ -372,14 +376,14 @@ export default function BerhardPage() {
                       {category.category}
                     </h3>
                     
-                    <div className={`grid grid-cols-1 ${category.partners.length > 1 ? 'md:grid-cols-2' : ''} gap-6`}>
+                    <div className="space-y-4">
                       {category.partners.map((partner, partnerIndex) => (
                         <div 
                           key={partnerIndex}
-                          className="bg-gradient-to-br from-blue-50/50 to-blue-100/50 rounded-xl p-6 border border-blue-200/50 hover:transform hover:-translate-y-1 transition-all duration-300"
+                          className="bg-gray-50 rounded-lg p-4 border border-gray-200"
                         >
-                          <h4 className="font-semibold text-gray-900 mb-2">{partner.name}</h4>
-                          <p className="text-sm text-gray-600">{partner.desc}</p>
+                          <h4 className="font-semibold text-slate-800 mb-1">{partner.name}</h4>
+                          <p className="text-sm text-slate-500">{partner.desc}</p>
                         </div>
                       ))}
                     </div>
@@ -390,33 +394,27 @@ export default function BerhardPage() {
           </section>
 
           {/* CTA Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-blue-800">
-            <div className="max-w-5xl mx-auto">
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeInUp}
-                className="text-center text-white"
-              >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Deploy Berhard Control Kiosk?</h2>
-                <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
+          <section className="py-20 px-5 bg-gradient-to-br from-blue-50 to-slate-100">
+            <div className="max-w-5xl mx-auto text-center">
+              <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Ready to Deploy Berhard Control Kiosk?</h2>
+                <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
                   Experience the durability and performance of our industrial-grade control solution.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
                     href="/pdf/berhard.pdf" 
                     download
-                    className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all shadow-lg flex items-center"
+                    className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all shadow-md flex items-center justify-center gap-2"
                   >
-                    <Download className="h-5 w-5 mr-2" />
+                    <Download className="h-4 w-4" />
                     Download Brochure
                   </a>
                   <a 
                     href="/contact" 
-                    className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all"
+                    className="bg-white border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-all shadow-sm flex items-center justify-center gap-2"
                   >
-                    Request Demo
+                    Request Demo <ArrowRight className="h-4 w-4" />
                   </a>
                 </div>
               </motion.div>

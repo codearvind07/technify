@@ -21,7 +21,7 @@ import {
   Play
 } from "lucide-react";
 import { SEO } from '@/components/seo/seo';
-import heroImage from '@/assets/IntelligentVideo.jpg';
+import heroImage from '@/assets/AdvancedAI.jpg'; // Using a more dynamic image
 import analyticsImage from '@/assets/AdvancedAI.jpg';
 import platformImage from '@/assets/UnifiedSecurity.jpg';
 
@@ -151,99 +151,103 @@ export default function EasyVigilPage() {
         image="/images/og-easyvigil.jpg"
       />
       
-      <div className="min-h-screen bg-white text-gray-800">
+      <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white text-slate-800 overflow-hidden">
+        {/* Consistent Background Elements */}
+        <div className="absolute inset-0 -z-10 pointer-events-none">
+          <div className="absolute -top-20 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+          <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl animate-pulse-slower"></div>
+          <div className="absolute inset-0 opacity-[0.03]">
+            <div className="w-full h-full" style={{
+              backgroundImage: `linear-gradient(to right, #1F6FEB 1px, transparent 1px),
+                                linear-gradient(to bottom, #fb8500 1px, transparent 1px)`,
+              backgroundSize: '50px 50px'
+            }}></div>
+          </div>
+        </div>
+
         <main>
           {/* Hero Section */}
-          <section className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-white">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <motion.div 
-                  initial="hidden"
-                  animate="visible"
-                  variants={containerVariants}
+          <section className="relative pt-28 pb-20 px-5">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <motion.div 
+                initial="hidden"
+                animate="visible"
+                variants={containerVariants}
+              >
+                <motion.p variants={itemVariants} className="text-sm tracking-wider font-semibold uppercase text-blue-600 mb-4">
+                  EasyVigil Platform
+                </motion.p>
+                
+                <motion.h1 
+                  variants={itemVariants}
+                  className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-slate-900"
                 >
-                  <motion.div 
-                    variants={itemVariants}
-                    className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-6"
-                  >
-                    
-                  </motion.div>
-                  
-                  <motion.h1 
-                    variants={itemVariants}
-                    className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900"
-                  >
-                    Intelligent Video{" "}
-                    <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-                      Analytics
-                    </span>{" "}
-                    Platform
-                  </motion.h1>
-                  
-                  <motion.p 
-                    variants={itemVariants}
-                    className="text-xl text-gray-600 mb-8 max-w-2xl leading-relaxed"
-                  >
-                    Transform your security infrastructure with AI-powered video analytics. 
-                    Detect threats in real-time, automate monitoring, and enhance operational efficiency.
-                  </motion.p>
-                  
-                  <motion.div 
-                    variants={itemVariants}
-                    className="flex flex-col sm:flex-row gap-4"
-                  >
-                    <a 
-                      href="/contact" 
-                      className="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center"
-                    >
-                      Request Demo
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </a>
-                    <a 
-                      href="/pdf/Easy Vigil.pdf" 
-                      download
-                      className="bg-white text-gray-700 border border-gray-300 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all shadow-md flex items-center justify-center"
-                    >
-                      <Play className="mr-2 h-5 w-5" />
-                      View Brochure
-                    </a>
-                  </motion.div>
-
-                  {/* Stats */}
-                  <motion.div 
-                    variants={itemVariants}
-                    className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12"
-                  >
-                    {stats.map((stat, index) => (
-                      <div key={index} className="text-center">
-                        <div className="text-2xl font-bold text-gray-900">{stat.number}</div>
-                        <div className="text-sm text-gray-600">{stat.label}</div>
-                      </div>
-                    ))}
-                  </motion.div>
-                </motion.div>
+                  Intelligent Video Analytics Platform
+                </motion.h1>
+                
+                <motion.p 
+                  variants={itemVariants}
+                  className="text-lg text-slate-600 mb-8 max-w-xl leading-relaxed"
+                >
+                  Transform your security infrastructure with AI-powered video analytics. 
+                  Detect threats in real-time, automate monitoring, and enhance operational efficiency.
+                </motion.p>
                 
                 <motion.div 
-                  initial="hidden"
-                  animate="visible"
-                  variants={fadeInUp}
-                  className="relative"
+                  variants={itemVariants}
+                  className="flex flex-col sm:flex-row gap-4"
                 >
-                  <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-                    <Image 
-                      src={heroImage} 
-                      alt="EasyVigil Platform Dashboard" 
-                      className="w-full h-auto object-cover"
-                      priority
-                    />
-                  </div>
+                  <a 
+                    href="/contact" 
+                    className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                  >
+                    Request Demo
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                  <a 
+                    href="/pdf/Easy Vigil.pdf" 
+                    download
+                    className="bg-white border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-all shadow-sm flex items-center justify-center gap-2"
+                  >
+                    <Download className="h-4 w-4" />
+                    View Brochure
+                  </a>
                 </motion.div>
-              </div>
+
+                {/* Stats */}
+                <motion.div 
+                  variants={itemVariants}
+                  className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12"
+                >
+                  {stats.map((stat, index) => (
+                    <div key={index} className="text-center">
+                      <div className="text-3xl font-bold text-slate-900">{stat.number}</div>
+                      <div className="text-sm text-slate-500 font-medium">{stat.label}</div>
+                    </div>
+                  ))}
+                </motion.div>
+              </motion.div>
+              
+              <motion.div 
+                initial="hidden"
+                animate="visible"
+                variants={fadeInUp}
+                className="relative"
+              >
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
+                  <Image 
+                    src={heroImage} 
+                    alt="EasyVigil Platform Dashboard" 
+                    className="w-full h-auto object-cover"
+                    priority
+                  />
+                </div>
+              </motion.div>
             </div>
           </section>
 
           {/* Features Section */}
-          <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+          <section id="features" className="py-20 px-5 bg-gray-50">
             <div className="max-w-7xl mx-auto">
               <motion.div
                 initial="hidden"
@@ -252,10 +256,10 @@ export default function EasyVigilPage() {
                 variants={fadeInUp}
                 className="text-center mb-16"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
                   Enterprise-Grade Security Features
                 </h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                <p className="text-lg text-slate-600 max-w-3xl mx-auto">
                   Comprehensive security solutions designed for modern enterprises with distributed infrastructure.
                 </p>
               </motion.div>
@@ -265,19 +269,19 @@ export default function EasyVigilPage() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={staggerChildren}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
               >
                 {featureCards.map((feature, index) => (
                   <motion.div
                     key={index}
                     variants={fadeInUp}
-                    className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:border-blue-200"
+                    className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-blue-200 flex flex-col text-center"
                   >
-                    <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
+                    <div className="w-14 h-14 mx-auto bg-blue-50 rounded-lg flex items-center justify-center mb-5">
                       {feature.icon}
                     </div>
-                    <h3 className="text-lg font-semibold mb-3 text-gray-900">{feature.title}</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
+                    <h3 className="text-lg font-semibold mb-3 text-slate-900">{feature.title}</h3>
+                    <p className="text-slate-600 text-sm leading-relaxed flex-grow">{feature.description}</p>
                   </motion.div>
                 ))}
               </motion.div>
@@ -285,72 +289,70 @@ export default function EasyVigilPage() {
           </section>
 
           {/* Video Analytics Section */}
-          <section id="analytics" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={fadeInUp}
+          <section id="analytics" className="py-20 px-5 bg-white">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+              >
+                <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+                  <Image 
+                    src={analyticsImage} 
+                    alt="Video Analytics Dashboard" 
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              </motion.div>
+              
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={containerVariants}
+              >
+                <motion.h2 
+                  variants={itemVariants}
+                  className="text-3xl md:text-4xl font-bold mb-6 text-slate-900"
                 >
-                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200">
-                    <Image 
-                      src={analyticsImage} 
-                      alt="Video Analytics Dashboard" 
-                      className="w-full h-auto object-cover"
-                    />
-                  </div>
-                </motion.div>
+                  Advanced AI Video Analytics
+                </motion.h2>
                 
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={containerVariants}
+                <motion.p 
+                  variants={itemVariants}
+                  className="text-lg text-slate-600 mb-8 leading-relaxed"
                 >
-                  <motion.h2 
-                    variants={itemVariants}
-                    className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
-                  >
-                    Advanced AI Video Analytics
-                  </motion.h2>
-                  
-                  <motion.p 
-                    variants={itemVariants}
-                    className="text-lg text-gray-600 mb-8 leading-relaxed"
-                  >
-                    Leverage cutting-edge artificial intelligence to automatically detect, classify, 
-                    and respond to security events in real-time across your entire surveillance network.
-                  </motion.p>
-                  
-                  <motion.div 
-                    variants={staggerChildren}
-                    className="grid grid-cols-1 gap-4"
-                  >
-                    {analyticsFeatures.map((feature, index) => (
-                      <motion.div 
-                        key={index}
-                        variants={fadeInUp}
-                        className="flex items-center gap-4 p-4 rounded-lg bg-white border border-gray-200"
-                      >
-                        <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
-                          {feature.icon}
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-gray-900">{feature.title}</h3>
-                          <p className="text-sm text-gray-600">{feature.description}</p>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </motion.div>
+                  Leverage cutting-edge artificial intelligence to automatically detect, classify, 
+                  and respond to security events in real-time across your entire surveillance network.
+                </motion.p>
+                
+                <motion.div 
+                  variants={staggerChildren}
+                  className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+                >
+                  {analyticsFeatures.map((feature, index) => (
+                    <motion.div 
+                      key={index}
+                      variants={fadeInUp}
+                      className="flex items-start gap-4 p-4 rounded-lg bg-gray-50 border border-gray-200"
+                    >
+                      <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                        {feature.icon}
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-slate-900">{feature.title}</h3>
+                        <p className="text-sm text-slate-600">{feature.description}</p>
+                      </div>
+                    </motion.div>
+                  ))}
                 </motion.div>
-              </div>
+              </motion.div>
             </div>
           </section>
 
           {/* Platform Section */}
-          <section id="platform" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+          <section id="platform" className="py-20 px-5 bg-gray-50">
             <div className="max-w-7xl mx-auto">
               <motion.div
                 initial="hidden"
@@ -359,15 +361,15 @@ export default function EasyVigilPage() {
                 variants={fadeInUp}
                 className="text-center mb-16"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
                   Unified Security Platform
                 </h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                <p className="text-lg text-slate-600 max-w-3xl mx-auto">
                   An open, extensible platform that integrates with your existing infrastructure and scales with your business.
                 </p>
               </motion.div>
               
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <motion.div
                   initial="hidden"
                   whileInView="visible"
@@ -392,10 +394,10 @@ export default function EasyVigilPage() {
                 >
                   <motion.div 
                     variants={itemVariants}
-                    className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm"
+                    className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm"
                   >
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Platform Capabilities</h3>
-                    <p className="text-gray-600 mb-6">
+                    <h3 className="text-xl font-semibold mb-4 text-slate-900">Platform Capabilities</h3>
+                    <p className="text-slate-600 mb-6">
                       EasyVigil supports industry-standard protocols and web services interfaces, 
                       linking to a suite of applications designed for enterprise operations from anywhere.
                     </p>
@@ -403,14 +405,14 @@ export default function EasyVigilPage() {
                       <a 
                         href="/pdf/Easy Vigil.pdf" 
                         download
-                        className="bg-blue-600 text-white px-5 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center"
+                        className="bg-blue-600 text-white px-5 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center text-sm"
                       >
                         <Download className="h-4 w-4 mr-2" />
                         Download Brochure
                       </a>
                       <a 
                         href="/contact" 
-                        className="bg-white border border-gray-300 text-gray-700 px-5 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors flex items-center"
+                        className="bg-white border border-gray-300 text-gray-700 px-5 py-2.5 rounded-lg font-medium hover:bg-gray-50 transition-colors flex items-center text-sm"
                       >
                         <FileText className="h-4 w-4 mr-2" />
                         Request Demo
@@ -420,9 +422,9 @@ export default function EasyVigilPage() {
                   
                   <motion.div 
                     variants={itemVariants}
-                    className="bg-blue-50 rounded-xl p-6 border border-blue-200"
+                    className="bg-blue-50 rounded-xl p-8 border border-blue-200"
                   >
-                    <h3 className="text-xl font-semibold mb-4 text-gray-900">Key Benefits</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-slate-900">Key Benefits</h3>
                     <div className="space-y-3">
                       {[
                         "Reduced false alarms by 90%",
@@ -431,8 +433,8 @@ export default function EasyVigilPage() {
                         "Scalable from single site to enterprise"
                       ].map((benefit, index) => (
                         <div key={index} className="flex items-center">
-                          <CheckCircle className="h-5 w-5 text-blue-600 mr-3" />
-                          <span className="text-gray-700">{benefit}</span>
+                          <CheckCircle className="h-5 w-5 text-blue-600 mr-3 flex-shrink-0" />
+                          <span className="text-slate-700">{benefit}</span>
                         </div>
                       ))}
                     </div>
@@ -443,7 +445,7 @@ export default function EasyVigilPage() {
           </section>
 
           {/* Expertise Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+          <section className="py-20 px-5 bg-white">
             <div className="max-w-7xl mx-auto">
               <motion.div
                 initial="hidden"
@@ -452,10 +454,10 @@ export default function EasyVigilPage() {
                 variants={fadeInUp}
                 className="text-center mb-16"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
                   Comprehensive Expertise
                 </h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                <p className="text-lg text-slate-600 max-w-3xl mx-auto">
                   End-to-end solutions across security, automation, and system integration domains.
                 </p>
               </motion.div>
@@ -465,21 +467,21 @@ export default function EasyVigilPage() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={staggerChildren}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
               >
                 {expertiseAreas.map((area, index) => (
                   <motion.div
                     key={index}
                     variants={fadeInUp}
-                    className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-all"
+                    className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all"
                   >
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-4 text-blue-600">
+                    <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4 text-blue-600">
                       {area.icon}
                     </div>
-                    <h3 className="text-lg font-semibold mb-4 text-gray-900">{area.category}</h3>
+                    <h3 className="text-lg font-semibold mb-4 text-slate-900">{area.category}</h3>
                     <ul className="space-y-2">
                       {area.items.map((item, itemIndex) => (
-                        <li key={itemIndex} className="flex items-center text-sm text-gray-600">
+                        <li key={itemIndex} className="flex items-center text-sm text-slate-600">
                           <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3 flex-shrink-0"></div>
                           {item}
                         </li>
@@ -492,7 +494,7 @@ export default function EasyVigilPage() {
           </section>
 
           {/* Technology Partners Section */}
-          <section id="partners" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+          <section id="partners" className="py-20 px-5 bg-gray-50">
             <div className="max-w-7xl mx-auto">
               <motion.div
                 initial="hidden"
@@ -501,10 +503,10 @@ export default function EasyVigilPage() {
                 variants={fadeInUp}
                 className="text-center mb-16"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
                   Technology Partners
                 </h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                <p className="text-lg text-slate-600 max-w-3xl mx-auto">
                   Integrated with industry-leading technology providers for comprehensive solutions.
                 </p>
               </motion.div>
@@ -523,10 +525,10 @@ export default function EasyVigilPage() {
                     className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm text-center hover:shadow-md transition-all"
                   >
                     <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                      <Shield className="w-6 h-6 text-gray-600" />
+                      <Shield className="w-6 h-6 text-gray-500" />
                     </div>
-                    <h3 className="font-semibold text-gray-900 text-sm mb-1">{partner.name}</h3>
-                    <p className="text-xs text-gray-500">{partner.description}</p>
+                    <h3 className="font-semibold text-slate-900 text-sm mb-1">{partner.name}</h3>
+                    <p className="text-xs text-slate-500">{partner.description}</p>
                   </motion.div>
                 ))}
               </motion.div>
@@ -534,30 +536,29 @@ export default function EasyVigilPage() {
           </section>
 
           {/* CTA Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-blue-800">
-            <div className="max-w-5xl mx-auto">
+          <section className="py-20 px-5 bg-gradient-to-br from-blue-50 to-slate-100">
+            <div className="max-w-5xl mx-auto text-center">
               <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeInUp}
-                className="text-center text-white"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Enhance Your Security?</h2>
-                <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Ready to Enhance Your Security?</h2>
+                <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
                   Join enterprise organizations using EasyVigil to transform their security operations with AI-powered analytics.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
                     href="/pdf/Easy Vigil.pdf" 
                     download
-                    className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all shadow-lg"
+                    className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all shadow-md"
                   >
                     Download Brochure
                   </a>
                   <a 
                     href="/contact" 
-                    className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all"
+                    className="bg-white border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-all shadow-sm"
                   >
                     Request Demo
                   </a>
@@ -570,3 +571,4 @@ export default function EasyVigilPage() {
     </>
   );
 }
+                

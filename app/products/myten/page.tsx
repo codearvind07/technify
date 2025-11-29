@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion, useScroll, useTransform, Variants } from "framer-motion";
 import Link from "next/link";
 import { 
   Building2, 
@@ -30,6 +30,9 @@ import {
 import { SEO } from '@/components/seo/seo';
 
 export default function MytenPage() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -170,21 +173,21 @@ export default function MytenPage() {
       title: "NAS Solution", 
       file: "Myten-ASKV-12AC2R.pdf", 
       icon: FileText,
-      color: "from-blue-500 to-cyan-500",
+      color: "from-blue-500 to-cyan-500", // This color is for the icon background
       description: "Network Attached Storage Solution Specifications"
     },
     { 
       title: "Active LED Wall", 
       file: "Active-LED-Wall.pdf", 
       icon: Lightbulb,
-      color: "from-purple-500 to-pink-500",
+      color: "from-blue-500 to-cyan-500",
       description: "High-Brightness Outdoor Display Technology"
     },
     { 
       title: "Video Wall Tech", 
       file: "Video-Wall-Tech.pdf", 
       icon: Monitor,
-      color: "from-green-500 to-emerald-500",
+      color: "from-blue-500 to-cyan-500",
       description: "Innovative Video Wall Technology Specifications"
     }
   ];
@@ -219,22 +222,22 @@ export default function MytenPage() {
       name: "Network Attached Storage",
       description: "Myten ASKV-12AC2R NAS solutions with high availability and scalability",
       features: ["High Availability", "Active Controllers", "Easy Scalability", "Data Integrity"],
-      icon: <Server className="w-6 h-6" />,
+      icon: <Server className="w-6 h-6 text-white" />,
       color: "from-blue-500 to-cyan-500"
     },
     {
       name: "Active LED Walls",
       description: "High-brightness outdoor displays with extreme weather resistance",
       features: ["5000-8000 Nits", "IP65/66/67", "Durable Build", "Multiple Sizes"],
-      icon: <Lightbulb className="w-6 h-6" />,
-      color: "from-purple-500 to-pink-500"
+      icon: <Lightbulb className="w-6 h-6 text-white" />,
+      color: "from-blue-500 to-cyan-500"
     },
     {
       name: "Video Wall Technology",
       description: "Advanced display solutions with seamless multi-screen setups",
       features: ["55-inch Display", "178° Viewing", "0.88mm Bezel", "Immersive Experience"],
-      icon: <Monitor className="w-6 h-6" />,
-      color: "from-green-500 to-emerald-500"
+      icon: <Monitor className="w-6 h-6 text-white" />,
+      color: "from-blue-500 to-cyan-500"
     }
   ];
 
@@ -247,7 +250,7 @@ export default function MytenPage() {
         image="/images/og-myten.jpg"
       />
       
-      <div className="min-h-screen bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/20 text-gray-800 relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-cyan-50/20 text-gray-800 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
@@ -272,6 +275,11 @@ export default function MytenPage() {
           />
         </div>
 
+        <motion.div 
+          style={{ scaleX }}
+          className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 origin-left z-50"
+        />
+
         <main className="relative z-10">
           {/* Hero Section */}
           <section className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8">
@@ -284,7 +292,7 @@ export default function MytenPage() {
                 >
                   <motion.div 
                     variants={itemVariants}
-                    className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-6 border border-blue-200/50 mt-4"
+                    className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100/80 text-blue-700 text-sm font-medium mb-6 border border-blue-200/50 mt-4 backdrop-blur-sm"
                   >
                     <motion.span 
                       animate={{ scale: [1, 1.2, 1] }}
@@ -322,7 +330,7 @@ export default function MytenPage() {
                         <motion.div 
                           key={index}
                           whileHover={{ scale: 1.05 }}
-                          className="text-center p-4 rounded-2xl bg-white/60 backdrop-blur-sm border border-gray-200/50 shadow-sm"
+                          className="text-center p-4 rounded-2xl bg-white/60 backdrop-blur-sm border border-gray-200/50 shadow-sm hover:shadow-md transition-shadow"
                         >
                           <div className="flex justify-center mb-2">
                             <IconComponent className="h-6 w-6 text-blue-600" />
@@ -340,14 +348,14 @@ export default function MytenPage() {
                   >
                     <a 
                       href="/contact" 
-                      className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all shadow-lg flex items-center justify-center"
+                      className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all shadow-lg flex items-center justify-center group"
                     >
                       Request Demo
-                      <ArrowRight className="ml-2 h-5 w-5" />
+                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </a>
                     <a 
                       href="/pdf/Myten.pdf" 
-                      download
+                      download="Myten-Brochure.pdf"
                       className="bg-white text-gray-700 border border-gray-300 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all shadow-md flex items-center justify-center hover:border-blue-300"
                     >
                       <Play className="mr-2 h-5 w-5" />
@@ -360,7 +368,7 @@ export default function MytenPage() {
           </section>
 
           {/* Product Lines Overview */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/40 backdrop-blur-md">
             <div className="max-w-7xl mx-auto">
               <motion.div
                 initial="hidden"
@@ -389,9 +397,9 @@ export default function MytenPage() {
                     key={index}
                     variants={fadeInUp}
                     whileHover={{ y: -5, scale: 1.02 }}
-                    className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-blue-200 group"
+                    className="bg-white/80 rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-blue-200 group"
                   >
-                    <div className={`w-12 h-12 bg-gradient-to-br ${product.color} rounded-xl flex items-center justify-center mb-4 text-white`}>
+                    <div className={`w-12 h-12 bg-gradient-to-br ${product.color} rounded-xl flex items-center justify-center mb-4`}>
                       {product.icon}
                     </div>
                     <h3 className="text-lg font-semibold mb-3 text-gray-900 group-hover:text-blue-600 transition-colors">
@@ -412,7 +420,7 @@ export default function MytenPage() {
           </section>
 
           {/* NAS Solution Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/50 backdrop-blur-sm">
+          <section className="py-20 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
               <motion.div
                 initial="hidden"
@@ -443,7 +451,7 @@ export default function MytenPage() {
                       key={index}
                       variants={fadeInUp}
                       whileHover={{ y: -5, scale: 1.02 }}
-                      className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-blue-200 group"
+                      className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-blue-200 group"
                     >
                       <motion.div 
                         whileHover={{ scale: 1.1 }}
@@ -466,7 +474,7 @@ export default function MytenPage() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeInUp}
-                className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm"
+                className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200 shadow-md"
               >
                 <h3 className="text-2xl font-bold mb-8 text-gray-900 text-center">
                   NAS Specifications
@@ -494,7 +502,7 @@ export default function MytenPage() {
           </section>
 
           {/* Active LED Wall Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/40 backdrop-blur-md">
             <div className="max-w-7xl mx-auto">
               <motion.div
                 initial="hidden"
@@ -525,7 +533,7 @@ export default function MytenPage() {
                       key={index}
                       variants={fadeInUp}
                       whileHover={{ y: -5 }}
-                      className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-blue-200 group"
+                      className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-blue-200 group"
                     >
                       <div className="flex items-start gap-4">
                         <motion.div 
@@ -552,7 +560,7 @@ export default function MytenPage() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeInUp}
-                className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border border-blue-100"
+                className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border border-blue-100 shadow-inner-soft"
               >
                 <h3 className="text-2xl font-bold mb-8 text-gray-900 text-center">
                   Sizes & Configurations
@@ -562,7 +570,7 @@ export default function MytenPage() {
                     <motion.div
                       key={index}
                       whileHover={{ y: -3 }}
-                      className="bg-white/80 rounded-xl p-6 text-center backdrop-blur-sm border border-white/50"
+                      className="bg-white/80 rounded-xl p-6 text-center backdrop-blur-sm border border-white/50 shadow-sm"
                     >
                       <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                         <CheckCircle className="w-4 h-4 text-blue-600" />
@@ -577,7 +585,7 @@ export default function MytenPage() {
           </section>
 
           {/* Video Wall Technology Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/50 backdrop-blur-sm">
+          <section className="py-20 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
               <motion.div
                 initial="hidden"
@@ -608,15 +616,15 @@ export default function MytenPage() {
                       key={index}
                       variants={fadeInUp}
                       whileHover={{ y: -5, scale: 1.02 }}
-                      className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-blue-200 group text-center"
+                      className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-blue-200 group text-center"
                     >
                       <motion.div 
                         whileHover={{ scale: 1.1 }}
-                        className="w-12 h-12 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:from-green-100 group-hover:to-emerald-100 transition-all"
+                        className="w-12 h-12 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:from-blue-100 group-hover:to-cyan-100 transition-all"
                       >
-                        <IconComponent className="w-6 h-6 text-green-600" />
+                        <IconComponent className="w-6 h-6 text-blue-600" />
                       </motion.div>
-                      <h3 className="text-lg font-semibold mb-3 text-gray-900 group-hover:text-green-600 transition-colors">
+                      <h3 className="text-lg font-semibold mb-3 text-gray-900 group-hover:text-blue-600 transition-colors">
                         {feature.title}
                       </h3>
                       <p className="text-gray-600 text-sm leading-relaxed">{feature.desc}</p>
@@ -628,7 +636,7 @@ export default function MytenPage() {
           </section>
 
           {/* Downloads Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/40 backdrop-blur-md">
             <div className="max-w-7xl mx-auto">
               <motion.div
                 initial="hidden"
@@ -658,8 +666,7 @@ export default function MytenPage() {
                     <motion.div
                       key={index}
                       variants={fadeInUp}
-                      whileHover={{ y: -5, scale: 1.02 }}
-                      className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-blue-200 text-center group"
+                      className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col text-center"
                     >
                       <motion.div 
                         whileHover={{ scale: 1.1 }}
@@ -667,11 +674,19 @@ export default function MytenPage() {
                       >
                         <IconComponent className="w-6 h-6" />
                       </motion.div>
-                      <h3 className="text-lg font-semibold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors">
-                        {doc.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm mb-4">{doc.description}</p>
-                      
+                      <div className="flex-grow">
+                        <h3 className="text-lg font-semibold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors">
+                          {doc.title}
+                        </h3>
+                        <p className="text-gray-600 text-sm mb-4">{doc.description}</p>
+                      </div>
+                      <a 
+                        href={`/pdf/${doc.file}`} 
+                        download
+                        className="mt-auto bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition-all text-sm flex items-center justify-center group-hover:text-blue-600"
+                      >
+                        <Download className="mr-2 h-4 w-4" /> Download PDF
+                      </a>
                     </motion.div>
                   );
                 })}
@@ -680,16 +695,16 @@ export default function MytenPage() {
           </section>
 
           {/* Benefits Section */}
-          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-cyan-600">
+          <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/40 backdrop-blur-md">
             <div className="max-w-5xl mx-auto">
               <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeInUp}
-                className="text-center text-white"
+                className="text-center"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-12">Key Benefits</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-900">Key Benefits</h2>
                 
                 <motion.div 
                   initial="hidden"
@@ -702,12 +717,12 @@ export default function MytenPage() {
                     <motion.div
                       key={index}
                       variants={fadeInUp}
-                      className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:border-white/30 transition-all text-center"
+                      className="bg-white/70 backdrop-blur-sm rounded-xl p-6 border border-gray-200 hover:border-blue-200 transition-all text-center group"
                     >
-                      <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center mx-auto mb-4">
-                        <CheckCircle className="w-4 h-4 text-white" />
+                      <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <CheckCircle className="w-4 h-4 text-blue-600" />
                       </div>
-                      <p className="text-white/90 text-sm">{benefit}</p>
+                      <p className="text-gray-600 text-sm">{benefit}</p>
                     </motion.div>
                   ))}
                 </motion.div>
@@ -721,8 +736,8 @@ export default function MytenPage() {
                 >
                   <a 
                     href="/pdf/Myten.pdf" 
-                    download
-                    className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all shadow-lg flex items-center justify-center"
+                    download="Myten-Brochure.pdf" // Changed button style
+                    className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all shadow-lg flex items-center justify-center group"
                   >
                     <Download className="h-5 w-5 mr-2" />
                     Download Brochure
@@ -730,7 +745,7 @@ export default function MytenPage() {
                   
                   <a 
                     href="/contact" 
-                    className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all flex items-center justify-center"
+                    className="bg-white text-gray-700 border border-gray-300 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all shadow-md flex items-center justify-center hover:border-blue-300"
                   >
                     Request Demo
                   </a>
