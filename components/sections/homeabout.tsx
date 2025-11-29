@@ -16,40 +16,6 @@ import {
 
 import aboutImage from "../../assets/Implementation.jpg";
 
-/* ------------------ MOTION VARIANTS ------------------ */
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.25, delayChildren: 0.2 },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { y: 30, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
-};
-
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
-};
-
-const iconFloat: Variants = {
-  animate: {
-    y: [-5, 5, -5],
-    transition: { duration: 4, repeat: Infinity, repeatType: "reverse" },
-  },
-};
-
 /* ------------------ SERVICES ------------------ */
 const services = [
   { name: "IT Solutions", desc: "Scalable and robust IT infrastructure.", icon: Server, stats: "99.9% Uptime" },
@@ -85,35 +51,28 @@ export default function HomeAbout() {
 
       {/* ------------------ HERO SECTION (UPDATED) ------------------ */}
       <section className="pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-10 px-4 sm:px-6 text-center relative">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-          className="max-w-5xl mx-auto relative z-10"
-        >
-          <motion.h1
-            variants={itemVariants}
+        <div className="max-w-5xl mx-auto relative z-10">
+          <h1
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 text-gray-900 leading-tight font-poppins"
           >
             About Us
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={itemVariants}
+          <p
             className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto font-raleway"
           >
             Discover the innovative technology solutions that drive business transformation.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* ------------------ ABOUT CONTENT (UPDATED) ------------------ */}
       <main className="relative container mx-auto px-4 sm:px-6 pt-6 sm:pt-8 pb-16 sm:pb-20 z-10">
-        <motion.div initial="hidden" animate="visible" variants={containerVariants} className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           
           {/* ABOUT SECTION */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center mb-16 sm:mb-20 md:mb-24">
-            <motion.div variants={itemVariants}>
+            <div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 font-poppins">
                 Empowering Innovation Through Technology
               </h2>
@@ -126,10 +85,9 @@ export default function HomeAbout() {
               <p className="italic border-l-4 border-blue-500 pl-4 text-sm sm:text-base text-gray-700 font-raleway">
                 "We craft digital experiences that help businesses evolve, adapt, and thrive in a connected world."
               </p>
-            </motion.div>
+            </div>
 
             <motion.div
-              variants={itemVariants}
               whileHover={{ scale: 1.03 }}
               className="relative h-64 sm:h-72 md:h-80 rounded-xl sm:rounded-2xl overflow-hidden shadow-xl border border-gray-200"
             >
@@ -139,39 +97,31 @@ export default function HomeAbout() {
           </div>
 
           {/* SERVICES GRID (UPDATED) */}
-          <motion.h2 
-            variants={itemVariants} 
+          <h2 
             className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4 sm:mb-6 font-poppins"
           >
             Comprehensive Technology Services
-          </motion.h2>
-          <motion.p 
-            variants={itemVariants} 
+          </h2>
+          <p 
             className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto text-center mb-12 sm:mb-16 font-raleway"
           >
             Trust our expertise, innovation, and long-lasting commitment to delivering transformative technology solutions.
-          </motion.p>
+          </p>
 
-          <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {services.map((service) => {
               const Icon = service.icon;
               return (
                 <motion.div 
                   key={service.name} 
-                  variants={cardVariants}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true }}
                   whileHover={{ y: -5, scale: 1.02 }}
                   className="bg-white rounded-xl sm:rounded-2xl border border-gray-200 shadow-sm p-6 sm:p-8 text-center hover:shadow-lg transition-all duration-300 relative overflow-hidden group h-full"
                 >
-                  <motion.div 
-                    variants={iconFloat} 
-                    animate="animate" 
+                  <div 
                     className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-6 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-100 to-orange-100 flex items-center justify-center"
                   >
                     <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-blue-600" />
-                  </motion.div>
+                  </div>
                   <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 font-poppins">{service.name}</h3>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 mb-4 font-raleway">{service.desc}</p>
                   <span className="inline-block px-3 sm:px-4 py-1 bg-blue-50 text-blue-700 text-xs sm:text-sm rounded-full font-raleway">{service.stats}</span>
@@ -179,8 +129,8 @@ export default function HomeAbout() {
                 </motion.div>
               );
             })}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </main>
     </div>
   );

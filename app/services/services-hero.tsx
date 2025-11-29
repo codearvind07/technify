@@ -7,15 +7,6 @@ import designImg from "../../assets/designImg.jpg";
 import supportImg from "../../assets/DesignEngineering.jpg";
 import SupportServices from "../../assets/SupportServices.jpg";
 
-/* ------------------ FONT STYLES (COLOR REMOVED) ------------------ */
-const fonts = {
-  h1: "font-poppins font-semibold",
-  h2: "font-poppins font-semibold",
-  h3: "font-poppins font-semibold",
-  body: "font-raleway",
-  label: "font-open-sans",
-};
-
 /* ------------------ MOTION VARIANTS ------------------ */
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -46,16 +37,16 @@ function ServiceCard({ icon: Icon, title, description, features, image }: any) {
           <div className="p-3 bg-blue-50 rounded-lg">
             <Icon className="w-6 h-6 text-blue-600" />
           </div>
-          <h3 className={`text-xl text-slate-800 ${fonts.h3}`}>{title}</h3>
+          <h3 className="text-xl text-slate-800 font-poppins font-semibold">{title}</h3>
         </div>
 
-        <p className={`text-sm text-slate-700 mb-6 leading-relaxed ${fonts.body}`}>{description}</p>
+        <p className="text-sm text-slate-700 mb-6 leading-relaxed font-raleway">{description}</p>
 
         <div className="space-y-3">
           {features.map((item: string, i: number) => (
             <div key={i} className="flex items-start gap-3">
               <Check className="w-4 h-4 text-green-600 flex-shrink-0 mt-1" />
-              <p className={`text-sm text-slate-700 leading-relaxed ${fonts.body}`}>{item}</p>
+              <p className="text-sm text-slate-700 leading-relaxed font-raleway">{item}</p>
             </div>
           ))}
         </div>
@@ -78,25 +69,25 @@ export default function DigitalServicesPage() {
             <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
               <motion.span
                 variants={fadeInUp}
-                className={`text-sm font-semibold uppercase tracking-wide text-slate-700 ${fonts.label}`}
+                className="text-sm font-semibold uppercase tracking-wide text-slate-700 font-open-sans"
               >
                 Technify Professional Services
               </motion.span>
 
               <motion.h1
                 variants={fadeInUp}
-                className={`text-4xl md:text-5xl mb-6 leading-tight text-slate-900 ${fonts.h1}`}
+                className="text-4xl md:text-5xl mb-6 leading-tight text-slate-900 font-poppins font-semibold"
               >
                 Transform Your   Digital Vision {" "}
                
                 Into Reality
               </motion.h1>
 
-              <motion.p variants={fadeInUp} className={`text-lg mb-4 text-slate-700 ${fonts.body}`}>
+              <motion.p variants={fadeInUp} className="text-lg mb-4 text-slate-700 font-raleway">
                 Comprehensive online design engineering & digital support services to bring your vision to life.
               </motion.p>
 
-              <motion.p variants={fadeInUp} className={`text-lg mb-8 text-slate-700 ${fonts.body}`}>
+              <motion.p variants={fadeInUp} className="text-lg mb-8 text-slate-700 font-raleway">
                 Our expert teams in India & Singapore provide remote design sessions, cloud collaboration & 24/7 support.
               </motion.p>
             </motion.div>
@@ -112,60 +103,62 @@ export default function DigitalServicesPage() {
 
         {/* ------------------ SERVICES SECTION ------------------ */}
         <section className="py-20 px-6 bg-white border-b">
-          <div className="max-w-7xl mx-auto mb-16 text-center">
-            <h2 className={`text-3xl text-slate-800 mb-4 ${fonts.h2}`}>Our Digital Services</h2>
-            <p className={`${fonts.body} text-slate-700 max-w-2xl mx-auto`}>
-              We offer professional digital services tailored for modern business needs.
-            </p>
-          </div>
+          <div className="max-w-6xl mx-auto">
+            <div className="mb-16 text-center">
+              <h2 className="text-3xl text-slate-800 mb-4 font-poppins font-semibold">Our Digital Services</h2>
+              <p className="font-raleway text-slate-700 max-w-2xl mx-auto">
+                We offer professional digital services tailored for modern business needs.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <ServiceCard
-              icon={Cpu}
-              image={SupportServices}
-              title="Design Engineering"
-              description="Technify design engineers are experienced in all solution phases ensuring performance and compliance."
-              features={[
-                "Comprehensive solution design",
-                "Performance optimization",
-                "Regulatory compliance",
-                "Client consultation",
-                "Redesign of existing systems",
-              ]}
-            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <ServiceCard
+                icon={Cpu}
+                image={SupportServices}
+                title="Design Engineering"
+                description="Technify design engineers are experienced in all solution phases ensuring performance and compliance."
+                features={[
+                  "Comprehensive solution design",
+                  "Performance optimization",
+                  "Regulatory compliance",
+                  "Client consultation",
+                  "Redesign of existing systems",
+                ]}
+              />
 
-            <ServiceCard
-              icon={PhoneCall}
-              image={supportImg}
-              title="Support Services"
-              description="Our Pre & Post Sales team ensures complete ownership, prompt response & customer delight."
-              features={[
-                "24/7 remote support",
-                "Screen sharing sessions",
-                "Prompt response times",
-                "Live chat assistance",
-                "Full project ownership",
-              ]}
-            />
+              <ServiceCard
+                icon={PhoneCall}
+                image={supportImg}
+                title="Support Services"
+                description="Our Pre & Post Sales team ensures complete ownership, prompt response & customer delight."
+                features={[
+                  "24/7 remote support",
+                  "Screen sharing sessions",
+                  "Prompt response times",
+                  "Live chat assistance",
+                  "Full project ownership",
+                ]}
+              />
+            </div>
           </div>
         </section>
 
         {/* ------------------ CTA SECTION (FIXED WHITE TEXT) ------------------ */}
-        <section className="py-20 px-6 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900">
+        <section className="py-20 px-6 bg-gradient-to-br from-blue-50 to-slate-100">
           <div className="max-w-5xl mx-auto text-center">
 
             {/* FIXED TEXT COLOR */}
-            <h2 className={`text-4xl md:text-5xl mb-4 !text-white ${fonts.h2}`}>
+            <h2 className="text-4xl md:text-5xl mb-4 text-slate-900 font-poppins font-semibold">
               Ready to Start Your Project?
             </h2>
 
-            <p className="text-blue-200 text-lg max-w-2xl mx-auto mb-8">
+            <p className="text-slate-600 text-lg max-w-2xl mx-auto mb-8">
               Connect with our global team & bring your digital vision to life with precision & innovation.
             </p>
 
             <a
               href="/contact"
-              className="bg-white text-slate-900 px-10 py-3 rounded-xl font-semibold hover:scale-105 transition"
+              className="bg-blue-600 text-white px-10 py-3 rounded-xl font-semibold hover:scale-105 hover:bg-blue-700 transition"
             >
               Get Connected
             </a>

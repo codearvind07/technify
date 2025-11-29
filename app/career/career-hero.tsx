@@ -1,8 +1,7 @@
 'use client';
 
 import { motion, Variants } from 'framer-motion';
-import { Upload, Send, ArrowRight, Users, Target, TrendingUp, CheckCircle } from 'lucide-react';
-import { useState } from 'react';
+import { Users, Target, TrendingUp } from 'lucide-react';
 
 /* Motion Variants */
 const fadeInUp: Variants = {
@@ -15,7 +14,7 @@ const cardVariants: Variants = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.6, ease: 'easeOut' },
   },
 };
 
@@ -25,27 +24,10 @@ const staggerContainer: Variants = {
 };
 
 export default function CareerHero() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    mobile: '',
-    experience: '',
-    message: ''
-  });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-  };
-
   const benefits = [
-    { icon: Target, title: "Career Growth", description: "Clear progression paths and professional development opportunities" },
-    { icon: TrendingUp, title: "Competitive Salary", description: "Industry-leading compensation with performance bonuses" },
-    { icon: Users, title: "Great Culture", description: "Collaborative environment with work-life balance" }
+    { icon: Target, title: 'Career Growth', description: 'Clear progression paths and professional development opportunities' },
+    { icon: TrendingUp, title: 'Competitive Salary', description: 'Industry-leading compensation with performance bonuses' },
+    { icon: Users, title: 'Great Culture', description: 'Collaborative environment with work-life balance' },
   ];
 
   return (
@@ -55,11 +37,14 @@ export default function CareerHero() {
         <div className="absolute -top-20 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
         <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl animate-pulse-slower"></div>
         <div className="absolute inset-0 opacity-[0.03]">
-          <div className="w-full h-full" style={{
-            backgroundImage: `linear-gradient(to right, #1F6FEB 1px, transparent 1px),
-                              linear-gradient(to bottom, #fb8500 1px, transparent 1px)`,
-            backgroundSize: '50px 50px'
-          }}></div>
+          <div
+            className="w-full h-full"
+            style={{
+              backgroundImage: `linear-gradient(to right, #1F6FEB 1px, transparent 1px),
+                                linear-gradient(to bottom, #fb8500 1px, transparent 1px)`,
+              backgroundSize: '50px 50px',
+            }}
+          ></div>
         </div>
       </div>
 
@@ -67,7 +52,6 @@ export default function CareerHero() {
         {/* ------------------ HERO SECTION ------------------ */}
         <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
             {/* TEXT */}
             <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
               <motion.div variants={fadeInUp} className="flex items-center gap-2 mb-6">
@@ -78,7 +62,7 @@ export default function CareerHero() {
               </motion.div>
 
               <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl text-gray-900 mb-6 leading-tight font-semibold">
-                Shape The <span className="text-blue-600">Future</span> With Technify
+                Shape The Future With Technify
               </motion.h1>
 
               <motion.p variants={fadeInUp} className="text-lg text-gray-600 max-w-2xl leading-relaxed mb-4">
@@ -121,79 +105,75 @@ export default function CareerHero() {
                   whileInView="show"
                   viewport={{ once: true }}
                   whileHover={{ y: -5, scale: 1.02 }}
-                  className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 text-center transition-all duration-300 hover:shadow-lg relative overflow-hidden group"
+                  className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 text-center transition-all duration-300 hover:shadow-lg group flex flex-col"
                 >
-                  <div className="w-14 h-14 mx-auto mb-4 flex items-center justify-center bg-blue-50 rounded-xl">
-                    <benefit.icon className="w-7 h-7 text-blue-600" />
+                  <div className="flex-grow">
+                    <div className="w-14 h-14 mx-auto mb-4 flex items-center justify-center bg-blue-50 rounded-xl group-hover:bg-blue-100 transition">
+                      <benefit.icon className="w-7 h-7 text-blue-600" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3 text-center">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-gray-600 text-center leading-relaxed">
-                    {benefit.description}
-                  </p>
-                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-blue-500 transition-all duration-300 pointer-events-none"></div>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ------------------ FORM SECTION ------------------ */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-gray-50">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
-            
-            {/* INFO */}
-            <motion.div 
-              initial="hidden" 
-              whileInView="visible" 
-              variants={cardVariants}
-              viewport={{ once: true }}
-              className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm"
-            >
-              <h2 className="text-3xl font-semibold text-gray-900 mb-6">Ready to Join Us?</h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                Send us your application and let's start a conversation.
-              </p>
-              <ul className="space-y-3 text-gray-600">
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-blue-500 flex-shrink-0" />
-                  <span>Fast application process</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-blue-500 flex-shrink-0" />
-                  <span>Response within 48 hours</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-blue-500 flex-shrink-0" />
-                  <span>Multiple interview rounds</span>
-                </li>
-              </ul>
+        {/* ------------------ APPLICATION FORM SECTION ------------------ */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+          <div className="max-w-5xl mx-auto">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-12">
+              <motion.h2 variants={fadeInUp} className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">
+                Ready to Apply?
+              </motion.h2>
+              <motion.p variants={fadeInUp} className="text-gray-600 max-w-2xl mx-auto">
+                Fill out the application form below. Our team will review your profile and get back to you.
+              </motion.p>
             </motion.div>
 
-            {/* FORM */}
+            {/* FORM CONTAINER */}
             <motion.form
-              onSubmit={handleSubmit}
-              className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm space-y-6"
               initial="hidden"
               whileInView="visible"
-              variants={cardVariants}
               viewport={{ once: true }}
+              variants={fadeInUp}
+              className="bg-gray-50/60 backdrop-blur-sm border border-gray-200 rounded-2xl shadow-lg p-8 md:p-10 space-y-6"
             >
-              <h3 className="text-2xl font-semibold text-gray-900">Apply Now</h3>
+              {/* GRID INPUTS */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <input name="name" value={formData.name} onChange={handleInputChange} required placeholder="Full Name" className="input-field" />
-                <input name="email" value={formData.email} onChange={handleInputChange} required placeholder="Email" className="input-field" />
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                  <input type="text" className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Enter your full name" required />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                  <input type="email" className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="example@domain.com" required />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
+                  <input type="tel" className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Enter your phone number" />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Experience (in Years)</label>
+                  <input type="number" className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="e.g. 2" />
+                </div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <input name="mobile" value={formData.mobile} onChange={handleInputChange} required placeholder="Mobile Number" className="input-field" />
-                <input name="experience" value={formData.experience} onChange={handleInputChange} placeholder="Experience" className="input-field" />
+
+              {/* MESSAGE */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Why should we hire you?</label>
+                <textarea rows={4} className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Write a short message..."></textarea>
               </div>
-              <textarea name="message" value={formData.message} onChange={handleInputChange} rows={4} placeholder="Cover Letter" className="input-field" />
-              <motion.button whileHover={{ scale: 1.02 }} className="w-full bg-gradient-to-r from-blue-600 to-sky-500 text-white py-4 rounded-lg flex items-center justify-center gap-2">
-                <Send className="w-5 h-5" />
+
+              {/* SUBMIT BUTTON */}
+              <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.96 }} className="w-full md:w-auto px-8 py-3 bg-blue-600 text-white rounded-lg font-medium shadow-md hover:bg-blue-700 transition-colors duration-300">
                 Submit Application
-                <ArrowRight className="w-4 h-4" />
               </motion.button>
             </motion.form>
           </div>

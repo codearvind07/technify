@@ -17,7 +17,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/" },
   {
     label: "Solutions",
-    href: "/solutions",
+    href: "#",
     subItems: [
       { label: "Automation Solution", href: "/solutions/automation" },
       { label: "ELV Solution", href: "/solutions/elv" },
