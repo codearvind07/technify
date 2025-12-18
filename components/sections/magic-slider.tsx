@@ -7,7 +7,6 @@ import slider1 from '../../assets/slider1.png';
 import slider2 from '../../assets/slide2.jpg';
 import slider3 from '../../assets/slide3.jpg';
 
-
 interface Slide {
   id: number;
   image: string | StaticImageData;
