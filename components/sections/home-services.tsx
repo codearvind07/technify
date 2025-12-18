@@ -54,25 +54,25 @@ const advantages = [
     title: "Technical Excellence",
     desc: "Expertise in industry-leading technologies and modern practices.",
     icon: Cpu,
-    stats: "200+ Projects",
+    
   },
   {
     title: "Tailored Solutions",
     desc: "Customized approaches designed for your unique requirements.",
     icon: Zap,
-    stats: "100% Custom",
+   
   },
   {
     title: "Proven Results",
     desc: "A history of successful implementations across industries.",
     icon: Cloud,
-    stats: "98% Success Rate",
+   
   },
   {
     title: "Long-term Partnership",
     desc: "Ongoing support & continuous improvement for growth.",
     icon: Lock,
-    stats: "24/7 Support",
+    
   },
 ];
 
@@ -233,9 +233,7 @@ export default function HomeServices() {
                   {adv.desc}
                 </p>
 
-                <span className="inline-block px-4 py-1 bg-blue-50 text-blue-700 font-medium text-sm rounded-full">
-                  {adv.stats}
-                </span>
+                
               </motion.div>
             );
           })}
